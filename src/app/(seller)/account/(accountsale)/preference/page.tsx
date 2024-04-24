@@ -1,6 +1,6 @@
 "use client"
-import{Img, Button,Text,Input,SelectBox} from "@/components"
-import {Switch} from "@/components/switch"
+import{Button,Text,Input} from "@/components"
+import {Switch} from "@nextui-org/react";
 export default function Preferences(){
     return(<>
      <div className="flex flex-col items-start p-[30px]">

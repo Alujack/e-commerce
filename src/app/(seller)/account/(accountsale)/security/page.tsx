@@ -1,11 +1,6 @@
 "use client"
-import{Img, Button,Text,Input,SelectBox} from "@/components"
-import { Switch } from "@/components/switch";
-const dropDownOptions = [
-  { label: "Option1", value: "option1" },
-  { label: "Option2", value: "option2" },
-  { label: "Option3", value: "option3" },
-];
+import{Text,Input} from "@/components"
+import {Switch} from "@nextui-org/react";
 export default function App(){
     return(<>
      <div className="flex flex-col items-start p-[30px]">

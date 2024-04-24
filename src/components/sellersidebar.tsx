@@ -127,7 +127,7 @@ export default function SellerSidebar(){
                   className="h-[25px] w-[25px] object-cover"
                 />
               }
-              component={<Link href="/profile" />}
+              component={<Link href="/account/profile" />}
             >
               Accounts
             </MenuItem>
