@@ -21,7 +21,7 @@ export default function Topbar({ ...props }: Props) {
         <div className="ml-[17px] flex w-[38%] items-center justify-center gap-6 md:ml-0 md:w-full sm:flex-col">
           <Img src="images/img_megaphone.svg" alt="megaphonethree" className="h-[25px] w-[24px] sm:w-full" />
           <Input
-            color="blue_gray_800_11"
+            color="bg-blue_gray-900_03"
             name="search"
             placeholder={`Search`}
             value={searchBarValue21}

@@ -7,4 +7,5 @@ import { Input } from "./input";
 import { SelectBox } from "./selectbox";
 import { CheckBox } from "./checkbox";
 import { RatingBar } from "./ratingbar";
-export { Heading, Button, Img, Input, SelectBox,Text,TextArea, CheckBox,RatingBar};
+import {Slider}from "./slider";
+export { Heading, Button, Img, Input, SelectBox,Text,TextArea, CheckBox,RatingBar,Slider};

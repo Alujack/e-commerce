@@ -1,4 +1,4 @@
-import React from "react";
+"use client"
 import { Button, Img, Heading, RatingBar } from "./";
 
 interface Props {
@@ -9,13 +9,13 @@ export default function Productcardadmin({ ...props }: Props) {
   return (
     <div {...props}>
       <div className="relative h-[317px] self-stretch md:h-auto">
-        <Img src="images/img_bitmap_317x361_2.png" alt="image" className="h-[317px] w-full object-cover" />
+        <Img src="/images/img_bitmap_317x361.png" alt="image" className="h-[317px] w-full object-cover" />
         <div className="absolute bottom-0 left-0 right-0 top-0 m-auto flex h-max w-[92%] justify-between gap-5">
           <Button color="blue_gray_800_22" size="7xl" className="w-[41px] rotate-[180deg] rounded-[20px]">
-            <Img src="images/img_arrow_left_white_a700.svg" />
+            <Img src="/images/img_arrow_left_white_a700.svg" />
           </Button>
           <Button color="blue_gray_800_22" size="7xl" className="w-[41px] rounded-[20px]">
-            <Img src="images/img_arrow_right.svg" />
+            <Img src="/images/img_arrow_right.svg" />
           </Button>
         </div>
       </div>
@@ -55,7 +55,7 @@ export default function Productcardadmin({ ...props }: Props) {
           shape="circle"
           className="w-[44px] rotate-[180deg] !rounded-[22px]"
         >
-          <Img src="images/img_favorite.svg" />
+          <Img src="/images/img_favorite.svg" />
         </Button>
       </div>
     </div>

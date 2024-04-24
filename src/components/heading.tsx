@@ -39,7 +39,7 @@ const Heading: React.FC<React.PropsWithChildren<HeadingProps>> = ({
   const Component = as || "h6";
 
   return (
-    <Component className={`text-white-A700 font-nunitosans ${className} ${sizes[size]}`} {...restProps}>
+    <Component className={`text-black-900_01 font-nunitosans ${className} ${sizes[size]}`} {...restProps}>
       {children}
     </Component>
   );

@@ -31,7 +31,7 @@ const Text: React.FC<React.PropsWithChildren<TextProps>> = ({
   const Component = as || "p";
 
   return (
-    <Component className={`text-gray-700_01 font-inter ${className} ${sizes[size]}`} {...restProps}>
+    <Component className={`text-black-900_01 font-inter ${className} ${sizes[size]}`} {...restProps}>
       {children}
     </Component>
   );
