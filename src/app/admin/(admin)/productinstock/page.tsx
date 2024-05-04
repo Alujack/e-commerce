@@ -76,7 +76,7 @@ export default function DarkSixteenPage() {
                 <Heading as="p" className="mb-[3px] self-end !text-white-A700_99_04">
                   Showing 1-07 of 78
                 </Heading>
-                <Img src="images/img_television.svg" alt="television_one" className="h-[30px] w-[8%]" />
+                <Img src="/images/img_television.svg" alt="television_one" className="h-[30px] w-[8%]" />
               </div>
             </div>
     </>

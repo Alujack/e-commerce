@@ -6,10 +6,10 @@ export default function OrderHistory(){
     return (
         <div className="w-full bg-gray-300_07">
         <div className="flex flex-col gap-2.5">
-          <div className="flex flex-col w-full gap-2.5 mx-auto md:p-5 max-w-[1200px]">
+          <div className="flex flex-col w-full gap-2.5 mx-auto md:p-5 max-w-[99%]">
             <Header/>
             <div className="flex md:flex-col gap-2">
-              <div className="w-full rounded-[10px]">
+              <div className=" rounded-[10px]">
                 <Img
                   src="images/img_about2_png.png"
                   alt="about2png_one"
@@ -44,14 +44,14 @@ export default function OrderHistory(){
                   size="9xl"
                   className="mb-8 ml-[58px] md:ml-0 sm:px-5 uppercase font-black min-w-[174px] rounded-[10px]"
                 >
-                  
+                 Our service
                 </Button>
               </div>
             </div>
             <div className="flex flex-col gap-5 p-[7px] bg-gray-100_02 rounded-[10px]">
-              <div className="flex justify-between items-center w-[97%] md:w-full gap-5 md:p-5 bg-light_green-600 rounded-[15px]">
+              <div className="flex justify-between items-center w-[80%] md:w-full gap-5 md:p-5 bg-light_green-600 rounded-[15px]">
                 <div className="flex ml-[27px]">
-                  <Heading size="5xl" as="h2" className="!text-white-A700 uppercase">
+                  <Heading size="5xl" as="h2" className="!text-black-900_02 uppercase">
                     History order
                   </Heading>
                 </div>

@@ -1,10 +1,9 @@
 
 "use client";
 import { Img, Heading, Button } from "@/components";
-import Header from "@/components/Header";
+
 import { ReactTable } from "@/components/reacttable";
-import Sidebar1 from "@/components/sidebar";
-import Topbar from "@/components/topbar";
+
 import { createColumnHelper } from "@tanstack/react-table";
 import {useMemo} from "react";
 const tableData = [
@@ -174,7 +173,7 @@ export default function DarkNinePage() {
               </Heading>
               <div className="flex w-[72%] items-center justify-evenly gap-6 rounded-[10px] border border-solid border-blue_gray-800 bg-blue_gray-900_01 md:w-full md:flex-col">
                 <div className="flex items-center gap-6 md:p-5">
-                  <Img src="images/img_filter.svg" alt="filteroneone" className="h-[22px]" />
+                  <Img src="/images/img_filter.svg" alt="filteroneone" className="h-[22px]" />
                   <div className="h-full w-px bg-gray-500_af" />
                 </div>
                 <div className="flex items-center gap-6 md:p-5">
@@ -187,7 +186,7 @@ export default function DarkNinePage() {
                   <Heading as="h3" className="!font-bold">
                     Date
                   </Heading>
-                  <Img src="images/img_arrow_left_white_a700.svg" alt="arrowdownone" className="h-[10px] w-[10px] rotate-[270deg]" />
+                  <Img src="/images/img_arrow_left_white_a700.svg" alt="arrowdownone" className="h-[10px] w-[10px] rotate-[270deg]" />
                   <div className="h-full w-px bg-gray-500_af" />
                 </div>
                 <div className="flex w-[40%] gap-[23px] md:w-full md:flex-row md:p-5">
@@ -195,19 +194,19 @@ export default function DarkNinePage() {
                     <Heading as="h4" className="!font-bold">
                       Order Type
                     </Heading>
-                    <Img src="images/img_arrow_left_white_a700.svg" alt="arrowdownone" className="h-[10px] w-[10px] rotate-[270deg]" />
+                    <Img src="/images/img_arrow_left_white_a700.svg" alt="arrowdownone" className="h-[10px] w-[10px] rotate-[270deg]" />
                     <div className="h-full w-px bg-gray-500_af" />
                   </div>
                   <div className="flex w-full items-center justify-between gap-5">
                     <Heading as="h5" className="!font-bold">
                       Order Status
                     </Heading>
-                   <Img src="images/img_arrow_left_white_a700.svg" alt="arrowdownone" className="h-[10px] w-[10px] rotate-[270deg]" />
+                   <Img src="/images/img_arrow_left_white_a700.svg" alt="arrowdownone" className="h-[10px] w-[10px] rotate-[270deg]" />
                     <div className="h-full w-px bg-gray-500_af" />
                   </div>
                 </div>
                 <div className="flex items-center gap-[7px] self-end md:mb-0 md:p-5">
-                  <Img src="images/img_clock.svg" alt="clockoneone_one" className="h-[18px] w-[17px] self-start" />
+                  <Img src="/images/img_clock.svg" alt="clockoneone_one" className="h-[18px] w-[17px] self-start" />
                   <Heading as="h6" className="!text-deep_orange-400">
                     Reset Filter
                   </Heading>
@@ -229,7 +228,7 @@ export default function DarkNinePage() {
                 <Heading as="p" className="!text-white-A700_99_02">
                   Showing 1-09 of 78
                 </Heading>
-                <Img src="images/img_television.svg" alt="televisionone" className="h-[30px] w-[8%]" />
+                <Img src="/images/img_television.svg" alt="televisionone" className="h-[30px] w-[8%]" />
               </div>
             </div>
 

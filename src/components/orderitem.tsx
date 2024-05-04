@@ -16,7 +16,7 @@ export default function Orderitem({ ...props }: Props) {
         />
       </div>
       <div className="flex md:self-stretch bg-gray-200_05 flex-1 rounded-[15px]">
-        <div className="flex sm:flex-col justify-center pr-4 gap-5">
+        <div className="flex sm:flex-col justify-center pr-4 gap-20">
           <div className="flex p-[9px]">
             <Heading as="h1" className="text-center">
               SROK Smart Phone 128GB, Oled Retina

@@ -10,7 +10,7 @@ export default function Messagerow({ ...props }: Props) {
     <div {...props}>
       <div className="flex w-[23%] items-center justify-between gap-5 md:w-full">
         <div className="h-[16px] w-[16px] self-end rounded-[3px] border-[0.5px] border-solid border-gray-400_07" />
-        <Img src="images/img_signal_gray_400_05.svg" alt="jullu_jalal_one" className="h-[16px] w-[16px] self-end" />
+        <Img src="/images/img_signal_gray_400_05.svg" alt="jullu_jalal_one" className="h-[16px] w-[16px] self-end" />
         <Heading as="h1" className="!font-bold">
           Jullu Jalal
         </Heading>

@@ -20,14 +20,14 @@ export default function Favorite(){
                   </Heading>
                 </div>
                 <div className="flex w-[8%] items-center justify-between gap-5">
-                  <Img src="images/img_signal_blue_gray_100_08.svg" alt="signal_one" className="h-[26px] w-[26px]" />
+                  <Img src="/images/img_signal_blue_gray_100_08.svg" alt="signal_one" className="h-[26px] w-[26px]" />
                   <Button
                     color="blue_gray_800_05"
                     size="sm"
                     shape="circle"
                     className="w-[30px] !rounded-[15px] border-[0.5px] border-solid border-gray-300"
                   >
-                    <Img src="images/img_close_blue_gray_100_01.svg" />
+                    <Img src="/images/img_close_blue_gray_100_01.svg" />
                   </Button>
                 </div>
               </div>
@@ -39,14 +39,14 @@ export default function Favorite(){
                   </Heading>
                 </div>
                 <div className="flex w-[8%] items-center justify-between gap-5">
-                  <Img src="images/img_signal_orange_a100.svg" alt="signal_three" className="h-[26px] w-[26px]" />
+                  <Img src="/images/img_signal_orange_a100.svg" alt="signal_three" className="h-[26px] w-[26px]" />
                   <Button
                     color="blue_gray_800_05"
                     size="sm"
                     shape="circle"
                     className="w-[30px] !rounded-[15px] border-[0.5px] border-solid border-gray-300"
                   >
-                    <Img src="images/img_close_blue_gray_100_01.svg" />
+                    <Img src="/images/img_close_blue_gray_100_01.svg" />
                   </Button>
                 </div>
               </div>
@@ -58,14 +58,14 @@ export default function Favorite(){
                   </Heading>
                 </div>
                 <div className="flex w-[8%] items-center justify-between gap-5">
-                  <Img src="images/img_signal_blue_gray_100_08.svg" alt="signal_five" className="h-[26px] w-[26px]" />
+                  <Img src="/images/img_signal_blue_gray_100_08.svg" alt="signal_five" className="h-[26px] w-[26px]" />
                   <Button
                     color="blue_gray_800_05"
                     size="sm"
                     shape="circle"
                     className="w-[30px] !rounded-[15px] border-[0.5px] border-solid border-gray-300"
                   >
-                    <Img src="images/img_close_blue_gray_100_01.svg" />
+                    <Img src="/images/img_close_blue_gray_100_01.svg" />
                   </Button>
                 </div>
               </div>
@@ -74,13 +74,13 @@ export default function Favorite(){
                   <AccordionItem uuid={i} key={`expandablelistc${i}`}>
                     <div className="flex flex-1 items-start justify-between gap-5 rounded-[12px] bg-blue-A200_04 p-6 sm:p-5">
                       <div className="ml-2 flex items-center gap-6 md:ml-0">
-                        <Img src="images/img_close_black_900.svg" alt="close_seven" className="h-[30px] w-[30px]" />
+                        <Img src="/images/img_close_black_900.svg" alt="close_seven" className="h-[30px] w-[30px]" />
                         <Heading size="lg" as="h5" className="mb-0.5 self-end !font-bold">
                           Review with HR
                         </Heading>
                       </div>
                       <div className="mb-1 flex w-[6%] justify-center rounded-[12px] border border-solid border-gray-400_58 bg-blue-300_01 p-[11px]">
-                        <Img src="images/img_thumbs_up.svg" alt="thumbsup_one" className="h-[18px] w-[19px]" />
+                        <Img src="/images/img_thumbs_up.svg" alt="thumbsup_one" className="h-[18px] w-[19px]" />
                       </div>
                     </div>
                   </AccordionItem>
@@ -95,7 +95,7 @@ export default function Favorite(){
                 </div>
                 <div className="flex w-[8%] items-center justify-between gap-5">
                   <Img
-                    src="images/img_signal_blue_gray_100_08.svg"
+                    src="/images/img_signal_blue_gray_100_08.svg"
                     alt="signal_seven"
                     className="h-[26px] w-[26px] self-start"
                   />
@@ -105,7 +105,7 @@ export default function Favorite(){
                     shape="circle"
                     className="w-[30px] !rounded-[15px] border-[0.5px] border-solid border-gray-300"
                   >
-                    <Img src="images/img_close_blue_gray_100_01.svg" />
+                    <Img src="/images/img_close_blue_gray_100_01.svg" />
                   </Button>
                 </div>
               </div>
@@ -118,7 +118,7 @@ export default function Favorite(){
                 </div>
                 <div className="flex w-[8%] items-center justify-between gap-5">
                   <Img
-                    src="images/img_signal_orange_a100.svg"
+                    src="/images/img_signal_orange_a100.svg"
                     alt="signal_nine"
                     className="h-[26px] w-[26px] self-start"
                   />
@@ -128,7 +128,7 @@ export default function Favorite(){
                     shape="circle"
                     className="w-[30px] !rounded-[15px] border-[0.5px] border-solid border-gray-300"
                   >
-                    <Img src="images/img_close_blue_gray_100_01.svg" />
+                    <Img src="/images/img_close_blue_gray_100_01.svg" />
                   </Button>
                 </div>
               </div>
@@ -140,14 +140,14 @@ export default function Favorite(){
                   </Heading>
                 </div>
                 <div className="flex w-[8%] items-center justify-between gap-5">
-                  <Img src="images/img_signal_blue_gray_100_08.svg" alt="signal_eleven" className="h-[26px] w-[26px]" />
+                  <Img src="/images/img_signal_blue_gray_100_08.svg" alt="signal_eleven" className="h-[26px] w-[26px]" />
                   <Button
                     color="blue_gray_800_05"
                     size="sm"
                     shape="circle"
                     className="w-[30px] !rounded-[15px] border-[0.5px] border-solid border-gray-300"
                   >
-                    <Img src="images/img_close_gray_100.svg" />
+                    <Img src="/images/img_close_gray_100.svg" />
                   </Button>
                 </div>
               </div>

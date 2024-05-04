@@ -19,14 +19,14 @@ export default function Topbar({ ...props }: Props) {
     <header {...props}>
       <div className="flex w-full items-center justify-between gap-5 bg-blue_gray-900_03 p-[13px] md:flex-col">
         <div className="ml-[17px] flex w-[38%] items-center justify-center gap-6 md:ml-0 md:w-full sm:flex-col">
-          <Img src="images/img_megaphone.svg" alt="megaphonethree" className="h-[25px] w-[24px] sm:w-full" />
+          <Img src="/images/img_megaphone.svg" alt="megaphonethree" className="h-[25px] w-[24px] sm:w-full" />
           <Input
             color="bg-blue_gray-900_03"
             name="search"
             placeholder={`Search`}
             value={searchBarValue21}
             onChange={(e: string) => setSearchBarValue21(e)}
-            prefix={<Img src="images/img_rewind.svg" alt="rewind" className="h-[15px] w-[15px] cursor-pointer" />}
+            prefix={<Img src="/images/img_rewind.svg" alt="rewind" className="h-[15px] w-[15px] cursor-pointer" />}
             suffix={
               searchBarValue21?.length > 0 ? (
                 <CloseSVG onClick={() => setSearchBarValue21("")} height={15} width={15} fillColor="#ffffffff" />
@@ -38,7 +38,7 @@ export default function Topbar({ ...props }: Props) {
         <div className="mr-[17px] flex w-[33%] items-center justify-center md:mr-0 md:w-full sm:flex-col">
           <div className="relative mt-[5px] h-[31px] w-[10%] self-start sm:w-full">
             <Img
-              src="images/img_checkmark_blue_a200_07.svg"
+              src="/images/img_checkmark_blue_a200_07.svg"
               alt="checkmarkone"
               className="absolute bottom-[0.00px] left-[0.00px] m-auto h-[25px] w-[24px]"
             />
@@ -55,14 +55,14 @@ export default function Topbar({ ...props }: Props) {
           </div>
           <div className="ml-[25px] flex rounded-[5px] bg-blue_gray-100_15 sm:ml-0">
             <Img
-              src="images/img_uk_flag.png"
+              src="/images/img_uk_flag.png"
               alt="ukflagoneone"
               className="h-[27px] w-full rounded-[5px] object-cover md:h-auto"
             />
           </div>
           <SelectBox
             shape="square"
-            indicator={<Img src="images/img_drop_down.png" alt="Drop Down" className="h-[4px] w-[8px]" />}
+            indicator={<Img src="/images/img_drop_down.png" alt="Drop Down" className="h-[4px] w-[8px]" />}
             name="language"
             placeholder={`English`}
             options={dropDownOptions}
@@ -70,7 +70,7 @@ export default function Topbar({ ...props }: Props) {
           />
           <div className="ml-[26px] flex items-center sm:ml-0">
             <Img
-              src="images/img_man_438081_960_720.png"
+              src="/images/img_man_438081_960_720.png"
               alt="man438081960"
               className="h-[44px] w-[44px] object-cover"
             />
@@ -81,7 +81,7 @@ export default function Topbar({ ...props }: Props) {
               </Heading>
             </div>
             <div className="ml-[26px] flex flex-col items-center justify-center rounded-[9px] border border-solid border-blue_gray-100_16 p-1.5">
-              <Img src="images/img_chevron_down.svg" alt="chevrondownone" className="h-[4px]" />
+              <Img src="/images/img_chevron_down.svg" alt="chevrondownone" className="h-[4px]" />
             </div>
           </div>
         </div>

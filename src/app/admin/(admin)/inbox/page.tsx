@@ -29,7 +29,7 @@ export default function DarkFivePage() {
                       value={searchBarValue2}
                       onChange={(e: string) => setSearchBarValue2(e)}
                       prefix={
-                        <Img src="images/img_rewind.svg" alt="rewind" className="h-[15px] w-[15px] cursor-pointer" />
+                        <Img src="/images/img_rewind.svg" alt="rewind" className="h-[15px] w-[15px] cursor-pointer" />
                       }
                       suffix={
                         searchBarValue2?.length > 0 ? (
@@ -44,7 +44,7 @@ export default function DarkFivePage() {
                       className="w-[42%] rounded-[20px] sm:w-full sm:pr-5"
                     />
                     <Img
-                      src="images/img_other_action.svg"
+                      src="/images/img_other_action.svg"
                       alt="otheraction_one"
                       className="h-[40px] w-[17%] sm:w-full"
                     />
@@ -70,7 +70,7 @@ export default function DarkFivePage() {
                 <Heading as="p" className="mb-[3px] self-end !text-white-A700_99_02">
                   Showing 1-12 of 1,253
                 </Heading>
-                <Img src="images/img_television.svg" alt="television_one" className="h-[30px] w-[10%]" />
+                <Img src="/images/img_television.svg" alt="television_one" className="h-[30px] w-[10%]" />
               </div>
             </div>
 

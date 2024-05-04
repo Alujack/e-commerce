@@ -1,5 +1,6 @@
 "use client"
 import {Heading,Button} from "."
+import Link from "next/link";
 export default function HeadingBanner({title,link}:{
   title:string,
   link?:string,
@@ -11,6 +12,8 @@ export default function HeadingBanner({title,link}:{
                     {title}
                   </Heading>
                 </div>
+                <Link href="/store">
+                
                 <Button
                   color="gray_200_03"
                   size="sm"
@@ -18,6 +21,7 @@ export default function HeadingBanner({title,link}:{
                 >
                   {link}{" "}
                 </Button>
+                </Link>
               </div>
     )
 }

@@ -10,7 +10,7 @@ export default function Stockpro({ ...props }: Props) {
     <div {...props}>
       <div className="flex w-[53%] items-start justify-between gap-5 md:w-full sm:flex-col">
         <div className="flex w-[48%] items-start justify-between gap-5 sm:w-full">
-          <Img src="images/img_bitmap_60x60.png" alt="bitmap_one" className="h-[64px] w-[31%] object-cover" />
+          <Img src="/images/img_bitmap_60x60.png" alt="bitmap_one" className="h-[64px] w-[31%] object-cover" />
           <Heading as="h1" className="mt-5 text-center">
             Apple Watch Series 4
           </Heading>
@@ -31,7 +31,7 @@ export default function Stockpro({ ...props }: Props) {
         <div className="h-[20px] w-[20px] rounded-[10px] bg-red-200" />
       </div>
       <Img
-        src="images/img_television_blue_gray_800_02.svg"
+        src="/images/img_television_blue_gray_800_02.svg"
         alt="television_one"
         className="mb-auto mt-5 h-[32px] w-[9%] md:w-full"
       />

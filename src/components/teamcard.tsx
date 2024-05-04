@@ -3,7 +3,7 @@ export default function TeamCard(){
     return(
           <div className="flex h-[100%] w-full rounded-[18px] flex-col items-center border border-solid border-blue_gray-800_01 bg-blue_gray-900_01  bg-cover bg-no-repeat p-[31px] md:h-auto sm:p-5">
                   <Img
-                    src="images/img_image_2.png"
+                    src="/images/img_image_2.png"
                     alt="image_one"
                     className="mt-[11px] h-[100%] w-[100%] object-cover rounded-[18px]"
                   />

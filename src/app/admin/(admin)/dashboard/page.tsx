@@ -1,7 +1,5 @@
 "use client";
 import { Heading, Img, SelectBox } from "@/components";
-import Sidebar1 from "@/components/sidebar";
-import Topbar from "@/components/topbar";
 
 const dropDownOptions = [
   { label: "Option1", value: "option1" },
@@ -29,10 +27,10 @@ export default function DarkOnePage() {
                         40,689
                       </Heading>
                     </div>
-                    <Img src="images/img_user.svg" alt="total_user_one" className="h-[60px] w-[60px]" />
+                    <Img src="/images/img_user.svg" alt="total_user_one" className="h-[60px] w-[60px]" />
                   </div>
                   <div className="flex items-center gap-2">
-                    <Img src="images/img_checkmark_teal_a700.svg" alt="image" className="h-[24px] w-[24px]" />
+                    <Img src="/images/img_checkmark_teal_a700.svg" alt="image" className="h-[24px] w-[24px]" />
                     <Heading size="lg" as="h4" className="!text-teal-A700_02">
                       <span className="text-teal-A700_02">8.5%</span>
                       <span className="text-gray-900_05">&nbsp;</span>
@@ -50,10 +48,10 @@ export default function DarkOnePage() {
                         10293
                       </Heading>
                     </div>
-                    <Img src="images/img_close.svg" alt="closeoneoneone" className="h-[60px] w-[60px]" />
+                    <Img src="/images/img_close.svg" alt="closeoneoneone" className="h-[60px] w-[60px]" />
                   </div>
                   <div className="flex items-center gap-2">
-                    <Img src="images/img_checkmark_teal_a700.svg" alt="checkmarkone" className="h-[24px] w-[24px]" />
+                    <Img src="/images/img_checkmark_teal_a700.svg" alt="checkmarkone" className="h-[24px] w-[24px]" />
                     <Heading size="lg" as="h6" className="!text-teal-A700_02">
                       <span className="text-teal-A700_02">1.3%</span>
                       <span className="text-gray-900_05">&nbsp;</span>
@@ -71,10 +69,10 @@ export default function DarkOnePage() {
                         $89,000
                       </Heading>
                     </div>
-                    <Img src="images/img_floating_icon.svg" alt="floatingicon" className="h-[60px] w-[60px]" />
+                    <Img src="/images/img_floating_icon.svg" alt="floatingicon" className="h-[60px] w-[60px]" />
                   </div>
                   <div className="flex items-center gap-2 self-start">
-                    <Img src="images/img_ic_trending_down_24px.svg" alt="ictrendingone" className="h-[24px] w-[24px]" />
+                    <Img src="/images/img_ic_trending_down_24px.svg" alt="ictrendingone" className="h-[24px] w-[24px]" />
                     <Heading size="lg" as="h6" className="!text-pink-400">
                       <span className="text-pink-400">4.3%</span>
                       <span className="text-gray-900_05">&nbsp;</span>
@@ -93,13 +91,13 @@ export default function DarkOnePage() {
                       </Heading>
                     </div>
                     <Img
-                      src="images/img_close_deep_orange_300_02.svg"
+                      src="/images/img_close_deep_orange_300_02.svg"
                       alt="closeoneoneone"
                       className="h-[60px] w-[60px]"
                     />
                   </div>
                   <div className="flex items-center gap-2">
-                    <Img src="images/img_checkmark_teal_a700.svg" alt="checkmarkone" className="h-[24px] w-[24px]" />
+                    <Img src="/images/img_checkmark_teal_a700.svg" alt="checkmarkone" className="h-[24px] w-[24px]" />
                     <Heading size="lg" as="h6" className="!text-teal-A700_02">
                       <span className="text-teal-A700_02">1.8%</span>
                       <span className="text-gray-900_05">&nbsp;</span>
@@ -117,7 +115,7 @@ export default function DarkOnePage() {
                     color="blue_gray_800_11"
                     size="sm"
                     shape="round"
-                    indicator={<Img src="images/img_arrowdown.svg" alt="arrow_down" className="h-[10px] w-[10px]" />}
+                    indicator={<Img src="/images/img_arrowdown.svg" alt="arrow_down" className="h-[10px] w-[10px]" />}
                     name="october"
                     placeholder={`October`}
                     options={dropDownOptions}
@@ -152,12 +150,12 @@ export default function DarkOnePage() {
                       </div>
                       <div className="relative h-[205px] self-stretch">
                         <Img
-                          src="images/img_graph.png"
+                          src="/images/img_graph.png"
                           alt="graphoneoneone"
                           className="absolute bottom-0 left-0 right-0 top-0 m-auto h-[195px] w-full object-cover"
                         />
                         <Img
-                          src="images/img_point.svg"
+                          src="/images/img_point.svg"
                           alt="pointoneoneone"
                           className="absolute bottom-0 left-[0.00px] top-0 my-auto h-[205px] w-[94%]"
                         />
@@ -213,7 +211,7 @@ export default function DarkOnePage() {
                     color="blue_gray_800_11"
                     size="sm"
                     shape="round"
-                    indicator={<Img src="images/img_arrowdown.svg" alt="arrow_down" className="h-[9px] w-[10px]" />}
+                    indicator={<Img src="/images/img_arrowdown.svg" alt="arrow_down" className="h-[9px] w-[10px]" />}
                     name="octoberone"
                     placeholder={`October`}
                     options={dropDownOptions}
@@ -240,7 +238,7 @@ export default function DarkOnePage() {
                   <div className="flex flex-col items-start pt-[23px] sm:pt-5">
                     <div className="ml-6 flex w-[3%] rounded-[17px] bg-blue_gray-100_15 md:ml-0 md:w-full">
                       <Img
-                        src="images/img_bitmap_35x36.png"
+                        src="/images/img_bitmap_35x36.png"
                         alt="bitmaponeone"
                         className="h-[35px] w-[36px] rounded-[50%]"
                       />

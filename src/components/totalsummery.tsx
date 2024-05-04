@@ -1,11 +1,12 @@
-import React from "react";
+"use client"
 import { Button, Heading, Text } from "./";
-
+import { useRouter } from "next/navigation";
 interface Props {
   className?: string;
 }
 
 export default function Totalsummery({ ...props }: Props) {
+  const router = useRouter();
   return (
     <div {...props}>
       <Heading size="xl" as="h1" className="self-start mt-1 !font-bold">
@@ -43,6 +44,9 @@ export default function Totalsummery({ ...props }: Props) {
         color="green_700"
         size="9xl"
         className="mt-[31px] mb-[512px] sm:pl-5 uppercase font-medium min-w-[124px] rounded-[10px]"
+        onClick ={()=>{
+          router.push("/cart/checkout")
+        }}
       >
         checkout
       </Button>

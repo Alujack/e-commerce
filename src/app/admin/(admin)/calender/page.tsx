@@ -21,7 +21,7 @@ export default function Favorite(){
                   <div className="mt-3.5 h-px self-stretch bg-gray-300_19" />
                   <div className="mt-6 flex flex-col gap-[22px] self-stretch px-5">
                     <div className="flex items-start gap-3">
-                      <Img src="images/img_mobile.svg" alt="design" className="h-[38px] w-[38px]" />
+                      <Img src="/images/img_mobile.svg" alt="design" className="h-[38px] w-[38px]" />
                       <div className="mt-1 flex flex-col items-start gap-[5px]">
                         <Heading as="h3" className="!font-bold !text-white-A700_f2">
                           Design Conference
@@ -36,9 +36,9 @@ export default function Favorite(){
                           Meaghanberg
                         </Heading>
                         <div className="flex gap-2">
-                          <Img src="images/img_man_image.png" alt="image" className="h-[24px] w-[24px] object-cover" />
-                          <Img src="images/img_mobile.svg" alt="image_one" className="h-[24px] w-[24px]" />
-                          <Img src="images/img_mobile.svg" alt="meaghanberg_two" className="h-[24px] w-[24px]" />
+                          <Img src="/images/img_man_image.png" alt="image" className="h-[24px] w-[24px] object-cover" />
+                          <Img src="/images/img_mobile.svg" alt="image_one" className="h-[24px] w-[24px]" />
+                          <Img src="/images/img_mobile.svg" alt="meaghanberg_two" className="h-[24px] w-[24px]" />
                           <div className="flex h-[24px] flex-col items-end justify-center bg-[url(/public/images/img_more.svg)] bg-cover bg-no-repeat p-px md:h-auto">
                             <Heading size="xs" as="p" className="mb-0.5 mt-[3px] !text-blue-A200_04">
                               15+
@@ -49,7 +49,7 @@ export default function Favorite(){
                     </div>
                     <div className="h-px w-[279px] bg-gray-300_19" />
                     <div className="flex items-start gap-3">
-                      <Img src="images/img_image.png" alt="image_one" className="h-[38px] w-[38px] object-cover" />
+                      <Img src="/images/img_image.png" alt="image_one" className="h-[38px] w-[38px] object-cover" />
                       <div className="mt-[3px] flex flex-col items-start">
                         <Heading as="p" className="!font-bold !text-white-A700_f2">
                           Weekend Festival
@@ -65,17 +65,17 @@ export default function Favorite(){
                         </Heading>
                         <div className="mt-2 flex gap-2">
                           <Img
-                            src="images/img_man_image_24x24.png"
+                            src="/images/img_man_image_24x24.png"
                             alt="manimage_one"
                             className="h-[24px] w-[24px] object-cover"
                           />
                           <Img
-                            src="images/img_man_image_1.png"
+                            src="/images/img_man_image_1.png"
                             alt="manimage_three"
                             className="h-[24px] w-[24px] object-cover"
                           />
                           <Img
-                            src="images/img_man_image_2.png"
+                            src="/images/img_man_image_2.png"
                             alt="manimage_five"
                             className="h-[24px] w-[24px] object-cover"
                           />
@@ -90,7 +90,7 @@ export default function Favorite(){
                     <div className="h-px w-[279px] bg-gray-300_19" />
                     <div className="flex items-start gap-3">
                       <Img
-                        src="images/img_image_38x38.png"
+                        src="/images/img_image_38x38.png"
                         alt="image_one"
                         className="h-[38px] w-[38px] object-cover"
                       />
@@ -109,17 +109,17 @@ export default function Favorite(){
                         </Heading>
                         <div className="mt-2 flex gap-2">
                           <Img
-                            src="images/img_man_image_3.png"
+                            src="/images/img_man_image_3.png"
                             alt="manimage_one"
                             className="h-[24px] w-[24px] object-cover"
                           />
                           <Img
-                            src="images/img_man_image_4.png"
+                            src="/images/img_man_image_4.png"
                             alt="manimage_three"
                             className="h-[24px] w-[24px] object-cover"
                           />
                           <Img
-                            src="images/img_man_image_5.png"
+                            src="/images/img_man_image_5.png"
                             alt="manimage_five"
                             className="h-[24px] w-[24px] object-cover"
                           />
@@ -133,7 +133,7 @@ export default function Favorite(){
                     </div>
                     <div className="h-px w-[279px] bg-gray-300_19" />
                     <div className="flex items-start gap-3">
-                      <Img src="images/img_image_1.png" alt="image_one" className="h-[38px] w-[38px] object-cover" />
+                      <Img src="/images/img_image_1.png" alt="image_one" className="h-[38px] w-[38px] object-cover" />
                       <div className="mt-1 flex flex-col items-start">
                         <Heading as="p" className="!font-bold !text-white-A700_f2">
                           Ultra Europe 2019
@@ -149,17 +149,17 @@ export default function Favorite(){
                         </Heading>
                         <div className="mt-2 flex gap-2">
                           <Img
-                            src="images/img_man_image_6.png"
+                            src="/images/img_man_image_6.png"
                             alt="manimage_one"
                             className="h-[24px] w-[24px] object-cover"
                           />
                           <Img
-                            src="images/img_man_image_7.png"
+                            src="/images/img_man_image_7.png"
                             alt="manimage_three"
                             className="h-[24px] w-[24px] object-cover"
                           />
                           <Img
-                            src="images/img_man_image_8.png"
+                            src="/images/img_man_image_8.png"
                             alt="manimage_five"
                             className="h-[24px] w-[24px] object-cover"
                           />
@@ -187,11 +187,11 @@ export default function Favorite(){
                     </Heading>
                     <div className="flex w-[63%] items-center justify-between gap-5 sm:w-full sm:flex-col">
                       <div className="flex flex-wrap items-center gap-3.5">
-                        <Img src="images/img_arrow_left_gray_400_01.svg" alt="arrowleft_one" className="h-[14px]" />
+                        <Img src="/images/img_arrow_left_gray_400_01.svg" alt="arrowleft_one" className="h-[14px]" />
                         <Heading size="4xl" as="h4">
                           October 2019
                         </Heading>
-                        <Img src="images/img_arrow_right_gray_400_01.svg" alt="arrowright_one" className="h-[14px]" />
+                        <Img src="/images/img_arrow_right_gray_400_01.svg" alt="arrowright_one" className="h-[14px]" />
                       </div>
                       <div className="flex items-center gap-4 rounded-[12px] border border-solid border-blue_gray-100_1d bg-blue_gray-800_03 pl-4">
                         <div className="flex items-center gap-4">

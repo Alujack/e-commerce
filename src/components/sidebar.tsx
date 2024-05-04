@@ -42,22 +42,22 @@ export default function Sidebar1({ ...props }: Props) {
         className="mb-[68px] w-full self-stretch pb-[15px]"
       >
         <div className="flex flex-col gap-[0.03px]">
-          <MenuItem component={<Link href="/dashboard" />} icon={<Img src="images/img_megaphone.svg" alt="megaphoneone"  className="h-[24px] w-[22px]" />}>
+          <MenuItem component={<Link href="dashboard" />} icon={<Img src="/images/img_megaphone.svg" alt="megaphoneone"  className="h-[24px] w-[22px]" />}>
             Dashboard
           </MenuItem>
-          <MenuItem component={<Link href="/productadmin" />} icon={<Img src="images/img_megaphone.svg" alt="megaphonethree" className="h-[24px] w-[22px]" />}>
+          <MenuItem component={<Link href="productadmin" />} icon={<Img src="/images/img_megaphone.svg" alt="megaphonethree" className="h-[24px] w-[22px]" />}>
             Products
           </MenuItem>
-          <MenuItem component={<Link href="/favorite" />} icon={<Img src="images/img_megaphone.svg" alt="megaphonefive" className="h-[24px] w-[22px]" />}>
+          <MenuItem component={<Link href="favorite" />} icon={<Img src="/images/img_megaphone.svg" alt="megaphonefive" className="h-[24px] w-[22px]" />}>
             Favorites
           </MenuItem>
-          <MenuItem component={<Link href="/inbox" />} icon={<Img src="images/img_megaphone.svg" alt="megaphoneseven" className="h-[24px] w-[22px]" />}>
+          <MenuItem component={<Link href="inbox" />} icon={<Img src="/images/img_megaphone.svg" alt="megaphoneseven" className="h-[24px] w-[22px]" />}>
             Inbox
           </MenuItem>
-          <MenuItem component={<Link href="/orderlist" />} icon={<Img src="images/img_megaphone.svg" alt="megaphonenine" className="h-[24px] w-[22px]" />}>
+          <MenuItem component={<Link href="orderlist" />} icon={<Img src="/images/img_megaphone.svg" alt="megaphonenine" className="h-[24px] w-[22px]" />}>
             Order Lists
           </MenuItem>
-          <MenuItem component={<Link href="/productinstock" />} icon={<Img src="images/img_megaphone.svg" alt="megaphoneone" className="h-[24px] w-[22px]" />}>
+          <MenuItem component={<Link href="productinstock" />} icon={<Img src="/images/img_megaphone.svg" alt="megaphoneone" className="h-[24px] w-[22px]" />}>
             Product Stock
           </MenuItem>
         </div>
@@ -69,37 +69,37 @@ export default function Sidebar1({ ...props }: Props) {
           <Heading size="xs" as="p" className="ml-10 !font-bold tracking-[0.26px] !text-white-A700_e5_02 md:ml-0">
             PAGES
           </Heading>
-          <MenuItem component={<Link href="/pricing" />} icon={<Img src="images/img_megaphone.svg" alt="megaphonethree" className="h-[24px] w-[22px]" />}>
+          <MenuItem component={<Link href="pricing" />} icon={<Img src="/images/img_megaphone.svg" alt="megaphonethree" className="h-[24px] w-[22px]" />}>
             Pricing
           </MenuItem>
-          <MenuItem component={<Link href="/calender" />} icon={<Img src="images/img_megaphone.svg" alt="megaphonefive" className="h-[24px] w-[22px]" />}>
+          <MenuItem component={<Link href="calender" />} icon={<Img src="/images/img_megaphone.svg" alt="megaphonefive" className="h-[24px] w-[22px]" />}>
             Calender
           </MenuItem>
-          <MenuItem component={<Link href="/todo" />} icon={<Img src="images/img_megaphone.svg" alt="megaphoneseven" className="h-[24px] w-[22px]" />}>
+          <MenuItem component={<Link href="todo" />} icon={<Img src="/images/img_megaphone.svg" alt="megaphoneseven" className="h-[24px] w-[22px]" />}>
             To-Do
           </MenuItem>
-          <MenuItem component={<Link href="/contact" />} icon={<Img src="images/img_megaphone.svg" alt="megaphonenine" className="h-[24px] w-[22px]" />}>
+          <MenuItem component={<Link href="contact" />} icon={<Img src="/images/img_megaphone.svg" alt="megaphonenine" className="h-[24px] w-[22px]" />}>
             Contact
           </MenuItem>
-          <MenuItem component={<Link href="/invoice" />} icon={<Img src="images/img_megaphone.svg" alt="megaphoneone" className="h-[24px] w-[22px]" />}>
+          <MenuItem component={<Link href="invoice" />} icon={<Img src="/images/img_megaphone.svg" alt="megaphoneone" className="h-[24px] w-[22px]" />}>
             Invoice
           </MenuItem>
-          <MenuItem component={<Link href="/uielement" />} icon={<Img src="images/img_megaphone.svg" alt="megaphonethree" className="h-[24px] w-[22px]" />}>
+          <MenuItem component={<Link href="uielement" />} icon={<Img src="/images/img_megaphone.svg" alt="megaphonethree" className="h-[24px] w-[22px]" />}>
             UI Elements
           </MenuItem>
-          <MenuItem component={<Link href="/team" />} icon={<Img src="images/img_megaphone.svg" alt="megaphonefive" className="h-[24px] w-[22px]" />}>
+          <MenuItem component={<Link href="team" />} icon={<Img src="/images/img_megaphone.svg" alt="megaphonefive" className="h-[24px] w-[22px]" />}>
             Team
           </MenuItem>
-          <MenuItem component={<Link href="/table" />} icon={<Img src="images/img_megaphone.svg" alt="megaphoneseven" className="h-[24px] w-[22px]" />}>
+          <MenuItem component={<Link href="table" />} icon={<Img src="/images/img_megaphone.svg" alt="megaphoneseven" className="h-[24px] w-[22px]" />}>
             Table
           </MenuItem>
         </div>
         <div className="mt-[31px] h-px bg-gray-300_33_02" />
         <div className="flex flex-col gap-[0.03px]">
-          <MenuItem component={<Link href="/setting" />} icon={<Img src="images/img_megaphone.svg" alt="megaphonenine" className="h-[24px] w-[22px]" />}>
+          <MenuItem component={<Link href="setting" />} icon={<Img src="/images/img_megaphone.svg" alt="megaphonenine" className="h-[24px] w-[22px]" />}>
             Settings
           </MenuItem>
-          <MenuItem component={<Link href="/logout" />} icon={<Img src="images/img_megaphone.svg" alt="megaphoneone" className="h-[24px] w-[22px]" />}>
+          <MenuItem component={<Link href="logout" />} icon={<Img src="/images/img_megaphone.svg" alt="megaphoneone" className="h-[24px] w-[22px]" />}>
             Logout
           </MenuItem>
         </div>

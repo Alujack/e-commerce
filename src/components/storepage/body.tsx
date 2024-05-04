@@ -23,17 +23,18 @@ export default function Store(){
                     top cell phones & tablets
                   </Heading>
                 </div>
-                <div className="mb-2.5 ml-2.5 flex gap-[21px] md:ml-0 md:flex-col">
-                    <div className="flex h-[310px] flex-1 items-center rounded-[10px] p-[29px] md:h-auto sm:p-5">
-                     <Sliderbanner/>
-                   </div>
-                   <div className="relative h-[310px] w-[35%] rounded-[10px] md:h-auto md:w-full">
+                <div className="flex flex-row justify-center space-evenly w-[100%] md:w-full gap-2.5 md:p-5">
+                   
+                   <div className="static h-[310px] w-[35%] rounded-[10px] md:h-auto md:w-full">
                    <Img
                       src="images/img_banner1_png.png"
                       alt="banner1png_one"
                       className="h-[310px] w-full object-cover rounded-[10px]"
                     />
                   </div>
+                   <div className="items-center h-[310px] w-[65%] md:w-full md:ml-0 ">
+                     <Sliderbanner/>
+                    </div>
                   
                 </div>
               </div>

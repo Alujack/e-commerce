@@ -15,7 +15,7 @@ export default function Contact({ ...props }: Props) {
     <div {...props}>
       <div className="flex w-[76%] flex-col items-center md:w-full">
         <Button size="lg" shape="square" className="w-[80px]">
-          <Img src="images/img_camera.svg" />
+          <Img src="/images/img_camera.svg" />
         </Button>
         <Heading as="h1" className="mt-[15px] tracking-[0.54px] !text-blue-A200_09">
           Upload Photo
@@ -79,7 +79,7 @@ export default function Contact({ ...props }: Props) {
             <SelectBox
               size="md"
               shape="round"
-              indicator={<Img src="images/img_arrowdown_gray_400.svg" alt="arrow_down" className="h-[7px] w-[12px]" />}
+              indicator={<Img src="/images/img_arrowdown_gray_400.svg" alt="arrow_down" className="h-[7px] w-[12px]" />}
               name="gender"
               placeholder={`Male`}
               options={dropDownOptions}

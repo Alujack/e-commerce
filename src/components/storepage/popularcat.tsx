@@ -1,7 +1,7 @@
 import {Heading, Img, Text,Input,Button,CheckBox} from "../."
 export default function PopularCategories(){
     return (
-              <div className="flex gap-[11px] rounded-[10px] bg-gray-100_03 py-2.5 md:flex-col">
+              <div className="flex gap-[11px] rounded-[10px] bg-gray-100_03 py-2.5 md:flex-col sm:hidden">
                 <div className="flex w-full flex-col items-center gap-3.5 md:p-5 rounded-[50%] bg-gray-300_33">
                   <div className="self-stretch rounded-[10px]  p-6 sm:p-5">
                     <Img

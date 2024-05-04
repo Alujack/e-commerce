@@ -10,7 +10,7 @@ export default function AddCart() {
     
       <div className="w-full bg-gray-300_07">
         <div className="flex flex-col gap-[11px]">
-          <div className="flex flex-col w-full gap-[11px] mx-auto md:p-5 max-w-[1200px]">
+          <div className="flex flex-col w-full gap-[11px] mx-auto md:p-5 max-w-[99%]">
             <Header />
             <Input
               size="5xl"
@@ -95,7 +95,7 @@ export default function AddCart() {
                   size="9xl"
                   className="mb-8 ml-[58px] md:ml-0 sm:px-5 uppercase font-black min-w-[174px] rounded-[10px]"
                 >
-                  
+                 Our service
                 </Button>
               </div>
             </div>
