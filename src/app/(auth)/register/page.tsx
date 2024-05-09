@@ -10,9 +10,9 @@ export default function WebSignUpPage() {
           <Img
             src="images/img_group_3653.png"
             alt="image"
-            className="w-[37%] md:w-full ml-[17px] md:ml-0 object-cover"
+            className="w-[37%] md:w-full ml-[17px] md:ml-0 object-cover sm:hidden"
           />
-          <Signupform className="flex flex-col w-[58%] md:w-full mb-2 mr-[19px] gap-11 px-[51px] md:mr-0 md:px-5" />
+          <Signupform className="flex flex-col w-[58%] md:w-full mb-2 mr-[19px] gap-11 border-1 px-[51px] md:mr-0 md:px-5" />
         </div>
       </div>
     </>

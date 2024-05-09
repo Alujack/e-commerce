@@ -10,7 +10,7 @@ export default function Discountmiddlebanner(){
                               Smartphone
                             </>
                           </Heading>
-                        </div>
+                        </div>    
                         <div className="flex items-center gap-[27px] flex-wrap">
                           <Heading size="6xl" as="h5" className="!text-red-600">
                             $569.00{" "}

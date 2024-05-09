@@ -1,11 +1,28 @@
-import React from "react";
+"use client"
+import {useState} from "react";
 import { Heading, Text, Img, Button } from "./";
-
+import Link from "next/link";
 interface Props {
   className?: string;
+  save?:string;
+  price?:string;
+  src?:string;
+
 }
 
-export default function Ordercart({ ...props }: Props) {
+export default function Ordercart(
+  {
+    save = "100",
+    price = "100",
+    src="images/headphone.png",
+  ...props
+  }: Props) {
+  const [count, setCount] = useState(1);
+
+  if(count == 0){
+        return(null)
+      }
+  console.log(save);
   return (
     <div {...props}>
       <div className="flex flex-col items-start w-[30%] md:w-full bg-white-A700 rounded-[10px]">
@@ -14,20 +31,22 @@ export default function Ordercart({ ...props }: Props) {
             save
           </Text>
           <Text as="p" className="self-center !text-white-A700 !font-medium">
-            $199.00
+           {save}
           </Text>
         </div>
+        <Link href="/product">
         <Img
-          src="images/img_prod26_png.png"
+          src={src}
           alt="save_one"
           className="h-[250px] w-full md:h-auto mt-[-41px] relative object-cover rounded-[10px]"
         />
+        </Link>
       </div>
       <div className="flex justify-between items-start md:self-stretch flex-1">
         <div className="flex flex-col items-start w-[51%] sm:w-full py-[13px]">
           <div className="flex items-center mt-[22px] gap-1 flex-wrap">
             <Heading size="s" as="h1" className="self-end !text-amber-700 !font-black">
-              
+            &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
             </Heading>
             <Text size="md" as="p">
               (152)
@@ -37,24 +56,31 @@ export default function Ordercart({ ...props }: Props) {
             SROK Smart Phone 128GB, Oled Retina
           </Heading>
           <Heading size="3xl" as="h3" className="mt-[13px] !text-red-600 !font-semibold">
-            $579.00
+            {price}
           </Heading>
           <div className="flex justify-center items-center w-[49%] md:w-full mt-4 p-2 border-gray-500_33 border border-solid rounded-[10px]">
-            <Img src="images/img_settings.svg" alt="image" className="h-[15px]" />
+            <Button onClick={()=>setCount(count-1)}><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14" />
+              </svg>
+            </Button>
             <div className="flex justify-center flex-1">
               <div className="flex">
                 <Heading size="s" as="h4" className="self-start text-center !font-bold">
-                  1
+                  {count}
                 </Heading>
               </div>
             </div>
-            <Img src="images/img_settings.svg" alt="image_one" className="h-[15px]" />
+            <Button onClick={()=>setCount(count+1)}>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+            </svg>
+            </Button>
           </div>
           <Button
-            color="green_700"
+            color="transparent"
             size="xs"
             shape="round"
-            className="mt-5 !text-green-700 uppercase font-medium min-w-[93px]"
+            className="mt-5 !text-green-700 uppercase "
           >
             free shipping
           </Button>
@@ -71,14 +97,14 @@ export default function Ordercart({ ...props }: Props) {
             as="h2"
             className="flex justify-center items-center h-[35px] w-[35px] !text-gray-500 text-center !font-black bg-gray-300_07 rounded-[17px]"
           >
-            
+            
           </Heading>
           <Heading
             size="3xl"
             as="h3"
             className="flex justify-center items-center h-[35px] w-[35px] !text-red-600 text-center !font-black bg-red-A700_11 rounded-[17px]"
           >
-            
+            
           </Heading>
         </div>
       </div>

@@ -12,8 +12,8 @@ children
           <div className="flex md:flex-col items-center gap-[34px] p-[18px] my-[18px] bg-white-A700_33 rounded-[10px]">
             <div className="w-[24%] md:w-full p-[9px] my-11">
               <div className="flex flex-col items-center gap-4">
-                 <Heading size="8xl" as="h1" className="!text-white-A700 capitalize !font-bold">
-                  Account info
+                 <Heading size="8xl" as="h1" className=" capitalize !font-bold">
+                  Account information
                 </Heading>
                 <Menuprofile className="self-stretch p-5 bg-gray-50 rounded-[10px]" />
               </div>

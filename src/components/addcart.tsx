@@ -3,8 +3,10 @@ import { Text, Heading, Button, Img, Input } from "./";
 import Header from "./Header";
 import Ordercart from "./ordercart";
 import Totalsummery from "./totalsummery";
+import "@/styles/index.css";
 
 export default function AddCart() {
+
   return (
     <>
     
@@ -19,12 +21,19 @@ export default function AddCart() {
               className="sm:px-5 font-bold rounded-[10px]"
             />
             <div className="flex md:flex-col items-center gap-2.5 p-[7px] bg-white-A700 rounded-[10px]">
-              <div className="flex flex-col md:self-stretch gap-[15px] flex-1">
-                <Ordercart className="flex md:flex-col items-center gap-5 p-4 bg-gray-50 flex-1 rounded-[10px]" />
-                <Ordercart className="flex md:flex-col items-center gap-5 p-4 bg-gray-50 flex-1 rounded-[10px]" />
-                <Ordercart className="flex md:flex-col items-center gap-5 p-4 bg-gray-50 flex-1 rounded-[10px]" />
+              <div className=" scrollable-div flex flex-col md:self-stretch gap-[15px] flex-1">
+
+                {/* {addcard.map<any>((item,index)=>{
+                 
+                   
+                })} */}
+                <Ordercart  price="2000" save="100"  className="flex md:flex-col items-center gap-5 p-4 bg-gray-50 flex-1 rounded-[10px]" />
+  
               </div>
-              <Totalsummery className="flex flex-col items-center w-[32%] md:w-full p-[30px] my-10 sm:p-5 border-green-700 border border-solid rounded-[10px]" />
+             
+                <Totalsummery className="flex flex-col items-center w-[32%] md:w-full p-[30px] my-10 sm:p-5 border-green-700 border border-solid rounded-[10px]" />
+             
+              
             </div>
             <div className="flex md:flex-col justify-evenly items-start gap-16 bg-blue_gray-900_02 rounded-[20px]">
               <div className="flex flex-col items-start mt-[29px] px-[11px] md:p-5 md:mt-0">

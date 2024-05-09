@@ -1,6 +1,6 @@
 "use client"
 import { CloseSVG } from "../assets/images";
-import { Heading, Img, Input } from ".";
+import { Heading, Img, Input,Text } from ".";
 import Navbar from "./navbar";
 import {useState} from "react";
 import { useRouter } from "next/navigation";
@@ -9,6 +9,17 @@ export default function Header() {
   const router =useRouter();
   const nav =()=>{
     router.push("/register");
+  }
+ 
+  const [action ,setAction] = useState("Sign in");
+  const  handler = ()=> {
+   if(action == "Sign in"){
+    setAction("Profile");
+    router.push("/infor");
+   }else{
+    setAction("Sign in");
+    router.push("/register");
+   }
   }
 
   return (
@@ -20,16 +31,16 @@ export default function Header() {
                   <Heading
                     size="5xl"
                     as="h5"
-                    className="!text-transparent tracking-[-0.28px] !font-semibold bg-gradient1 bg-clip-text sm:1xl"
+                    className="!text-transparent tracking-[-0.28px] !font-semibold bg-gradient1 bg-clip-text sm:1xl sm:hidden"
                   >
                     TECHNESS@
                   </Heading>
                 </div>
               </div>
               <Input
-                size="sm"
+                size="md"
                 name="search"
-                placeholder={`DJI phantom`}
+                placeholder={``}
                 value={searchBarValue}
                 onChange={(e: string) => setSearchBarValue(e)}
                 prefix={<Img src="/images/img_search.svg" alt="search" className="cursor-pointer" />}
@@ -41,15 +52,26 @@ export default function Header() {
                 className="gap-2 sm:pr-5 !text-blue_gray-900_01 tracking-[-0.08px] border-gray-300_08 border border-solid flex-grow rounded-[15px]"
               />
               <button
-                onClick={nav}
+                onClick={handler} 
               >
-                Sign In
+                {action}
               </button>
             </div>
             <div className ="w-[100%] border-[1.5px] border-solid deep_purple_700_pink_400_01_border sm:hidden"></div>
+                 <div className="flex md:flex-col justify-between items-center w-[97%] sm:hidden md:w-full ">
+                     <div className="flex px-2">
+                <div className="flex items-center gap-2">
+                  <a  href= "https://www.google.com/maps/search/Cambodia%2Frupp/@11.5677402,104.8886219,17z/data=!3m1!4b1?entry=ttu" target="_blank">
+                  <Img src="/images/img_location_marker.svg" alt="locationmarker" className="h-[24px] w-[24px]" />
+                  <Text as="p" className="!text-blue_gray-900_01 tracking-[-0.08px]">
+                    Cambodia
+                  </Text>
+                  </a>
+                </div>
+              </div>
+                    <Navbar/>
+               </div>
                 
-                  <Navbar/>
-               
                 
           </header>
   );

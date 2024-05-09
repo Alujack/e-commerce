@@ -1,8 +1,7 @@
 "use client"
 import { Heading } from "@/components";
 import Contact from"@/components/contact";
-import Sidebar1 from"@/components/sidebar";
-import Topbar from "@/components/topbar";
+
 export default function Favorite(){
     return <>
     <div className="flex h-[100%] items-start  md:h-auto md:flex-col">

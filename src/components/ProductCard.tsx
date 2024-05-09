@@ -7,19 +7,20 @@ interface Props {
   title?: string;
   price?: string;
   buyNow?: string;
+  src?:string;
 }
 
 export default function ProductCard({
   subtitle = "Extra Bass",
   title = "Sony Black Headphones",
   price = "$100",
-  buyNow = "Buy Now",
+  src = "images/headphone.png",
   ...props
 }: Props) {
   return (
     <div {...props}>
       <Link href="/product">
-      <Img src="images/headphone.png" alt="image_one" className="w-full md:h-auto object-cover rounded" />
+      <Img src={src} alt="image_one" className="h-[232px] object-cover rounded" />
       </Link>
       <div className="flex flex-col self-stretch items-start pb-3 gap-[13px]">
         <div className="flex flex-col items-start">
@@ -36,12 +37,12 @@ export default function ProductCard({
        
         <div className="flex gap-3">
           <Button size="7xl" shape="round" className="border-blue_gray-100_01 border border-solid !rounded">
-            <Img src="images/img_cart_teal_900.svg" />
+            <Img src="/images/img_cart_teal_900.svg" />
           </Button>
           <Button
             color="gray_900_04"
             shape="round"
-            rightIcon={<Img src="images/img_arrowright.svg" alt="arrow_right" />}
+            rightIcon={<Img src="/images/img_arrowright.svg" alt="arrow_right" />}
             className="gap-2 sm:px-5 font-manrope font-semibold min-w-[142px] !rounded"
           >
             Buy Now

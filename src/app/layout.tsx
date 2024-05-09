@@ -40,7 +40,9 @@ export default function RootLayout({
             <div className="flex flex-col w-full gap-[11px] bg-gray-300_06 ">
                <div className="flex flex-col w-full gap-[5px] mx-auto md:p-5 sm:p-1 bg-gray-300_06 max-w-[100wv] px-3 py-0"> 
                   {header}
-                  {body}         
+                  
+                  {body} 
+                         
                   {footer}
                </div>
 

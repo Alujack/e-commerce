@@ -1,6 +1,7 @@
 "use client"
-import React from "react";
-import { Heading,Text, Img } from "./";
+
+import { usePathname } from 'next/navigation';
+import { Heading, Img } from "./";
 
 interface Props {
 
@@ -8,46 +9,44 @@ interface Props {
 
 export default function Navbar({
 }: Props) {
+  const pathname = usePathname();
+
+  // Define a function to check if a given href matches the current route
+  const isActive = (href: string) => {
+    return pathname === href;
+  }
+  const active = "text-blue_gray-900_01  text-center";
   return (
     <>
-    
-      <div className="flex md:flex-col justify-between items-center w-[97%] sm:hidden md:w-full gap-5">
-              <div className="flex px-2">
-                <div className="flex items-center gap-2">
-                  <a  href= "https://www.google.com/maps/search/Cambodia%2Frupp/@11.5677402,104.8886219,17z/data=!3m1!4b1?entry=ttu" target="_blank">
-                  <Img src="/images/img_location_marker.svg" alt="locationmarker" className="h-[24px] w-[24px]" />
-                  <Text as="p" className="!text-blue_gray-900_01 tracking-[-0.08px]">
-                    Cambodia
-                  </Text>
-                  </a>
-                </div>
-              </div>
-              <div className="flex md:flex-col justify-between  w-[75%] md:w-full gap-5 py-2">
-    
-                  <a href="/" className="px-2 py-px rounded">
-                    <Heading size="2xl" as="h6" className="!text-blue_gray-900_01 tracking-[-0.10px] text-center">
+
+              <div className="flex md:flex-col justify-between h-[40px]  w-[60%] md:w-full">
+                  
+                  <a href="/" className=" px-2  self-center rounded bg-black">
+                    <Heading size="2xl" as="h6" className={isActive("/")? active : "!text-blue_gray-900_01 tracking-[-0.10px] text-center"}>
                       Home
                     </Heading>
                   </a>
-                  <a href="/store" className="ml-10 px-2 py-px sm:ml-0 rounded">
-                    <Heading size="2xl" as="h6" className="!text-blue_gray-900_01 tracking-[-0.10px] text-center">
+                  
+                  
+                  <a href="/store" className=" px-2  self-center sm:ml-0 rounded">
+                    <Heading size="2xl" as="h6" className={isActive("/store")? active : "text-blue_gray-900_01 tracking-[-0.10px] text-center"}>
                       Store
                     </Heading>
                   </a>
-                  {/* <a href="#" className="ml-10 px-2 py-px sm:ml-0 rounded">
+                  {/* <a href="#" className="ml-10 px-2  sm:ml-0 rounded">
                     <Heading size="2xl" as="h6" className="!text-blue_gray-900_01 tracking-[-0.10px] text-center">
                       FQA
                     </Heading>
                   </a> */}
-                   <a href="/orderhistory">
+                   <a href="/orderhistory"  className=" px-2  self-center sm:ml-0 rounded">
                   <div className="flex items-center ml-14 gap-2 sm:ml-0">
                     <Img src="/images/img_cube.svg" alt="cube_one" className="h-[24px] w-[24px]" />
-                    <Heading size="2xl" as="h6" className="!text-blue_gray-900_01 tracking-[-0.10px]">
+                    <Heading size="2xl" as="h6"  className={isActive("/orderhistory")? active : "text-blue_gray-900_01 tracking-[-0.10px] text-center"}>
                       Orders
                     </Heading>
                   </div>
                   </a>
-                 <a href="#">
+                 <a href="#" >
                 {/* <div className="flex items-center gap-1">
                   <Img src="/images/img_heart.svg" alt="heart_one" className="h-[24px] w-[24px]" />
                   <Heading size="2xl" as="h6" className="self-start !text-blue_gray-900_01 tracking-[-0.10px]">
@@ -55,21 +54,58 @@ export default function Navbar({
                   </Heading>
                 </div> */}
                 </a>
-                <a href="/cart">
+                <a href="/cart"  className=" px-2  self-center sm:ml-0 rounded">
                   <div className="flex items-center gap-2">
                     <Img src="/images/img_shopping_cart.svg" alt="shoppingcart" className="h-[24px] w-[24px]" />
-                    <Heading size="2xl" as="h6" className="!text-blue_gray-900_01 tracking-[-0.10px]">
+                    <Heading size="2xl" as="h6"  className={isActive("/cart")? active : "text-blue_gray-900_01 tracking-[-0.10px] text-center"}>
                       Cart
                     </Heading>
                   </div>
                   </a>
-                  <a href="/centralsale" className="px-2 py-px rounded">
-                    <Heading size="2xl" as="h6" className="!text-blue_gray-900_01 tracking-[-0.10px] text-center">
+                  <a href="/centralsale"  className=" px-2  self-center sm:ml-0 rounded">
+                    <Heading size="2xl" as="h6"  className={isActive("/centralsale")? active : "text-blue_gray-900_01 tracking-[-0.10px] text-center"}>
                       Become a seller
                     </Heading>
                   </a>
                 </div>
-              </div>
         </>   
   );
 }
+// import React from "react";
+// import Link from "next/link";
+
+// import {Button} from "./";
+
+// const navbar = () => {
+//   return (
+//     <>
+//       <div className="w-full h-20 bg-emerald-800 sticky top-0">
+//         <div className="container mx-auto px-4 h-full">
+//           <div className="flex justify-between items-center h-full">
+         
+//             <ul className="hidden md:flex gap-x-6 text-white">
+//               <li>
+//                 <Link href="/about">
+//                   <p>About Us</p>
+//                 </Link>
+//               </li>
+//               <li>
+//                 <Link href="/services">
+//                   <p>Services</p>
+//                 </Link>
+//               </li>
+//               <li>
+//                 <Link href="/contacts">
+//                   <p>Contacts</p>
+//                 </Link>
+//               </li>
+//             </ul>
+//             <Button />
+//           </div>
+//         </div>
+//       </div>
+//     </>
+//   );
+// };
+
+// export default navbar;

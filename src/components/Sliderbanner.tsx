@@ -1,12 +1,14 @@
 "use client"
+import {useRouter} from "next/navigation";
 import React from "react";
-import {Img} from "./"
+import {Img,Heading,Button} from "./"
 import {Slider } from "./";
 import AliceCarousel, { EventObject } from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 export default function NotFound(){
       const [sliderState, setSliderState] = React.useState(0);
-       const sliderRef = React.useRef<AliceCarousel>(null);
+      const sliderRef = React.useRef<AliceCarousel>(null);
+      const router = useRouter();
     return (
      
               <Slider
@@ -21,9 +23,19 @@ export default function NotFound(){
                 ref={sliderRef}
                 items={[...Array(3)].map(() => (
                   < React.Fragment key={Math.random()}>
-                    <div className="mx-2.5 flex w-full flex-col items-center justify-center    bg-white-A700_01 md:gap-[1px] md:p-1 sm:gap-[1px]">
-                      <Img src="/images/bannerslider/1.png" alt="fourhundredfour" className="h-[310px] w-[90%] rounded-[10px]" />
+                    <div className="mx-2.5 flex w-full flex-col items-center justify-center h-[310px]  bg-[url(/images/bannerslider/1.png)] bg-cover bg-no-repeat md:gap-[1px] md:p-10 sm:gap-[1px] rounded-[15px]">
                      
+                      <div className=" self-start flex w-[90%] gap-[20px] flex-col md:w-full">
+                        <Heading size="2xl" as="h2" className="tracking-[-0.11px] !text-gray-900_02">
+                          Noise Cancelling Headphone
+                          Boso Over-Ear Headphone
+                          Wifi, Voice Assistant,
+                          Low latency game mde       
+                        </Heading>
+                        <Button className="self-start rounded-[10px] !font-bold" onClick={()=>router.push("/store")}>
+                          Buy Now
+                        </Button>
+                      </div>
                     </div>
                   </React.Fragment>
                 ))}

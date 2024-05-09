@@ -3,9 +3,18 @@ import { Button, Heading, Text } from "./";
 import { useRouter } from "next/navigation";
 interface Props {
   className?: string;
+  subtotal?:String;
+  shopestim?:string;
+  ordertotal?:string;
+
+
 }
 
-export default function Totalsummery({ ...props }: Props) {
+export default function Totalsummery({ 
+  subtotal = "1000",
+  shopestim = "600",
+  ordertotal = "1600",
+  ...props }: Props) {
   const router = useRouter();
   return (
     <div {...props}>
@@ -16,7 +25,7 @@ export default function Totalsummery({ ...props }: Props) {
         <Text as="p" className="mt-4 mb-[17px]">
           Sub Total:
         </Text>
-        <Heading as="h2">$1,000.00</Heading>
+        <Heading as="h2">${subtotal}</Heading>
       </div>
       <div className="flex self-stretch items-center">
         <div className="flex py-4 border-blue_gray-100 border-b border-solid flex-1">
@@ -25,7 +34,7 @@ export default function Totalsummery({ ...props }: Props) {
           </Text>
         </div>
         <Heading as="h2" className="ml-[-60px] relative">
-          $600.00
+          ${shopestim}
         </Heading>
       </div>
       <div className="flex self-stretch justify-between items-center gap-5 border-blue_gray-100 border-b border-solid flex-wrap">
@@ -38,7 +47,7 @@ export default function Totalsummery({ ...props }: Props) {
         <Heading as="h2" className="self-start uppercase">
           Order total:
         </Heading>
-        <Heading as="h2">$1,737.00</Heading>
+        <Heading as="h2">${ordertotal}</Heading>
       </div>
       <Button
         color="green_700"

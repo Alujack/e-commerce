@@ -165,3 +165,19 @@ input:focus {
 .ps-sidebar-container::-webkit-scrollbar {
   width: 2px;
 }
+.scrollable-div {
+  height: 900px;
+  width: 100%;
+  overflow-y: scroll;
+  margin: 20px;
+  text-align: justify;
+  padding: 20px;
+}
+.scrollable-divbody{
+    height: 900px;
+    width: 100%;
+    overflow-y: scroll;
+    margin:0;
+    text-align: justify;
+    padding: 0;
+}
