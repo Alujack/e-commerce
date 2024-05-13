@@ -1,6 +1,5 @@
 "use client"
 import { Button, Heading } from "@/components";
-import Menuprofile from "@/components/menuprofile";
 import Orderitem from "@/components/orderitem";
 
 export default function WebProfileHistoryOrderPage() {

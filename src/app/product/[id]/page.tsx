@@ -1,16 +1,31 @@
 "use client"
 import {useState} from "react";
 import { Text, Heading, Button, Img } from "@/components";
-import ProductCard from "@/components/ProductCard";
 import product  from "@/components/constant";
 import Cartlabel from "@/components/cartlabel";
-import {cart} from "@/components/constant";
+import {useCart} from "@/context/cartcontext"
+import { producttype } from "@/common.type";
 // import  {useParams} from "react-router-dom";
 export default function ProductDetails({params: {id},}:{params:{id:string}}) {
     
     const [count,setCount] = useState(1);
-    let producti = product.find(n => n.id === Number(id));
-    
+    let producti: producttype | undefined = product.find(n => n.id === Number(id));
+// Assuming `producttype` is the type of your products
+// Provide a default value if product is not found
+if (!producti) {
+
+    producti={
+        id:1,
+        src:"/images/product/1.headphone.png",
+        subtitle:"Extra Bas",
+        title:"Head phone",
+        price:110,
+        qty:1,
+        discription:"Headphones are personal audio devices worn over the ears, designed to deliver sound directly to the listener. Headphones come in various types, including over-ear, on-ear, and in-ear, each offering different levels of comfort, sound quality, and portability.",
+    }
+}
+
+    const {cartItems, setCartItems} = useCart();
   return (
     <>
       <div key = {producti?.id} className="w-full bg-gray-300_07">
@@ -91,7 +106,7 @@ export default function ProductDetails({params: {id},}:{params:{id:string}}) {
                       color="green_700"
                       size="9xl"
                       className="self-start ml-[23px] sm:ml-0 sm:px-5 uppercase font-medium min-w-[168px] rounded-[10px]"
-                      onClick ={()=>cart.push(producti?.id)}
+                      onClick ={()=>setCartItems([...cartItems, producti])}
                     >
                       Add To Cart
                     </Button>

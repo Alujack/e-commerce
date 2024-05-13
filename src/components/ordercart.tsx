@@ -5,9 +5,9 @@ import Link from "next/link";
 import { formatNumber } from "@/util/format";
 interface Props {
   className?: string;
-  save?:number;
-  price?:number;
-  src?:string;
+  save:number;
+  price:number;
+  src:string;
   qty:number
   Children?:React.ReactNode;
   

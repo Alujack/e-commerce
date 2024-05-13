@@ -18,7 +18,9 @@ const CartContext = createContext<CartContextType>({
 });
 
 export const CartProvider = ({ children }:{children:React.ReactNode}) => {
-  const [cartItems, setCartItems] = useState<producttype[]>([]);
+  const [cartItems, setCartItems] = useState<producttype[]>([
+   
+  ]);
 
 
 

@@ -65,10 +65,10 @@ export default function AddCart() {
               className="sm:px-5 font-bold rounded-[10px]"
             />
             <div className="flex md:flex-col items-center gap-2.5 p-[7px] bg-white-A700 rounded-[10px]">
-              <div className=" scrollable-div flex flex-col md:self-stretch gap-[15px] flex-1">
+              <div className=" scrollable-div flex flex-col flex-start md:self-stretch gap-[15px] flex-1">
 
               {cartItems.map((item:producttype, index:number) => (
-                    <Ordercart key={index} src ={item.src} price={item.price} Children ={button} qty = {qty} className="flex md:flex-col items-center gap-5 p-4 bg-gray-50 flex-1 rounded-[10px]" />
+                    <Ordercart key={index} save={100}  src ={item.src} price={item.price} Children ={button} qty = {qty} className="flex md:flex-col items-center gap-5 p-4 bg-gray-50 flex-1 rounded-[10px]" />
                 ))}
               </div>
              

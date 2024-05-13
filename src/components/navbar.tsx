@@ -2,17 +2,17 @@
 
 import { usePathname } from 'next/navigation';
 import { Heading, Img, Text } from "./";
-import {cart} from "@/components/constant";
 import Link from "next/link"
-
+import {useCart} from "@/context/cartcontext"
 interface Props {
 
 }
 
 export default function Navbar({
 }: Props) {
+  const {cartItems} = useCart();
   const pathname = usePathname();
-  const qty =cart.length;
+  const qty =cartItems.length;
 
   // Define a function to check if a given href matches the current route
   const isActive = (href: string) => {
