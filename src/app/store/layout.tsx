@@ -4,27 +4,14 @@ export const metadata = {
 }
 
 export default function RootLayout({
-  children,
-  header,
-  footer,
-
- 
-    
+  children,   
 }: {
   children: React.ReactNode;
-  footer:React.ReactNode;
-  header:React.ReactNode;
 }) {
   return (
     <>
-   <div className="flex w-full flex-col items-center gap-[13px] bg-gray-300_07">
-        <div className="mx-auto flex w-full max-w-[99%] flex-col gap-[9px] md:p-5">
-           {header}
-           {children}
-       
-       </div>
-    </div>
-          {footer}
+  {children}
     </>
+  
   )
 }

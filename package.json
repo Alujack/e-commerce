@@ -13,6 +13,7 @@
     "@nextui-org/react": "^2.2.10",
     "@tailwindcss/forms": "^0.5.7",
     "@tanstack/react-table": "^8.15.3",
+    "@vercel/kv": "^1.0.1",
     "bootstrap": "^5.3.3",
     "helmet": "^7.1.0",
     "init": "^0.1.2",

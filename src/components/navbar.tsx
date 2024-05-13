@@ -1,7 +1,9 @@
 "use client"
 
 import { usePathname } from 'next/navigation';
-import { Heading, Img } from "./";
+import { Heading, Img, Text } from "./";
+import {cart} from "@/components/constant";
+import Link from "next/link"
 
 interface Props {
 
@@ -10,6 +12,7 @@ interface Props {
 export default function Navbar({
 }: Props) {
   const pathname = usePathname();
+  const qty =cart.length;
 
   // Define a function to check if a given href matches the current route
   const isActive = (href: string) => {
@@ -54,14 +57,15 @@ export default function Navbar({
                   </Heading>
                 </div> */}
                 </a>
-                <a href="/cart"  className=" px-2  self-center sm:ml-0 rounded">
-                  <div className="flex items-center gap-2">
+                <Link href="/cart"  className=" px-2  self-center sm:ml-0 rounded">
+                  <Text className ={ (qty > 0) ? " bg-blue": "hidden"}> {qty} </Text>
+                  <div className="relation flex items-center gap-2">
                     <Img src="/images/img_shopping_cart.svg" alt="shoppingcart" className="h-[24px] w-[24px]" />
                     <Heading size="2xl" as="h6"  className={isActive("/cart")? active : "text-blue_gray-900_01 tracking-[-0.10px] text-center"}>
                       Cart
                     </Heading>
                   </div>
-                  </a>
+                  </Link>
                   <a href="/centralsale"  className=" px-2  self-center sm:ml-0 rounded">
                     <Heading size="2xl" as="h6"  className={isActive("/centralsale")? active : "text-blue_gray-900_01 tracking-[-0.10px] text-center"}>
                       Become a seller

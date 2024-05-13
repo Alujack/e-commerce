@@ -15,9 +15,10 @@ import Discountrightbanner from "@/components/homepage/discountrightbanner";
 import Membership from "@/components/homepage/membership";
 import CheckallProduct from "@/components/homepage/checkallproductbanner";
 import BankCard from "@/components/homepage/bankcard";
-import {product} from "@/components/constant";
+import product from "@/components/constant";
+import { producttype } from "@/common.type";
 export default function Body(){
- 
+  
  return(<>
  <div className=" scrollable-divbody flex flex-col gap-[11px]">
             <div className="flex md:flex-col sm:hidden gap-2.5 bg-white-A700 rounded-[10px]">
@@ -50,9 +51,12 @@ export default function Body(){
               <HeadingBanner title="Explore Our Product’s New Arrival" link="view all"/>
               <div className="justify-center gap-[3px] grid-cols-[repeat(auto-fill,_minmax(250px_,_1fr))] grid">
                 {
-                  product.map((item)=>(
-                    <ProductCard key={item.id} title = {item.title} subtitle = {item.subtitle} src={item.src} price ={item.price} className="flex flex-col justify-center w-full p-5 bg-gray-100_03 rounded-[10px]" />
+                  product.map((item, index)=>(
+
+                    <ProductCard key={index} {...item} items={item} className="flex flex-col justify-center w-full p-5 bg-gray-100_03 rounded-[10px]" />
+                     
                   ))
+                 
                 }
                 
               </div>
@@ -69,7 +73,7 @@ export default function Body(){
                 <div className="justify-center gap-[3px] grid-cols-[repeat(auto-fill,_minmax(250px_,_1fr))] grid">
                  {
                   product.map((item)=>(
-                    <ProductCard key={item.id} title = {item.title} subtitle = {item.subtitle} src={item.src}                                                                        price ={item.price} className="flex flex-col justify-center w-full p-5 bg-gray-100_03 rounded-[10px]" />
+                    <ProductCard key={item.id} {...item} items={item}  className="flex flex-col justify-center w-full p-5 bg-gray-100_03 rounded-[10px]" />
                   ))
                 }
 
@@ -90,7 +94,7 @@ export default function Body(){
                  <div className="justify-center gap-[3px] grid-cols-[repeat(auto-fill,_minmax(250px_,_1fr))] grid">
                  {
                   product.map((item)=>(
-                    <ProductCard key={item.id} title = {item.title} subtitle = {item.subtitle} src={item.src} price ={item.price} className="flex flex-col justify-center w-full p-5 bg-gray-100_03 rounded-[10px]" />
+                      <ProductCard key={item.id} {...item} items={item}  className="flex flex-col justify-center w-full p-5 bg-gray-100_03 rounded-[10px]" />
                   ))
                 }
 
@@ -109,8 +113,8 @@ export default function Body(){
               </div> 
                 <div className="justify-center gap-[3px] grid-cols-[repeat(auto-fill,_minmax(250px_,_1fr))] grid">
                  {
-                  product.map((item)=>(
-                    <ProductCard key={item.id} title = {item.title} subtitle = {item.subtitle} src={item.src} price ={item.price} className="flex flex-col justify-center w-full p-5 bg-gray-100_03 rounded-[10px]" />
+                  product.map((item:producttype)=>(
+                    <ProductCard key={item.id} {...item} items={item}  className="flex flex-col justify-center w-full p-5 bg-gray-100_03 rounded-[10px]" />
                   ))
                 }
                 </div>

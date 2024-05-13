@@ -1,28 +1,30 @@
 "use client"
-import {useState} from "react";
+import {Children} from "react";
 import { Heading, Text, Img, Button } from "./";
 import Link from "next/link";
+import { formatNumber } from "@/util/format";
 interface Props {
   className?: string;
-  save?:string;
-  price?:string;
+  save?:number;
+  price?:number;
   src?:string;
+  qty:number
+  Children?:React.ReactNode;
+  
 
 }
 
 export default function Ordercart(
   {
-    save = "100",
-    price = "100",
+    save = 100,
+    price = 100,
     src="images/headphone.png",
+    qty,
+    Children,
+   
   ...props
   }: Props) {
-  const [count, setCount] = useState(1);
 
-  if(count == 0){
-        return(null)
-      }
-  console.log(save);
   return (
     <div {...props}>
       <div className="flex flex-col items-start w-[30%] md:w-full bg-white-A700 rounded-[10px]">
@@ -31,7 +33,7 @@ export default function Ordercart(
             save
           </Text>
           <Text as="p" className="self-center !text-white-A700 !font-medium">
-           {save}
+           {formatNumber(save)}
           </Text>
         </div>
         <Link href="/product">
@@ -56,25 +58,10 @@ export default function Ordercart(
             SROK Smart Phone 128GB, Oled Retina
           </Heading>
           <Heading size="3xl" as="h3" className="mt-[13px] !text-red-600 !font-semibold">
-            {price}
+            {formatNumber(price)}
           </Heading>
           <div className="flex justify-center items-center w-[49%] md:w-full mt-4 p-2 border-gray-500_33 border border-solid rounded-[10px]">
-            <Button onClick={()=>setCount(count-1)}><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14" />
-              </svg>
-            </Button>
-            <div className="flex justify-center flex-1">
-              <div className="flex">
-                <Heading size="s" as="h4" className="self-start text-center !font-bold">
-                  {count}
-                </Heading>
-              </div>
-            </div>
-            <Button onClick={()=>setCount(count+1)}>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-            </svg>
-            </Button>
+           {Children}
           </div>
           <Button
             color="transparent"

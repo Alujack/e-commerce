@@ -9,7 +9,8 @@ import BestExperience from "@/components/storepage/bestexp";
 import BestExperienceBanner from "@/components/storepage/bestexpbanner";
 import Categories from "@/components/storepage/category";
 import Card from "@/components/storepage/card";
-import { product } from "@/components/constant";
+import  product  from "@/components/constant";
+import { producttype } from "@/common.type";
 export default function Store(){
     return (
   <div className="flex flex-col gap-2.5">
@@ -43,7 +44,7 @@ export default function Store(){
               <div className="justify-center gap-[3px] grid-cols-[repeat(auto-fill,_minmax(250px_,_1fr))] grid">
                  {
                   product.map((item)=>(
-                    <ProductCard key={item.id} title = {item.title} subtitle = {item.subtitle} src={item.src} price ={item.price} className="flex flex-col justify-center w-full  p-5 bg-gray-100_03  rounded-[10px]" />
+                    <ProductCard key={item.id} {...item} items={item}  className="flex flex-col justify-center w-full p-5 bg-gray-100_03 rounded-[10px]" />
                   ))
                 }
               </div>

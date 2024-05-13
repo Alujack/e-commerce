@@ -1,19 +1,63 @@
 "use client"
 import { Text, Heading, Button, Img, Input } from "@/components";
-import Header from "@/components/Header";
 import Ordercart from "@/components/ordercart";
 import Totalsummery from "@/components/totalsummery";
 import "@/styles/index.css";
-import {addcard} from "@/components/constant";
+import {formatNumber} from "@/util/format"
+import {useState} from"react";
+import {useRouter} from "next/navigation";
+import { useCart } from "@/context/cartcontext";
+import { producttype } from "@/common.type";
 export default function AddCart() {
+  const [qty, setQty] = useState(1);     
+  const { cartItems} = useCart();
+  console.log(cartItems)
+ const button =(<>
+
+  <Button onClick={()=>setQty(qty-1)}><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14" />
+              </svg>
+            </Button>
+            <div className="flex justify-center flex-1">
+              <div className="flex">
+                <Heading size="s" as="h4" className="self-start text-center !font-bold">
+                  {formatNumber(qty)}
+                </Heading>
+              </div>
+            </div>
+            <Button onClick={()=>setQty(qty+1)}>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+            </svg>
+            </Button>
+ </>)
+ const router = useRouter();
+ const totalsumery = (<>
+  <Button
+        color="green_700"
+        size="9xl"
+        className="mt-[31px] mb-[512px] sm:pl-5 uppercase font-medium min-w-[124px] rounded-[10px]"
+        onClick ={()=>{
+          router.push(`/cart/checkout/${cartItems[0].id}`)
+        }}
+      >
+        checkout
+      </Button>
+ </>)
+ 
+//  const Total= ()=>{
+//   return cart.map((idd:any)=>{
+//      setTotal(total + qty * product[idd+1].price);
+//  })
+// };
 
   return (
+
     <>
-    
+     
       <div className="w-full bg-gray-300_07">
         <div className="flex flex-col gap-[11px]">
           <div className="flex flex-col w-full gap-[11px] mx-auto md:p-5 max-w-[99%]">
-            <Header />
             <Input
               size="5xl"
               name="mainsection_one"
@@ -23,12 +67,12 @@ export default function AddCart() {
             <div className="flex md:flex-col items-center gap-2.5 p-[7px] bg-white-A700 rounded-[10px]">
               <div className=" scrollable-div flex flex-col md:self-stretch gap-[15px] flex-1">
 
-              {addcard.map((item) => (
-                    <Ordercart key={item.id} save={item.save} price={item.price} className="flex md:flex-col items-center gap-5 p-4 bg-gray-50 flex-1 rounded-[10px]" />
+              {cartItems.map((item:producttype, index:number) => (
+                    <Ordercart key={index} src ={item.src} price={item.price} Children ={button} qty = {qty} className="flex md:flex-col items-center gap-5 p-4 bg-gray-50 flex-1 rounded-[10px]" />
                 ))}
               </div>
              
-                <Totalsummery className="flex flex-col items-center w-[32%] md:w-full p-[30px] my-10 sm:p-5 border-green-700 border border-solid rounded-[10px]" />
+                <Totalsummery  className="flex flex-col items-center w-[32%] md:w-full p-[30px] my-10 sm:p-5 border-green-700 border border-solid rounded-[10px]" Children={totalsumery}  />
              
               
             </div>
@@ -248,6 +292,7 @@ export default function AddCart() {
           </div>
         </div>
       </div>
+
     </>
   );
 }

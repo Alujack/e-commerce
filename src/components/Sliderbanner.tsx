@@ -27,10 +27,10 @@ export default function NotFound(){
                      
                       <div className=" self-start flex w-[90%] gap-[20px] flex-col md:w-full">
                         <Heading size="2xl" as="h2" className="tracking-[-0.11px] !text-gray-900_02">
-                          Noise Cancelling Headphone
-                          Boso Over-Ear Headphone
-                          Wifi, Voice Assistant,
-                          Low latency game mde       
+                          Noise Cancelling Headphone<br/>
+                          Boso Over-Ear Headphone<br/>
+                          Wifi, Voice Assistant,<br/>
+                          Low latency game mde     <br/>  
                         </Heading>
                         <Button className="self-start rounded-[10px] !font-bold" onClick={()=>router.push("/store")}>
                           Buy Now

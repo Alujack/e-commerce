@@ -1,6 +1,6 @@
 "use client"
 import React from "react";
-import { Text, Heading, Button, Img } from "../.";
+import { Text, Heading, Button, Img } from ".";
 
 export default function Footer() {
   return (

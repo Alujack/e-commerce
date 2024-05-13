@@ -1,19 +1,22 @@
 "use client"
+import { Children } from "react";
 import { Button, Heading, Text } from "./";
 import { useRouter } from "next/navigation";
 interface Props {
   className?: string;
-  subtotal?:String;
-  shopestim?:string;
-  ordertotal?:string;
+  subtotal?:number;
+  shopestim?:number;
+  ordertotal?:number;
+  Children?: React.ReactNode;
 
 
 }
 
 export default function Totalsummery({ 
-  subtotal = "1000",
-  shopestim = "600",
-  ordertotal = "1600",
+  subtotal = 1000,
+  shopestim = 600,
+  ordertotal = 1600,
+  Children ,
   ...props }: Props) {
   const router = useRouter();
   return (
@@ -49,16 +52,7 @@ export default function Totalsummery({
         </Heading>
         <Heading as="h2">${ordertotal}</Heading>
       </div>
-      <Button
-        color="green_700"
-        size="9xl"
-        className="mt-[31px] mb-[512px] sm:pl-5 uppercase font-medium min-w-[124px] rounded-[10px]"
-        onClick ={()=>{
-          router.push("/cart/checkout")
-        }}
-      >
-        checkout
-      </Button>
+     {Children}
     </div>
   );
 }

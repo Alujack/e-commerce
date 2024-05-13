@@ -1,32 +1,35 @@
 "use client"
 import {useState} from "react";
-import {useRouter} from "next/navigation";
 import { Text, Heading, Button, Img } from "@/components";
 import ProductCard from "@/components/ProductCard";
-import Header from "@/components/Header"
-
-export default function ProductDetails() {
+import product  from "@/components/constant";
+import Cartlabel from "@/components/cartlabel";
+import {cart} from "@/components/constant";
+// import  {useParams} from "react-router-dom";
+export default function ProductDetails({params: {id},}:{params:{id:string}}) {
+    
     const [count,setCount] = useState(1);
-    const router = useRouter();
+    let producti = product.find(n => n.id === Number(id));
+    
   return (
     <>
-      <div className="w-full bg-gray-300_07">
+      <div key = {producti?.id} className="w-full bg-gray-300_07">
         <div className="flex flex-col gap-3">
           <div className="flex flex-col w-full gap-3 mx-auto md:p-5 max-w-[95%]">
-            <Header/>
+            
             <div className="flex md:flex-col items-end gap-[9px] p-3.5 bg-white-A700 rounded-[10px]">
               <div className="flex flex-col items-start md:self-stretch mt-[37px] pb-[22px] sm:pb-5 flex-1">
                 <Button color="gray_900_01" size="xs" shape="round" className="uppercase min-w-[39px] !rounded-[5px]">
                   new
                 </Button>
                 <div className="self-stretch">
-                  <Img src="images/img_group_1_3.png" alt="image" className="h-[500px] w-full md:h-auto object-cover" />
+                  <Img src={producti?.src} alt="image" className="h-[500px] md:h-auto object-cover" />
                 </div>
                 <div className="flex self-stretch justify-between gap-5">
-                  <Img src="images/img_group_1_3_88x58.png" alt="image_one" className="w-[21%] object-cover" />
-                  <Img src="images/img_group_2_3.png" alt="image_two" className="w-[21%] object-cover" />
+                  <Img src="" alt="image_one" className="w-[21%] object-cover" />
+                  <Img src="" alt="image_two" className="w-[21%] object-cover" />
                   <Img
-                    src="images/img_group_3_3_88x58.png"
+                    src=""
                     alt="image_three"
                     className="w-[21%] mr-[216px] object-cover"
                   />
@@ -37,23 +40,15 @@ export default function ProductDetails() {
                   <div className="flex self-stretch">
                     <Heading size="xl" as="h1" className="w-[84%] !font-bold leading-[19px]">
                       <>
-                        Pinnapple Macbook Pro 2022 M1 / 512GB
-                        <br />
-                        Dark Grey
+                        {producti?.title}
                       </>
                     </Heading>
                   </div>
                   <Heading size="6xl" as="h2" className="mt-0.5">
-                    $579.00
+                    ${producti?.price}
                   </Heading>
                   <Text size="s" as="p" className="mt-[7px] ml-[3px] md:ml-0 !text-black-900_02">
-                    Intel LGA 1700 Socket: Supports 13th & 12th Gen Intel Core
-                  </Text>
-                  <Text size="s" as="p" className="mt-[9px] ml-[3px] md:ml-0 !text-black-900_02">
-                    DDR5 Compatible: 4*SMD DIMMs with XMP 3.0 Memory
-                  </Text>
-                  <Text size="s" as="p" className="mt-[9px] ml-[3px] md:ml-0 !text-black-900_02">
-                    Commanding Power Design: Twin 16+1+2 Phases Digital VRM
+                    {producti?.discription}
                   </Text>
                 </div>
                 <div className="self-stretch h-[54px] mt-5 pr-[5px] py-[5px] border-gray-300_04 border-b border-solid relative">
@@ -67,7 +62,7 @@ export default function ProductDetails() {
                   </Text>
                 </div>
                 <div className="flex items-center mt-5 gap-[7px]">
-                  <Img src="images/img_checkmark.svg" alt="checkmark_one" className="self-end h-[12px] w-[12px]" />
+                  <Img src="/images/img_checkmark.svg" alt="checkmark_one" className="self-end h-[12px] w-[12px]" />
                   <Text size="s" as="p" className="self-end !text-black-900_02">
                     In stock
                   </Text>
@@ -96,7 +91,7 @@ export default function ProductDetails() {
                       color="green_700"
                       size="9xl"
                       className="self-start ml-[23px] sm:ml-0 sm:px-5 uppercase font-medium min-w-[168px] rounded-[10px]"
-                      onClick ={()=>router.push("/cart")}
+                      onClick ={()=>cart.push(producti?.id)}
                     >
                       Add To Cart
                     </Button>
@@ -106,7 +101,7 @@ export default function ProductDetails() {
                       shape="circle"
                       className="self-start w-[50px] ml-[42px] sm:ml-0 !rounded-[25px]"
                     >
-                      <Img src="images/img_favorite_gray_500.svg" />
+                      <Img src="/images/img_favorite_gray_500.svg" />
                     </Button>
                   </div>
                 </div>
@@ -117,7 +112,7 @@ export default function ProductDetails() {
                     </Text>
                   </div>
                   <div className="flex self-stretch pb-[21px] sm:pb-5 border-gray-300_04 border-b border-solid">
-                    <Img src="images/img_pay_png.png" alt="paypng_one" className="w-[58%] object-cover" />
+                    <Img src="/images/img_pay_png.png" alt="paypng_one" className="w-[58%] object-cover" />
                   </div>
                   <div className="flex flex-col items-start mt-[19px]">
                     <div className="flex gap-[7px] flex-wrap">
@@ -143,19 +138,19 @@ export default function ProductDetails() {
                   </div>
                   <div className="flex mt-5 gap-3.5">
                     <Button color="gray_300_07" size="3xl" shape="circle" className="w-[40px] !rounded-[20px]">
-                      <Img src="images/img_settings.svg" />
+                      <Img src="/images/img_settings.svg" />
                     </Button>
                     <Button color="gray_300_07" size="3xl" shape="circle" className="w-[40px] !rounded-[20px]">
-                      <Img src="images/img_settings.svg" />
+                      <Img src="/images/img_settings.svg" />
                     </Button>
                     <Button color="gray_300_07" size="3xl" shape="circle" className="w-[40px] !rounded-[20px]">
-                      <Img src="images/img_settings.svg" />
+                      <Img src="/images/img_settings.svg" />
                     </Button>
                     <Button color="gray_300_07" size="3xl" shape="circle" className="w-[40px] !rounded-[20px]">
-                      <Img src="images/img_settings.svg" />
+                      <Img src="/images/img_settings.svg" />
                     </Button>
                     <Button color="gray_300_07" size="3xl" shape="circle" className="w-[40px] !rounded-[20px]">
-                      <Img src="images/img_settings.svg" />
+                      <Img src="/images/img_settings.svg" />
                     </Button>
                   </div>
                 </div>
@@ -167,62 +162,15 @@ export default function ProductDetails() {
                     <span className="text-black-900_02 font-bold">Sonex</span>
                   </Text>
                   <Img
-                    src="images/img_brand6_png.png"
+                    src="/images/img_brand6_png.png"
                     alt="brand6png_one"
                     className="self-center w-[69%] object-cover"
                   />
                 </div>
                 <div className="flex flex-col items-start gap-3">
-                  <div className="flex flex-col self-stretch items-start justify-center p-[21px] sm:p-5 border-green-700 border border-solid rounded-[10px]">
-                    <Heading size="xl" as="h6" className="mt-0.5 !font-bold">
-                      Your Cart
-                    </Heading>
-                    <div className="flex flex-col self-stretch items-end mt-[21px]">
-                      <Heading
-                        size="s"
-                        as="p"
-                        className="w-[59%] md:w-full mr-3 md:mr-0 !font-bold z-[1] leading-[18px]"
-                      >
-                        <>
-                          Pinnaeple Macbook
-                          <br />
-                          Pro 2022 M1/ 512GB
-                        </>
-                      </Heading>
-                      <div className="flex self-stretch mt-[-36px] pb-4 relative border-gray-300_04 border-b border-solid">
-                        <div className="flex items-center w-[68%] md:w-full gap-[19px]">
-                          <Img src="images/img_prod37_png.png" alt="prod37png_one" className="w-[70px] object-cover" />
-                          <Text size="s" as="p" className="self-end mb-2.5">
-                            3 x $579.00
-                          </Text>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="flex self-stretch justify-between items-center gap-5 border-gray-300_04 border-b border-solid flex-wrap">
-                      <Text as="p" className="my-[15px]">
-                        Sub Total:
-                      </Text>
-                      <Heading as="p">$1,737.00</Heading>
-                    </div>
-                    <div className="flex self-stretch justify-between mt-4 gap-5">
-                      <Button
-                        color="gray_900_01"
-                        size="9xl"
-                        className="uppercase font-medium min-w-[96px] rounded-[10px]"
-                      >
-                        view cart
-                      </Button>
-                      <Button
-                        color="green_700"
-                        size="9xl"
-                        className="uppercase font-medium min-w-[96px] rounded-[10px]"
-                      >
-                        checkout
-                      </Button>
-                    </div>
-                  </div>
+                  <Cartlabel key={producti?.id} qty={count} price={producti?.price} title={producti?.title} src={producti?.src} subtitle={producti?.subtitle}></Cartlabel>
                   <div className="flex items-center gap-3">
-                    <Img src="images/img_settings.svg" alt="settings" className="h-[19px]" />
+                    <Img src="/images/img_settings.svg" alt="settings" className="h-[19px]" />
                     <Text as="p" className="self-end">
                       <span className="text-gray-700_01">Ships from</span>
                       <span className="text-black-900_02">&nbsp;</span>
@@ -234,12 +182,12 @@ export default function ProductDetails() {
             </div>
             <div className="flex md:flex-col gap-1.5">
               <Img
-                src="images/img_banner2_png.png"
+                src="/images/img_banner2_png.png"
                 alt="banner2png_one"
                 className="w-[50%] md:w-full object-cover rounded-[10px]"
               />
               <Img
-                src="images/img_banner3_png.png"
+                src="/images/img_banner3_png.png"
                 alt="banner3png_one"
                 className="w-[50%] md:w-full object-cover rounded-[10px]"
               />
@@ -268,21 +216,21 @@ export default function ProductDetails() {
                       <div className="flex sm:flex-col justify-center w-[45%] md:w-full gap-[15px]">
                         <div className="flex flex-col md:flex-row w-[22%] sm:w-full gap-[15px]">
                           <div className="flex flex-col items-center p-2.5 bg-gray-200 flex-1">
-                            <Img src="images/img_group_1_4_60x35.png" alt="image" className="w-[58%] object-cover" />
+                            <Img src="/images/img_group_1_4_60x35.png" alt="image" className="w-[58%] object-cover" />
                           </div>
                           <div className="flex flex-col items-center p-2.5 bg-gray-200 flex-1">
-                            <Img src="images/img_group_2_4_60x35.png" alt="image" className="w-[58%] object-cover" />
+                            <Img src="/images/img_group_2_4_60x35.png" alt="image" className="w-[58%] object-cover" />
+                          </div>
+                          <div className="/flex flex-col items-center p-2.5 bg-gray-200 flex-1">
+                            <Img src="/images/img_group_3_4_60x35.png" alt="image" className="w-[58%] object-cover" />
                           </div>
                           <div className="flex flex-col items-center p-2.5 bg-gray-200 flex-1">
-                            <Img src="images/img_group_3_4_60x35.png" alt="image" className="w-[58%] object-cover" />
-                          </div>
-                          <div className="flex flex-col items-center p-2.5 bg-gray-200 flex-1">
-                            <Img src="images/img_group_4_4_60x35.png" alt="image" className="w-[58%] object-cover" />
+                            <Img src="/images/img_group_4_4_60x35.png" alt="image" className="w-[58%] object-cover" />
                           </div>
                         </div>
                         <div className="sm:self-stretch py-[50px] md:py-5 bg-gray-300_06 flex-1">
                           <Img
-                            src="images/img_prod5_png_265x277.png"
+                            src="/images/img_prod5_png_265x277.png"
                             alt="prod5png_one"
                             className="h-[265px] w-full md:h-auto object-cover"
                           />
@@ -404,19 +352,19 @@ export default function ProductDetails() {
                     className="md:w-full flex-1 object-cover rounded-[12px]"
                   />
                   <Img
-                    src="images/img_main_section_177x296.png"
+                    src="/images/img_main_section_177x296.png"
                     alt="mainsection_one"
                     className="md:w-full flex-1 object-cover rounded-[12px]"
                   />
                   <Img
-                    src="images/img_main_section_177x298.png"
+                    src="/images/img_main_section_177x298.png"
                     alt="mainsection_one"
                     className="h-[177px] w-full flex-1 object-cover rounded-[12px]"
                   />
                 </div>
               </div>
               <div className="flex flex-col gap-2.5">
-               <div className="flex md:flex-col gap-[13px] flex-1">
+               {/* <div className="flex md:flex-col gap-[13px] flex-1">
                   <ProductCard className="flex flex-col justify-center w-full p-5 bg-gray-100_03 rounded-[10px]" />
                   <ProductCard className="flex flex-col justify-center w-full p-5 bg-gray-100_03 rounded-[10px]" />
                   <ProductCard className="flex flex-col justify-center w-full p-5 bg-gray-100_03 rounded-[10px]" />
@@ -433,168 +381,11 @@ export default function ProductDetails() {
                   <ProductCard className="flex flex-col justify-center w-full p-5 bg-gray-100_03 rounded-[10px]" />
                   <ProductCard className="flex flex-col justify-center w-full p-5 bg-gray-100_03 rounded-[10px]" />
                   <ProductCard className="flex flex-col justify-center w-full p-5 bg-gray-100_03 rounded-[10px]" />
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
-          <footer className="p-[35px] sm:p-5 bg-white-A700">
-            <div className="flex flex-col justify-center w-full mt-9 mb-4 pb-2.5 px-2.5 mx-auto md:p-5 bg-gray-100_03 max-w-[1320px] rounded-[10px]">
-              <div className="flex flex-col w-[98%] md:w-full gap-[15px]">
-                <div className="flex md:flex-col justify-between items-center pr-2.5 gap-5">
-                  <div className="flex justify-center w-[48%] md:w-full p-2.5">
-                    <Heading size="12xl" as="h2" className="!text-gray-900_06 !font-plusjakartasans leading-[42px]">
-                      Enjoy your shopping with TECHNESS the biggest online market.{" "}
-                    </Heading>
-                  </div>
-                  <Button
-                    color="gray_200_04"
-                    size="9xl"
-                    className="sm:px-5 font-plusjakartasans font-bold border-gray-900 border border-solid min-w-[213px] rounded-[25px]"
-                  >
-                    Contact Us
-                  </Button>
-                </div>
-                <div className="flex flex-col gap-[25px]">
-                  <Img src="images/img_frame_947.svg" alt="image_four" className="h-[20px]" />
-                  <div className="flex md:flex-col justify-between items-start gap-5">
-                    <div className="flex flex-col w-[32%] md:w-full">
-                      <div className="flex p-1.5">
-                        <Heading
-                          size="xl"
-                          as="h6"
-                          className="mt-[5px] mb-[3px] !text-gray-900_08 !font-plusjakartasans !font-bold"
-                        >
-                          About TECHNESS
-                        </Heading>
-                      </div>
-                      <Text as="p" className="mt-[5px] !text-gray-900_03 !font-plusjakartasans leading-[22px]">
-                        TECHNESS is the leading online marketplace, where you can buy and sell everything from cars,
-                        motorcycles, mobile phones, computers, electronics, furniture, books, pets, foods, and more.
-                        TECHNESS connects buyers and sellers across the country, making it easy and convenient to find
-                        what you need or sell what you don’t want.
-                      </Text>
-                      <div className="flex justify-between w-[73%] md:w-full mt-[-2px] gap-5 relative">
-                        <Img src="images/img_social_icons_fa.svg" alt="socialiconsfa" className="h-[40px] w-[40px]" />
-                        <Img src="images/img_logo_multiple.png" alt="logomultiple" className="w-[40px] object-cover" />
-                        <Img
-                          src="images/img_social_icons_tiktok_original.svg"
-                          alt="socialicons_one"
-                          className="h-[40px] w-[40px]"
-                        />
-                        <Img src="images/img_social_icons_x.svg" alt="socialiconsx" className="h-[40px] w-[40px]" />
-                        <Button
-                          size="3xl"
-                          variant="gradient"
-                          shape="circle"
-                          color="light_blue_400_blue_600"
-                          className="w-[40px] !rounded-[20px]"
-                        >
-                          <Img src="images/img_save.svg" />
-                        </Button>
-                      </div>
-                    </div>
-                    <div className="flex flex-col items-start gap-[21px]">
-                      <div className="flex self-center p-1.5">
-                        <Heading size="5xl" as="h5" className="mt-[5px] !text-gray-900_02 !font-plusjakartasans">
-                          Company
-                        </Heading>
-                      </div>
-                      <ul className="flex flex-col items-start ml-[9px] gap-[27px] md:ml-0">
-                        <li>
-                          <a href="#">
-                            <Text size="xl" as="p" className="!text-gray-900_02 !font-plusjakartasans">
-                              About
-                            </Text>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            <Text size="xl" as="p" className="!text-gray-900_02 !font-plusjakartasans">
-                              Features
-                            </Text>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            <Text size="xl" as="p" className="!text-gray-900_02 !font-plusjakartasans">
-                              Work
-                            </Text>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            <Text size="xl" as="p" className="!text-gray-900_02 !font-plusjakartasans">
-                              Career
-                            </Text>
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="flex flex-col items-start gap-[22px]">
-                      <div className="flex p-1.5">
-                        <Heading size="5xl" as="h5" className="self-end !text-gray-900_05 !font-plusjakartasans">
-                          Help
-                        </Heading>
-                      </div>
-                      <ul className="flex flex-col self-end items-start gap-[27px]">
-                        <li>
-                          <a href="#">
-                            <Text size="xl" as="p" className="!text-gray-900_05 !font-plusjakartasans">
-                              Customer Support
-                            </Text>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            <Text size="xl" as="p" className="!text-gray-900_05 !font-plusjakartasans">
-                              Delivery Details
-                            </Text>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            <Text size="xl" as="p" className="!text-gray-900_05 !font-plusjakartasans">
-                              Terms & Conditions
-                            </Text>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            <Text size="xl" as="p" className="!text-gray-900_05 !font-plusjakartasans">
-                              Privacy Policy
-                            </Text>
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="flex flex-col items-start gap-[22px]">
-                      <div className="flex self-center p-2">
-                        <Heading size="5xl" as="h5" className="!text-gray-900_09 !font-plusjakartasans">
-                          Useful Information
-                        </Heading>
-                      </div>
-                      <ul className="flex flex-col items-start ml-2.5 gap-[27px] md:ml-0">
-                        <li>
-                          <a href="#">
-                            <Text size="xl" as="p" className="!text-gray-900_09 !font-plusjakartasans">
-                              Safety Tip
-                            </Text>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            <Text size="xl" as="p" className="!text-gray-900_09 !font-plusjakartasans">
-                              Ads Posting Rule
-                            </Text>
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </footer>
+        
         </div>
       </div>
     </>
