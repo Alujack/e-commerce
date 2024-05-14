@@ -1,7 +1,7 @@
 "use client"
 
 import { Text, Heading, Button, Img, CheckBox } from "@/components";
-import  product,{cart}  from "@/components/constant";
+import  product from "@/components/constant";
 import {useRouter} from "next/navigation";
 export default function Checkout({params: {id},}:{params:{id:string}}) {
    let product_one = product.find(n => n.id === Number(id));
