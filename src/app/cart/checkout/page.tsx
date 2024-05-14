@@ -2,16 +2,14 @@
 
 import { Text, Heading, Button, Img, CheckBox } from "@/components";
 import { useRouter } from "next/navigation";
-import { producttype } from "@/common.type";
-
-interface Props {
-  product: producttype;
-}
-
-export default function CheckoutClientComponent({ product }: any) {
+import Checkoutcart from "@/components/checkoutcart";
+import {useCart} from "@/context/cartcontext";
+export default function CheckoutClientComponent() {
   const router = useRouter();
+  const {cartItems} = useCart();
   return (
     <>
+    
       <div className="w-full bg-gray-300_07">
         <div className="flex flex-col gap-[11px]">
           <div className="flex flex-col w-full gap-[11px] mx-auto md:p-5 max-w-[99%]">
@@ -54,25 +52,9 @@ export default function CheckoutClientComponent({ product }: any) {
                       </Text>
                     </div>
                     <div className="flex flex-col mt-2 gap-[23px] py-[9px] border-gray-300_04 border-b border-solid">
-                      <div className="flex items-center w-[59%] md:w-full gap-[15px]">
-                        <Img
-                          src={product?.src}
-                          alt="prod37png_one"
-                          className="w-[60px] object-cover"
-                        />
-                        <div className="flex flex-col items-start gap-[3px] flex-1">
-                          <Text
-                            as="p"
-                            className="!text-black-900_02 !font-medium leading-[19px]"
-                          >
-                            <>
-                              {product?.title} <br />
-                              {product?.subtitle}
-                            </>
-                          </Text>
-                          <Text as="p">x 3</Text>
-                        </div>
-                      </div>
+                      {cartItems.map((item)=>(
+                         <Checkoutcart item ={item}/>
+                         ))}
                       <div className="flex justify-between gap-5 flex-wrap">
                         <Text as="p" className="self-end !text-black-900_02">
                           Worldwide Standard Shipping Free
@@ -296,6 +278,7 @@ export default function CheckoutClientComponent({ product }: any) {
           </div>
         </div>
       </div>
+      
     </>
   );
 }

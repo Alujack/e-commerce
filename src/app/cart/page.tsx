@@ -38,7 +38,7 @@ export default function AddCart() {
         size="9xl"
         className="mt-[31px] mb-[512px] sm:pl-5 uppercase font-medium min-w-[124px] rounded-[10px]"
         onClick ={()=>{
-          router.push(`/cart/checkout/${cartItems[0].id}`)
+          router.push(`/cart/checkout`)
         }}
       >
         checkout
