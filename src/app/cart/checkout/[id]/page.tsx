@@ -1,17 +1,20 @@
-"use client"
+"use client";
 
 import { Text, Heading, Button, Img, CheckBox } from "@/components";
-import  product from "@/components/constant";
-import {useRouter} from "next/navigation";
-export default function Checkout({params: {id},}:{params:{id:string}}) {
-   let product_one = product.find(n => n.id === Number(id));
-   const router = useRouter();
+import { useRouter } from "next/navigation";
+import { producttype } from "@/common.type";
+
+interface Props {
+  product: producttype;
+}
+
+export default function CheckoutClientComponent({ product }: any) {
+  const router = useRouter();
   return (
     <>
       <div className="w-full bg-gray-300_07">
         <div className="flex flex-col gap-[11px]">
           <div className="flex flex-col w-full gap-[11px] mx-auto md:p-5 max-w-[99%]">
-          
             <div className="flex items-end p-7 sm:p-5 bg-white-A700 flex-wrap rounded-[10px]">
               <Heading as="h1" className="mt-[3px] mb-0.5 !text-gray-500">
                 Home
@@ -52,12 +55,19 @@ export default function Checkout({params: {id},}:{params:{id:string}}) {
                     </div>
                     <div className="flex flex-col mt-2 gap-[23px] py-[9px] border-gray-300_04 border-b border-solid">
                       <div className="flex items-center w-[59%] md:w-full gap-[15px]">
-                        <Img src={product_one?.src} alt="prod37png_one" className="w-[60px] object-cover" />
+                        <Img
+                          src={product?.src}
+                          alt="prod37png_one"
+                          className="w-[60px] object-cover"
+                        />
                         <div className="flex flex-col items-start gap-[3px] flex-1">
-                          <Text as="p" className="!text-black-900_02 !font-medium leading-[19px]">
+                          <Text
+                            as="p"
+                            className="!text-black-900_02 !font-medium leading-[19px]"
+                          >
                             <>
-                              {product_one?.title} <br/>
-                              {product_one?.subtitle}
+                              {product?.title} <br />
+                              {product?.subtitle}
                             </>
                           </Text>
                           <Text as="p">x 3</Text>
@@ -73,10 +83,18 @@ export default function Checkout({params: {id},}:{params:{id:string}}) {
                       </div>
                     </div>
                     <div className="flex justify-between gap-5 my-[18px] flex-wrap">
-                      <Heading size="xl" as="h6" className="self-start !font-bold">
+                      <Heading
+                        size="xl"
+                        as="h6"
+                        className="self-start !font-bold"
+                      >
                         Order Total
                       </Heading>
-                      <Heading size="xl" as="h6" className="!text-green-700 !font-bold">
+                      <Heading
+                        size="xl"
+                        as="h6"
+                        className="!text-green-700 !font-bold"
+                      >
                         $1,746.50
                       </Heading>
                     </div>
@@ -85,16 +103,26 @@ export default function Checkout({params: {id},}:{params:{id:string}}) {
                     <div className="flex flex-col mt-6">
                       <div className="flex flex-col items-start gap-[7px]">
                         <div className="flex items-center gap-[11px]">
-                          <Img src="/images/img_image_fill.svg" alt="imagefill_one" className="h-[20px] w-[20px]" />
+                          <Img
+                            src="/images/img_image_fill.svg"
+                            alt="imagefill_one"
+                            className="h-[20px] w-[20px]"
+                          />
                           <Heading as="p" className="self-start">
                             Direct Bank Transfer
                           </Heading>
                         </div>
-                        <Text size="md" as="p" className="self-end w-[90%] md:w-full leading-[22px]">
+                        <Text
+                          size="md"
+                          as="p"
+                          className="self-end w-[90%] md:w-full leading-[22px]"
+                        >
                           <>
-                            Make your payment directly into our bank account. Please use your
+                            Make your payment directly into our bank account.
+                            Please use your
                             <br />
-                            Order ID as the payment reference. Your order will not be shipped
+                            Order ID as the payment reference. Your order will
+                            not be shipped
                             <br />
                             until the funds have cleared in our account.
                           </>
@@ -114,9 +142,21 @@ export default function Checkout({params: {id},}:{params:{id:string}}) {
                           className="mt-[3px] gap-[11px] py-px text-black-900_02 text-left text-sm font-bold"
                         />
                         <div className="flex gap-2">
-                          <Img src="/images/img_chip.png" alt="visa_one" className="object-cover" />
-                          <Img src="/images/img_chip.png" alt="mastercard_one" className="object-cover" />
-                          <Img src="/images/img_chip.png" alt="nagad_one" className="object-cover" />
+                          <Img
+                            src="/images/img_chip.png"
+                            alt="visa_one"
+                            className="object-cover"
+                          />
+                          <Img
+                            src="/images/img_chip.png"
+                            alt="mastercard_one"
+                            className="object-cover"
+                          />
+                          <Img
+                            src="/images/img_chip.png"
+                            alt="nagad_one"
+                            className="object-cover"
+                          />
                         </div>
                       </div>
                       <div className="flex justify-between items-start mt-[25px] gap-5">
@@ -125,7 +165,10 @@ export default function Checkout({params: {id},}:{params:{id:string}}) {
                           <Heading as="p" className="self-end ml-[11px]">
                             Paypal{" "}
                           </Heading>
-                          <Text as="p" className="self-end ml-1.5 !text-blue-A400 underline">
+                          <Text
+                            as="p"
+                            className="self-end ml-1.5 !text-blue-A400 underline"
+                          >
                             What’s Paypal?
                           </Text>
                         </div>
@@ -140,7 +183,12 @@ export default function Checkout({params: {id},}:{params:{id:string}}) {
                       color="green_700"
                       size="9xl"
                       className="w-full mb-[19px] sm:px-5 uppercase font-medium rounded-[10px]"
-                     onClick= {()=>{alert("You have ordered Sucessfully please feel free to wait for delivery");router.back()}}
+                      onClick={() => {
+                        alert(
+                          "You have ordered Sucessfully please feel free to wait for delivery"
+                        );
+                        router.back();
+                      }}
                     >
                       place order
                     </Button>
@@ -156,7 +204,11 @@ export default function Checkout({params: {id},}:{params:{id:string}}) {
                   className="h-[230px] w-full object-cover rounded-[20px]"
                 />
                 <div className="flex flex-col items-start w-[26%] gap-2 left-[30.00px] top-[30.00px] m-auto absolute">
-                  <Heading size="11xl" as="h3" className="w-[90%] md:w-full leading-9">
+                  <Heading
+                    size="11xl"
+                    as="h3"
+                    className="w-[90%] md:w-full leading-9"
+                  >
                     <>
                       iPad mini
                       <br />
@@ -175,7 +227,11 @@ export default function Checkout({params: {id},}:{params:{id:string}}) {
                   className="h-[230px] w-full object-cover rounded-[20px]"
                 />
                 <div className="flex flex-col items-start w-[23%] pb-1 gap-[7px] left-[30.00px] top-[30.00px] m-auto absolute">
-                  <Text size="4xl" as="p" className="!text-white-A700 leading-6">
+                  <Text
+                    size="4xl"
+                    as="p"
+                    className="!text-white-A700 leading-6"
+                  >
                     <>
                       Air
                       <br />
@@ -185,7 +241,11 @@ export default function Checkout({params: {id},}:{params:{id:string}}) {
                   <Text size="xs" as="p" className="!text-gray-500 uppercase">
                     from
                   </Text>
-                  <Text size="4xl" as="p" className="!text-light_green-A200 !font-normal">
+                  <Text
+                    size="4xl"
+                    as="p"
+                    className="!text-light_green-A200 !font-normal"
+                  >
                     $169
                   </Text>
                 </div>
@@ -200,7 +260,11 @@ export default function Checkout({params: {id},}:{params:{id:string}}) {
                   <Text size="xs" as="p" className="!text-white-A700 uppercase">
                     washing machine
                   </Text>
-                  <Text size="4xl" as="p" className="w-[68%] md:w-full mt-[9px] !text-white-A700 leading-6">
+                  <Text
+                    size="4xl"
+                    as="p"
+                    className="w-[68%] md:w-full mt-[9px] !text-white-A700 leading-6"
+                  >
                     <>
                       Anatico
                       <br />
@@ -230,7 +294,6 @@ export default function Checkout({params: {id},}:{params:{id:string}}) {
               />
             </div>
           </div>
-      
         </div>
       </div>
     </>
