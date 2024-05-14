@@ -4,24 +4,10 @@ import { Heading, Img, Input,Text } from ".";
 import Navbar from "./navbar";
 import {useState} from "react";
 import { useRouter } from "next/navigation";
+import { signIn,signOut } from "@/auth/helpers";
 export default function Header() {
   const [searchBarValue, setSearchBarValue] = useState("");
-  const router =useRouter();
-  const nav =()=>{
-    router.push("/register");
-  }
- 
   const [action ,setAction] = useState("Sign in");
-  const  handler = ()=> {
-   if(action == "Sign in"){
-    setAction("Profile");
-    router.push("/infor");
-   }else{
-    setAction("Sign in");
-    router.push("/register");
-   }
-  }
-
   return (
    <header className="flex flex-col items-center justify-center border-2 border-solid deep_purple_700_pink_400_01_border bg-white-A700 sm:border-none rounded-lg">
             <div className="flex md:flex-col items-center w-[99%] md:w-full gap-[43px] sm:gap-5 sm:flex-row">
@@ -52,7 +38,7 @@ export default function Header() {
                 className="gap-2 sm:pr-5 !text-blue_gray-900_01 tracking-[-0.08px] border-gray-300_08 border border-solid flex-grow rounded-[15px]"
               />
               <button
-                onClick={handler} 
+                onClick={async ()=>await signIn()} 
               >
                 {action}
               </button>

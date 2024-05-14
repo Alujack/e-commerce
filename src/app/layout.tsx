@@ -3,19 +3,15 @@ import "../styles/tailwind.css";
 import "../styles/index.css";
 import "../styles/font.css";
 
-import { usePathname } from "next/navigation";
+
 import  {CartProvider}  from '@/context/cartcontext';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer"
 export default function RootLayout({
   children,
-  header,
-  body,
-  footer,
     
 }: {
-  header:React.ReactNode;
-  footer:React.ReactNode;
+  
   body:React.ReactNode;
   children:React.ReactNode;
 }) {
