@@ -1,31 +1,29 @@
-"use client";
-import { useState } from "react";
+"use client"
+import {useState} from "react";
 import { Text, Heading, Button, Img } from "@/components";
-import product from "@/components/constant";
+import product  from "@/components/constant";
 import Cartlabel from "@/components/cartlabel";
-import { useCart } from "@/context/cartcontext";
+import {useCart} from "@/context/cartcontext"
 import { producttype } from "@/common.type";
+// import  {useParams} from "react-router-dom";
+export default function ProductDetails({params}:{params:{id:string}}) {
+    
+    const [count,setCount] = useState(1);
+    let producti: producttype | undefined = product.find(n => n.id === Number(params.id));
+// Assuming `producttype` is the type of your products
+// Provide a default value if product is not found
+if (!producti) {
 
-export async function generateStaticParams() {
-  const productIds = product.map(p => p.id.toString());
-  return productIds.map(id => ({ id }));
+    producti={
+        id:1,
+        src:"/images/product/1.headphone.png",
+        subtitle:"Extra Bas",
+        title:"Head phone",
+        price:110,
+        qty:1,
+        discription:"Headphones are personal audio devices worn over the ears, designed to deliver sound directly to the listener. Headphones come in various types, including over-ear, on-ear, and in-ear, each offering different levels of comfort, sound quality, and portability.",
+    }
 }
-
-export default function ProductDetails({ params: { id } }: { params: { id: string } }) {
-  const [count, setCount] = useState(1);
-  let producti: producttype | undefined = product.find(n => n.id === Number(id));
-
-  if (!producti) {
-    producti = {
-      id: 1,
-      src: "/images/product/1.headphone.png",
-      subtitle: "Extra Bas",
-      title: "Head phone",
-      price: 110,
-      qty: 1,
-      discription: "Headphones are personal audio devices worn over the ears, designed to deliver sound directly to the listener. Headphones come in various types, including over-ear, on-ear, and in-ear, each offering different levels of comfort, sound quality, and portability.",
-    };
-  }
 
     const {cartItems, setCartItems} = useCart();
   return (
