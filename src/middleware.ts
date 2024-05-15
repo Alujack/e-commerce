@@ -7,7 +7,7 @@ export const config = {
 
 export default auth((req) => {
   const reqUrl = new URL(req.url);
-  if (!req.auth && reqUrl?.pathname === "/cart/checkout/1") {
+  if (!req.auth && reqUrl?.pathname === "/cart/checkout") {
     return NextResponse.redirect(
       new URL(
         `${BASE_PATH}/signin?callbackUrl=${encodeURIComponent(

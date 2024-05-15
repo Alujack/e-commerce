@@ -1,8 +1,9 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  output:'export',
-  reactStrictMode: true,
-  experimental: { serverActions: true },
+module.exports = {
+  // Other Next.js configurations...
+
+  // Set generateStatic parameter
+  generateStatic: true
 };
 
-module.exports = nextConfig;
+
