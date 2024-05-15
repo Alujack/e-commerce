@@ -1,5 +1,5 @@
 import {Heading, Img, Button,Text} from "./"
-import {formatNumber} from "@/util/format";
+import {formatNumber} from "@/utils/format";
 import {useRouter} from "next/navigation";
 import {cart } from "@/components/constant";
 interface Props {

@@ -3,7 +3,7 @@ import { Text, Heading, Button, Img, Input } from "@/components";
 import Ordercart from "@/components/ordercart";
 import Totalsummery from "@/components/totalsummery";
 import "@/styles/index.css";
-import {formatNumber} from "@/util/format"
+import {formatNumber} from "@/utils/format"
 import {useState} from"react";
 import {useRouter} from "next/navigation";
 import { useCart } from "@/context/cartcontext";
@@ -68,7 +68,7 @@ export default function AddCart() {
               <div className=" scrollable-div flex flex-col flex-start md:self-stretch gap-[15px] flex-1">
 
               {cartItems.map((item:producttype, index:number) => (
-                    <Ordercart key={index} save={100}  src ={item.src} price={item.price} Children ={button} qty = {qty} className="flex md:flex-col items-center gap-5 p-4 bg-gray-50 flex-1 rounded-[10px]" />
+                    <Ordercart key={index} save={100}  src ={item.src} price={item.price} Children ={button} qty = {qty} className="flex md:flex-col items-start gap-5 p-4 bg-gray-50 flex-1 rounded-[10px]" />
                 ))}
               </div>
              

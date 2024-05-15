@@ -2,7 +2,7 @@
 import {Children} from "react";
 import { Heading, Text, Img, Button } from "./";
 import Link from "next/link";
-import { formatNumber } from "@/util/format";
+import { formatNumber } from "@/utils/format";
 interface Props {
   className?: string;
   save:number;

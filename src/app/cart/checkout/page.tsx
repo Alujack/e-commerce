@@ -51,10 +51,12 @@ export default function CheckoutClientComponent() {
                         sub total
                       </Text>
                     </div>
-                    <div className="flex flex-col mt-2 gap-[23px] py-[9px] border-gray-300_04 border-b border-solid">
+                    <div className="flex flex-col mt-2 gap-[23px] py-[0px] border-gray-300_04 border-b border-solid">
+                      <div className="scrollable-divitem">
                       {cartItems.map((item)=>(
                          <Checkoutcart item ={item}/>
                          ))}
+                         </div>
                       <div className="flex justify-between gap-5 flex-wrap">
                         <Text as="p" className="self-end !text-black-900_02">
                           Worldwide Standard Shipping Free

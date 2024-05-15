@@ -29,6 +29,7 @@ type InputProps = Omit<
   Partial<{
     className: string;
     name: string;
+    value:string;
     placeholder: string;
     type: string;
     label: string;
@@ -45,6 +46,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     {
       className = "",
       name = "",
+      value="",
       placeholder = "",
       type = "text",
       label = "",
