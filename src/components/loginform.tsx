@@ -1,13 +1,16 @@
 "use client"
 import {useRouter} from "next/navigation";
 import { Text, Button, Img, CheckBox, Input, Heading } from "./";
-
+import { signIn, signOut, useSession } from "next-auth/react";
+import React from "react";
+import Link from "next/link";
 interface Props {
   className?: string;
 }
 
 export default function Signinfrom({ ...props }: Props) {
   const router = useRouter();
+   const { data: session } = useSession();
   return (
     <div {...props}>
       <div className="flex flex-col self-stretch items-center gap-2.5">
@@ -63,12 +66,13 @@ export default function Signinfrom({ ...props }: Props) {
           size="12xl"
           leftIcon={<Img src="images/img_google.svg" alt="google" />}
           className="w-full gap-px sm:px-5 text-blue_gray-900_03 tracking-[-0.20px] font-poppins font-semibold rounded-[10px]"
+          onClick={()=>signIn("google")}
         >
           Sign in with Google
         </Button>
         <Text as="p" className="mb-1 !text-gray-600 !font-poppins text-center">
           <span className="text-gray-600">Don&#39;t have an account?&nbsp;</span>
-          <span className="text-blue-A700 font-semibold">Sign up</span>
+          <Link href="/register"><span className="text-blue-A700 font-semibold">Sign up</span></Link>
         </Text>
       </div>
     </div>
