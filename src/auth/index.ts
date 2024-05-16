@@ -40,7 +40,7 @@ const authOptions: NextAuthConfig = {
     }),
   ],
   basePath: BASE_PATH,
-  secret: process.env.NEXTAUTH_SECRET,
+  secret: process.env.AUTH_SECRET,
 };
 
 export const { handlers, auth, signIn, signOut } = NextAuth(authOptions);

@@ -9,28 +9,9 @@ import {useRouter} from "next/navigation";
 import { useCart } from "@/context/cartcontext";
 import { producttype } from "@/common.type";
 export default function AddCart() {
-  const [qty, setQty] = useState(1);     
+  const [qty, setQty] = useState(1);  
   const { cartItems} = useCart();
   console.log(cartItems)
- const button =(<>
-
-  <Button onClick={()=>setQty(qty-1)}><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14" />
-              </svg>
-            </Button>
-            <div className="flex justify-center flex-1">
-              <div className="flex">
-                <Heading size="s" as="h4" className="self-start text-center !font-bold">
-                  {formatNumber(qty)}
-                </Heading>
-              </div>
-            </div>
-            <Button onClick={()=>setQty(qty+1)}>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-            </svg>
-            </Button>
- </>)
  const router = useRouter();
  const totalsumery = (<>
   <Button
@@ -45,12 +26,6 @@ export default function AddCart() {
       </Button>
  </>)
  
-//  const Total= ()=>{
-//   return cart.map((idd:any)=>{
-//      setTotal(total + qty * product[idd+1].price);
-//  })
-// };
-
   return (
 
     <>
@@ -68,7 +43,7 @@ export default function AddCart() {
               <div className=" scrollable-div flex flex-col flex-start md:self-stretch gap-[15px] flex-1">
 
               {cartItems.map((item:producttype, index:number) => (
-                    <Ordercart key={index} save={100}  src ={item.src} price={item.price} Children ={button} qty = {qty} className="flex md:flex-col items-start gap-5 p-4 bg-gray-50 flex-1 rounded-[10px]" />
+                    <Ordercart key={index} save={100}  src ={item.src} price={item.price} item={item} className="flex md:flex-col items-start gap-5 p-4 bg-gray-50 flex-1 rounded-[10px]" />
                 ))}
               </div>
              

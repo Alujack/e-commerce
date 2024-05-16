@@ -166,7 +166,7 @@ export default function ProductDetails({product}:{product:producttype}) {
                   />
                 </div>
                 <div className="flex flex-col items-start gap-3">
-                  <Cartlabel key={product?.id} qty={count} price={product?.price} title={product?.title} src={product?.src} subtitle={product?.subtitle}></Cartlabel>
+                  <Cartlabel key={product?.id} item={product} qty={count}></Cartlabel>
                   <div className="flex items-center gap-3">
                     <Img src="/images/img_settings.svg" alt="settings" className="h-[19px]" />
                     <Text as="p" className="self-end">
