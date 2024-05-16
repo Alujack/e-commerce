@@ -7,6 +7,7 @@ import "../styles/font.css";
 import  {CartProvider}  from '@/context/cartcontext';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer"
+import SessionWrapper from "@/components/SessionWraper"
 export default function RootLayout({
   children,
     
@@ -33,6 +34,7 @@ export default function RootLayout({
       <html lang="en">
       <head>
         </head>
+        <SessionWrapper>
         <CartProvider>
         <body>
           
@@ -48,7 +50,7 @@ export default function RootLayout({
         
         </body>
         </CartProvider>
-     
+     </SessionWrapper>
               
       </html>
     
