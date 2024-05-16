@@ -6,32 +6,18 @@ import {useState} from "react";
 import { useRouter } from "next/navigation";
 export default function Header() {
   const [searchBarValue, setSearchBarValue] = useState("");
-  const router =useRouter();
-  const nav =()=>{
-    router.push("/register");
-  }
- 
   const [action ,setAction] = useState("Sign in");
-  const  handler = ()=> {
-   if(action == "Sign in"){
-    setAction("Profile");
-    router.push("/infor");
-   }else{
-    setAction("Sign in");
-    router.push("/register");
-   }
-  }
-
+  const router = useRouter()
   return (
-   <header className="flex flex-col items-center justify-center border-2 border-solid deep_purple_700_pink_400_01_border bg-white-A700 sm:border-none rounded-lg">
-            <div className="flex md:flex-col items-center w-[99%] md:w-full gap-[43px] sm:gap-5 sm:flex-row">
+   <header className="flex flex-col items-center justify-center border-2 border-solid deep_purple_700_pink_400_01_border bg-white-A700  rounded-lg">
+            <div className="flex md:flex-col items-center w-[99%] md:w-full gap-[43px] ">
               <div className="flex items-center gap-[3px] sm: ">
-                <Img src="/images/img_emotion_1_30x35.png" alt="emotionone_one" className="object-cover sm:w-[30px]" />
+                <Img src="/images/img_emotion_1_30x35.png" alt="emotionone_one" className="object-cover " />
                 <div className="">
                   <Heading
                     size="5xl"
                     as="h5"
-                    className="!text-transparent tracking-[-0.28px] !font-semibold bg-gradient1 bg-clip-text sm:1xl sm:hidden"
+                    className="!text-transparent tracking-[-0.28px] !font-semibold bg-gradient1 bg-clip-text sm:1xl "
                   >
                     TECHNESS@
                   </Heading>
@@ -52,7 +38,7 @@ export default function Header() {
                 className="gap-2 sm:pr-5 !text-blue_gray-900_01 tracking-[-0.08px] border-gray-300_08 border border-solid flex-grow rounded-[15px]"
               />
               <button
-                onClick={handler} 
+                onClick={()=>router.push("/login")} 
               >
                 {action}
               </button>

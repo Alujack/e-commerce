@@ -3,19 +3,16 @@ import "../styles/tailwind.css";
 import "../styles/index.css";
 import "../styles/font.css";
 
-import { usePathname } from "next/navigation";
+
 import  {CartProvider}  from '@/context/cartcontext';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer"
+import SessionWrapper from "@/components/SessionWraper"
 export default function RootLayout({
   children,
-  header,
-  body,
-  footer,
     
 }: {
-  header:React.ReactNode;
-  footer:React.ReactNode;
+  
   body:React.ReactNode;
   children:React.ReactNode;
 }) {
@@ -36,12 +33,8 @@ export default function RootLayout({
   
       <html lang="en">
       <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="theme-color" content="#000000" />
-        <link rel="manifest" href="/manifest.json" />
-        <link rel="icon" href="/favicon.ico" />
         </head>
+        <SessionWrapper>
         <CartProvider>
         <body>
           
@@ -57,7 +50,7 @@ export default function RootLayout({
         
         </body>
         </CartProvider>
-     
+     </SessionWrapper>
               
       </html>
     

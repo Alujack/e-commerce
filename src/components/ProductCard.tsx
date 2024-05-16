@@ -3,6 +3,7 @@ import { Button, Img, Heading, Text } from "./";
 import Link from "next/link";
 import {producttype} from "@/common.type"
 import AddToCartButton from "./addtocartbutton";
+import {useCart} from "@/context/cartcontext"
 import { useRouter } from "next/navigation";
 interface Props {
   items:producttype;
@@ -13,6 +14,13 @@ interface Props {
 export default function ProductCard({items,...props
 }: Props) {
   const router = useRouter();
+  const {cartItems,setCartItems } = useCart();
+
+  const handleAddToCart = () => {
+    setCartItems([...cartItems,items]);
+    router.push("/cart/checkout");
+
+  }
   return (
     <div {...props}>
       <Link href ={`/product/${items.id}`}>
@@ -39,7 +47,7 @@ export default function ProductCard({items,...props
             shape="round"
             rightIcon={<Img src="/images/img_arrowright.svg" alt="arrow_right" />}
             className="gap-2 sm:px-5 font-manrope font-semibold min-w-[142px] !rounded"
-            onClick={()=>router.push("/cart/checkout/1")}
+            onClick={handleAddToCart}
           >
             Buy Now
           </Button>      

@@ -1,30 +1,28 @@
 "use client"
-import {Children} from "react";
+import {useState} from "react";
 import { Heading, Text, Img, Button } from "./";
 import Link from "next/link";
-import { formatNumber } from "@/util/format";
+import { formatNumber } from "@/utils/format";
+import { producttype } from "@/common.type";
 interface Props {
   className?: string;
   save:number;
   price:number;
   src:string;
-  qty:number
-  Children?:React.ReactNode;
-  
-
+  item:producttype
 }
 
 export default function Ordercart(
   {
+    item,
     save = 100,
     price = 100,
     src="images/headphone.png",
-    qty,
-    Children,
    
   ...props
   }: Props) {
-
+ const [qty, setQty] = useState(1); 
+ item.qty = qty;
   return (
     <div {...props}>
       <div className="flex flex-col items-start w-[30%] md:w-full bg-white-A700 rounded-[10px]">
@@ -61,7 +59,22 @@ export default function Ordercart(
             {formatNumber(price)}
           </Heading>
           <div className="flex justify-center items-center w-[49%] md:w-full mt-4 p-2 border-gray-500_33 border border-solid rounded-[10px]">
-           {Children}
+          <Button onClick={()=>setQty(qty-1)}><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14" />
+              </svg>
+            </Button>
+            <div className="flex justify-center flex-1">
+              <div className="flex">
+                <Heading size="s" as="h4" className="self-start text-center !font-bold">
+                  {formatNumber(qty)}
+                </Heading>
+              </div>
+            </div>
+            <Button onClick={()=>setQty(qty+1)}>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+            </svg>
+            </Button>
           </div>
           <Button
             color="transparent"
