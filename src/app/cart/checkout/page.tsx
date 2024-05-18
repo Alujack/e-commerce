@@ -4,8 +4,17 @@ import { Text, Heading, Button, Img, CheckBox } from "@/components";
 import { useRouter } from "next/navigation";
 import Checkoutcart from "@/components/checkoutcart";
 import {useCart} from "@/context/cartcontext";
+import React, { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
 export default function CheckoutClientComponent() {
-  const router = useRouter();
+   const router = useRouter();
+    const { status: sessionStatus } = useSession();
+ 
+    useEffect(() => {
+        if (sessionStatus !== "authenticated") {
+            router.replace("/login");
+        }
+    }, [sessionStatus, router]);
   const {cartItems} = useCart();
   return (
     <>

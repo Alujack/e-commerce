@@ -1,7 +1,7 @@
 import {Heading, Img, Text,Input,Button,CheckBox} from "../."
 export default function Categories(){
     return (
-          <div className="flex w-[23%] flex-col gap-2.5 md:w-full sm: hidden">
+          <div className="flex w-[23%] flex-col gap-2.5 md:w-full">
                 <div className="flex flex-col items-start gap-[21px] rounded-[10px] bg-blue_gray-50_10 p-[29px] sm:p-5">
                   <Heading size="2xl" as="h6" className="uppercase !text-black-900_02">
                     categories

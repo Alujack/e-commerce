@@ -4,9 +4,10 @@ import { Heading, Img, Input,Text } from ".";
 import Navbar from "./navbar";
 import {useState} from "react";
 import { useRouter } from "next/navigation";
+import { signOut} from "next-auth/react";
+
 export default function Header() {
   const [searchBarValue, setSearchBarValue] = useState("");
-  const [action ,setAction] = useState("Sign in");
   const router = useRouter()
   return (
    <header className="flex flex-col items-center justify-center border-2 border-solid deep_purple_700_pink_400_01_border bg-white-A700  rounded-lg">
@@ -40,7 +41,12 @@ export default function Header() {
               <button
                 onClick={()=>router.push("/login")} 
               >
-                {action}
+                Sign in
+              </button>
+               <button
+                onClick={()=>signOut()} 
+              >
+                Sign Out
               </button>
             </div>
             <div className ="w-[100%] border-[1.5px] border-solid deep_purple_700_pink_400_01_border sm:hidden"></div>

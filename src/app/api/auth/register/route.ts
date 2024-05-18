@@ -1,23 +1,50 @@
-import clientPromise from "@/lib/MongodbClient";
-import { NextResponse } from "next/server";
+// import { NextApiRequest, NextApiResponse } from "next";
+// import { PrismaClient } from '@prisma/client/edge'
+// const prisma = new PrismaClient()
 
-export async function POST(request: Request) {
-  try {
-    const { email, password } = await request.json();
 
-    const bcrypt = require("bcrypt");
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+// export default async (req: NextApiRequest, res: NextApiResponse) => {
+//   if (req.method === "POST") {
+//     const { email, password, name } = req.body;
 
-    const client = await clientPromise;
-    const db = client.db();
+//     try {
+//       const user = await prisma.users.create({
+//         data: {
+//           email,
+//           password,
+//           name,
+//         },
+//       });
+//       res.status(200).json(user);
+//     } catch (error) {
+//       res.status(500).json({ error: "User already exists" });
+//     }
+//   } else {
+//     res.setHeader("Allow", ["POST"]);
+//     res.status(405).end(`Method ${req.method} Not Allowed`);
+//   }
+// };
+import { connectToDatabase } from "@/auth/server-helper";
+import { NextResponse} from "next/server";
+import {PrismaClient} from "@prisma/client"
+import bcrypt from "bcrypt"
+const prisma = new PrismaClient();
+export const POST = async  (req:Request) =>{
+    try{
+      const {name ,email, password} = await req.json()
+      if(!name || !email || !password )
+          return NextResponse.json({message:"Invalid data"},{status:422})
+      const hashpassword= await bcrypt.hash(password,10);
+      await connectToDatabase();
+      const users= await prisma.user.create({data:{email,name,hashpassword}});
+      return NextResponse.json(users,{status:201})   
 
-    const createAccount = await db
-      .collection("users")
-      .insertOne({ email: email, password: hashedPassword });
+    }catch(error){
 
-    return NextResponse.json({ success: "Account created" }, { status: 200 })
-  } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 })
-  }
-}
+        return NextResponse.json({message:"Server error"},{status:500});
+    }finally{
+      await prisma.$disconnect();
+    }
+
+    };

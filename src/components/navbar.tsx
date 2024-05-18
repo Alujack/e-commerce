@@ -3,7 +3,7 @@
 import { usePathname } from 'next/navigation';
 import { Heading, Img, Text } from "./";
 import Link from "next/link"
-import {useCart} from "@/context/cartcontext"
+import {useCart} from "@/context/cartcontext";
 interface Props {
 
 }
