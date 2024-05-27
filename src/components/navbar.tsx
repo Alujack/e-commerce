@@ -36,11 +36,11 @@ export default function Navbar({
                       Store
                     </Heading>
                   </a>
-                  {/* <a href="#" className="ml-10 px-2  sm:ml-0 rounded">
-                    <Heading size="2xl" as="h6" className="!text-blue_gray-900_01 tracking-[-0.10px] text-center">
-                      FQA
+                  <a href="/fqa" className=" px-2  self-center rounded bg-black">
+                    <Heading size="2xl" as="h6" className={isActive("/")? active : "!text-blue_gray-900_01 tracking-[-0.10px] text-center"}>
+                      FQAs
                     </Heading>
-                  </a> */}
+                  </a>
                    <a href="/orderhistory"  className=" px-2  self-center sm:ml-0 rounded">
                   <div className="flex items-center ml-14 gap-2 sm:ml-0">
                     <Img src="/images/img_cube.svg" alt="cube_one" className="h-[24px] w-[24px]" />
