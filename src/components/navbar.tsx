@@ -49,13 +49,13 @@ export default function Navbar({
                     </Heading>
                   </div>
                   </a>
-                 <a href="#" >
-                {/* <div className="flex items-center gap-1">
+                 <a href="/favorite" >
+                <div className="flex items-center mt-2 gap-2 ">
                   <Img src="/images/img_heart.svg" alt="heart_one" className="h-[24px] w-[24px]" />
-                  <Heading size="2xl" as="h6" className="self-start !text-blue_gray-900_01 tracking-[-0.10px]">
+                  <Heading size="2xl" as="h6" className="self-start !text-blue_gray-900_01 tracking-[-0.10px]  text-center">
                     Favorites
                   </Heading>
-                </div> */}
+                </div>
                 </a>
                 <Link href="/cart"  className=" px-2  self-center sm:ml-0 rounded">
                   <Text className ={ (qty > 0) ? " bg-blue": "hidden"}> {qty} </Text>
@@ -75,41 +75,3 @@ export default function Navbar({
         </>   
   );
 }
-// import React from "react";
-// import Link from "next/link";
-
-// import {Button} from "./";
-
-// const navbar = () => {
-//   return (
-//     <>
-//       <div className="w-full h-20 bg-emerald-800 sticky top-0">
-//         <div className="container mx-auto px-4 h-full">
-//           <div className="flex justify-between items-center h-full">
-         
-//             <ul className="hidden md:flex gap-x-6 text-white">
-//               <li>
-//                 <Link href="/about">
-//                   <p>About Us</p>
-//                 </Link>
-//               </li>
-//               <li>
-//                 <Link href="/services">
-//                   <p>Services</p>
-//                 </Link>
-//               </li>
-//               <li>
-//                 <Link href="/contacts">
-//                   <p>Contacts</p>
-//                 </Link>
-//               </li>
-//             </ul>
-//             <Button />
-//           </div>
-//         </div>
-//       </div>
-//     </>
-//   );
-// };
-
-// export default navbar;
