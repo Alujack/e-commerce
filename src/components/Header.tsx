@@ -29,13 +29,19 @@ export default function Header() {
                 name="search"
                 placeholder={``}
                 value={searchBarValue}
-                onChange={(e: string) => setSearchBarValue(e)}
+                
+                onChange={(e: string) =>{
+                     router.push("/search");
+                     setSearchBarValue(e)
+                      
+                     }}
                 prefix={<Img src="/images/img_search.svg" alt="search" className="cursor-pointer" />}
                 suffix={
                   searchBarValue?.length > 0 ? (
                     <CloseSVG onClick={() => setSearchBarValue("")} height={24} width={24} fillColor="#b0b9beff" />
                   ) : null
                 }
+                
                 className="gap-2 sm:pr-5 !text-blue_gray-900_01 tracking-[-0.08px] border-gray-300_08 border border-solid flex-grow rounded-[15px]"
               />
               <button
