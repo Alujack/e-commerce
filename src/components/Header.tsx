@@ -2,13 +2,15 @@
 import { CloseSVG } from "../assets/images";
 import { Heading, Img, Input,Text } from ".";
 import Navbar from "./navbar";
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import { useRouter } from "next/navigation";
-import { signOut} from "next-auth/react";
-
+import { signOut,useSession} from "next-auth/react";
+import { Link } from "react-alice-carousel";
 export default function Header() {
   const [searchBarValue, setSearchBarValue] = useState("");
   const router = useRouter()
+  const { data: session, status: sessionStatus } = useSession();
+    
   return (
    <header className="flex flex-col items-center justify-center border-2 border-solid deep_purple_700_pink_400_01_border bg-white-A700  rounded-lg">
             <div className="flex md:flex-col items-center w-[99%] md:w-full gap-[43px] ">
@@ -44,12 +46,21 @@ export default function Header() {
                 
                 className="gap-2 sm:pr-5 !text-blue_gray-900_01 tracking-[-0.08px] border-gray-300_08 border border-solid flex-grow rounded-[15px]"
               />
-              <button
+              { sessionStatus === "authenticated" ?
+              (<>
+                <Link href="/infor">
+                <img src="/images/img_profile.png" alt="profile" className="h-[40px]" />
+                </Link>
+                </>
+              ):
+              (<button
                 onClick={()=>router.push("/login")} 
               >
                 Sign in
-              </button>
-               <button
+              </button>)
+            
+              }
+              <button
                 onClick={()=>signOut()} 
               >
                 Sign Out
