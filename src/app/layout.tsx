@@ -16,19 +16,6 @@ export default async function RootLayout({
   body:React.ReactNode;
   children:React.ReactNode;
 }) {
-  // const pathname = usePathname();
-  // if(pathname !="/"){
-  //   return (<> 
-  //    <html lang="en">
-  //       <body>
-  //         <CartProvider>
-  //            {children}
-  //          </CartProvider>
-  //   </body>
-  //      </html>
-    
-  //   </>)
-  // }\
   return (
   
       <html lang="en">
