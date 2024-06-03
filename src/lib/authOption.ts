@@ -5,7 +5,6 @@ import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 import { PrismaClient } from '@prisma/client'
-import NextAuth from "next-auth/next";
 const prisma = new PrismaClient()
 
 export const BASE_PATH = "/api/auth";
