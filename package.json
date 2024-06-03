@@ -26,6 +26,7 @@
     "bootstrap": "^5.3.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "framer-motion": "^11.2.10",
     "helmet": "^7.1.0",
     "init": "^0.1.2",
     "lucide-react": "^0.378.0",
