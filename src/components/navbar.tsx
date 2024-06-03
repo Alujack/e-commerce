@@ -22,7 +22,7 @@ export default function Navbar({
                   <Link key={link.key} href={link.href}  className=" px-2  self-center sm:ml-0 rounded">
                   <div className="flex items-center ml-14 gap-2 sm:ml-0">
                     {link.src ? <img src={link.src} className= "h-[24px] w-[24px]" /> : null}
-                    <Heading size="2xl" as="h6"  className={pathname===link.href? "border-b-4 border-indigo-500 font-sans hover:font-serif text-center" : "font-sans hover:font-serif text-center"}>
+                    <Heading size="2xl" as="h6"  className=" active-border-b-4 active:border-indigo-500 font-sans hover:font-serif text-center">
                       {link.label}
                     </Heading>
                   </div>
