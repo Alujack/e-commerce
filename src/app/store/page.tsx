@@ -10,7 +10,6 @@ import BestExperienceBanner from "@/components/storepage/bestexpbanner";
 import Categories from "@/components/storepage/category";
 import Card from "@/components/storepage/card";
 import  product  from "@/components/constant";
-import { producttype } from "@/common.type";
 export default function Store(){
     return (
   <div className="flex flex-col gap-2.5">

@@ -25,7 +25,7 @@ export default function Preferences(){
             <div className="mt-[18px] flex items-center gap-5">
              <Switch />
               <Text as="p" className="self-end">
-                I send or receive digita currency
+                I send or receive digital currency
               </Text>
             </div>
             <div className="mt-[15px] flex items-center gap-[21px]">
