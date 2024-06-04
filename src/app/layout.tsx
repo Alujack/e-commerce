@@ -7,8 +7,8 @@ import "../styles/font.css";
 import  {CartProvider}  from '@/context/cartcontext';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer"
-import SessionWrapper from "@/components/SessionWraper"
-export default function RootLayout({
+ import SessionWrapper from "@/components/SessionWraper";
+export default async function RootLayout({
   children,
     
 }: {
@@ -16,25 +16,12 @@ export default function RootLayout({
   body:React.ReactNode;
   children:React.ReactNode;
 }) {
-  // const pathname = usePathname();
-  // if(pathname !="/"){
-  //   return (<> 
-  //    <html lang="en">
-  //       <body>
-  //         <CartProvider>
-  //            {children}
-  //          </CartProvider>
-  //   </body>
-  //      </html>
-    
-  //   </>)
-  // }
   return (
   
       <html lang="en">
       <head>
         </head>
-        <SessionWrapper>
+     <SessionWrapper>
         <CartProvider>
         <body>
           
@@ -50,7 +37,7 @@ export default function RootLayout({
         
         </body>
         </CartProvider>
-     </SessionWrapper>
+</SessionWrapper>
               
       </html>
     

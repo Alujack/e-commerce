@@ -4,12 +4,16 @@ import { Heading, Text, Img, Button } from "./";
 import Link from "next/link";
 import { formatNumber } from "@/utils/format";
 import { producttype } from "@/common.type";
+import {useCart} from "@/context/cartcontext"
+
 interface Props {
   className?: string;
   save:number;
   price:number;
   src:string;
-  item:producttype
+  item:producttype;
+  index:number
+
 }
 
 export default function Ordercart(
@@ -18,10 +22,12 @@ export default function Ordercart(
     save = 100,
     price = 100,
     src="images/headphone.png",
+    index,
    
   ...props
   }: Props) {
  const [qty, setQty] = useState(1); 
+ const {removeFromCart} = useCart();
  item.qty = qty;
   return (
     <div {...props}>
@@ -91,21 +97,10 @@ export default function Ordercart(
             </Text>
           </div>
         </div>
-        <div className="flex justify-between w-[21%] sm:w-full mt-[3px] gap-5 flex-wrap">
-          <Heading
-            size="xl"
-            as="h2"
-            className="flex justify-center items-center h-[35px] w-[35px] !text-gray-500 text-center !font-black bg-gray-300_07 rounded-[17px]"
-          >
-            
-          </Heading>
-          <Heading
-            size="3xl"
-            as="h3"
-            className="flex justify-center items-center h-[35px] w-[35px] !text-red-600 text-center !font-black bg-red-A700_11 rounded-[17px]"
-          >
-            
-          </Heading>
+        <div className="flex justify-between w-[20%] sm:w-full mt-[3px] gap-5 flex-wrap">
+          <Button  onClick= {()=>removeFromCart(index)}>
+           <img src="/images/close.png" alt=""  className="items-center w-[23px] "  />
+          </Button>
         </div>
       </div>
     </div>

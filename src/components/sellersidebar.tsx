@@ -92,34 +92,6 @@ export default function SellerSidebar(){
             <MenuItem
               icon={
                 <Img
-                  src="/images/img_invoice_6296088.png"
-                  width={25}
-                  height={25}
-                  alt="invoice 6296088"
-                  className="h-[25px] w-[25px] object-cover"
-                />
-              }
-              component={<Link href="/sale-invoice" />}
-            >
-              Invoice
-            </MenuItem>
-            <MenuItem
-              icon={
-                <Img
-                  src="/images/img_gear_12076562_1.png"
-                  width={25}
-                  height={25}
-                  alt="gear 12076562 1"
-                  className="h-[25px] w-[25px] object-cover"
-                />
-              }
-              component={<Link href="/sale-setting" />}
-            >
-              Setting
-            </MenuItem>
-            <MenuItem
-              icon={
-                <Img
                   src="/images/img_user_1177568_1.png"
                   width={25}
                   height={25}

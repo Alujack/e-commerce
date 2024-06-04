@@ -1,13 +1,20 @@
 "use client"
 import { CloseSVG } from "../assets/images";
 import { Heading, Img, Input,Text } from ".";
-import Navbar from "./navbar";
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import { useRouter } from "next/navigation";
+import { signOut,useSession} from "next-auth/react";
+import Link from "next/link";
+import {useCart} from "@/context/cartcontext";
+import {navlink} from "@/constants/link";
+import { usePathname } from "next/navigation";
 export default function Header() {
   const [searchBarValue, setSearchBarValue] = useState("");
-  const [action ,setAction] = useState("Sign in");
   const router = useRouter()
+  const { data: session, status: sessionStatus } = useSession();
+  const {cartItems} = useCart();
+  const pathname = usePathname();
+  const qty =cartItems.length;
   return (
    <header className="flex flex-col items-center justify-center border-2 border-solid deep_purple_700_pink_400_01_border bg-white-A700  rounded-lg">
             <div className="flex md:flex-col items-center w-[99%] md:w-full gap-[43px] ">
@@ -28,22 +35,42 @@ export default function Header() {
                 name="search"
                 placeholder={``}
                 value={searchBarValue}
-                onChange={(e: string) => setSearchBarValue(e)}
+                
+                onChange={(e: string) =>{
+                     router.push("/search");
+                     setSearchBarValue(e)
+                      
+                     }}
                 prefix={<Img src="/images/img_search.svg" alt="search" className="cursor-pointer" />}
                 suffix={
                   searchBarValue?.length > 0 ? (
                     <CloseSVG onClick={() => setSearchBarValue("")} height={24} width={24} fillColor="#b0b9beff" />
                   ) : null
                 }
-                className="gap-2 sm:pr-5 !text-blue_gray-900_01 tracking-[-0.08px] border-gray-300_08 border border-solid flex-grow rounded-[15px]"
+                
+                className="gap-2 sm:pr-5 !text-blue_gray-900_01 tracking-[-0.08px] border-2 border-sky-500 flex-grow rounded-[15px]"
               />
-              <button
+              { sessionStatus === "authenticated" ?
+              (<>
+                <Link href="/infor">
+                <img src="/images/img_profile.png" alt="profile" className="h-[40px]" />
+                </Link>
+                </>
+              ):
+              (<button
                 onClick={()=>router.push("/login")} 
               >
-                {action}
+                Sign in
+              </button>)
+            
+              }
+              <button
+                onClick={()=>signOut()} 
+              >
+                Sign Out
               </button>
             </div>
-            <div className ="w-[100%] border-[1.5px] border-solid deep_purple_700_pink_400_01_border sm:hidden"></div>
+            <div className ="w-[100%] border-[1.5px] sm:hidden"></div>
                  <div className="flex md:flex-col justify-between items-center w-[97%] sm:hidden md:w-full ">
                      <div className="flex px-2">
                 <div className="flex items-center gap-2">
@@ -55,7 +82,18 @@ export default function Header() {
                   </a>
                 </div>
               </div>
-                    <Navbar/>
+                  <div className="flex md:flex-col justify-between h-[40px]  w-[60%] md:w-full">
+                  {navlink.map((link)=>(
+                  <Link key={link.key} href={link.href}  className=" px-2  self-center sm:ml-0 rounded">
+                  <div className="flex items-center ml-14 gap-2 sm:ml-0">
+                    {link.src ? <img src={link.src} className= "h-[24px] w-[24px]" /> : null}
+                    <Heading size="2xl" as="h6"  className={pathname===link.href? "border-b-4 border-indigo-500 font-sans hover:font-serif text-center" : "font-sans hover:font-serif text-center"}>
+                      {link.label}
+                    </Heading>
+                  </div>
+                  </Link>))}
+                                  
+            </div>
                </div>
                 
                 

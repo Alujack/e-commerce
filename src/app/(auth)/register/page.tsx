@@ -1,45 +1,32 @@
-// "use client"
-// import { Img } from "@/components";
-// import Signupform from "@/components/registerfrom";
+"use client"
 
-// export default function WebSignUpPage() {
-//   return (
-//     <>
-//       <div className="w-full px-14 py-[95px] md:p-5 bg-gray-300_07">
-//         <div className="flex md:flex-col justify-between items-center w-full mb-[3px] gap-5 p-8 mx-auto md:p-5 bg-white-A700 max-w-[1200px] rounded-[10px]">
-//           <Img
-//             src="images/img_group_3653.png"
-//             alt="image"
-//             className="w-[37%] md:w-full ml-[17px] md:ml-0 object-cover sm:hidden"
-//           />
-//           <Signupform className="flex flex-col w-[58%] md:w-full mb-2 mr-[19px] gap-11 border-1 px-[51px] md:mr-0 md:px-5" />
-//         </div>
-//       </div>
-//     </>
-//   );
-// }
-
-import { getServerSession } from 'next-auth'
-import React from 'react'
-import { authOptions } from '@/lib/authOption';
-import { redirect } from 'next/navigation';
 import RegisterForm from './Form';
+import { Heading,Text,Img } from '@/components';
 
-const page = async () => {
-  const session = await getServerSession(authOptions);
-
-  if (session) {
-    redirect("/");
-  }
-
-
+const RegisterPage = () => {
   return (
-    <section className='container h-screen flex items-center justify-center'>
-        <div className='w-[800px]'>
-            <RegisterForm/>
-        </div>
-    </section>
-  )
-}
+    <div className="w-full px-[10px] py-[10px] md:p-5 bg-gray-300_07 ">
+       <div className="w-full mb-[3px] p-[43px] mx-auto md:p-5 bg-white-A700 max-w-[1200px] rounded-[10px]">
+           <div className="flex md:flex-col justify-between items-center mt-[31px] mb-[34px] gap-5">
+             <div className="flex flex-col items-center w-[36%] md:w-full gap-[246px] md:gap-[184px] sm:gap-[123px]">
+              <div className="flex flex-col items-start gap-3.5">
+                <Heading size="10xl" as="h1" className="!text-green-700">
+                  Welcome Back
+                </Heading>
+                <Text as="p" className="!text-gray-500 tracking-[2.00px] uppercase">
+                  login to continue                 </Text>
+               </div>
+               <Img
+                 src="/images/img_group_3653.png"
+                 alt="image"
+                 className="h-[327px] w-full md:h-auto mb-8 object-cover"
+               />
+             </div>
+             <RegisterForm className="flex flex-col items-center w-[51%] md:w-full gap-[11px]" />
+           </div>
+         </div>
+       </div>
+  );
+};
 
-export default page
+export default RegisterPage;

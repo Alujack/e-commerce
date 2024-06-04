@@ -3,14 +3,13 @@ import { Text, Heading, Button, Img, Input } from "@/components";
 import Ordercart from "@/components/ordercart";
 import Totalsummery from "@/components/totalsummery";
 import "@/styles/index.css";
-import {formatNumber} from "@/utils/format"
 import {useState} from"react";
 import {useRouter} from "next/navigation";
 import { useCart } from "@/context/cartcontext";
 import { producttype } from "@/common.type";
 export default function AddCart() {
   const [qty, setQty] = useState(1);  
-  const { cartItems} = useCart();
+  const { cartItems, removeFromCart} = useCart();
   console.log(cartItems)
  const router = useRouter();
  const totalsumery = (<>
@@ -43,7 +42,7 @@ export default function AddCart() {
               <div className=" scrollable-div flex flex-col flex-start md:self-stretch gap-[15px] flex-1">
 
               {cartItems.map((item:producttype, index:number) => (
-                    <Ordercart key={index} save={100}  src ={item.src} price={item.price} item={item} className="flex md:flex-col items-start gap-5 p-4 bg-gray-50 flex-1 rounded-[10px]" />
+                    <Ordercart key={index} save={100}  src ={item.src} price={item.price} item={item} index={index} className="flex md:flex-col items-start gap-5 p-4 bg-gray-50 flex-1 rounded-[10px]" />
                 ))}
               </div>
              

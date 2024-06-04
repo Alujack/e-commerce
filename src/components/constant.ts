@@ -512,3 +512,41 @@ import { producttype } from "@/common.type";
 export let cart:any[] =[
   
 ];
+export const favorite:producttype[] = [
+    {
+        id:1,
+        src:"/images/product/1.headphone.png",
+        subtitle:"Extra Bas",
+        title:"Head phone",
+        price:110,
+        qty:1,
+        discription:"Headphones are personal audio devices worn over the ears, designed to deliver sound directly to the listener. Headphones come in various types, including over-ear, on-ear, and in-ear, each offering different levels of comfort, sound quality, and portability.",
+    },
+    {
+        id:2,
+        src:"/images/product/2.keybord.jpg",
+        subtitle:"Extra Bas",
+        title:"Keybord",
+        price:949,
+        qty:1,
+        discription:"A keyboard is a peripheral input device used primarily for typing text and entering commands into a computer or other digital devices.",
+    },
+    {
+        id:3,
+        src:"/images/product/3.sport-watch.png",
+        subtitle:"Extra Bas",
+        title:"Sport Watch",
+        price:885,
+        qty:1,
+        discription:"Sports watches often include sensors to track activities like running, cycling, swimming, and more. They can measure metrics like distance, speed, heart rate, and calories burned.",
+    },
+    {
+        id:4,
+        src:"/images/product/4.laptop.png",
+        subtitle:"Extra Bas",
+        title:"Laptop ",
+        price:1205,
+        qty:1,
+        discription:"A laptop, also known as a notebook computer, is a portable computing device that combines the functionality of a desktop computer with the convenience of mobility."
+    }
+]
