@@ -78,5 +78,9 @@
 =======
 @tailwind base;
 @tailwind components;
+<<<<<<< Updated upstream
+@tailwind utilities;
+>>>>>>> Stashed changes
+=======
 @tailwind utilities;
 >>>>>>> Stashed changes
