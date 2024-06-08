@@ -2,7 +2,7 @@
 import {useRouter} from "next/navigation";
 import {useState, useRef} from "react";
 import { Fragment } from "react";
-import {Img,Button,Heading} from "@/components"
+import {Img,Button,Heading} from "@/components";
 import {Slider } from "@/components";
 import AliceCarousel, { EventObject } from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
