@@ -1,11 +1,20 @@
 
 "use client"
-import { useState } from 'react';
+import { useState,  useEffect } from 'react';
 import axios from 'axios';
 import {Heading,Img,Button,Text,CheckBox} from "@/components";
 import Link from 'next/link';
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
+import {useRouter} from "next/navigation";
 const RegisterForm = ({...props}) => {
+  const router = useRouter();
+  const {status: sessionStatus } = useSession();
+   useEffect(() => {
+        if (sessionStatus === "authenticated") {
+            router.replace("/");
+            console.log("you are signin ")
+        }
+    }, [sessionStatus, router]);
   const [formData, setFormData] = useState({
     name: '',
     email: '',

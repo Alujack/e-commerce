@@ -11,7 +11,6 @@ export default function Signinfrom({ ...props }) {
     const router = useRouter();
     const [error, setError] = useState("");
     const { data: session, status: sessionStatus } = useSession();
- 
     useEffect(() => {
         if (sessionStatus === "authenticated") {
             router.replace("/");
@@ -28,7 +27,7 @@ export default function Signinfrom({ ...props }) {
         e.preventDefault();
         const email = e.target[0].value;
         const password = e.target[1].value;
- 
+    
         if (!isValidEmail(email)) {
             setError("Email is invalid");
             return;
@@ -104,7 +103,7 @@ export default function Signinfrom({ ...props }) {
         <Button
           color="gray_50_02"
           size="12xl"
-          leftIcon={<Img src="images/img_google.svg" alt="google" />}
+          leftIcon={<Img src="/images/img_google.svg" alt="google" />}
           className="w-full gap-px sm:px-5 text-blue_gray-900_03 tracking-[-0.01px] font-poppins font-semibold rounded-[10px]"
           onClick={()=>signIn("google")}
         >

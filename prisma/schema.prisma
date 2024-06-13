@@ -1,16 +1,15 @@
 generator client {
-  provider   = "prisma-client-js"
-  engineType = "binary"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "mongodb"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id       String  @id @default(auto()) @map("_id") @db.ObjectId
-  name     String
-  email    String  @unique
-  hashpassword String?
+  id           Int     @id @default(autoincrement())
+  email        String  @unique
+  name         String
+  hashpassword String
 }

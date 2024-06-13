@@ -1,7 +1,6 @@
 "use client"
-import { Children, useState } from "react";
-import { Button, Heading, Text } from "./";
-import { useRouter } from "next/navigation";
+
+import { Heading, Text } from "./";
 import { useCart } from "@/context/cartcontext";
 interface Props {
   className?: string;

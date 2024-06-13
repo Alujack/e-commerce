@@ -47,7 +47,6 @@ export default function Header() {
               <CloseSVG onClick={() => setSearchBarValue("")} height={24} width={24} fillColor="#b0b9beff" />
             ) : null
           }
-
           className="gap-2 sm:pr-5 !text-blue_gray-900_01 tracking-[-0.08px] border-2 border-sky-500 flex-grow rounded-[15px]"
         />
         {sessionStatus === "authenticated" ?
