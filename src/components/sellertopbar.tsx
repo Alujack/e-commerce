@@ -12,13 +12,13 @@ export default function SellerTopBar ({ ...props }: Props) {
 
   return (
     <header {...props}>
-      <div className="flex w-full flex-col items-end">
+      <div className="flex w-full flex-col bg-[#DEE1E6] items-end shadow-lg shadow-indigo-500/40 ...">
         <div className="flex self-stretch bg-white-A700_01 p-5">
-          <div className="mx-auto flex w-full max-w-[1129px] items-center justify-between gap-5 md:flex-col">
+          <div className="mx-auto flex w-full items-center justify-between gap-5 md:flex-col">
             <Heading size="4xl" as="h3">
               Overview
             </Heading>
-            <div className="flex w-[48%] items-center justify-center md:w-full sm:flex-col">
+            <div className="flex items-center justify-center md:w-full sm:flex-col">
               <Input
                 name="Group 8"
                 placeholder={`Search for something`}
@@ -40,11 +40,12 @@ export default function SellerTopBar ({ ...props }: Props) {
                 }
                 className="gap-[15px] text-indigo-200_01 sm:px-5"
               />
+              <button className="ml-[35px] p-[10px] rounded bg-indigo-500 ">+ Add Product</button>
               <Button shape="circle" className="ml-[27px] w-[50px] !rounded-[25px] sm:ml-0">
-                <Img src="/images/img_settings_1.svg" width={50} height={50} />
+                <Img src="/images/img_settings.svg" width={50} height={50} />
               </Button>
               <Button shape="circle" className="ml-[35px] w-[50px] !rounded-[25px] sm:ml-0">
-                <Img src="/images/img_002_notification_1.svg" width={50} height={50} />
+                <Img src="/images/img_002_notification.svg" width={50} height={50} />
               </Button>
               <Img
                 src="/images/img_ellipse_40.png"
