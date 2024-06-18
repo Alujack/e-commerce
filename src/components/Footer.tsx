@@ -21,7 +21,7 @@ export default function Footer() {
                   Contact Us
                 </Button>
               </div>
-              <Img src="images/img_frame_947.svg" alt="image_one" className="h-[20px]" />
+              <Img src="/images/img_frame_947.svg" alt="image_one" className="h-[20px]" />
               <div className="p-2.5">
                 <div className="flex md:flex-col justify-between items-start gap-5">
                   <div className="flex flex-col w-[32%] md:w-full">
@@ -42,15 +42,15 @@ export default function Footer() {
                     </Text>
                     <div className="flex justify-between w-[73%] md:w-full mt-[-2px] gap-5 relative">
                       <Button size="3xl" shape="square" className="w-[40px]">
-                        <Img src="images/img_social_icons_fa_blue_a700_01.svg" />
+                        <Img src="/images/img_social_icons_fa_blue_a700_01.svg" />
                       </Button>
-                      <Img src="images/img_logo_multiple.png" alt="logomultiple" className="w-[40px] object-cover" />
+                      <Img src="/images/img_logo_multiple.png" alt="logomultiple" className="w-[40px] object-cover" />
                       <Img
-                        src="images/img_social_icons_tiktok_original.svg"
+                        src="/images/img_social_icons_tiktok_original.svg"
                         alt="socialicons_one"
                         className="h-[40px] w-[40px]"
                       />
-                      <Img src="images/img_social_icons_x.svg" alt="socialiconsx" className="h-[40px] w-[40px]" />
+                      <Img src="/images/img_social_icons_x.svg" alt="socialiconsx" className="h-[40px] w-[40px]" />
                       <Button
                         size="3xl"
                         variant="gradient"
@@ -58,7 +58,7 @@ export default function Footer() {
                         color="light_blue_400_blue_600"
                         className="w-[40px] !rounded-[20px]"
                       >
-                        <Img src="images/img_save.svg" />
+                        <Img src="/images/img_save.svg" />
                       </Button>
                     </div>
                   </div>

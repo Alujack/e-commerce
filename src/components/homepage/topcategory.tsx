@@ -18,7 +18,7 @@ export default function TopCategory(){
                 <div className="flex md:flex-col gap-[25px] p-1.5">
                   <div className="flex flex-col items-center w-[21%] md:w-full mt-[22px] mb-[13px] ml-1 gap-[9px] md:ml-0 md:my-0">
                     <Img
-                      src="images/img_group_4_4.png"
+                      src="/images/img_group_4_4.png"
                       alt="laptops_one"
                       className="h-[60px] w-full md:h-auto object-cover"
                     />
@@ -27,7 +27,7 @@ export default function TopCategory(){
                     </Heading>
                   </div>
                   <Img
-                    src="images/img_group_1_4.png"
+                    src="/images/img_group_1_4.png"
                     alt="group"
                     className="w-[21%] md:w-full mt-[22px] md:mt-0 object-cover"
                   />
@@ -36,7 +36,7 @@ export default function TopCategory(){
                   </Heading>
                   <div className="flex flex-col items-center w-[21%] md:w-full mb-[13px] gap-[9px] md:mb-0">
                     <Img
-                      src="images/img_group_2_4.png"
+                      src="/images/img_group_2_4.png"
                       alt="image"
                       className="h-[60px] w-full md:h-auto object-cover"
                     />
@@ -46,7 +46,7 @@ export default function TopCategory(){
                   </div>
                   <div className="flex flex-col items-center w-[21%] md:w-full mb-[13px] gap-2 md:mb-0">
                     <Img
-                      src="images/img_group_3_4.png"
+                      src="/images/img_group_3_4.png"
                       alt="image"
                       className="h-[60px] w-full md:h-auto object-cover"
                     />

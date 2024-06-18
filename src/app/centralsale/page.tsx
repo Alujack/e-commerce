@@ -218,7 +218,7 @@ export default function BecomeSellerPage() {
                 placeholder={`Note about your order, e.g. special note for delivery `}
                 className="self-stretch sm:pb-5 sm:pr-5 text-gray-500"
               />
-               <Button  color="blue_gray_50" size="lg" className="min-w-[100px] rounded-[15px] mt-[10px]" onClick={()=>router.push("/maindash")} >Confirm</Button>
+               <Button  color="blue_gray_50" size="lg" className="min-w-[100px] rounded-[15px] mt-[10px]" onClick={()=>router.push("/pages/maindash")} >Confirm</Button>
             </div>
            
           </div>

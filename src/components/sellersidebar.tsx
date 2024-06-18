@@ -11,14 +11,14 @@ export default function SellerSidebar(){
           width="252px !important"
           collapsedWidth="80px !important"
           collapsed={collapsed}
-          className="!sticky top-0 flex h-screen flex-col gap-[46px] overflow-auto bg-white-A700_01 py-[26px] pr-[26px] md:hidden md:p-5 sm:py-5 sm:pr-5"
+          className=" flex h-screen flex-col gap-[46px] overflow-auto bg-white-A700_01 py-[26px] pr-[26px] md:hidden md:p-5 sm:py-5 sm:pr-5"
         >
           <Img src="/images/img_logo.png" width={195} height={40} alt="Logo" className="mt-1 h-[40px] w-[87%] object-cover" />
           <Menu
             menuItemStyles={{
               button: {
                 padding: "5px",
-                gap: "26px",
+                gap: "30px",
                 color: "#b1b1b1",
                 fontWeight: 500,
                 fontSize: "18px",
@@ -26,7 +26,7 @@ export default function SellerSidebar(){
               },
             }}
             rootStyles={{ ["&>ul"]: { gap: "0.12px" } }}
-            className="mb-[494px] flex w-full flex-col items-center self-stretch"
+            className=" flex w-full flex-col items-center self-stretch"
           >
             <MenuItem icon={<Img src="/images/img_home.svg" width={25} height={24} alt="home" className="h-[24px] w-[25px]" />} component={<Link href="/maindash" />}>
               Dashboard
@@ -118,6 +118,7 @@ export default function SellerSidebar(){
               Logout
             </MenuItem>
           </Menu>
+          
         </Sidebar>
         </>
     )

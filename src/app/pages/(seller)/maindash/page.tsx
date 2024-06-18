@@ -3,7 +3,7 @@ import React from "react";
 import { Text, Img, Heading, Input, Button } from "@/components";
 import Link from "next/link";
 
-const data = [{ rectangle22: "/images/img_rectangle_22.png" }, { rectangle22: "img_rectangle_22_235x350.png" }];
+const data = [{ rectangle22: "/images/img_rectangle_22.png" }, { rectangle22: "/images/img_rectangle_22_235x350.png" }];
 const data1 = [
   {
     iconfinderbusi: "/images/img_iconfinder_busi.svg",
@@ -196,7 +196,7 @@ export default function MainDashboard() {
                 </div>
               </div>
               <Img
-                src="/images/img_group30.svg"
+                src="/images/img_group_39.svg"
                 width={684}
                 height={410}
                 alt="Group 30"

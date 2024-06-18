@@ -32,7 +32,7 @@ export default function CheckallProduct(){
                       <div className="flex flex-col items-center w-full gap-1.5">
                         <div className="self-stretch rounded-[60px]">
                           <Img
-                            src="images/img_prod46_png.png"
+                            src="/images/img_prod46_png.png"
                             alt="speaker_one"
                             className="h-[120px] w-[120px] rounded-[50%]"
                           />
@@ -51,7 +51,7 @@ export default function CheckallProduct(){
                       <div className="flex flex-col items-center w-full gap-1.5">
                         <div className="self-stretch rounded-[60px]">
                           <Img
-                            src="images/img_prod47_png.png"
+                            src="/images/img_prod47_png.png"
                             alt="dslr_camera_one"
                             className="h-[120px] w-[120px] rounded-[50%]"
                           />
@@ -70,7 +70,7 @@ export default function CheckallProduct(){
                       <div className="flex flex-col items-center w-full gap-1.5">
                         <div className="self-stretch rounded-[60px]">
                           <Img
-                            src="images/img_prod48_png.png"
+                            src="/images/img_prod48_png.png"
                             alt="12_items_one"
                             className="h-[120px] w-[120px] rounded-[50%]"
                           />
@@ -89,7 +89,7 @@ export default function CheckallProduct(){
                       <div className="flex flex-col items-center w-full gap-1.5">
                         <div className="self-stretch rounded-[60px]">
                           <Img
-                            src="images/img_prod49_png.png"
+                            src="/images/img_prod49_png.png"
                             alt="9_items_one"
                             className="h-[120px] w-[120px] rounded-[50%]"
                           />

@@ -36,10 +36,10 @@ export default function Body(){
 
               <div className="flex flex-col md:flex-row sm:flex-col md:self-stretch gap-2.5 md:p-5 flex-1">
                 <div className="flex-start justify-center h-[245px] md:h-auto gap-[5px] p-[20px] sm:p-5 rounded-[10px]">
-                 <Adsbanner image={"images/ads1.png"}></Adsbanner>
+                 <Adsbanner image={"/images/ads1.png"}></Adsbanner>
                 </div>
                 <div className="flex-end justify-center h-[245px] md:h-auto gap-[5px] p-[20px] sm:p-5  rounded-[10px]">
-                <Adsbanner image={"images/ads2.png"}></Adsbanner>
+                <Adsbanner image={"/images/ads2.png"}></Adsbanner>
                 </div>
               </div>
             </div>
