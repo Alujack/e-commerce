@@ -6,9 +6,7 @@ const nextConfig = {
         use: ['html-loader'],
       });
     }
-
     return config;
   },
 };
-
 module.exports = nextConfig;

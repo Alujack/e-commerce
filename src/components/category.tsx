@@ -1,62 +1,88 @@
-import React from "react";
-import {Heading } from "./heading";
-import Link from "next/link";
-export default function Category(){
+import React, { useState } from 'react';
+
+const categories = [
+  {
+    name: 'Clearance',
+    subcategories: ['Sale Items', 'Discounted Products']
+  },
+  {
+    name: 'Accessories',
+    subcategories: ['Jewelry', 'Bags', 'Watches']
+  },
+  {
+    name: 'Home & Lifestyle',
+    subcategories: ['Furniture', 'Decor', 'Kitchen']
+  },
+  {
+    name: 'Health & Beauty',
+    subcategories: ['Skincare', 'Makeup', 'Wellness']
+  },
+  {
+    name: 'Groceries & Pet',
+    subcategories: ['Food', 'Pet Supplies']
+  },
+  {
+    name: 'Baby’s & Toys',
+    subcategories: ['Toys', 'Baby Gear']
+  },
+  {
+    name: 'Networking',
+    subcategories: ['Routers', 'Switches']
+  },
+  {
+    name: 'Sport & Outdoor',
+    subcategories: ['Fitness', 'Outdoor Gear']
+  },
+  {
+    name: 'Medicine',
+    subcategories: ['Prescription', 'OTC']
+  },
+  {
+    name: 'Electronic',
+    subcategories: ['Gadgets', 'Accessories']
+  },
+  {
+    name: 'Man’s Fashion',
+    subcategories: ['Clothing', 'Shoes']
+  },
+  {
+    name: 'Woman’s Fashion',
+    subcategories: ['Dresses', 'Shoes']
+  }
+];
+
+const CategoryList: React.FC = () => {
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+
+  const toggleCategory = (category: string) => {
+    setActiveCategory(activeCategory === category ? null : category);
+  };
+
   return (
-    <>
-              <Heading size="5xl" as="h1" className="ml-1.5 md:ml-0 !text-red-600 uppercase">
-                  Category
-              </Heading>
-              <div className="flex flex-col self-center  justify-center mb-2 gap-[15px]">
-                  <Link href ="/">
-                  <Heading size="s" as="h2" className="capitalize">
-                    Clearance
-                  </Heading></Link>
-                  <Link href ="/">
-                  <Heading size="s" as="h3" className="capitalize">
-                    Accessories
-                  </Heading></Link>
-                  <Link href ="/">
-                  <Heading size="s" as="h4" className="capitalize">
-                    Home & Lifestyle
-                  </Heading></Link>
-                  <Link href ="/">
-                  <Heading size="s" as="h5" className="capitalize">
-                    Health & Beauty
-                  </Heading></Link>
-                  <Link href ="/">
-                  <Heading size="s" as="h6" className="capitalize">
-                    Groceries & Pet
-                  </Heading></Link>
-                  <Link href ="/">
-                  <Heading size="s" as="p" className="capitalize">
-                    Baby’s & Toys
-                  </Heading></Link>
-                  <Link href ="/">
-                  <Heading size="s" as="p" className="capitalize">
-                    Networking
-                  </Heading></Link>
-                  <Link href ="/">
-                  <Heading size="s" as="p" className="capitalize">
-                    Sport & Outdoor
-                  </Heading></Link>
-                  <Link href ="/">
-                  <Heading size="s" as="p" className="capitalize">
-                    Medicine
-                  </Heading></Link>
-                  <Link href ="/">
-                  <Heading size="s" as="p" className="capitalize">
-                    Electronic{" "}
-                  </Heading></Link>
-                  <Link href ="/">
-                  <Heading size="s" as="p" className="capitalize">
-                    Man’s Fashion
-                  </Heading></Link>
-                  <Link href ="/">
-                  <Heading size="s" as="p" className="capitalize">
-                    Woman’s fashion
-                  </Heading></Link>
-              </div>
-    </>
+    <div className="p-4 bg-gray-100 rounded-md relative">
+      <h2 className="text-xl font-bold text-red-500 mb-4">CATEGORY</h2>
+      <ul className="space-y-2">
+        {categories.map((category) => (
+          <li key={category.name} className="relative">
+            <h1></h1>
+            <button
+              className="w-full text-left text-black font-medium focus:outline-none"
+              onClick={() => toggleCategory(category.name)}
+            >
+              {category.name}
+            </button>
+            {activeCategory === category.name && (
+              <ul className="absolute left-full top-0 mt-0 ml-2 p-2 bg-white shadow-lg rounded-md space-y-1 text-gray-600">
+                {category.subcategories.map((sub) => (
+                  <li key={sub} className="hover:text-black">{sub}</li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
-}
+};
+
+export default CategoryList;

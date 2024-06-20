@@ -178,7 +178,7 @@ export default function SellergOnePage() {
                   </Heading>
                   <div className="flex w-[74%] items-center justify-center gap-[25px] rounded-[10px] border border-solid border-blue_gray-100_04 bg-gray-50_11 px-[26px] md:w-full md:flex-col sm:px-5">
                     <div className="flex items-center gap-[26px]">
-                      <Img src="images/img_filter.svg" width={20} height={22} alt="filter" className="h-[15px]" />
+                      <Img src="/images/img_filter.svg" width={20} height={22} alt="filter" className="h-[15px]" />
                       <div className="h-full w-px bg-gray-500_af_02" />
                     </div>
                     <div className="flex w-[11%] items-center justify-between gap-5 md:w-full">
@@ -192,7 +192,7 @@ export default function SellergOnePage() {
                         Date
                       </Heading>
                       <Img
-                        src="images/img_arrow_down_black_900.svg"
+                        src="/images/img_arrow_down_black_900.svg"
                         width={25}
                         height={24}
                         alt="arrow down"
@@ -205,7 +205,7 @@ export default function SellergOnePage() {
                         Order Type
                       </Heading>
                       <Img
-                        src="images/img_arrow_down_black_900.svg"
+                        src="/images/img_arrow_down_black_900.svg"
                         width={25}
                         height={24}
                         alt="arrow down"
@@ -218,7 +218,7 @@ export default function SellergOnePage() {
                         Order Status
                       </Heading>
                       <Img
-                        src="images/img_arrow_down_black_900.svg"
+                        src="/images/img_arrow_down_black_900.svg"
                         width={25}
                         height={24}
                         alt="arrow down"
@@ -228,7 +228,7 @@ export default function SellergOnePage() {
                     </div>
                     <div className="flex items-center justify-center gap-2">
                       <Img
-                        src="images/img_qrcode.svg"
+                        src="/images/img_qrcode.svg"
                         width={19}
                         height={18}
                         alt="qrcode"
@@ -243,7 +243,7 @@ export default function SellergOnePage() {
                     <Heading as="p" className="self-end !text-gray-900_99_02">
                       Showing 1-09 of 78
                     </Heading>
-                    <Img src="images/img_close.svg" width={86} height={30} alt="close" className="h-[30px] w-[8%]" />
+                    <Img src="/images/img_close.svg" width={86} height={30} alt="close" className="h-[30px] w-[8%]" />
                   </div>
                   <ReactTable
                     size="xs"
