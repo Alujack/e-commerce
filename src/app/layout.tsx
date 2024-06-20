@@ -17,7 +17,8 @@ export default async function RootLayout({
   children:React.ReactNode;
 }) {
   const path = usePathname();
-  if (path === "/admin" || path=== "/seller" ){
+  const patharray = path.split("/");
+  if (patharray[1] === "admin" || patharray[1]=== "seller" ){
     return (
       <html lang="en">
       <head>
