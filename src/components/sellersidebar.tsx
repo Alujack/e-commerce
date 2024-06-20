@@ -11,24 +11,24 @@ export default function SellerSidebar(){
           width="252px !important"
           collapsedWidth="80px !important"
           collapsed={collapsed}
-          className=" flex h-screen flex-col gap-[46px] overflow-auto bg-white-A700_01 py-[26px] pr-[26px] md:hidden md:p-5 sm:py-5 sm:pr-5"
+          className=" flex h-screen flex-col overflow-auto bg-white-A700_01 py-[30px] pr-[26px] md:hidden md:p-5 sm:py-5 sm:pr-5"
         >
-          <Img src="/images/img_logo.png" width={195} height={40} alt="Logo" className="mt-1 h-[40px] w-[87%] object-cover" />
+          <Img src="/images/img_logo.png" width={195} height={40} alt="Logo" className="mt-1 h-[40px] w-[87%] object-cover mb-[20px]" />
           <Menu
             menuItemStyles={{
               button: {
                 padding: "5px",
-                gap: "30px",
+                gap: "23px",
                 color: "#b1b1b1",
                 fontWeight: 500,
                 fontSize: "18px",
                 [`&:hover, &.ps-active`]: { color: "#2d60ff" },
               },
             }}
-            rootStyles={{ ["&>ul"]: { gap: "0.12px" } }}
+            rootStyles={{ ["&>ul"]: { gap: "15px" } }}
             className=" flex w-full flex-col items-center self-stretch"
           >
-            <MenuItem icon={<Img src="/images/img_home.svg" width={25} height={24} alt="home" className="h-[24px] w-[25px]" />} component={<Link href="/maindash" />}>
+            <MenuItem icon={<Img src="/images/img_home.svg" width={25} height={24} alt="home" className="h-[24px] w-[25px]" />} component={<Link href="/pages/maindash" />}>
               Dashboard
             </MenuItem>
             <MenuItem
@@ -41,7 +41,7 @@ export default function SellerSidebar(){
                   className="h-[25px] w-[25px] object-cover"
                 />
               }
-              component={<Link href="/productsale" />}
+              component={<Link href="/pages/productsale" />}
             >
               Product
             </MenuItem>
@@ -55,7 +55,7 @@ export default function SellerSidebar(){
                   className="h-[25px] w-[25px] object-cover"
                 />
               }
-              component={<Link href="/productstocksale" />}
+              component={<Link href="/pages/productstocksale" />}
             >
               Product Stock
             </MenuItem>
@@ -70,7 +70,7 @@ export default function SellerSidebar(){
                 />
               }
               
-               component={<Link href="/seller-orderlist" />}
+               component={<Link href="/pages/seller-orderlist" />}
             >
               Order Lists
             </MenuItem>
@@ -84,7 +84,7 @@ export default function SellerSidebar(){
                   className="h-[25px] w-[26px] object-cover"
                 />
               }
-              component={<Link href="/saleinbox" />}
+              component={<Link href="/pages/saleinbox" />}
              
             >
               Inbox

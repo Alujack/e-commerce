@@ -184,23 +184,6 @@ const ProductDetail = () => {
           Dermatologist Approved
         </button>
       </div>
-      <div className="mt-8 flex justify-between">
-        <button
-          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-        >
-          Cancel
-        </button>
-        <button
-          className="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-        >
-          Draft
-        </button>
-        <button
-          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-        >
-          Continue
-        </button>
-      </div>
     </div>
   );
 };

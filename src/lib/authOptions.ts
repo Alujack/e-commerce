@@ -8,10 +8,7 @@ import { compare } from 'bcrypt'; // Assumes you're using bcrypt for password ha
 const prisma = new PrismaClient();
 
 export const BASE_PATH = "/api/auth";
-interface Credentials {
-  email: string;
-  password: string;
-}
+
 export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   providers: [
@@ -29,7 +26,7 @@ export const authOptions: NextAuthOptions = {
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
-      authorize: async (credentials: Credentials | undefined) => {
+      authorize: async (credentials) => {
         if (!credentials) {
           return null;
         }
@@ -39,7 +36,8 @@ export const authOptions: NextAuthOptions = {
         });
 
         if (user && await compare(credentials.password, user.hashpassword)) {
-          return user;
+          // Convert the id to a string before returning the user
+          return { ...user, id: user.id.toString() };
         } else {
           return null;
         }

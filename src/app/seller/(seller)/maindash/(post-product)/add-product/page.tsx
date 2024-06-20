@@ -1,7 +1,8 @@
 "use client"
 import React, { useState } from 'react';
-
+import { useProductContext } from '@/context/productContext';
 const ProductInformationForm: React.FC = () => {
+  const {name, description, productprice , setProductData } = useProductContext();
   const [productName, setProductName] = useState<string>('');
   const [productShortDescription, setProductShortDescription] = useState<string>('');
   const [productDescription, setProductDescription] = useState<string>('');
@@ -27,6 +28,10 @@ const ProductInformationForm: React.FC = () => {
   const handleProductPriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setProductPrice(e.target.value);
   };
+  const handleNext = ()=>{
+  setProductData({name:productName, description:productDescription, productprice:Number(productPrice)})
+console.log(name);
+}
 
   return (
     <form className="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-lg">
@@ -100,12 +105,7 @@ const ProductInformationForm: React.FC = () => {
         />
         {productPrice === '' && <span className="text-red-500 text-xs">Please enter the product currency first.</span>}
       </div>
-
-      <div className="flex justify-end space-x-4">
-        <button type="button" className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md shadow-sm">Cancel</button>
-        <button type="button" className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md shadow-sm">Draft</button>
-        <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded-md shadow-sm">Continue</button>
-      </div>
+      <button onClick={handleNext}>Contine</button>
     </form>
   );
 };
