@@ -9,9 +9,9 @@ export const navlink=[
 ]
 
 export const steps =[
-    {href:"/pages/maindash/add-product", label:"Product Information"},
-    {href:"/pages/maindash/product-detail", label:"Product Detail Information"},
-    {href:"/pages/maindash/product-variation", label:"Product Variant Creation"},
-    {href:"/pages/maindash/lgs", label:"Logistics and Shipment"},
-    {href:"/pages/maindash/purchase-discount", label:"Bulk Purchase Discounts"}
+    {href:"/seller/maindash/add-product", label:"Product Information"},
+    {href:"/seller/maindash/product-detail", label:"Product Detail Information"},
+    {href:"/seller/maindash/product-variation", label:"Product Variant Creation"},
+    {href:"/seller/maindash/lgs", label:"Logistics and Shipment"},
+    {href:"/seller/maindash/purchase-discount", label:"Bulk Purchase Discounts"}
 ]

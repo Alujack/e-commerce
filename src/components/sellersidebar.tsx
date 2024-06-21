@@ -28,7 +28,7 @@ export default function SellerSidebar(){
             rootStyles={{ ["&>ul"]: { gap: "15px" } }}
             className=" flex w-full flex-col items-center self-stretch"
           >
-            <MenuItem icon={<Img src="/images/img_home.svg" width={25} height={24} alt="home" className="h-[24px] w-[25px]" />} component={<Link href="/pages/maindash" />}>
+            <MenuItem icon={<Img src="/images/img_home.svg" width={25} height={24} alt="home" className="h-[24px] w-[25px]" />} component={<Link href="/seller/maindash" />}>
               Dashboard
             </MenuItem>
             <MenuItem
@@ -41,7 +41,7 @@ export default function SellerSidebar(){
                   className="h-[25px] w-[25px] object-cover"
                 />
               }
-              component={<Link href="/pages/productsale" />}
+              component={<Link href="/seller/productsale" />}
             >
               Product
             </MenuItem>
@@ -55,7 +55,7 @@ export default function SellerSidebar(){
                   className="h-[25px] w-[25px] object-cover"
                 />
               }
-              component={<Link href="/pages/productstocksale" />}
+              component={<Link href="/seller/productstocksale" />}
             >
               Product Stock
             </MenuItem>
@@ -70,7 +70,7 @@ export default function SellerSidebar(){
                 />
               }
               
-               component={<Link href="/pages/seller-orderlist" />}
+               component={<Link href="/seller/seller-orderlist" />}
             >
               Order Lists
             </MenuItem>
@@ -84,7 +84,7 @@ export default function SellerSidebar(){
                   className="h-[25px] w-[26px] object-cover"
                 />
               }
-              component={<Link href="/pages/saleinbox" />}
+              component={<Link href="/seller/saleinbox" />}
              
             >
               Inbox
