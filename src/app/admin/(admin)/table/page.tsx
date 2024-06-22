@@ -172,12 +172,12 @@ export default function DarkTwentyFivePage() {
                       "border-blue_gray-800_11 border border-solid bg-blue_gray-800_13 rounded-tl-[14px] rounded-tr-[14px] flex-wrap",
                   }}
                   rowDataProps={{ className: "md:flex-col" }}
-                  className="self-stretch rounded-[14px] border border-solid border-blue_gray-800_11 bg-blue_gray-900_01"
+                  className="self-stretch rounded-[14px] border border-solid border-blue_gray-800_11 "
                   columns={tableColumns}
                   data={tableData}
                 />
                 <div className="self-stretch">
-                  <div className="flex items-center justify-between gap-5 rounded-tl-lg rounded-tr-lg border border-solid border-blue_gray-800_11 bg-blue_gray-800_13 p-[11px] md:flex-col">
+                  <div className="flex items-center justify-between gap-5 rounded-tl-lg rounded-tr-lg border border-solid border-blue_gray-800_11  p-[11px] md:flex-col">
                     <div className="ml-7 flex w-[20%] flex-wrap justify-between gap-5 self-end md:ml-0 md:w-full">
                       <Heading as="p" className="self-end !font-bold !text-white-A700">
                         Image
@@ -207,7 +207,7 @@ export default function DarkTwentyFivePage() {
                     </Heading>
                   </div>
 
-                <div className="flex flex-col gap-6 rounded-bl-[14px] rounded-br-[14px] border border-solid border-blue_gray-800 bg-blue_gray-900_01 py-6 sm:py-5">
+                {/* <div className="flex flex-col gap-6 rounded-bl-[14px] rounded-br-[14px] border border-solid border-blue_gray-800  py-6 sm:py-5">
                  <Stockproduct className="flex w-[100%] items-start justify-between gap-5 md:w-full md:flex-col" />
                  <Stockproduct className="flex w-[100%] items-start justify-between gap-5 md:w-full md:flex-col" />
                  <Stockproduct className="flex w-[100%] items-start justify-between gap-5 md:w-full md:flex-col" />
@@ -233,7 +233,7 @@ export default function DarkTwentyFivePage() {
                  <Stockproduct className="flex w-[100%] items-start justify-between gap-5 md:w-full md:flex-col" />
                  <Stockproduct className="flex w-[100%] items-start justify-between gap-5 md:w-full md:flex-col" />
                 
-                </div>
+                </div> */}
                 </div>
               </div>
            

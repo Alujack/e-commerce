@@ -1,49 +1,72 @@
-"use client"
+import React, { createContext, useState, ReactNode } from 'react';
 
-
-import React, { createContext, useContext, useState, ReactNode } from 'react';
-
-interface ProductContextType {
-  name: string;
-  description: string;
-  image: string;
-  productprice: number;
-  category: string;
-  productVariation: { material: string; color: string; size: string; };
-  setProductData: (data: Partial<ProductContextType>) => void;
+interface DataContextType {
+  pageData: any;
+  updatePageData: (page: string, data: any) => void;
+  submitData: () => void; // New function for submitting data
 }
 
-const ProductContext = createContext<ProductContextType | undefined>(undefined);
+const DataContext = createContext<DataContextType | null>(null);
 
-export const useProductContext = () => {
-  const context = useContext(ProductContext);
-  if (!context) {
-    throw new Error('useProductContext must be used within a ProductProvider');
-  }
-  return context;
-};
-
-export const ProductProvider = ({ children }: { children: ReactNode }) => {
-  const [productData, setProductDataState] = useState<ProductContextType>({
-    name: '',
-    description: '',
-    image: '',
-    productprice: 0,
-    category: '',
-    productVariation: { material: '', color: '', size: '' },
-    setProductData: () => {}
+const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const [pageData, setPageData] = useState({
+    page1: null,
+    page2: null,
+    category: 'Beach Towels',
+    productDetail: {
+      selectedCategory: 'Beach Towels',
+      selectedMaterial: '100% Cotton',
+      selectedProductionTechnique: 'Machine Woven',
+      selectedWeight: '300 g/m²',
+      selectedAbsorbency: 'Quick-Drying',
+      selectedTags: []
+    },
+    productPricing: {
+      basePrice: 0,
+      discount: 0,
+      finalPrice: 0
+    },
+    bulkPurchaseDiscounts: {
+      productQuantity: '0 - 100 Amount Products',
+      discount: '% 8'
+    }
   });
 
-  const setProductData = (data: Partial<ProductContextType>) => {
-    setProductDataState((prevData) => ({
+  const updatePageData = (page: string, data: any) => {
+    setPageData((prevData) => ({
       ...prevData,
-      ...data
+      [page]: data,
     }));
   };
 
+  const submitData = () => {
+    // Here you would typically send `pageData` to your backend
+    console.log('Submitting data:', pageData.page1);
+
+    // // Example fetch request to send data to backend
+    // fetch('https://example.com/api/submit', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify(pageData),
+    // })
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     console.log('Submission successful:', data);
+    //     // Optionally update local state or show a success message
+    //   })
+    //   .catch(error => {
+    //     console.error('Error submitting data:', error);
+    //     // Handle errors as needed
+    //   });
+  };
+
   return (
-    <ProductContext.Provider value={{ ...productData, setProductData }}>
+    <DataContext.Provider value={{ pageData, updatePageData, submitData }}>
       {children}
-    </ProductContext.Provider>
+    </DataContext.Provider>
   );
 };
+
+export { DataContext, DataProvider };

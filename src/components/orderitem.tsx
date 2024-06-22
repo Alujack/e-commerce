@@ -10,7 +10,7 @@ export default function Orderitem({ ...props }: Props) {
     <div {...props}>
       <div className="flex justify-center w-[6%] md:w-full bg-white-A700 rounded-[10px]">
         <Img
-          src="images/img_prod26_png.png"
+          src="/images/img_prod26_png.png"
           alt="image"
           className="h-[54px] w-full md:h-auto object-cover rounded-[10px]"
         />

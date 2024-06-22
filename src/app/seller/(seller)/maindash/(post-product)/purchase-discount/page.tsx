@@ -1,13 +1,46 @@
 "use client"
 
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import {DataContext} from '@/context/productContext';
+
 
 const BulkPurchaseDiscounts = () => {
+  const context = useContext(DataContext);
+
+  if (!context) {
+    throw new Error('DataContext must be used within a DataProvider');
+  }
+
+  const { pageData, updatePageData,submitData } = context;
+
   const [productQuantity, setProductQuantity] = useState<string>('0 - 100 Amount Products');
   const [discount, setDiscount] = useState<string>('% 8');
 
+  useEffect(() => {
+    if (pageData.bulkPurchaseDiscounts) {
+      setProductQuantity(pageData.bulkPurchaseDiscounts.productQuantity);
+      setDiscount(pageData.bulkPurchaseDiscounts.discount);
+    }
+  }, [pageData]);
+
   const quantities = ['0 - 100 Amount Products', '101 - 200 Amount Products', '201 - 300 Amount Products'];
   const discounts = ['% 5', '% 10', '% 15', '% 20'];
+
+  const handleProductQuantityChange = (e: any) => {
+    const newQuantity = e.target.value;
+    setProductQuantity(newQuantity);
+    updatePageData('bulkPurchaseDiscounts', { productQuantity: newQuantity, discount });
+  };
+
+  const handleDiscountChange = (e: any) => {
+    const newDiscount = e.target.value;
+    setDiscount(newDiscount);
+    updatePageData('bulkPurchaseDiscounts', { productQuantity, discount: newDiscount });
+  };
+const handleSubmit = () => {
+    // Call the submitData function when the button is clicked
+    submitData();
+  };
 
   return (
     <div className="p-6 bg-white rounded-md shadow-md">
@@ -18,7 +51,7 @@ const BulkPurchaseDiscounts = () => {
         <select 
           className="block w-full p-2.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500"
           value={productQuantity} 
-          onChange={(e) => setProductQuantity(e.target.value)}
+          onChange={handleProductQuantityChange}
         >
           {quantities.map((quantity) => (
             <option key={quantity} value={quantity}>{quantity}</option>
@@ -32,7 +65,7 @@ const BulkPurchaseDiscounts = () => {
         <select 
           className="block w-full p-2.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500"
           value={discount} 
-          onChange={(e) => setDiscount(e.target.value)}
+          onChange={handleDiscountChange}
         >
           {discounts.map((discountOption) => (
             <option key={discountOption} value={discountOption}>{discountOption}</option>
@@ -40,6 +73,7 @@ const BulkPurchaseDiscounts = () => {
         </select>
         <p className="mt-2 text-sm text-gray-500">What percentage discount do you want to set?</p>
       </div>
+      <button onClick={handleSubmit}> handle </button>
     </div>
   );
 }

@@ -10,14 +10,12 @@ const dropDownOptions = [
 export default function DarkOnePage() {
   return (
     <> 
-      
-         
-            <div className="flex w-[95%] flex-col items-start gap-[25px] md:w-full">
+      <div className="flex w-[95%] flex-col items-start gap-[25px] md:w-full">
               <Heading size="8xl" as="h1" className="tracking-[-0.11px]">
                 Dashboard
               </Heading>
               <div className="flex gap-[30px] self-stretch md:flex-col">
-                <div className="flex w-full flex-col gap-[27px] rounded-[14px] border border-solid border-blue_gray-800_21 bg-blue_gray-900_03 p-[15px]">
+                <div className="flex w-full flex-col gap-[27px] rounded-[14px] border border-solid border-blue_gray-800_21  p-[15px]">
                   <div className="flex items-start justify-between gap-5">
                     <div className="flex flex-col items-start gap-4">
                       <Heading size="lg" as="h2" className="!text-white-A700_b2_02">
@@ -38,7 +36,7 @@ export default function DarkOnePage() {
                     </Heading>
                   </div>
                 </div>
-                <div className="flex w-full flex-col gap-[29px] rounded-[14px] border border-solid border-blue_gray-800_21 bg-blue_gray-900_03 p-[15px]">
+                <div className="flex w-full flex-col gap-[29px] rounded-[14px] border border-solid border-blue_gray-800_21  p-[15px]">
                   <div className="flex items-start justify-between gap-5">
                     <div className="flex flex-col gap-[15px]">
                       <Heading size="lg" as="h5" className="!text-white-A700_b2_02">
@@ -59,7 +57,7 @@ export default function DarkOnePage() {
                     </Heading>
                   </div>
                 </div>
-                <div className="flex w-full flex-col items-center justify-center gap-[29px] rounded-[14px] border border-solid border-blue_gray-800_21 bg-blue_gray-900_03 p-3.5">
+                <div className="flex w-full flex-col items-center justify-center gap-[29px] rounded-[14px] border border-solid border-blue_gray-800_21  p-3.5">
                   <div className="flex items-start justify-between gap-5 self-stretch">
                     <div className="flex flex-col items-start gap-[15px]">
                       <Heading size="lg" as="h6" className="!text-white-A700_b2_02">
@@ -80,7 +78,7 @@ export default function DarkOnePage() {
                     </Heading>
                   </div>
                 </div>
-                <div className="flex w-full flex-col gap-[29px] rounded-[14px] border border-solid border-blue_gray-800_21 bg-blue_gray-900_03 p-4">
+                <div className="flex w-full flex-col gap-[29px] rounded-[14px] border border-solid border-blue_gray-800_21  p-4">
                   <div className="flex items-start justify-between gap-5">
                     <div className="flex flex-col items-start gap-[13px]">
                       <Heading size="lg" as="h6" className="!text-white-A700_b2_02">
@@ -106,7 +104,7 @@ export default function DarkOnePage() {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col gap-10 self-stretch rounded-[14px] border border-solid border-blue_gray-800_21 bg-blue_gray-900_03 p-[30px] sm:p-5">
+              <div className="flex flex-col gap-10 self-stretch rounded-[14px] border border-solid border-blue_gray-800_21  p-[30px] sm:p-5">
                 <div className="flex items-center justify-between gap-5">
                   <Heading size="4xl" as="h4" className="!font-bold">
                     Sales Details
@@ -202,7 +200,7 @@ export default function DarkOnePage() {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col gap-7 self-stretch rounded-[14px] border border-solid border-blue_gray-800_21 bg-blue_gray-900_03 p-[18px]">
+              <div className="flex flex-col gap-7 self-stretch rounded-[14px] border border-solid border-blue_gray-800_21  p-[18px]">
                 <div className="mt-[18px] flex items-start justify-between gap-5">
                   <Heading size="4xl" as="h4" className="!font-bold">
                     Deals Details
@@ -219,7 +217,7 @@ export default function DarkOnePage() {
                   />
                 </div>
                 <div>
-                  <div className="flex justify-between gap-5 rounded-[12px] border border-solid border-blue_gray-100_1a_02 bg-blue_gray-800_e5_03 p-3 md:flex-col">
+                  <div className="flex justify-between gap-5 rounded-[12px] border border-solid border-blue_gray-100_1a_02  p-3 md:flex-col">
                     <div className="ml-[11px] flex w-[27%] flex-wrap justify-between gap-5 self-end md:ml-0 md:w-full">
                       <Heading as="p">Product Name</Heading>
                       <Heading as="p">Location</Heading>
@@ -236,7 +234,7 @@ export default function DarkOnePage() {
                     </div>
                   </div>
                   <div className="flex flex-col items-start pt-[23px] sm:pt-5">
-                    <div className="ml-6 flex w-[3%] rounded-[17px] bg-blue_gray-100_15 md:ml-0 md:w-full">
+                    <div className="ml-6 flex w-[3%] rounded-[17px]  md:ml-0 md:w-full">
                       <Img
                         src="/images/img_bitmap_35x36.png"
                         alt="bitmaponeone"

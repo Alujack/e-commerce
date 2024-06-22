@@ -4,8 +4,8 @@ import {useRouter} from "next/navigation";
 export default function Changepass() {
   const router= useRouter();
   return (
-    <div className="flex flex-col self-end md:self-stretch mb-[54px] gap-2.5 p-[9px] md:p-5 bg-gray-100_02 flex-1 rounded-[10px]">
-      <div className="flex flex-col items-center justify-center w-[50%] md:w-full p-[19px] bg-gray-200_01 shadow-xs rounded-[20px]">
+    <div className="flex flex-col self-end md:self-stretch  gap-2.5 p-[9px] md:p-5 bg-gray-100_02 flex-1 rounded-[10px]">
+      <div className="flex flex-col items-center justify-center md:w-full p-[19px] bg-gray-200_01 shadow-xs rounded-[20px]">
         <Text as="p" className="self-start mt-9 ml-[9px] md:ml-0 !text-black-900_01 !font-poppins">
           Old Password *
         </Text>

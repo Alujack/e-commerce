@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 export default function Signinfrom({ ...props }) {
     const router = useRouter();
     const [error, setError] = useState("");
-    const { data: session, status: sessionStatus } = useSession();
+    const {status: sessionStatus } = useSession();
     useEffect(() => {
         if (sessionStatus === "authenticated") {
             router.replace("/");
@@ -111,7 +111,7 @@ export default function Signinfrom({ ...props }) {
         </Button>
         <Text as="p" className="mb-1 !text-gray-600 !font-poppins text-center">
           <span className="text-gray-600">Don&#39;t have an account?&nbsp;</span>
-          <Link href="/register"><span className="text-blue-A700 font-semibold">Sign up</span></Link>
+          <Link href="/auth-user/register"><span className="text-blue-A700 font-semibold">Sign up</span></Link>
         </Text>
        
       </div>

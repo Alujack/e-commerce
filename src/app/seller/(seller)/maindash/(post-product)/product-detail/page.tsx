@@ -1,6 +1,6 @@
-
 "use client"
-import { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import {DataContext} from '@/context/productContext';
 
 interface Category {
   name: string;
@@ -15,11 +15,26 @@ const categories: Category[] = [
   { name: 'Towel Racks & Rods', path: ['Home&Living', 'Bathroom', 'Bath Towels', 'Towel Racks & Rods'] },
 ];
 
-const CategorySelector = () => {
+const CategorySelector: React.FC = () => {
+  const context = useContext(DataContext);
+
+  if (!context) {
+    throw new Error('DataContext must be used within a DataProvider');
+  }
+
+  const { pageData, updatePageData } = context;
+
   const [selectedCategory, setSelectedCategory] = useState<string>('Beach Towels');
+
+  useEffect(() => {
+    if (pageData.category) {
+      setSelectedCategory(pageData.category);
+    }
+  }, [pageData]);
 
   const handleSelect = (category: string) => {
     setSelectedCategory(category);
+    updatePageData('category', category);
   };
 
   return (
@@ -34,15 +49,14 @@ const CategorySelector = () => {
         {categories.map((category) => (
           <div key={category.name} className="flex flex-col gap-[15px]">
             <div className="space-y-4">
-            <input
-              type="checkbox"
-              checked={selectedCategory === category.name}
-              onChange={() => handleSelect(category.name)}
-              className="mr-2"
-            />
-            <span className="font-medium ">{category.name}</span>
+              <input
+                type="checkbox"
+                checked={selectedCategory === category.name}
+                onChange={() => handleSelect(category.name)}
+                className="mr-2"
+              />
+              <span className="font-medium">{category.name}</span>
             </div>
-            
             <div className="ml-4 text-gray-500 text-sm">
               {category.path.join(' > ')}
             </div>

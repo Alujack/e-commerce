@@ -40,7 +40,7 @@ export default function SellerTopBar ({ ...props }: Props) {
                 }
                 className="gap-[15px] text-indigo-200_01 sm:px-5"
               />
-              <Button  shape="circle" color="indigo-500" className="ml-[35px] p-[10px]" onClick={() => router.push("/pages/maindash/add-product")} >+ Add Product</Button>
+              <Button  shape="circle" color="indigo-500" className="ml-[35px] p-[10px]" onClick={() => router.push("/seller/maindash/add-product")} >+ Add Product</Button>
               <Button shape="circle" className="ml-[27px] ">
                <Img src="/images/message.png" className = "w-full"/>
               </Button>

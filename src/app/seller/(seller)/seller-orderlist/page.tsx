@@ -79,7 +79,7 @@ const table1Data = [
 
 type Table1RowType = { id: string; name: string; address: string; date: string; type: string; status: string };
 
-export default function SellergOnePage() {
+export default function OrderList() {
 
 
   // table creattion

@@ -6,8 +6,8 @@ export default function Adminlayout({ children, }:{children:React.ReactNode}) {
  return (
    <>  
      <div className="w-full bg-white-A700">
-        <div className="flex bg-gray-900_11 md:flex-col">
-        <Sidebar1 className="!sticky top-0 flex h-screen w-[242px] flex-col gap-8 overflow-auto bg-blue_gray-900_03 py-[22px] md:hidden md:p-5 sm:py-5"  ></Sidebar1>
+        <div className="flex  md:flex-col">
+        <Sidebar1 className="!sticky top-0 flex h-screen w-[242px] flex-col gap-8 overflow-auto  py-[22px] md:hidden md:p-5 sm:py-5"  ></Sidebar1>
         <div className="flex-1 md:self-stretch md:p-5">
             <Topbar />
         {children}

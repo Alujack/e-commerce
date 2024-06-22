@@ -1,13 +1,39 @@
 "use client"
 
+import React, { useState, useEffect, useContext } from 'react';
+import {DataContext} from '@/context/productContext';
 
-import React, { useState } from 'react';
+const LogisticsShipmentInformation: React.FC = () => {
+  const context = useContext(DataContext);
 
-const LogisticsShipmentInformation = () => {
-  const [containerType, setContainerType] = useState<string>('Box');
-  const [quantity, setQuantity] = useState<number>(42);
-  const [productDimensions, setProductDimensions] = useState<string>('20 x 20 x 30');
-  const [productWeight, setProductWeight] = useState<number>(30);
+  if (!context) {
+    throw new Error('DataContext must be used within a DataProvider');
+  }
+
+  const { pageData, updatePageData } = context;
+
+  const [formData, setFormData] = useState({
+    containerType: 'Box',
+    quantity: 42,
+    productDimensions: '20 x 20 x 30',
+    productWeight: 30,
+  });
+
+  useEffect(() => {
+    if (pageData.page2) {
+      setFormData(pageData.page2);
+    }
+  }, [pageData]);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    const newFormData = {
+      ...formData,
+      [name]: name === 'quantity' || name === 'productWeight' ? parseInt(value) : value,
+    };
+    setFormData(newFormData);
+    updatePageData('page2', newFormData);
+  };
 
   const containerTypes = ['Box', 'Crate', 'Pallet'];
   const dimensions = ['20 x 20 x 30', '30 x 30 x 40', '40 x 40 x 50'];
@@ -21,8 +47,9 @@ const LogisticsShipmentInformation = () => {
           <label className="block mb-2 text-sm font-medium text-gray-900">Container Type</label>
           <select 
             className="block w-full p-2.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500"
-            value={containerType} 
-            onChange={(e) => setContainerType(e.target.value)}
+            name="containerType"
+            value={formData.containerType} 
+            onChange={handleInputChange}
           >
             {containerTypes.map((type) => (
               <option key={type} value={type}>{type}</option>
@@ -35,8 +62,9 @@ const LogisticsShipmentInformation = () => {
           <input 
             type="number"
             className="block w-full p-2.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500"
-            value={quantity} 
-            onChange={(e) => setQuantity(parseInt(e.target.value))}
+            name="quantity"
+            value={formData.quantity} 
+            onChange={handleInputChange}
           />
         </div>
 
@@ -44,8 +72,9 @@ const LogisticsShipmentInformation = () => {
           <label className="block mb-2 text-sm font-medium text-gray-900">Product Dimensions (H x W x D)</label>
           <select 
             className="block w-full p-2.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500"
-            value={productDimensions} 
-            onChange={(e) => setProductDimensions(e.target.value)}
+            name="productDimensions"
+            value={formData.productDimensions} 
+            onChange={handleInputChange}
           >
             {dimensions.map((dim) => (
               <option key={dim} value={dim}>{dim}</option>
@@ -58,8 +87,9 @@ const LogisticsShipmentInformation = () => {
           <input 
             type="number"
             className="block w-full p-2.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500"
-            value={productWeight} 
-            onChange={(e) => setProductWeight(parseInt(e.target.value))}
+            name="productWeight"
+            value={formData.productWeight} 
+            onChange={handleInputChange}
           />
         </div>
       </div>

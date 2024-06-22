@@ -3,51 +3,51 @@ import React, { useState } from 'react';
 const categories = [
   {
     name: 'Clearance',
-    subcategories: ['Sale Items', 'Discounted Products']
+    subcategories: ['Sale Items', 'Discounted Products','Sale Items', 'Discounted Products','Sale Items', 'Discounted Products']
   },
   {
     name: 'Accessories',
-    subcategories: ['Jewelry', 'Bags', 'Watches']
+    subcategories: ['Jewelry', 'Bags', 'Watches','Jewelry', 'Bags', 'Watches','Jewelry', 'Bags', 'Watches']
   },
   {
     name: 'Home & Lifestyle',
-    subcategories: ['Furniture', 'Decor', 'Kitchen']
+    subcategories: ['Furniture', 'Decor', 'Kitchen','Furniture', 'Decor', 'Kitchen','Furniture', 'Decor', 'Kitchen']
   },
   {
     name: 'Health & Beauty',
-    subcategories: ['Skincare', 'Makeup', 'Wellness']
+    subcategories: ['Skincare', 'Makeup', 'Wellness','Furniture', 'Decor', 'Kitchen','Furniture', 'Decor', 'Kitchen']
   },
   {
     name: 'Groceries & Pet',
-    subcategories: ['Food', 'Pet Supplies']
+    subcategories: ['Food', 'Pet Supplies','Furniture', 'Decor', 'Kitchen','Furniture', 'Decor', 'Kitchen']
   },
   {
     name: 'Baby’s & Toys',
-    subcategories: ['Toys', 'Baby Gear']
+    subcategories: ['Toys', 'Baby Gear','Furniture', 'Decor', 'Kitchen','Furniture', 'Decor', 'Kitchen']
   },
   {
     name: 'Networking',
-    subcategories: ['Routers', 'Switches']
+    subcategories: ['Routers', 'Switches','Furniture', 'Decor', 'Kitchen','Furniture', 'Decor', 'Kitchen']
   },
   {
     name: 'Sport & Outdoor',
-    subcategories: ['Fitness', 'Outdoor Gear']
+    subcategories: ['Fitness', 'Outdoor Gear','Furniture', 'Decor', 'Kitchen','Furniture', 'Decor', 'Kitchen']
   },
   {
     name: 'Medicine',
-    subcategories: ['Prescription', 'OTC']
+    subcategories: ['Prescription', 'OTC','Furniture', 'Decor', 'Kitchen','Furniture', 'Decor', 'Kitchen']
   },
   {
     name: 'Electronic',
-    subcategories: ['Gadgets', 'Accessories']
+    subcategories: ['Gadgets', 'Accessories','Furniture', 'Decor', 'Kitchen','Furniture', 'Decor', 'Kitchen']
   },
   {
     name: 'Man’s Fashion',
-    subcategories: ['Clothing', 'Shoes']
+    subcategories: ['Clothing', 'Shoes','Furniture', 'Decor', 'Kitchen','Furniture', 'Decor', 'Kitchen']
   },
   {
     name: 'Woman’s Fashion',
-    subcategories: ['Dresses', 'Shoes']
+    subcategories: ['Dresses', 'Shoes','Furniture', 'Decor', 'Kitchen','Furniture', 'Decor', 'Kitchen']
   }
 ];
 
@@ -64,7 +64,6 @@ const CategoryList: React.FC = () => {
       <ul className="space-y-2">
         {categories.map((category) => (
           <li key={category.name} className="relative">
-            <h1></h1>
             <button
               className="w-full text-left text-black font-medium focus:outline-none"
               onClick={() => toggleCategory(category.name)}
@@ -72,9 +71,9 @@ const CategoryList: React.FC = () => {
               {category.name}
             </button>
             {activeCategory === category.name && (
-              <ul className="absolute left-full top-0 mt-0 ml-2 p-2 bg-white shadow-lg rounded-md space-y-1 text-gray-600">
+              <ul className="absolute left-full top-0 mt-0 ml-[30px] p-[15px] bg-transparent rounded-md space-y-1">
                 {category.subcategories.map((sub) => (
-                  <li key={sub} className="hover:text-black">{sub}</li>
+                  <li key={sub} className="hover:text-black cursor-pointer">{sub}</li>
                 ))}
               </ul>
             )}

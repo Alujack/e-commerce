@@ -7,7 +7,7 @@ export default function Favorite(){
                 Pricing
               </Heading>
               <div className="flex items-center gap-10 self-stretch md:flex-col">
-                <div className="relative h-[848px] w-full rounded-[24px] border border-solid border-blue_gray-800_01 bg-blue_gray-900_01 py-[7px] md:h-auto">
+                <div className="relative h-[848px] w-full rounded-[24px] border border-solid border-blue_gray-800_01 py-[7px] md:h-auto">
                   <Img src="/images/img_pattern.svg" alt="20_user" className="h-[831px] w-full rounded-[24px]" />
                   <div className="absolute bottom-0 left-0 right-0 top-0 m-auto flex h-max w-max flex-col items-center">
                     <Heading size="3xl" as="h2">
@@ -54,7 +54,7 @@ export default function Favorite(){
                   </div>
                 </div>
                 <div className="h-[2px] w-[300px] bg-gray-900_19" />
-                <div className="relative h-[848px] w-full rounded-[24px] border border-solid border-blue_gray-800_01 bg-blue_gray-900_01 py-[7px] md:h-auto">
+                <div className="relative h-[848px] w-full rounded-[24px] border border-solid border-blue_gray-800_01  py-[7px] md:h-auto">
                   <Img src="/images/img_pattern.svg" alt="pattern_one" className="h-[831px] w-full rounded-[24px]" />
                   <div className="absolute bottom-0 left-0 right-0 top-0 m-auto flex h-max w-max flex-col items-center">
                     <Heading size="3xl" as="h5" className="text-center">
@@ -101,7 +101,7 @@ export default function Favorite(){
                   </div>
                 </div>
                 <div className="h-[2px] w-[300px] bg-gray-900_19" />
-                <div className="relative h-[848px] w-full rounded-[24px] border border-solid border-blue_gray-800_01 bg-blue_gray-900_01 py-[7px] md:h-auto">
+                <div className="relative h-[848px] w-full rounded-[24px] border border-solid border-blue_gray-800_01  py-[7px] md:h-auto">
                   <Img
                     src="/images/img_pattern_gray_600.png"
                     alt="pattern_one"

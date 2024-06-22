@@ -3,17 +3,17 @@ import React from 'react';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
-import { steps } from "@/constants/link"; // Ensure steps have a label and a href property
+import { steps } from "@/constants/link";
 import { useRouter } from 'next/navigation';
+import Link from "next/link";
 
-import { ProductProvider } from '@/context/productContext';
 export default function App({children}:{children:React.ReactNode}) {
     const [activeStep, setActiveStep] = React.useState(0);
     const router = useRouter();
 
     const handleStep = (step: number) => () => {
         setActiveStep(step);
-        router.push(steps[step].href); // Navigate to the route corresponding to the step
+        // router.push(steps[step].href); // Navigate to the route corresponding to the step
     };
 
     const handleContinue = () => {
@@ -23,14 +23,22 @@ export default function App({children}:{children:React.ReactNode}) {
             router.push(steps[nextStep].href); // Navigate to the next route
         }
     };
+    console.log(steps[1].href);
 
     return (
         <>
-        <ProductProvider >
+
             <Stepper activeStep={activeStep} alternativeLabel>
+
                 {steps.map((step, index) => (
                     <Step key={index} onClick={handleStep(index)}>
-                        <StepLabel>{step.label}</StepLabel>
+                        
+                        <StepLabel>
+                            <Link href={step.href}>
+                            {step.label}
+                            </Link>
+                        </StepLabel>
+                        
                     </Step>
                 ))}
             </Stepper>
@@ -59,7 +67,6 @@ export default function App({children}:{children:React.ReactNode}) {
                 
             </div>
 
-        </ProductProvider >
         </>
     );
 }

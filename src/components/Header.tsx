@@ -1,20 +1,17 @@
 "use client"
 import { CloseSVG } from "../assets/images";
 import { Heading, Img, Input, Text } from ".";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
-import { useCart } from "@/context/cartcontext";
 import { navlink } from "@/constants/link";
 import { usePathname } from "next/navigation";
 export default function Header() {
   const [searchBarValue, setSearchBarValue] = useState("");
   const router = useRouter()
-  const { data: session, status: sessionStatus } = useSession();
-  const { cartItems } = useCart();
+  const { status: sessionStatus } = useSession();
   const pathname = usePathname();
-  const qty = cartItems.length;
   return (
     <header className="flex flex-col items-center justify-center border-2 border-solid border-fuchsia-600 bg-white-A700  rounded-lg h-[100px]">
       <div className="flex md:flex-col items-center w-[99%] md:w-full gap-[43px] ">
@@ -51,13 +48,13 @@ export default function Header() {
         />
         {sessionStatus === "authenticated" ?
           (<>
-            <Link href="/infor">
+            <Link href="/user/infor">
               <img src="/images/img_profile.png" alt="profile" className="h-[40px]" />
             </Link>
           </>
           ) :
           (<button
-            onClick={() => router.push("/login")}
+            onClick={() => router.push("/auth-user/login")}
           >
             Sign in
           </button>)

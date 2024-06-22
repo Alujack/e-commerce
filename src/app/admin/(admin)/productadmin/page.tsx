@@ -2,7 +2,7 @@
 
 import { Button, Heading} from "@/components";
 import Productcardadmin from "@/components/productcardadmin";
-import Topbar from "@/components/topbar";
+
 export default function DarkThreePage() {
 return (
     <>
@@ -33,9 +33,9 @@ return (
                 </Button>
               </div>
               <div className="flex gap-[21px] self-stretch md:flex-col">
-                <Productcardadmin className="flex w-full flex-col items-center gap-[22px] border border-solid border-blue_gray-800_21 bg-blue_gray-900_03 pb-[23px] sm:pb-5" />
-                <Productcardadmin className="flex w-full flex-col items-center gap-[22px] border border-solid border-blue_gray-800_21 bg-blue_gray-900_03 pb-[23px] sm:pb-5" />
-                <Productcardadmin className="flex w-full flex-col items-center gap-[22px] border border-solid border-blue_gray-800_21 bg-blue_gray-900_03 pb-[23px] sm:pb-5" />
+                <Productcardadmin className="flex w-full flex-col items-center gap-[22px] border border-solid border-blue_gray-800_21 pb-[23px] sm:pb-5" />
+                <Productcardadmin className="flex w-full flex-col items-center gap-[22px] border border-solid border-blue_gray-800_21 pb-[23px] sm:pb-5" />
+                <Productcardadmin className="flex w-full flex-col items-center gap-[22px] border border-solid border-blue_gray-800_21 pb-[23px] sm:pb-5" />
               </div>
           </div>
     </>

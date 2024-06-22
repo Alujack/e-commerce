@@ -100,7 +100,7 @@ type TableRowType = { serialno: string; description: string; quantity: string; t
               </Heading>
 
               {/* invoice section */}
-              <div className="flex w-[95%] flex-col items-end rounded-[14px] border border-solid border-blue_gray-800_03 bg-blue_gray-900_01 p-[31px] md:w-full sm:p-5">
+              <div className="flex w-[95%] flex-col items-end rounded-[14px] border border-solid border-blue_gray-800_03  p-[31px] md:w-full sm:p-5">
                 <div className="mt-[7px] flex w-[77%] items-start justify-between gap-5 self-center md:w-full md:flex-col">
                   <div className="flex w-[51%] items-center justify-between gap-5 md:w-full">
                     <div className="flex flex-col items-start">
@@ -141,7 +141,7 @@ type TableRowType = { serialno: string; description: string; quantity: string; t
                   size="xs"
                   bodyProps={{ className: "" }}
                   headerProps={{
-                    className: "border-blue_gray-800_03 border border-solid bg-blue_gray-800_04 flex-wrap rounded-lg",
+                    className: "border-blue_gray-800_03 border border-solid flex-wrap rounded-lg",
                   }}
                   rowDataProps={{ className: "flex-wrap" }}
                   className="mt-14 self-stretch"

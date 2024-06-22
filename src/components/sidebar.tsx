@@ -29,8 +29,8 @@ export default function Sidebar1({ ...props }: Props) {
             padding: "13px 13px 13px 39px",
             gap: "16px",
             alignSelf: "stretch",
-            backgroundColor: "#273142",
-            color: "#ffffff",
+            backgroundColor: "transparent",
+            color: "black",
             fontWeight: 600,
             fontSize: "14px",
            [`&.active`]: {

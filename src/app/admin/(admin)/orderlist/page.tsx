@@ -171,7 +171,7 @@ export default function DarkNinePage() {
               <Heading size="7xl" as="h1" className="tracking-[-0.11px]">
                 Order Lists
               </Heading>
-              <div className="flex w-[72%] items-center justify-evenly gap-6 rounded-[10px] border border-solid border-blue_gray-800 bg-blue_gray-900_01 md:w-full md:flex-col">
+              <div className="flex w-[72%] items-center justify-evenly gap-6 rounded-[10px] border border-solid border-blue_gray-800  md:w-full md:flex-col">
                 <div className="flex items-center gap-6 md:p-5">
                   <Img src="/images/img_filter.svg" alt="filteroneone" className="h-[22px]" />
                   <div className="h-full w-px bg-gray-500_af" />
