@@ -1,7 +1,7 @@
 "use client"
 import {useState} from "react";
 import { CloseSVG } from "../assets/images";
-import { Img, Heading, SelectBox, Input } from "./";
+import { Img, Heading, SelectBox, Input } from ".";
 
 const dropDownOptions = [
   { label: "Option1", value: "option1" },
@@ -12,7 +12,7 @@ interface Props {
   className?: string;
 }
 
-export default function Topbar({ ...props }: Props) {
+export default function AdminTopbar({ ...props }: Props) {
   const [searchBarValue21, setSearchBarValue21] = useState("");
 
   return (

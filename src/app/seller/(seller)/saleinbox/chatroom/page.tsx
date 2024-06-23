@@ -1,4 +1,4 @@
-"use client"
+
 
 import { Img, Heading, Button,Text } from "@/components";
 import Inboxsidebar from "@/components/inboxsidebar";

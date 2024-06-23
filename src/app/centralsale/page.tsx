@@ -1,11 +1,9 @@
-"use client";
+"use client"
 
-import {useRouter} from "next/navigation"
+import Link from "next/link"
 import { Img, Text, Heading, TextArea,Button, CheckBox, Input } from "@/components";
 
-
 export default function BecomeSellerPage() {
-  const router = useRouter();
   return (
     <>
          <div className="w-full px-[5px] md:px-5 bg-gray-300_07">
@@ -203,7 +201,11 @@ export default function BecomeSellerPage() {
                 placeholder={`Note about your order, e.g. special note for delivery `}
                 className="self-stretch sm:pb-5 sm:pr-5 text-gray-500"
               />
-               <Button  color="blue_gray_50" size="lg" className="min-w-[100px] rounded-[15px] mt-[10px]" onClick={()=>router.push("/seller/maindash")} >Confirm</Button>
+              <Link href="/seller/maindash"> 
+              <Heading className="min-w-[100px] rounded-[15px] mt-[10px]">
+                Confirm
+                </Heading>
+              </Link>
             </div>
            
           </div>

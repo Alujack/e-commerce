@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
-import { navlink } from "@/constants/link";
+import { NAVLINK } from "@/constants/link";
 import { usePathname } from "next/navigation";
 export default function Header() {
   const [searchBarValue, setSearchBarValue] = useState("");
@@ -48,7 +48,7 @@ export default function Header() {
         />
         {sessionStatus === "authenticated" ?
           (<>
-            <Link href="/user/infor">
+            <Link href="/user-account/personal-information">
               <img src="/images/img_profile.png" alt="profile" className="h-[40px]" />
             </Link>
           </>
@@ -79,7 +79,7 @@ export default function Header() {
           </div>
         </div>
         <div className="grid grid-cols-7 gap-x-0 w-[85%] md:w-full">
-          {navlink.map((link) => (
+          {NAVLINK.map((link) => (
             <Link key={link.key} href={link.href} className="px-2 self-center sm:ml-0 rounded">
               <div className="flex items-center gap-2 sm:ml-0 text-sm">
                 {link.src ? <img src={link.src} className="h-[24px] w-[24px]" /> : null}
@@ -97,6 +97,7 @@ export default function Header() {
               </div>
             </Link>
           ))}
+          
         </div>
 
       </div>

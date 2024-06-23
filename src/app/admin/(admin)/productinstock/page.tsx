@@ -3,7 +3,7 @@ import {useState} from "react";
 import { CloseSVG } from "@/assets/images";
 import { Img, Heading, Input } from "@/components";
 import Topbar from "@/components/topbar"
-import Sidebar1 from "@/components/sidebar";
+import Sidebar1 from "@/components/adminsidebar";
 import Stockproduct from "@/components/stockproduct";
 
 export default function DarkSixteenPage() {

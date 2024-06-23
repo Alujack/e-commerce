@@ -1,5 +1,5 @@
 "use client"
-import React from "react";
+
 import { Text, Img, Heading, Input, Button } from "@/components";
 import Link from "next/link";
 

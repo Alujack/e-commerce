@@ -3,7 +3,7 @@ import React from 'react';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
-import { steps } from "@/constants/link";
+import { STEPS} from "@/constants/link";
 import { useRouter } from 'next/navigation';
 import Link from "next/link";
 
@@ -13,24 +13,24 @@ export default function App({children}:{children:React.ReactNode}) {
 
     const handleStep = (step: number) => () => {
         setActiveStep(step);
-        // router.push(steps[step].href); // Navigate to the route corresponding to the step
+        // router.push(STEPS[step].href); // Navigate to the route corresponding to the step
     };
 
     const handleContinue = () => {
         const nextStep = activeStep + 1;
-        if (nextStep < steps.length) {
+        if (nextStep < STEPS.length) {
             setActiveStep(nextStep);
-            router.push(steps[nextStep].href); // Navigate to the next route
+            router.push(STEPS[nextStep].href); // Navigate to the next route
         }
     };
-    console.log(steps[1].href);
+    console.log(STEPS[1].href);
 
     return (
         <>
 
             <Stepper activeStep={activeStep} alternativeLabel>
 
-                {steps.map((step, index) => (
+                {STEPS.map((step, index) => (
                     <Step key={index} onClick={handleStep(index)}>
                         
                         <StepLabel>

@@ -1,4 +1,4 @@
-"use client";
+
 import SellerTopBar from "@/components/sellertopbar";
 import SellerSidebar from "@/components/sellersidebar";
 

@@ -2,9 +2,10 @@
 import {useState} from "react";
 import {Img} from "./";
 import Link from "next/link";
+import { SELLER_MENU } from "@/constants/link";
 import { MenuItem, Menu, Sidebar } from "react-pro-sidebar";
 export default function SellerSidebar(){
-     const [collapsed, setCollapsed] = useState(false);
+     const [collapsed] = useState(false);
     return (
         <>
         <Sidebar
@@ -28,95 +29,22 @@ export default function SellerSidebar(){
             rootStyles={{ ["&>ul"]: { gap: "15px" } }}
             className=" flex w-full flex-col items-center self-stretch"
           >
-            <MenuItem icon={<Img src="/images/img_home.svg" width={25} height={24} alt="home" className="h-[24px] w-[25px]" />} component={<Link href="/seller/maindash" />}>
-              Dashboard
-            </MenuItem>
-            <MenuItem
+            {SELLER_MENU.map((menu)=>(
+              <MenuItem
               icon={
                 <Img
-                  src="/images/img_product_12313679.png"
+                  src={menu.icon}
                   width={25}
                   height={25}
-                  alt="product 12313679"
+                  alt={menu.label}
                   className="h-[25px] w-[25px] object-cover"
                 />
               }
-              component={<Link href="/seller/productsale" />}
+              component={<Link href={menu.href} />}
             >
-              Product
+              {menu.label}
             </MenuItem>
-            <MenuItem
-              icon={
-                <Img
-                  src="/images/img_stock_12515239_1.png"
-                  width={25}
-                  height={25}
-                  alt="stock 12515239 1"
-                  className="h-[25px] w-[25px] object-cover"
-                />
-              }
-              component={<Link href="/seller/productstocksale" />}
-            >
-              Product Stock
-            </MenuItem>
-            <MenuItem
-              icon={
-                <Img
-                  src="/images/img_shopping_list_10849906.png"
-                  width={25}
-                  height={25}
-                  alt="shopping list 10849906"
-                  className="h-[25px] w-[25px] object-cover"
-                />
-              }
-              
-               component={<Link href="/seller/seller-orderlist" />}
-            >
-              Order Lists
-            </MenuItem>
-            <MenuItem
-              icon={
-                <Img
-                  src="/images/img_credit_card_1.png"
-                  width={26}
-                  height={25}
-                  alt="credit card 1"
-                  className="h-[25px] w-[26px] object-cover"
-                />
-              }
-              component={<Link href="/seller/saleinbox" />}
-             
-            >
-              Inbox
-            </MenuItem>
-            <MenuItem
-              icon={
-                <Img
-                  src="/images/img_user_1177568_1.png"
-                  width={25}
-                  height={25}
-                  alt="user 1177568 1"
-                  className="h-[25px] w-[25px] object-cover"
-                />
-              }
-              component={<Link href="/account/profile" />}
-            >
-              Accounts
-            </MenuItem>
-            <MenuItem
-              icon={
-                <Img
-                  src="/images/img_power_10904887_1.png"
-                  width={25}
-                  height={25}
-                  alt="power 10904887 1"
-                  className="h-[25px] w-[25px] object-cover"
-                />
-              }
-              component={<Link href="/sale-logout" />}
-            >
-              Logout
-            </MenuItem>
+            ))}
           </Menu>
           
         </Sidebar>

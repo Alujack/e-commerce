@@ -1,7 +1,7 @@
 "use client"
 import React from "react";
 import { CloseSVG } from "@/assets//images";
-import { Img, Button, Input, Heading } from "./";
+import { Img, Button, Input} from "./";
 import {useRouter} from "next/navigation";
 interface Props {
   className?: string;
@@ -15,9 +15,9 @@ export default function SellerTopBar ({ ...props }: Props) {
       <div className="flex w-full flex-col bg-[#8BA3CB] items-end ">
         <div className="flex self-stretch bg-white-A700_01 p-5">
           <div className="mx-auto flex w-full items-center justify-between gap-5 md:flex-col">
-            <Heading size="4xl" as="h3">
+            <h1 className ="text-[28px] text-[#343C6A] font-bold inter decoration-8">
               Overview
-            </Heading>
+            </h1>
             <div className="flex items-center justify-center md:w-full sm:flex-col">
               <Input
                 name="Group 8"
@@ -40,7 +40,7 @@ export default function SellerTopBar ({ ...props }: Props) {
                 }
                 className="gap-[15px] text-indigo-200_01 sm:px-5"
               />
-              <Button  shape="circle" color="indigo-500" className="ml-[35px] p-[10px]" onClick={() => router.push("/seller/maindash/add-product")} >+ Add Product</Button>
+              <button className=" bg-indigo-500 text-[#d3fee0] ml-[35px] p-[10px]" onClick={() => router.push("/seller/add-product")} >+ Add Product</button>
               <Button shape="circle" className="ml-[27px] ">
                <Img src="/images/message.png" className = "w-full"/>
               </Button>
