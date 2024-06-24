@@ -1,46 +1,35 @@
-"use client"
-import {useRouter} from "next/navigation";
-import {useState, useRef} from "react";
-import { Fragment } from "react";
-import {Img,Button,Heading} from "@/components";
-import {Slider } from "@/components";
-import AliceCarousel, { EventObject } from "react-alice-carousel";
-import "react-alice-carousel/lib/alice-carousel.css";
 export default function NotFound(){
-  const router = useRouter();
-      const [sliderState, setSliderState] = useState(0);
-       const sliderRef = useRef<AliceCarousel>(null);
     return (
-         <div className="flex  items-center justify-center bg-blue-A200_08  px-14 py-[167px] md:h-auto md:p-5">
-            <div className="flex w-[100%] md:w-full">
-              <Slider
-                autoPlay
-                autoPlayInterval={2000}
-                responsive={{ "0": { items: 1 }, "550": { items: 1 }, "1050": { items: 1 } }}
-                disableDotsControls
-                activeIndex={sliderState}
-                onSlideChanged={(e: EventObject) => {
-                  setSliderState(e?.item);
-                }}
-                ref={sliderRef}
-                items={[...Array(1)].map(() => (
-                  < Fragment key={Math.random()}>
-                    <div className="mx-2.5 flex w-full flex-col items-center justify-center gap-[101px] rounded-[24px] border border-solid border-gray-400_05 bg-white-A700_01 px-14 py-[102px] md:gap-[75px] md:p-5 sm:gap-[50px]">
-                      <Img src="/images/img_404.svg" alt="fourhundredfour" className="h-[296px] w-[75%]" />
-                      <div className="flex w-[81%] flex-col gap-8 md:w-full">
-                        <Heading size="2xl" as="h2" className="tracking-[-0.11px] !text-gray-900_02">
-                          Looks like you’ve got lost….
-                        </Heading>
-                        <Button className="w-full rounded-lg font-bold tracking-[-0.07px] sm:px-5" onClick={()=>router.push("/")}>
-                          Back to Home
-                        </Button>
-                      </div>
-                    </div>
-                  </Fragment>
-                ))}
-              />
+       <div className="flex w-full h-[60vh] flex-col items-center gap-[378px] bg-white-a700 mt-[10%]">
+         <div className="md-1 md:p-5">
+            <div className="flex flex-col items-center gap-6 mb-[20px] ">
+              <h1 className="text-6xl">This page could not be found!</h1>
+            </div>
+            <div className="ml-[298px] mr-[286px] self-stretch md:mx-0">
+              <div className="flex flex-col items-center gap-6">
+                <p className="loading-[30px]">
+                  We are sorry. But the page you are looking for is not available
+                  <br/>
+                  perhaps you can try a new search
+                </p >
+                <div className="mr-3.5 flex self-stretch rounded-[28px] border border-solid border-black-900_c bg-white-a700 px-7 py-[18px] md:mr-0 sm:px-5">
+                  <p>Type Here......</p>
+
+                </div>
+                <div className="ml-[108px] mr-[122px] flex justify-between gap-5 selfstretch md:mx-0">
+                  <button className="min-w-[122px] gap-1.5 font-semibold sm:pr-5">
+                    Search
+                  </button>
+                  <button className="min-w-[122px] gap-1.5 font-semibold sm:pr-5">
+                    Back to home
+                  </button>
+
+                </div>
+
+              </div>
+
             </div>
           </div>
-       
+        </div>
     )
 }

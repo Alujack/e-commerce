@@ -1,7 +1,7 @@
 import {Button} from "../."
 import ProductCard from "../ProductCard";
 import BankCard from "./bank";
-import product from "@/components/constant"
+import product from "@/constants/product"
 export default function Card(){
     return (
          <div className="flex flex-1 flex-col gap-[11px] md:self-stretch">

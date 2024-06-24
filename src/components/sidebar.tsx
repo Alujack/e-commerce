@@ -1,10 +1,10 @@
 "use client"
 import {useState} from "react";
-import {Img} from "./";
+import {Img} from ".";
 import Link from "next/link";
-import { SELLER_MENU } from "@/constants/link";
+
 import { MenuItem, Menu, Sidebar } from "react-pro-sidebar";
-export default function SellerSidebar(){
+export default function SideBar({menu}:{menu:{href:string;label:string;icon:string}[]}){
      const [collapsed] = useState(false);
     return (
         <>
@@ -29,7 +29,7 @@ export default function SellerSidebar(){
             rootStyles={{ ["&>ul"]: { gap: "15px" } }}
             className=" flex w-full flex-col items-center self-stretch"
           >
-            {SELLER_MENU.map((menu)=>(
+            {menu.map((menu)=>(
               <MenuItem
               icon={
                 <Img

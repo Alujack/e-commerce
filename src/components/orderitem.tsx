@@ -8,7 +8,7 @@ interface Props {
 export default function Orderitem({ ...props }: Props) {
   return (
     <div {...props}>
-      <div className="flex justify-center w-[6%] md:w-full bg-white-A700 rounded-[10px]">
+      <div className="flex justify-between md:w-full bg-white-A700 rounded-[10px]">
         <Img
           src="/images/img_prod26_png.png"
           alt="image"

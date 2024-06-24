@@ -2,7 +2,6 @@
 import { useState } from "react";
 import { CloseSVG } from "@/assets/images";
 import { Img, Heading, Input } from "@/components";
-import Topbar from "@/components/topbar";
 import Inboxsidebar from "@/components/inboxsidebar";
 import Messagerow from "@/components/messagerow";
 

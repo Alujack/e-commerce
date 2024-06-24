@@ -10,7 +10,7 @@ const dropDownOptions = [
 export default function DarkOnePage() {
   return (
     <> 
-      <div className="flex w-[95%] flex-col items-start gap-[25px] md:w-full">
+      <div className="flex w-[95%] flex-col items-start gap-[25px] md:w-full p-[20px]">
               <Heading size="8xl" as="h1" className="tracking-[-0.11px]">
                 Dashboard
               </Heading>
