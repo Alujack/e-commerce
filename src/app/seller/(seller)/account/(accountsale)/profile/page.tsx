@@ -10,14 +10,14 @@ export default function App(){
      <div className="mt-[30px] flex items-start justify-between gap-5 self-stretch md:flex-col ">
               <div className="flex w-[13%] items-center justify-center md:w-full">
                 <Img
-                  src="images/img_pexels_christin.png"
+                  src="/images/img_pexels_christin.png"
                   width={130}
                   height={136}
                   alt="pexels christin"
                   className="h-[136px] w-[81%] rounded-[65px] object-cover"
                 />
                 <Button size="md" className="relative mb-4 ml-[-28px] w-[30px] self-end rounded-[15px]">
-                  <Img src="images/img_group_194.svg" width={30} height={31} />
+                  <Img src="/images/img_group_194.svg" width={30} height={31} />
                 </Button>
               </div>
               <div className="flex w-[82%] justify-center gap-[29px] pb-[23px] md:w-full md:flex-col sm:pb-5">
@@ -36,7 +36,7 @@ export default function App(){
                       shape="round"
                       indicator={
                         <Img
-                          src="images/img_arrowdown.svg"
+                          src="/images/img_arrowdown.svg"
                           width={12}
                           height={6}
                           alt="arrow_down"

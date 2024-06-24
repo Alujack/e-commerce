@@ -1,6 +1,6 @@
 
 import { NextResponse } from 'next/server';
-import product from "@/components/constant"
+import product from "@/constants/product"
 
 
 // Define the API route handler

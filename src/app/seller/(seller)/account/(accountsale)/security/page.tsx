@@ -3,7 +3,7 @@ import{Text,Input} from "@/components"
 import {Switch} from "@nextui-org/react";
 export default function App(){
     return(<>
-     <div className="flex flex-col items-start p-[30px]">
+     <div className="flex flex-col items-center p-[30px]">
               <Text size="2xl" as="p" className="!text-blue_gray-800">
                 Two-factor Authentication
               </Text>
@@ -18,10 +18,10 @@ export default function App(){
                 <Text as="p">Current Password</Text>
                 <Input shape="round" type="password" name="Group 3667" placeholder={`**********`} className="sm:pr-5" />
               </div>
-              <div className="mt-[21px] flex flex-col items-start gap-2.5 self-stretch">
+              <div className="mt-[21px] flex flex-col items-start gap-2.5 self-stretch ">
                 <Text as="p">New Password</Text>
-                <Input shape="round" type="password" name="Group 195" placeholder={`**********`} className="sm:pr-5" />
+                <Input shape="round" type="password" name="Group 195" placeholder={`**********`} className="sm:pr-5 text-blue_gray-700_01 font-poppins border-gray-300_02 border border-solid" />
               </div>
-            </div>
+      </div>
     
     </>);}

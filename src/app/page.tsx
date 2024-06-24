@@ -17,7 +17,7 @@ import Discountrightbanner from "@/components/homepage/discountrightbanner";
 import Membership from "@/components/homepage/membership";
 import CheckallProduct from "@/components/homepage/checkallproductbanner";
 import BankCard from "@/components/homepage/bankcard";
-import product from "@/components/constant";
+import product from "@/constants/product";
 import { producttype } from "@/common.type";
 export default function Body(){
   

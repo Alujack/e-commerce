@@ -2,7 +2,7 @@
 import React from "react"; // Don't forget to import React when using JSX
 import AddToCartButton from "@/components/addtocartbutton";
 import { Heading, Text, Button } from "@/components";
-import {favorite} from "@/components/constant";
+import {favorite} from "@/constants/product";
 import { useCart } from "@/context/cartcontext";
 import { producttype } from "@/common.type";
 

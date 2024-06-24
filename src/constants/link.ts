@@ -20,10 +20,10 @@ export const SELLER_MENU = [
     {href:"/seller/seller-orderlist", label:"Order Lists", icon:"/images/img_shopping_list_10849906.png"},
     {href:"/seller/product-stock", label:"Product", icon:"/images/img_stock_12515239_1.png"},
     {href:"/seller/categories", label:"Categories", icon:"/images/img_credit_card_1.png"},
-    {href:"/account/customers", label:"Customers", icon:"/images/img_user_1177568_1.png"},
-    {href:"/draft", label:"Draft", icon:"/images/img_power_10904887_1.png"},
-    {href:"/account", label:"Account", icon:"/images/img_power_10904887_1.png"},
-    {href:"/setting", label:"Setting", icon:"/images/img_power_10904887_1.png"},
+    {href:"/seller/customers", label:"Customers", icon:"/images/img_user_1177568_1.png"},
+    {href:"/seller/draft", label:"Draft", icon:"/images/img_power_10904887_1.png"},
+    {href:"/seller/account/profile", label:"Account", icon:"/images/img_power_10904887_1.png"},
+    {href:"/seller/setting", label:"Setting", icon:"/images/img_power_10904887_1.png"},
 ]
 export const ADMIN_MENU = [
     {href:"/admin/dashboard", label:"Dashboard", icon:"/images/img_home.svg"},
