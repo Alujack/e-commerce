@@ -1,4 +1,4 @@
-"use client"
+
 import { Button, Heading } from "@/components";
 import Orderitem from "@/components/orderitem";
 

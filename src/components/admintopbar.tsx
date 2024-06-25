@@ -13,27 +13,34 @@ interface Props {
 }
 
 export default function AdminTopbar({ ...props }: Props) {
-  const [searchBarValue21, setSearchBarValue21] = useState("");
+  const [searchBarValue, setSearchBarValue] = useState("");
 
   return (
     <header {...props}>
-      <div className="flex w-full items-center justify-between gap-5 bg-blue_gray-900_03 p-[13px] md:flex-col">
+      <div className="flex w-full items-center justify-between gap-5  p-[13px] md:flex-col">
         <div className="ml-[17px] flex w-[38%] items-center justify-center gap-6 md:ml-0 md:w-full sm:flex-col">
           <Img src="/images/img_megaphone.svg" alt="megaphonethree" className="h-[25px] w-[24px] sm:w-full" />
           <Input
-            color="bg-blue_gray-900_03"
-            name="search"
-            placeholder={`Search`}
-            value={searchBarValue21}
-            onChange={(e: string) => setSearchBarValue21(e)}
-            prefix={<Img src="/images/img_rewind.svg" alt="rewind" className="h-[15px] w-[15px] cursor-pointer" />}
-            suffix={
-              searchBarValue21?.length > 0 ? (
-                <CloseSVG onClick={() => setSearchBarValue21("")} height={15} width={15} fillColor="#ffffffff" />
-              ) : null
-            }
-            className="flex-grow gap-[13px] rounded-[19px] border border-solid border-blue_gray-100_1d_02 font-nunitosans text-white-A700_cc_06 sm:pr-5"
-          />
+                name="Group 8"
+                placeholder={`Search for something`}
+                value={searchBarValue}
+                onChange={(e: string) => setSearchBarValue(e)}
+                prefix={
+                  <Img
+                    src="/images/img_search.svg"
+                    width={20}
+                    height={20}
+                    alt="search"
+                    className="h-[20px] w-[20px] cursor-pointer"
+                  />
+                }
+                suffix={
+                  searchBarValue?.length > 0 ? (
+                    <CloseSVG onClick={() => setSearchBarValue("")} fillColor="#718ebfff" />
+                  ) : null
+                }
+                className="gap-[15px] text-indigo-200_01 sm:px-5"
+              />
         </div>
         <div className="mr-[17px] flex w-[33%] items-center justify-center md:mr-0 md:w-full sm:flex-col">
           <div className="relative mt-[5px] h-[31px] w-[10%] self-start sm:w-full">
@@ -86,6 +93,7 @@ export default function AdminTopbar({ ...props }: Props) {
           </div>
         </div>
       </div>
+      <div className="h-px bg-[#8BA3CB] "/>
     </header>
   );
 }

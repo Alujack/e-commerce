@@ -1,3 +1,4 @@
+"use client"
 import { producttype } from "@/common.type"
 import {Img,Text} from "@/components"
 export default function Checkoutcart({item}:{item:producttype}){

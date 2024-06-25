@@ -1,6 +1,3 @@
-"use client"
-
-import React from "react";
 import { Button, SelectBox, Img, Heading, Input } from "@/components";
 
 const dropDownOptions = [

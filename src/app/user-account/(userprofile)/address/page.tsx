@@ -1,4 +1,4 @@
-"use client"
+
 import { Input, Text, Img } from "@/components/";
 
 export default function Myadress() {

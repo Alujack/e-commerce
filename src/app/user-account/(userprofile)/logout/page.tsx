@@ -1,4 +1,4 @@
-"use client"
+
 import { Button, Input, Text } from "@/components";
 
 

@@ -1,4 +1,4 @@
-"use client";
+
 import { Heading, Img, SelectBox } from "@/components";
 
 const dropDownOptions = [

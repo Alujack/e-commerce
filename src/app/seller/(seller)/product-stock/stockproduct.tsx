@@ -1,4 +1,4 @@
-import React from "react";
+
 import { Img, Heading } from "@/components";
 
 export default function Stockpro() {

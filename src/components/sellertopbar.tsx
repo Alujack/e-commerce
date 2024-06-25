@@ -12,7 +12,7 @@ export default function SellerTopBar ({ ...props }: Props) {
   const router = useRouter();
   return (
     <header {...props}>
-      <div className="flex w-full flex-col bg-[#8BA3CB] items-end ">
+      <div className="flex w-full flex-col items-end ">
         <div className="flex self-stretch bg-white-A700_01 p-5">
           <div className="mx-auto flex w-full items-center justify-between gap-5 md:flex-col">
             <h1 className ="text-[28px] text-[#343C6A] font-bold inter decoration-8">
@@ -41,13 +41,17 @@ export default function SellerTopBar ({ ...props }: Props) {
                 className="gap-[15px] text-indigo-200_01 sm:px-5"
               />
               <button className=" bg-indigo-500 text-[#d3fee0] ml-[35px] p-[10px]" onClick={() => router.push("/seller/add-product")} >+ Add Product</button>
-              <Button shape="circle" className="ml-[27px] ">
-               <Img src="/images/message.png" className = "w-full"/>
-              </Button>
-              <Button shape="circle" className="ml-[35px] ">
-                <Img src="/images/notificationicon.png" className = "w-full"/>
-              </Button>
-              <Img
+              <button  className="ml-[27px] ">
+               <img src="/images/message.png" className = "w-full"/>
+              </button>
+              <button className="ml-[35px] ">
+                <img
+              src="/images/img_checkmark_blue_a200_07.svg"
+              alt="checkmarkone"
+              className="w-full"
+            />
+              </button>
+              <img
                 src="/images/img_ellipse_40.png"
                 width={60}
                 height={60}

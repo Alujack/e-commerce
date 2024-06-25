@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import { Text, Img, Heading, Input, Button } from "./";
 import Link from "next/link";

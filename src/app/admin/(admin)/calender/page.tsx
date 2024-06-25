@@ -1,4 +1,4 @@
-"use client"
+
 import{Heading,Img,Button,Text}from"@/components/."
 export default function Favorite(){
     return <>

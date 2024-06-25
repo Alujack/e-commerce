@@ -1,4 +1,4 @@
-"use client"
+
 import {Heading,Img,Text,Button} from "@/components"
 export default function TeamTable(){
   let name = "Yoeurn Yan",

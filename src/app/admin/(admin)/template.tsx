@@ -1,5 +1,3 @@
-"use client";
-
 
 import  AdminTopbar from "@/components/admintopbar";
 import Sidebar from "@/components/sidebar";
@@ -9,7 +7,7 @@ import { ADMIN_MENU } from "@/constants/link";
 export default function Adminlayout({ children, }:{children:React.ReactNode}) {
  return (
    <>  
-     <div className="w-full bg-white-A700">
+     <div className="w-full">
         <div className="flex  md:flex-col">
             <Sidebar menu={ ADMIN_MENU}/>
               <div className="flex-1 md:self-stretch md:p-5">

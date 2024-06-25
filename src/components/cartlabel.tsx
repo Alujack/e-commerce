@@ -1,3 +1,4 @@
+"use client";
 import {Heading, Img, Button,Text} from "./"
 import {formatNumber} from "@/utils/format";
 import {useRouter} from "next/navigation";

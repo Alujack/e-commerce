@@ -1,3 +1,4 @@
+"use client"
 import React, { forwardRef, ChangeEvent } from "react";
 
 type Variant = "primary";

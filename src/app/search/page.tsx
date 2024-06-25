@@ -1,6 +1,6 @@
 "use client"
 import ProductCard from "@/components/ProductCard"
-import product from "@/components/constant"
+import product from "@/constants/product"
 import { Heading, Text, CheckBox, Button } from "@/components"
 export default function Search(){
     return (

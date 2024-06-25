@@ -2,7 +2,7 @@
 import {useRouter} from "next/navigation";
 import React from "react";
 import {Img,Heading,Button} from "./"
-import {Slider } from "./";
+import {Slider } from "./slider";
 import AliceCarousel, { EventObject } from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 export default function NotFound(){

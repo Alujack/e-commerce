@@ -1,5 +1,3 @@
-"use client"
-
 import {Text, Heading } from "@/components";
 import Link from "next/link";
 import { PROFILE_MENU } from "@/constants/link";
