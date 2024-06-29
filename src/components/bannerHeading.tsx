@@ -6,7 +6,7 @@ export default function HeadingBanner({title,link}:{
   link?:string,
 }) {
     return (
-       <div className="flex sm:flex-col justify-between items-center gap-5 p-[5px] bg-green-700 rounded-[10px]">
+       <div className="flex sm:flex-col justify-between items-center gap-5 p-[5px] bg-green-700 h-[62px] rounded-[10px]">
                 <div className="flex p-2.5">
                   <Heading size="9xl" as="h4" className="my-2 !text-white-A700 uppercase">
                     {title}
