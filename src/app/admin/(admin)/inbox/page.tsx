@@ -10,10 +10,7 @@ export default function DarkFivePage() {
 
   return (
     <>
-  
-      
-         
-            <div className="relative z-[1] mt-[-4px] flex flex-col items-start p-[17px]">
+      <div className="relative z-[1] mt-[-4px] flex flex-col items-start p-[17px]">
               <Heading size="2xl" as="h1" className="ml-[11px] mt-4 tracking-[-0.11px] md:ml-0">
                 Inbox
               </Heading>
@@ -65,14 +62,7 @@ export default function DarkFivePage() {
                   </div>
                 </div>
               </div>
-              <div className="mr-3.5 mt-[11px] flex w-[73%] items-center justify-between gap-5 self-end md:mr-0 md:w-full">
-                <Heading as="p" className="mb-[3px] self-end !text-white-A700_99_02">
-                  Showing 1-12 of 1,253
-                </Heading>
-                <Img src="/images/img_television.svg" alt="television_one" className="h-[30px] w-[10%]" />
-              </div>
-            </div>
-
+        </div>
     </>
   );
 }

@@ -1,5 +1,5 @@
 
-import{Heading,Img,Button,Text}from"@/components/."
+import{Heading,Img,Button,Text} from"@/components/."
 export default function Favorite(){
     return <>
     <div className="flex flex-col items-start gap-[15px] p-[11px]">

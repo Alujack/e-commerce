@@ -1,6 +1,6 @@
 "use server"
 import { producttype } from "@/common.type";
-import ProductDetails from "@/components/Productdeatails";
+import ProductDetails from "../Productdeatails";
 import { fetchProducts } from "@/utils/api";
 
 // Define generateStaticParams function

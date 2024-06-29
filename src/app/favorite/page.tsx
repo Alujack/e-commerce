@@ -1,5 +1,4 @@
-"use client";
-import React from "react"; // Don't forget to import React when using JSX
+"use client"
 import AddToCartButton from "@/components/addtocartbutton";
 import { Heading, Text, Button } from "@/components";
 import {favorite} from "@/constants/product";

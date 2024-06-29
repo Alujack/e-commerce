@@ -10,7 +10,7 @@ export default function Adminlayout({ children, }:{children:React.ReactNode}) {
      <div className="w-full">
         <div className="flex  md:flex-col">
             <Sidebar menu={ ADMIN_MENU}/>
-              <div className="flex-1 md:self-stretch md:p-5">
+              <div className="scrollable-div flex-1 md:self-stretch md:p-5">
                 <AdminTopbar />
                 {children}
               </div>

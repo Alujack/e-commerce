@@ -1,4 +1,3 @@
-"use client"
 import {Img,Heading,Text,Button} from "@/components"
 import Orderitem from "@/components/orderitem"
 export default function OrderHistory(){

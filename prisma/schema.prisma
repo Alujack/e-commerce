@@ -7,9 +7,293 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+
 model User {
-  id           Int     @id @default(autoincrement())
-  email        String  @unique
-  name         String
-  hashpassword String
+  id           Int       @id @default(autoincrement())
+  email        String    @unique
+  passwordHash String
+  firstName    String
+  lastName     String
+  phoneNumber  String?
+  avatar       Bytes?
+
+  addresses           UserAddress[]
+  shoppingCarts       ShoppingCart[]
+  paymentMethods      UserPaymentMethod[]
+  reviews             UserReview[]
+  orders              ShopOrder[]
+  favourites          Favourite[]
+  orderHistories      OrderHistory[]
+  customers           CustomerList[]
+  sellers             Seller[]
+}
+
+model Seller {
+  id         Int     @id @default(autoincrement())
+  userId     Int
+  storeName  String?
+  createdAt  DateTime
+
+  user   User @relation(fields: [userId], references: [id])
+  stores Store[]
+}
+
+model Store {
+  storeId     Int       @id @default(autoincrement())
+  sellerId    Int
+  stockId     Int?
+  name        String
+  createdAt   DateTime
+
+  seller Seller @relation(fields: [sellerId], references: [id])
+  stock  Stock? @relation(fields: [stockId], references: [id])
+  products     Product[]
+  customers    CustomerList[]
+}
+
+model Stock {
+  id         Int       @id @default(autoincrement())
+  storeId    Int?
+  categoryId Int
+
+  category ProductCategory @relation(fields: [categoryId], references: [id])
+  stores   Store[]
+}
+
+model CustomerList {
+  id       Int  @id @default(autoincrement())
+  storeId  Int
+  userId   Int
+
+  store Store @relation(fields: [storeId], references: [storeId])
+  user  User  @relation(fields: [userId], references: [id])
+}
+
+model Country {
+  id       Int     @id @default(autoincrement())
+  countries String
+  addresses Address[]
+}
+
+model Address {
+  id            Int     @id @default(autoincrement())
+  unitNumber    Int?
+  streetNumber  Int?
+  addressLine1  String
+  addressLine2  String?
+  city          String?
+  state         String?
+  postalCode    Int?
+  countryId     Int?
+
+  country Country @relation(fields: [countryId], references: [id])
+  users   UserAddress[]
+}
+
+model UserAddress {
+  userId    Int
+  addressId Int
+
+  user    User    @relation(fields: [userId], references: [id])
+  address Address @relation(fields: [addressId], references: [id])
+
+  @@id([userId, addressId])
+}
+
+model ProductCategory {
+  id               Int                @id @default(autoincrement())
+  parentCategoryId Int?
+  categoryName     String
+  image            Bytes?
+
+  parentCategory  ProductCategory?  @relation("CategoryParent", fields: [parentCategoryId], references: [id])
+  subcategories   ProductCategory[] @relation("CategoryParent")
+  variations      Variation[]
+  promotions      PromotionCategory[]
+  products        Product[]
+  stocks          Stock[]
+}
+
+model Product {
+  id          Int      @id @default(autoincrement())
+  storeId     Int
+  categoryId  Int
+  name        String
+  description String
+  productImage Bytes?
+  price       Int
+
+  store      Store           @relation(fields: [storeId], references: [storeId])
+  category   ProductCategory @relation(fields: [categoryId], references: [id])
+  items      ProductItem[]
+  favourites Favourite[]
+}
+
+model ProductItem {
+  id               Int               @id @default(autoincrement())
+  productId        Int
+  quantityInStock  Int
+
+  product         Product              @relation(fields: [productId], references: [id])
+  configurations  ProductConfiguration[]
+  orderLines      OrderLine[]
+  cartItems       ShoppingCartItem[]
+}
+
+model Variation {
+  id            Int    @id @default(autoincrement())
+  categoryId    Int
+  attributeType String
+
+  category     ProductCategory @relation(fields: [categoryId], references: [id])
+  options      VariationOption[]
+}
+
+model VariationOption {
+  id           Int    @id @default(autoincrement())
+  variationId  Int
+  optionValue  String
+
+  variation   Variation             @relation(fields: [variationId], references: [id])
+  configurations ProductConfiguration[]
+}
+
+model ProductConfiguration {
+  productItemId      Int
+  variationOptionId  Int
+
+  productItem      ProductItem       @relation(fields: [productItemId], references: [id])
+  variationOption  VariationOption   @relation(fields: [variationOptionId], references: [id])
+
+  @@id([productItemId, variationOptionId])
+}
+
+model Promotion {
+  id                Int    @id @default(autoincrement())
+  name              String
+  description       String
+  discountPercentage Int
+  startDate         DateTime
+  endDate           DateTime
+
+  categories PromotionCategory[]
+}
+
+model PromotionCategory {
+  categoryId   Int
+  promotionId  Int
+
+  category   ProductCategory @relation(fields: [categoryId], references: [id])
+  promotion  Promotion       @relation(fields: [promotionId], references: [id])
+
+  @@id([categoryId, promotionId])
+}
+
+model OrderLine {
+  id            Int     @id @default(autoincrement())
+  productItemId Int
+  orderId       Int
+  quantity      Int
+  price         Int
+
+  productItem ProductItem @relation(fields: [productItemId], references: [id])
+  order       ShopOrder   @relation(fields: [orderId], references: [id])
+  reviews     UserReview[]
+}
+
+model ShoppingCart {
+  id      Int @id @default(autoincrement())
+  userId  Int
+
+  user       User                @relation(fields: [userId], references: [id])
+  items      ShoppingCartItem[]
+}
+
+model ShoppingCartItem {
+  id           Int  @id @default(autoincrement())
+  cartId       Int
+  productItemId Int
+  qty           Int
+
+  cart         ShoppingCart  @relation(fields: [cartId], references: [id])
+  productItem  ProductItem   @relation(fields: [productItemId], references: [id])
+}
+
+model PaymentType {
+  id          Int    @id @default(autoincrement())
+  typeValue   String
+
+  methods     UserPaymentMethod[]
+}
+
+model UserPaymentMethod {
+  id           Int    @id @default(autoincrement())
+  userId       Int
+  paymentTypeId Int
+  provider     String
+  cardNumber   String
+  expiryDate   DateTime
+
+  user          User       @relation(fields: [userId], references: [id])
+  paymentType   PaymentType @relation(fields: [paymentTypeId], references: [id])
+  orders        ShopOrder[]
+}
+
+model UserReview {
+  id             Int    @id @default(autoincrement())
+  userId         Int
+  orderProductId Int
+  reviewText     String
+  rating         Int
+
+  user          User       @relation(fields: [userId], references: [id])
+  orderProduct  OrderLine  @relation(fields: [orderProductId], references: [id])
+}
+
+model ShopOrder {
+  id               Int    @id @default(autoincrement())
+  userId           Int
+  orderDate        DateTime
+  paymentMethodId  Int
+  shippingAddress  String
+  shippingMethod   String
+  orderTotal       Int
+  orderStatus      String
+
+  user            User             @relation(fields: [userId], references: [id])
+  paymentMethod   UserPaymentMethod @relation(fields: [paymentMethodId], references: [id])
+  orderLines      OrderLine[]
+}
+
+model OrderHistory {
+  id       Int  @id @default(autoincrement())
+  userId   Int
+  orderId  Int
+
+  user   User      @relation(fields: [userId], references: [id])
+  order  OrderLine @relation(fields: [orderId], references: [id])
+}
+
+model ShippingMethod {
+  id     Int     @id @default(autoincrement())
+  name   String
+  price  Float
+
+  orders ShopOrder[]
+}
+
+model OrderStatus {
+  id     Int    @id @default(autoincrement())
+  status String
+
+  orders ShopOrder[]
+}
+
+model Favourite {
+  id         Int @id @default(autoincrement())
+  userId     Int
+  productId  Int
+
+  user       User    @relation(fields: [userId], references: [id])
+  product    Product @relation(fields: [productId], references: [id])
 }

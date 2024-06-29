@@ -1,4 +1,3 @@
-"use client"
 import HeadingBanner from "@/components/bannerHeading";
 import {Heading,Img} from "@/components";
 import ProductCard from "@/components/ProductCard";

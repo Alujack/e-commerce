@@ -1,11 +1,12 @@
 import {Text, Heading } from "@/components";
 import Link from "next/link";
 import { PROFILE_MENU } from "@/constants/link";
+import { getSession } from "next-auth/react";
 
-export default function Sale({
+async function App({
 children    
 }:{children:React.ReactNode}) {
-
+const session= await getSession();
   return (
           <div className=" mr-[10%] ml-[10%] flex md:flex-col items-center gap-[34px] p-[18px] my-[18px] rounded-[10px]">
             <div className="w-[24%] md:w-full p-[9px] my-[10px]">
@@ -18,12 +19,12 @@ children
                           
                           <div className="flex self-start mt-1">
                             <Heading size="5xl" as="h1">
-                              Vibol SEN
+                            
                             </Heading>
                           </div>
                           <div className="flex self-start mb-1.5 py-1.5">
                             <Text as="p" className="self-end">
-                              vibolsen@gmail.com
+                              {session?.user.email}
                             </Text>
                           </div>
                         </div>
@@ -43,3 +44,4 @@ children
           </div>
   );
 }
+export default App;

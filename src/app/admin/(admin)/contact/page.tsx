@@ -1,9 +1,9 @@
 import { Button, SelectBox, Img, Heading, Input } from "@/components";
 
 const dropDownOptions = [
-  { label: "Option1", value: "option1" },
-  { label: "Option2", value: "option2" },
-  { label: "Option3", value: "option3" },
+  { label: "Male", value: "Male" },
+  { label: "Female", value: "Female" },
+  { label: "Do not show", value: "No" },
 ];
 
 export default function Favorite(){
@@ -14,7 +14,7 @@ export default function Favorite(){
                 <Heading size="2xl" as="h2" className="ml-[30px] self-start tracking-[-0.11px] md:ml-0">
                 Add New Contact
               </Heading>
-              <div className="flex w-[95%] items-center justify-center rounded-[14px] border border-solid border-blue_gray-800_03 bg-blue_gray-900_01 px-14 py-[60px] md:w-full md:p-5">
+              <div className="flex w-[95%] items-center justify-center rounded-[14px] border border-solid border-blue_gray-800_03   px-14 py-[60px] md:w-full md:p-5">
                 <div className="flex w-[76%] flex-col items-center md:w-full">
                   <Button size="lg" shape="square" className="w-[80px]">
                     <Img src="/images/img_camera.svg" />
@@ -89,7 +89,7 @@ export default function Favorite(){
                       />
                     </div>
                   </div>
-                  <Button shape="round" className="mt-[60px] min-w-[274px] font-bold tracking-[-0.06px] sm:px-5">
+                  <Button shape="round" className="mt-[60px] min-w-[274px] font-bold tracking-[-0.06px] bg-[#33CCFF] sm:px-5">
                     Add Now
                   </Button>
             </div>

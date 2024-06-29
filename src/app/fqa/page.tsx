@@ -1,4 +1,3 @@
-"use client"
 import {Heading, Input, Img} from "@/components"
 export default function FQA(){
     return (

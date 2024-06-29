@@ -11,26 +11,16 @@ const DataContext = createContext<DataContextType | null>(null);
 
 const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [pageData, setPageData] = useState({
-    page1: null,
-    page2: null,
-    category: 'Beach Towels',
-    productDetail: {
-      selectedCategory: 'Beach Towels',
-      selectedMaterial: '100% Cotton',
-      selectedProductionTechnique: 'Machine Woven',
-      selectedWeight: '300 g/m²',
-      selectedAbsorbency: 'Quick-Drying',
+    page1: {
+      name: '',
+      description: '',
+      image: null,
+      price: ''},
+    page2: {category:''},
+    page3: {
+      selectedCategory: '',
       selectedTags: []
     },
-    productPricing: {
-      basePrice: 0,
-      discount: 0,
-      finalPrice: 0
-    },
-    bulkPurchaseDiscounts: {
-      productQuantity: '0 - 100 Amount Products',
-      discount: '% 8'
-    }
   });
 
   const updatePageData = (page: string, data: any) => {

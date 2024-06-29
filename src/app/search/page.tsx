@@ -1,4 +1,3 @@
-"use client"
 import ProductCard from "@/components/ProductCard"
 import product from "@/constants/product"
 import { Heading, Text, CheckBox, Button } from "@/components"

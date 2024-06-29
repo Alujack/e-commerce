@@ -1,9 +1,17 @@
 "use client"
-
 import Link from "next/link"
-import { Img, Text, Heading, TextArea,Button, CheckBox, Input } from "@/components";
+import { Img, Text, Heading, CheckBox, Input } from "@/components";
+import { useState} from "react"
 
-export default function BecomeSellerPage() {
+function BecomeSellerPage() {
+  // const userdata = await  fetch('http://localhost:3000/api/getUser/');
+  // const seller = await userdata.json();
+  const [formData,setFormdata] =useState({ company:"", street:"", 
+  country:"",address:"", city:"", state:"", zipcode:"", phone:"", email:""});
+  const handleChange = (e:any)=>{
+    const {name, value} = e.target;
+    setFormdata({ ...formData, [name]: value });
+   }
   return (
     <>
          <div className="w-full px-[5px] md:px-5 bg-gray-300_07">
@@ -39,22 +47,14 @@ export default function BecomeSellerPage() {
                     <span className="text-black-900_02">First Name&nbsp;</span>
                     <span className="text-red-600">*</span>
                   </Text>
-                  <Input
-                    shape="round"
-                    name="firstName"
-                    className="self-stretch sm:px-5 border-blue_gray-100 border border-solid !rounded-md"
-                  />
+                  {/* <h3>{seller?.user.name}</h3> */}
                 </div>
                 <div className="flex flex-col items-start w-[47%] md:w-full gap-3">
                   <Text as="p" className="!text-black-900_02">
                     <span className="text-black-900_02">Last Name&nbsp;</span>
                     <span className="text-red-600">*</span>
                   </Text>
-                  <Input
-                    shape="round"
-                    name="lastName"
-                    className="self-stretch sm:px-5 border-blue_gray-100 border border-solid !rounded-md"
-                  />
+                  {/* <h3>{seller?.user.name}</h3> */}
                 </div>
               </div>
               <div className="flex flex-col items-start gap-[11px]">
@@ -65,6 +65,8 @@ export default function BecomeSellerPage() {
                 <Input
                   shape="round"
                   name="name"
+                  value={formData.company}
+                  onChange={handleChange}
                   className="self-stretch sm:px-5 border-blue_gray-100 border border-solid !rounded-md"
                 />
               </div>
@@ -80,9 +82,10 @@ export default function BecomeSellerPage() {
                     className="h-[43px] left-[0.00px] bottom-0 top-0 my-auto absolute"
                   />
                   <div className="flex h-max w-max left-0 bottom-0 right-0 top-0 m-auto absolute">
-                    <Text as="p" className="!text-gray-900_10">
-                      United States (US)
-                    </Text>
+                    <input type="text"
+                       value={formData.country}
+                  onChange={handleChange}                    
+                    />
                   </div>
                 </div>
               </div>
@@ -95,6 +98,8 @@ export default function BecomeSellerPage() {
                   shape="round"
                   type="number"
                   name="streetaddress"
+                  value={formData.street}
+                  onChange={handleChange}
                   placeholder={`House number and street name ...`}
                   className="self-stretch sm:pr-5 border-blue_gray-100 border border-solid !rounded-md"
                 />
@@ -102,6 +107,8 @@ export default function BecomeSellerPage() {
                   size="md"
                   shape="round"
                   name="forminput_one"
+                   value={formData.address}
+                  onChange={handleChange}
                   placeholder={`Apartment, suite, unit, etc (Optional)`}
                   className="self-stretch sm:pr-5 border-blue_gray-100 border border-solid !rounded-md"
                 />
@@ -114,6 +121,8 @@ export default function BecomeSellerPage() {
                 <Input
                   shape="round"
                   name="city"
+                   value={formData.city}
+                  onChange={handleChange}
                   className="self-stretch sm:px-5 border-blue_gray-100 border border-solid !rounded-md"
                 />
               </div>
@@ -129,9 +138,9 @@ export default function BecomeSellerPage() {
                     className="h-[43px] left-[0.00px] bottom-0 top-0 my-auto absolute"
                   />
                   <div className="flex h-max w-max left-0 bottom-0 right-0 top-0 m-auto absolute">
-                    <Text as="p" className="self-end !text-gray-900_10">
-                      Washington
-                    </Text>
+                   <input type="text"
+                    value={formData.state}
+                    onChange={handleChange} />
                   </div>
                 </div>
               </div>
@@ -143,6 +152,8 @@ export default function BecomeSellerPage() {
                 <Input
                   shape="round"
                   name="zipcode"
+                   value={formData.zipcode}
+                  onChange={handleChange}
                   className="self-stretch sm:px-5 border-blue_gray-100 border border-solid !rounded-md"
                 />
               </div>
@@ -154,6 +165,8 @@ export default function BecomeSellerPage() {
                 <Input
                   shape="round"
                   name="phoneNumber"
+                   value={formData.phone}
+                  onChange={handleChange}
                   className="self-stretch sm:px-5 border-blue_gray-100 border border-solid !rounded-md"
                 />
               </div>
@@ -165,6 +178,8 @@ export default function BecomeSellerPage() {
                 <Input
                   shape="round"
                   name="email"
+                   value={formData.email}
+                  onChange={handleChange}
                   className="self-stretch sm:px-5 border-blue_gray-100 border border-solid !rounded-md"
                 />
               </div>
@@ -183,24 +198,6 @@ export default function BecomeSellerPage() {
               id="createanaccount"
               className="mt-8 ml-28 gap-[7px] md:ml-0 text-black-900_02 text-left text-sm"
             />
-            <div className="flex mt-6 ml-[102px] p-[9px] md:ml-0">
-              <Heading size="xl" as="h5" className="!font-bold">
-                Additional Information Problem Report
-              </Heading>
-            </div>
-            <div className="flex flex-col self-center items-start w-[80%] md:w-full mt-2.5">
-              <div className="flex p-[5px]">
-                <Text as="p" className="mt-2 mb-[5px] !text-black-900_02">
-                  <span className="text-black-900_02">Write your problem&nbsp;</span>
-                  <span className="text-gray-500">(Optional)</span>
-                </Text>
-              </div>
-              <TextArea
-                shape="round"
-                name="formtextarea"
-                placeholder={`Note about your order, e.g. special note for delivery `}
-                className="self-stretch sm:pb-5 sm:pr-5 text-gray-500"
-              />
               <Link href="/seller/maindash"> 
               <Heading className="min-w-[100px] rounded-[15px] mt-[10px]">
                 Confirm
@@ -236,7 +233,7 @@ export default function BecomeSellerPage() {
             />
           </div>
        </div> 
-        </div>
     </>
   );
 }
+export default BecomeSellerPage;

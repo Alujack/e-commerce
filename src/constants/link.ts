@@ -12,8 +12,7 @@ export const STEPS =[
     {href:"/seller/add-product", label:"Product Information"},
     {href:"/seller/product-detail", label:"Product Detail Information"},
     {href:"/seller/product-variation", label:"Product Variant Creation"},
-    {href:"/seller/lgs", label:"Logistics and Shipment"},
-    {href:"/seller/purchase-discount", label:"Bulk Purchase Discounts"}
+    // {href:"/seller/discount-product", label:"Purchase Discounts"}
 ]
 export const SELLER_MENU = [
     {href:"/seller/maindash", label:"Dashboard", icon:"/images/img_home.svg"},
@@ -22,16 +21,15 @@ export const SELLER_MENU = [
     {href:"/seller/categories", label:"Categories", icon:"/images/img_credit_card_1.png"},
     {href:"/seller/customers", label:"Customers", icon:"/images/img_user_1177568_1.png"},
     {href:"/seller/draft", label:"Draft", icon:"/images/img_power_10904887_1.png"},
-    {href:"/seller/account/profile", label:"Account", icon:"/images/img_power_10904887_1.png"},
-    {href:"/seller/setting", label:"Setting", icon:"/images/img_power_10904887_1.png"},
+    {href:"/seller/account/profile", label:"Account Setting", icon:"/images/img_power_10904887_1.png"},
 ]
 export const ADMIN_MENU = [
     {href:"/admin/dashboard", label:"Dashboard", icon:"/images/img_home.svg"},
     {href:"/admin/inbox", label:"Inbox", icon:"/images/img_home.svg"},
-    {href:"/admin/contact", label:"Contact", icon:"/images/img_home.svg"},
-    {href:"/admin/team", label:"Team", icon:"/images/img_home.svg"},
     {href:"/admin/customers-service", label:"Customer Service", icon:"/images/img_home.svg"},
     {href:"/admin/membership-service", label:"Membership Service", icon:"/images/img_home.svg"},
+    {href:"/admin/contact", label:"Contact", icon:"/images/img_home.svg"},
+    {href:"/admin/team", label:"Team", icon:"/images/img_home.svg"},
     {href:"/admin/setting", label:"Setting", icon:"/images/img_home.svg"},
 ]
 export const PROFILE_MENU =[

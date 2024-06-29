@@ -66,7 +66,7 @@ export default function App(){
                 <div className="flex w-full flex-col gap-[22px]">
                   <div className="flex flex-col gap-[21px]">
                     <div className="flex flex-col items-start gap-2.5">
-                      <Text as="p">User Name</Text>
+                      <Text as="p">Store Name</Text>
                       <Input shape="round" name="Group 195" placeholder={`Charlene Reed `} className="sm:pr-5" />
                     </div>
                     <div className="flex flex-col items-start gap-2.5">

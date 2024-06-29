@@ -85,7 +85,7 @@ export default function ProductStock() {
                     <Customer />
                 </div>
             </div>
-            <div className="mb-[3px] flex items-center justify-between gap-5">
+            {/* <div className="mb-[3px] flex items-center justify-between gap-5">
                 <p className="flex flex-row">
                     <span>
                         <img src="/images/left-arrow.png" alt="" className="h-[20px]" />
@@ -97,7 +97,7 @@ export default function ProductStock() {
                     </span>
                 </p>
                 <Img src="/images/img_television.svg" alt="television_one" className="h-[30px] w-[8%]" />
-            </div>
+            </div> */}
         </div>
     );
 }

@@ -24,10 +24,10 @@ const CategorySelector: React.FC = () => {
 
   const { pageData, updatePageData } = context;
 
-  const [selectedCategory, setSelectedCategory] = useState<string>('Beach Towels');
+  const [selectedCategory, setSelectedCategory] = useState<string>();
 
   useEffect(() => {
-    if (pageData.category) {
+    if (pageData.page2) {
       setSelectedCategory(pageData.category);
     }
   }, [pageData]);
@@ -42,7 +42,7 @@ const CategorySelector: React.FC = () => {
       <h2 className="text-[30px] font-[Poppins] text-green-600 mb-4">Select a category</h2>
       <input
         type="text"
-        placeholder="Search..."
+        placeholder="New Category"
         className="w-full p-2 border border-gray-300 rounded mb-4"
       />
       <div className="p-[30px] pl-[10px]">

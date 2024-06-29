@@ -1,4 +1,4 @@
-
+'use client'
 import { Text, Button, Img, CheckBox, Heading } from "@/components/.";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
