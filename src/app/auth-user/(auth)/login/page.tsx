@@ -1,4 +1,3 @@
-"use client"
 import { Img, Text, Heading } from "@/components";
 import Signinfrom from "./Form";
 

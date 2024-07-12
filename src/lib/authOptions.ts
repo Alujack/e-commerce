@@ -4,6 +4,8 @@ import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaClient } from '@prisma/client';
 import { compare } from 'bcrypt'; // Assumes you're using bcrypt for password hashing
+import { JWT } from "next-auth/jwt";
+import { sign } from 'jsonwebtoken';
 
 const prisma = new PrismaClient();
 
@@ -31,31 +33,66 @@ export const authOptions: NextAuthOptions = {
           return null;
         }
 
-        const user = await prisma.user.findUnique({
-          where: { email: credentials.email },
-        });
+        try {
+          const user = await prisma.user.findUnique({
+            where: { email: credentials.email },
+          });
 
-        if (user && await compare(credentials.password, user.hashpassword)) {
-          // Convert the id to a string before returning the user
-          return { ...user, id: user.id.toString() };
-        } else {
+          if (user && await compare(credentials.password, user.hashpassword)) {
+            // Create a JWT token for the authenticated user
+            const jwt = sign({ id: user.id, email: user.email }, process.env.JWT_SECRET as string, {
+              expiresIn: '1h',
+            });
+
+            // Convert the id to a string and return the user with the jwt property
+            return { ...user, id: user.id.toString(), jwt: jwt };
+          } else {
+            return null;
+          }
+        } catch (error) {
+          console.error("Error in authorize:", error);
           return null;
         }
       },
-    })
+    }),
   ],
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.id = user.id;
+        token.jwt = user.jwt;
+        token.accessToken = user.accessToken;
       }
       return token;
     },
     async session({ session, token }) {
-      if (token?.id) {
-        session.user.id = token.id;
-      }
+      session.jwt = token.jwt;
       return session;
-    }
-  }
+    },
+    async signIn({ user }) {
+      try {
+        const res = await fetch('http://127.0.0.1:8000/api/auth-app/create-or-update-user/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: user.email,
+            name: user.name,
+            password: user.hashpassword, // Ensure password is available in the user object
+            jwt: user.jwt,
+          }),
+        });
+
+        if (!res.ok) {
+          console.error("Failed to update user on signIn:", await res.json());
+          return false;
+        }
+
+        return true;
+      } catch (error) {
+        console.error("Error in signIn callback:", error);
+        return false;
+      }
+    },
+  },
 };
