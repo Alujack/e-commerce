@@ -1,4 +1,3 @@
-"use client"
 import AddToCartButton from "@/components/addtocartbutton";
 import { Heading, Text, Button } from "@/components";
 import {favorite} from "@/constants/product";

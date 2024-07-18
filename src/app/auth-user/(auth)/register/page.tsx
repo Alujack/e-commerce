@@ -1,5 +1,3 @@
-"use client"
-
 import RegisterForm from './Form';
 import { Heading,Text,Img } from '@/components';
 

@@ -1,30 +1,4 @@
-// import { NextApiRequest, NextApiResponse } from "next";
-// import { PrismaClient } from '@prisma/client/edge'
-// const prisma = new PrismaClient()
 
-
-
-// export default async (req: NextApiRequest, res: NextApiResponse) => {
-//   if (req.method === "POST") {
-//     const { email, password, name } = req.body;
-
-//     try {
-//       const user = await prisma.users.create({
-//         data: {
-//           email,
-//           password,
-//           name,
-//         },
-//       });
-//       res.status(200).json(user);
-//     } catch (error) {
-//       res.status(500).json({ error: "User already exists" });
-//     }
-//   } else {
-//     res.setHeader("Allow", ["POST"]);
-//     res.status(405).end(`Method ${req.method} Not Allowed`);
-//   }
-// };
 import { connectToDatabase } from "@/auth/server-helper";
 import { NextResponse} from "next/server";
 import {PrismaClient} from "@prisma/client"

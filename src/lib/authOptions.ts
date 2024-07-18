@@ -1,13 +1,8 @@
-import { NextAuthOptions } from "next-auth";
+import { NextAuthOptions, Account, Profile, User as NextAuthUser } from "next-auth";
+import { JWT } from "next-auth/jwt";
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { PrismaClient } from '@prisma/client';
-import { compare } from 'bcrypt'; // Assumes you're using bcrypt for password hashing
-import { JWT } from "next-auth/jwt";
-import { sign } from 'jsonwebtoken';
-
-const prisma = new PrismaClient();
 
 export const BASE_PATH = "/api/auth";
 
@@ -33,66 +28,69 @@ export const authOptions: NextAuthOptions = {
           return null;
         }
 
-        try {
-          const user = await prisma.user.findUnique({
-            where: { email: credentials.email },
-          });
+        // Fetch user from Django backend
+        const res = await fetch('http://127.0.0.1:8000/api/auth-app/users/login/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(credentials)
+        });
+        const user = await res.json();
 
-          if (user && await compare(credentials.password, user.hashpassword)) {
-            // Create a JWT token for the authenticated user
-            const jwt = sign({ id: user.id, email: user.email }, process.env.JWT_SECRET as string, {
-              expiresIn: '1h',
-            });
-
-            // Convert the id to a string and return the user with the jwt property
-            return { ...user, id: user.id.toString(), jwt: jwt };
-          } else {
-            return null;
-          }
-        } catch (error) {
-          console.error("Error in authorize:", error);
-          return null;
+        if (res.ok && user) {
+          // Return user object with required properties
+          return { email: credentials.email, accessToken: user.access };
         }
-      },
-    }),
+        return null;
+      }
+    })
   ],
+  session: {
+    jwt: true,
+  },
+  jwt: {
+    secret: process.env.JWT_SECRET,
+  },
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user }: { token: JWT, user?: any }) {
       if (user) {
-        token.jwt = user.jwt;
         token.accessToken = user.accessToken;
       }
       return token;
     },
-    async session({ session, token }) {
-      session.jwt = token.jwt;
+    async session({ session, token }: { session: any, token: JWT }) {
+      session.accessToken = token.accessToken;
       return session;
     },
-    async signIn({ user }) {
-      try {
-        const res = await fetch('http://127.0.0.1:8000/api/auth-app/create-or-update-user/', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            email: user.email,
-            name: user.name,
-            password: user.hashpassword, // Ensure password is available in the user object
-            jwt: user.jwt,
-          }),
-        });
+    async signIn({ user, account, profile }: { user: NextAuthUser, account: Account | null, profile?: Profile | undefined }) {
+      if (account && account.provider !== 'credentials') {
+        try {
+          const res = await fetch('http://127.0.0.1:8000/api/auth-app/create-or-update/', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              email: user.email,
+              name: user.name || profile?.name,
+              image: user.image || null,
+              provider: account.provider,         
+            }),
+          });
 
-        if (!res.ok) {
-          console.error("Failed to update user on signIn:", await res.json());
+          if (!res.ok) {
+            console.error("Failed to update user on signIn:", await res.json());
+            return false;
+          }
+
+          return true;
+        } catch (error) {
+          console.error("Error in signIn callback:", error);
           return false;
         }
-
-        return true;
-      } catch (error) {
-        console.error("Error in signIn callback:", error);
-        return false;
       }
+      return true;
     },
   },
 };

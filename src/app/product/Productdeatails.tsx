@@ -1,11 +1,9 @@
 "use client"
-
 import {useState} from "react";
 import { Text, Heading, Button, Img } from "@/components";
 import Cartlabel from "@/components/cartlabel";
 import {useCart} from "@/context/cartcontext"
 import { producttype } from "@/common.type";
-// import  {useParams} from "react-router-dom";
 export default function ProductDetails({product}:{product:producttype}) {
     const [count,setCount] = useState(1);
 

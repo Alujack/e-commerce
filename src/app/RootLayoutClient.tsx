@@ -5,8 +5,7 @@ import { SessionProvider } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-
-export default function RootLayoutClient({ children }:{children:React.ReactNode}) {
+export default function RootLayoutClient({ children,image }:{children:React.ReactNode;image:string}) {
   const path = usePathname();
   const patharray = path.split("/");
   
@@ -24,7 +23,7 @@ export default function RootLayoutClient({ children }:{children:React.ReactNode}
         <CartProvider>
           <div className="flex flex-col w-full gap-[11px] bg-gray-300_06">
             <div className="flex flex-col w-full gap-[5px] mx-auto md:p-5 sm:p-1 bg-gray-300_06 max-w-[100wv] px-3 py-0">
-              <Header />
+              <Header image={image}/>
               <main className="scrollable-divbody">
                 {children}
                 <Footer />

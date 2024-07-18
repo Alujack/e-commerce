@@ -1,22 +1,12 @@
 
 "use client"
-import { useState,  useEffect } from 'react';
-import axios from 'axios';
+import { useState} from 'react';
 import {Heading,Img,Button,Text,CheckBox} from "@/components";
 import Link from 'next/link';
-import { signIn, useSession } from "next-auth/react";
-import {useRouter} from "next/navigation";
+import { signIn} from "next-auth/react";
 const RegisterForm = ({...props}) => {
-  const router = useRouter();
-  const {status: sessionStatus } = useSession();
-   useEffect(() => {
-        if (sessionStatus === "authenticated") {
-            router.replace("/");
-            console.log("you are signin ")
-        }
-    }, [sessionStatus, router]);
   const [formData, setFormData] = useState({
-    name: '',
+    username: '',
     email: '',
     password: '',
   });
@@ -31,14 +21,25 @@ const RegisterForm = ({...props}) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    try {
-      const response = await axios.post('/api/auth/register', formData);
-      console.log('Registration successful:', response.data);
-    } catch (error:any) {
-      console.error('Error registering:', error.response.data);
-    }
-  };
+   try {
+    const response = await fetch("http://127.0.0.1:8000/api/auth-app/users/register/", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
 
+    const result = await response.json();
+    if (!response.ok) {
+      throw new Error(result);
+    }
+
+    console.log(result);
+  } catch (error) {
+    console.error('Error submitting form:', error);
+  }
+  }
   return (
      <>
       <div {...props}>
@@ -59,9 +60,9 @@ const RegisterForm = ({...props}) => {
         <input
           
           type="text"
-          name="name"
-          placeholder={`First & Last Name`}
-          value={formData.name}
+          name="username"
+          placeholder={`Username`}
+          value={formData.username}
           onChange={handleChange} 
           className="size-3xl self-stretch sm:px-5 !text-blue_gray-700_01 font-poppins border-gray-300_02 border border-solid rounded-[9px]"
         />

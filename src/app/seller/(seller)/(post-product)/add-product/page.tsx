@@ -112,7 +112,7 @@ const ProductInformationForm: React.FC = () => {
         {formData.price === '' && <span className="text-red-500 text-xs">Please enter the product currency first.</span>}
       </div>
       
-      <button type="button" onClick={handleNext}>Continue</button>
+      <button type="button" onClick={handleNext}>{formData.price}</button>
     </form>
   );
 };

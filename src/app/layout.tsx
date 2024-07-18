@@ -3,12 +3,14 @@ import "../styles/index.css";
 import "../styles/font.css";
 import { DataProvider } from "@/context/productContext";
 import RootLayoutClient from './RootLayoutClient';
-
-export default function RootLayout({
+import { getSession } from "next-auth/react";
+async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await getSession();
+  console.log(JSON.stringify(session))
   return (
     <html lang="en">
       <head>
@@ -19,9 +21,10 @@ export default function RootLayout({
       </head>
       <body>
         <DataProvider>
-          <RootLayoutClient>{children}</RootLayoutClient>
+          <RootLayoutClient image={session?.user.image}>{children}</RootLayoutClient>
         </DataProvider>
       </body>
     </html>
   );
 }
+export default RootLayout;

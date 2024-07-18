@@ -75,7 +75,7 @@ function BecomeSellerPage() {
   const handleSubmit = async (e:any) => {
   e.preventDefault();
   try {
-    const response = await fetch("http://127.0.0.1:8000/api/store/store/create_or_update/", {
+    const response = await fetch("http://127.0.0.1:8000/api/store/create-or-update-store/", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

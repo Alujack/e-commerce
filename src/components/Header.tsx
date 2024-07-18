@@ -7,7 +7,7 @@ import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { NAVLINK } from "@/constants/link";
 import { usePathname } from "next/navigation";
-export default function Header() {
+export default function Header({image}:{image:string}) {
   const [searchBarValue, setSearchBarValue] = useState("");
   const router = useRouter()
   const { status: sessionStatus } = useSession();
@@ -49,7 +49,7 @@ export default function Header() {
         {sessionStatus === "authenticated" ?
           (<>
             <Link href="/user-account/personal-information">
-              <img src="/images/img_profile.png" alt="profile" className="h-[40px]" />
+              <img src={image} alt="profile" className="h-[40px] rounded" />
             </Link>
           </>
           ) :

@@ -1,4 +1,3 @@
-"use server"
 import { producttype } from "@/common.type";
 import ProductDetails from "../Productdeatails";
 import { fetchProducts } from "@/utils/api";

@@ -63,7 +63,7 @@ const CategorySelector: React.FC = () => {
           </div>
         ))}
       </div>
-      <button className="mt-4 w-[50%] items-center p-2 bg-blue-600 text-white rounded">Save</button>
+      <button className="mt-4 w-[50%] items-center p-2 bg-blue-600 text-white rounded">{pageData.page1.price}</button>
     </div>
   );
 };
