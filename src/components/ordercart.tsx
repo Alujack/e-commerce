@@ -2,7 +2,6 @@
 import {useState} from "react";
 import { Heading, Text, Img, Button } from "./";
 import Link from "next/link";
-import { formatNumber } from "@/utils/format";
 import { producttype } from "@/common.type";
 import {useCart} from "@/context/cartcontext"
 
@@ -37,7 +36,7 @@ export default function Ordercart(
             save
           </Text>
           <Text as="p" className="self-center !text-white-A700 !font-medium">
-           {formatNumber(save)}
+           {Number(save)}
           </Text>
         </div>
         <Link href="/product">
@@ -62,7 +61,7 @@ export default function Ordercart(
             SROK Smart Phone 128GB, Oled Retina
           </Heading>
           <Heading size="3xl" as="h3" className="mt-[13px] !text-red-600 !font-semibold">
-            {formatNumber(price)}
+            {Number(price)}
           </Heading>
           <div className="flex justify-center items-center w-[49%] md:w-full mt-4 p-2 border-gray-500_33 border border-solid rounded-[10px]">
           <Button onClick={()=>setQty(qty-1)}><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -72,7 +71,7 @@ export default function Ordercart(
             <div className="flex justify-center flex-1">
               <div className="flex">
                 <Heading size="s" as="h4" className="self-start text-center !font-bold">
-                  {formatNumber(qty)}
+                  {Number(qty)}
                 </Heading>
               </div>
             </div>

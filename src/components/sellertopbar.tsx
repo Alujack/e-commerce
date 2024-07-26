@@ -1,7 +1,7 @@
 "use client"
 import React from "react";
 import { CloseSVG } from "@/assets//images";
-import { Img, Button, Input} from "./";
+import { Img, Input} from "./";
 import {useRouter} from "next/navigation";
 interface Props {
   className?: string;

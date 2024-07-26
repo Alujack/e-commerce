@@ -1,45 +1,21 @@
 
 "use client"
-import { useState} from 'react';
-import {Heading,Img,Button,Text,CheckBox} from "@/components";
+import { Spinner } from '@/components/common';
+import {Heading,Text,CheckBox} from "@/components";
 import Link from 'next/link';
-import { signIn} from "next-auth/react";
+import { useRegister } from '@/hooks';
+import { SocialButtons } from '@/components/common';
 const RegisterForm = ({...props}) => {
-  const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: '',
-  });
-
-  const handleChange = (e:any) => {
-    const { name, value }= e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-   try {
-    const response = await fetch("http://127.0.0.1:8000/api/auth-app/users/register/", {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    });
-
-    const result = await response.json();
-    if (!response.ok) {
-      throw new Error(result);
-    }
-
-    console.log(result);
-  } catch (error) {
-    console.error('Error submitting form:', error);
-  }
-  }
+ const {
+		first_name,
+		last_name,
+		email,
+		password,
+		re_password,
+		isLoading,
+		onChange,
+		onSubmit,
+	} = useRegister();
   return (
      <>
       <div {...props}>
@@ -55,15 +31,25 @@ const RegisterForm = ({...props}) => {
           Clarity gives you the blocks and components you need to create a truly professional website.
         </Text>
       </div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={onSubmit}>
       <div className=" size-3xl flex flex-col self-stretch items-center justify-center gap-[23px] p-[25px] sm:p-5 bg-white-A700 shadow-xs rounded-[20px]">
+       
         <input
           
           type="text"
-          name="username"
-          placeholder={`Username`}
-          value={formData.username}
-          onChange={handleChange} 
+          name="first_name"
+          placeholder={`first_name`}
+          value={first_name}
+          onChange={onChange} 
+          className="size-3xl self-stretch sm:px-5 !text-blue_gray-700_01 font-poppins border-gray-300_02 border border-solid rounded-[9px]"
+        />
+         <input
+          
+          type="text"
+          name="last_name"
+          placeholder={`last_name`}
+          value={last_name}
+          onChange={onChange} 
           className="size-3xl self-stretch sm:px-5 !text-blue_gray-700_01 font-poppins border-gray-300_02 border border-solid rounded-[9px]"
         />
         <input
@@ -71,8 +57,8 @@ const RegisterForm = ({...props}) => {
           type="email"
           name="email"
           placeholder={`Email Address`}
-          value={formData.email}
-          onChange={handleChange}
+          value={email}
+          onChange={onChange}
           className="size-3xl self-stretch sm:px-5 !text-blue_gray-700_01 font-poppins border-gray-300_02 border border-solid rounded-[9px]"
         />
         <input
@@ -80,8 +66,17 @@ const RegisterForm = ({...props}) => {
           type="password"
           name="password"
           placeholder={`Create Password`}
-          value={formData.password}
-          onChange={handleChange}
+          value={password}
+          onChange={onChange}
+          className="text-4xl self-stretch sm:px-5 text-blue_gray-700_01 font-poppins border-gray-300_02 border border-solid rounded-[9px]"
+        />
+         <input
+          
+          type="password"
+          name="re_password"
+          placeholder={`Create Password`}
+          value={re_password}
+          onChange={onChange}
           className="text-4xl self-stretch sm:px-5 text-blue_gray-700_01 font-poppins border-gray-300_02 border border-solid rounded-[9px]"
         />
         <CheckBox
@@ -90,32 +85,14 @@ const RegisterForm = ({...props}) => {
           id="shape"
           className="self-start ml-[5px] gap-[9px] p-px md:ml-0 text-black-900_01 font-poppins text-left text-sm"
         />
-        <Button
-          color="blue_A700"
-          size="11xl"
-          className="w-full sm:px-5 text-white-A700 tracking-[-0.20px] font-poppins font-semibold rounded-[9px]"
-          type='submit'
-        >
-          Sign Up
-        </Button>
-        <Button
-          color="gray_50_02"
-          size="11xl"
-          leftIcon={<Img src="images/img_google.svg" alt="google" />}
-          className="w-full gap-[11px] sm:px-5 text-blue_gray-900_03 tracking-[-0.20px] font-poppins font-semibold rounded-[10px]"
-          onClick ={()=>signIn('google')}
-        >
-          Sign up with Google
-        </Button>
-        <Button
-          color="gray_50_02"
-          size="11xl"
-          leftIcon={<Img src="images/github.png" alt="google" className="w-[21px]"/>}
-          className="w-full gap-[11px] sm:px-5 text-blue_gray-900_03 tracking-[-0.20px] font-poppins font-semibold rounded-[10px]"
-          onClick ={()=>signIn('github')}
-        >
-          Sign up with Github
-        </Button>
+        <button
+					type='submit'
+					className='flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+					disabled={isLoading}
+				>
+					{isLoading ? <Spinner sm /> : `Sign Up`}
+				</button>
+       <SocialButtons/>
         <Text as="p" className="mb-[3px] !text-gray-600 !font-poppins text-center">
           <span className="text-gray-600">Already have an account?&nbsp;</span>
           <Link href="/login"><span className="text-blue-A700 font-semibold">Sign in</span></Link>

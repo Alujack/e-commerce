@@ -33,24 +33,6 @@ const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const submitData = () => {
     // Here you would typically send `pageData` to your backend
     console.log('Submitting data:', pageData.page1);
-
-    // // Example fetch request to send data to backend
-    // fetch('https://example.com/api/submit', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(pageData),
-    // })
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     console.log('Submission successful:', data);
-    //     // Optionally update local state or show a success message
-    //   })
-    //   .catch(error => {
-    //     console.error('Error submitting data:', error);
-    //     // Handle errors as needed
-    //   });
   };
 
   return (

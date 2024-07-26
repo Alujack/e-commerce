@@ -2,65 +2,14 @@
 
 import { ImGoogle, ImFacebook } from 'react-icons/im';
 import { Text, Button, Img, CheckBox, Heading } from "@/components/.";
-import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { signIn, useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import { toast, ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import { Spinner } from '@/components/common';
+import { useLogin } from '@/hooks';
 
 export default function Signinfrom({ ...props }) {
-    const router = useRouter();
-    const [error, setError] = useState("");
-    const { data: session, status: sessionStatus } = useSession();
-
-    useEffect(() => {
-        if (sessionStatus === "authenticated") {
-            router.replace("/");
-            toast.success("You are signed in!");
-        }
-    }, [sessionStatus, router]);
-
-    const isValidEmail = (email: string) => {
-        const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-        return emailRegex.test(email);
-    };
-
-    const handleSubmit = async (e: any) => {
-        e.preventDefault();
-        const email = e.target[0].value;
-        const password = e.target[1].value;
-
-        if (!isValidEmail(email)) {
-            setError("Email is invalid");
-            toast.error("Email is invalid");
-            return;
-        }
-
-        if (!password || password.length < 8) {
-            setError("Password is invalid");
-            toast.error("Password is invalid");
-            return;
-        }
-
-        const res = await signIn("credentials", {
-            redirect: false,
-            email,
-            password,
-        });
-
-        if (res?.error) {
-            setError("Invalid email or password");
-            toast.error("Invalid email or password");
-        } else {
-            toast.success("Sign in successful!");
-            if (res?.url) router.replace("/");
-        }
-    }
-
+    const { email, password, isLoading, onChange, onSubmit } = useLogin();
     return (
         <div {...props}>
-            <ToastContainer />
             <div className="flex flex-col self-stretch items-center gap-2.5">
                 <Heading size="14xl" as="h1" className="!text-black-900_01 tracking-[-2.00px] !font-poppins text-center">
                     Sign in to your account
@@ -72,18 +21,22 @@ export default function Signinfrom({ ...props }) {
                 >
                     Clarity gives you the blocks and components you need to create a truly professional website.
                 </Text>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={onSubmit}>
                     <div className="flex flex-col items-center justify-center w-[84%] gap-[26px] p-[27px] sm:p-5 bg-white-A700 shadow-xs rounded-[20px]">
                         <input
                             type="email"
                             name="email"
+                            value={email}
                             placeholder={`Email Address`}
+                            onChange={onChange}
                             className="text-4xl self-stretch mt-1 sm:px-5 !text-blue_gray-700_01 font-poppins border-gray-300_02 border border-solid rounded-[9px]"
                         />
                         <input
                             type="password"
                             name="password"
+                            value={password}
                             placeholder={`Create Password`}
+                            onChange={onChange}
                             className="text-4xl self-stretch sm:px-5 !text-blue_gray-700_01 font-poppins border-gray-300_02 border border-solid rounded-[9px]"
                         />
                         <div className="flex self-stretch justify-between gap-2">
@@ -99,15 +52,14 @@ export default function Signinfrom({ ...props }) {
                                 </Text>
                             </a>
                         </div>
-                        <Button
-                            color="blue_A700"
-                            size="12xl"
-                            className="w-full sm:px-5 text-white-A700 tracking-[-0.20px] font-poppins font-semibold rounded-[9px]"
-                            type="submit"
+                        <button
+                            type='submit'
+                            className='flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+                            disabled={isLoading}
                         >
-                            Sign In
-                        </Button>
-                        <Button
+                            {isLoading ? <Spinner sm /> : `Sign In`}
+				        </button>
+                        {/* <Button
                             color="gray_50_02"
                             size="12xl"
                             leftIcon={<ImGoogle className='mr-3' />}
@@ -115,10 +67,10 @@ export default function Signinfrom({ ...props }) {
                             onClick={() => signIn("google")}
                         >
                             Sign in with Google
-                        </Button>
+                        </Button> */}
                         <Text as="p" className="mb-1 !text-gray-600 !font-poppins text-center">
                             <span className="text-gray-600">Don&#39;t have an account?&nbsp;</span>
-                            <Link href="/register"><span className="text-blue-A700 font-semibold">Sign up</span></Link>
+                            <Link href="/auth-user/register"><span className="text-blue-A700 font-semibold">Sign up</span></Link>
                         </Text>
                     </div>
                 </form>

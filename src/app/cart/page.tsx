@@ -1,5 +1,5 @@
 "use client"
-import { Text, Heading, Button, Img, Input } from "@/components";
+import { Text, Heading, Button, Img } from "@/components";
 import Ordercart from "@/components/ordercart";
 import Totalsummery from "@/components/totalsummery";
 import {useRouter} from "next/navigation";

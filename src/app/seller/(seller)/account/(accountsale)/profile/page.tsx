@@ -1,4 +1,3 @@
-"use client"
 import{Img, Button,Text,Input,SelectBox} from "@/components"
 const dropDownOptions = [
   { label: "Option1", value: "option1" },
@@ -9,12 +8,10 @@ export default function App(){
     return(<>
      <div className="mt-[30px] flex items-start justify-between gap-5 self-stretch md:flex-col ">
               <div className="flex w-[13%] items-center justify-center md:w-full">
-                <Img
-                  src="/images/img_pexels_christin.png"
-                  width={130}
-                  height={136}
+                <h1>{}</h1>
+                <img
                   alt="pexels christin"
-                  className="h-[136px] w-[81%] rounded-[65px] object-cover"
+                  className="h-[136px] w-[130] rounded-[65px] object-cover"
                 />
                 <Button size="md" className="relative mb-4 ml-[-28px] w-[30px] self-end rounded-[15px]">
                   <Img src="/images/img_group_194.svg" width={30} height={31} />

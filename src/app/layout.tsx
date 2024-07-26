@@ -1,16 +1,15 @@
 import "../styles/tailwind.css";
 import "../styles/index.css";
 import "../styles/font.css";
+import RootLayoutClient from './layoutRoot';
+import Provider from '@/redux/provider';
+import { Setup } from '@/components/utils'; 
 import { DataProvider } from "@/context/productContext";
-import RootLayoutClient from './RootLayoutClient';
-import { getSession } from "next-auth/react";
 async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getSession();
-  console.log(JSON.stringify(session))
   return (
     <html lang="en">
       <head>
@@ -21,7 +20,12 @@ async function RootLayout({
       </head>
       <body>
         <DataProvider>
-          <RootLayoutClient image={session?.user.image}>{children}</RootLayoutClient>
+        <Provider>
+          <Setup />
+          <RootLayoutClient>
+             {children}
+          </RootLayoutClient>
+        </Provider>
         </DataProvider>
       </body>
     </html>

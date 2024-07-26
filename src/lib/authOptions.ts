@@ -17,38 +17,38 @@ export const authOptions: NextAuthOptions = {
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     }),
-    CredentialsProvider({
-      name: 'Credentials',
-      credentials: {
-        email: { label: "Email", type: "email" },
-        password: { label: "Password", type: "password" },
-      },
-      authorize: async (credentials) => {
-        if (!credentials) {
-          return null;
-        }
+    // CredentialsProvider({
+    //   name: 'Credentials',
+    //   credentials: {
+    //     email: { label: "Email", type: "email" },
+    //     password: { label: "Password", type: "password" },
+    //   },
+    //   authorize: async (credentials) => {
+    //     if (!credentials) {
+    //       return null;
+    //     }
 
-        // Fetch user from Django backend
-        const res = await fetch('http://127.0.0.1:8000/api/auth-app/users/login/', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(credentials)
-        });
-        const user = await res.json();
+    //     // Fetch user from Django backend
+    //     const res = await fetch('http://127.0.0.1:8000/api/auth-app/users/login/', {
+    //       method: 'POST',
+    //       headers: {
+    //         'Content-Type': 'application/json'
+    //       },
+    //       body: JSON.stringify(credentials)
+    //     });
+    //     const user = await res.json();
 
-        if (res.ok && user) {
-          // Return user object with required properties
-          return { email: credentials.email, accessToken: user.access };
-        }
-        return null;
-      }
-    })
+    //     if (res.ok && user) {
+    //       // Return user object with required properties
+    //       return { email: credentials.email, accessToken: user.access };
+    //     }
+    //     return null;
+    //   }
+    // })
   ],
-  session: {
-    jwt: true,
-  },
+  // session: {
+  //   jwt: true,
+  // },
   jwt: {
     secret: process.env.JWT_SECRET,
   },
