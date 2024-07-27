@@ -1,4 +1,3 @@
-// hooks/useUser.ts
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -26,10 +25,10 @@ export const useUser = (id: string): UseUserHook => {
   useEffect(() => {
     const fetchUser = async () => {
       setLoading(true);
-      setError(null); // Reset error before fetching
+      setError(null);
 
       try {
-        const response = await axios.get<User>(`http://127.0.0.1:8000/api/auth/update/${id}/`);
+        const response = await axios.get<User>(`/api/user/${id}`);
         setUser(response.data);
       } catch (err: any) {
         setError(err?.response?.data?.message || 'Failed to fetch user');
@@ -43,11 +42,10 @@ export const useUser = (id: string): UseUserHook => {
 
   const updateUser = async (userData: Partial<User>) => {
     setLoading(true);
-    setError(null); // Reset error before updating
+    setError(null);
 
     try {
-      const response = await axios.put<User>(`http://127.0.0.1:8000/api/auth/update/${id}/`, {...userData});
-      console.log({...userData});
+      const response = await axios.put<User>(`/api/user/${id}`, userData);
       setUser(response.data);
     } catch (err: any) {
       setError(err?.response?.data?.message || 'Failed to update user');

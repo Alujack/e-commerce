@@ -5,6 +5,7 @@ import RootLayoutClient from './layoutRoot';
 import Provider from '@/redux/provider';
 import { Setup } from '@/components/utils'; 
 import { DataProvider } from "@/context/productContext";
+import { UserProvider } from '@/context/UserContext'
 async function RootLayout({
   children,
 }: {
@@ -19,6 +20,7 @@ async function RootLayout({
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body>
+      <UserProvider>
         <DataProvider>
         <Provider>
           <Setup />
@@ -27,6 +29,7 @@ async function RootLayout({
           </RootLayoutClient>
         </Provider>
         </DataProvider>
+      </UserProvider>
       </body>
     </html>
   );
