@@ -1,42 +1,33 @@
 "use client";
 import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
-import { useUser } from '@/context/UserContext';
-import { useRetrieveUserQuery } from '@/redux/features/authApiSlice';
-
-
+import { useRetrieveUserQuery, useUpdateUserMutation } from '@/redux/features/authApiSlice';
 const ProfileInformation: React.FC = () => {
-   const { data: users } = useRetrieveUserQuery();
+  const { data: userData, isLoading: isFetching, error: fetchError } = useRetrieveUserQuery();
+  const [updateUser, { isLoading: isUpdating, error: updateError, isSuccess }] = useUpdateUserMutation(); 
   const [isEditing, setIsEditing] = useState<boolean>(false);
-  const { user, updateUser, fetchUser } = useUser();
   const [formData, setFormData] = useState({
-    first_name: user?.first_name || '',
-    last_name: user?.last_name || '',
-    phone_number: user?.phone_number || '',
-    email: user?.email || '',
-    image: user?.image, // Can be a URL or File
-    id: user?.id,
+    first_name: '',
+    last_name: '',
+    phone_number: '',
+    email: '',
+    image: '', // URL or File path
+    id: '',
   });
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const userId = users ? users.id : ""; // Replace with actual user ID
-
   useEffect(() => {
-    fetchUser(userId);
-  }, [userId]);
-
-  useEffect(() => {
-    if (user) {
+    if (userData) {
       setFormData({
-        first_name: user.first_name,
-        last_name: user.last_name,
-        phone_number: user.phone_number,
-        email: user.email || '',
-        image: user.image, // Adjust as needed
-        id: user.id,
+        first_name: userData.first_name,
+        last_name: userData.last_name,
+        phone_number: userData.phone_number,
+        email: userData.email || '',
+        image: userData.image || '',
+        id: userData.id,
       });
     }
-  }, [user]);
+  }, [userData]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value, files } = e.target;
@@ -57,22 +48,19 @@ const ProfileInformation: React.FC = () => {
     }
   };
 
-  const handleSubmit = async (e: FormEvent) => {
+ const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (user) {
+    console.log(formData)
+    if (formData.id) {
       try {
-        // Prepare FormData for file upload
-        const data = new FormData();
-        data.append("first_name", formData.first_name);
-        data.append("last_name", formData.last_name);
-        data.append("phone_number", formData.phone_number);
-        data.append("email", formData.email || '');
-        data.append("id", formData.id || '');
-        if (imageFile) {
-          data.append("image", imageFile);
-        }
-
-        await updateUser(data);
+        await updateUser({
+          id: formData.id,
+          first_name: formData.first_name,
+          last_name: formData.last_name,
+          phone_number: formData.phone_number,
+          email: formData.email || '',
+          image: imageFile || undefined
+        }).unwrap(); // Call the updateUser mutation
         setIsEditing(false);
         setErrorMessage(null); // Clear error message on successful update
       } catch (error) {
@@ -82,19 +70,19 @@ const ProfileInformation: React.FC = () => {
     }
   };
 
-  if (!user) {
+  if (isFetching) {
     return <div>Loading...</div>;
   }
 
-  const toggleEditMode = () => {
-    setIsEditing(!isEditing);
-  };
+  if (fetchError) {
+    return <div>Error fetching user data</div>;
+  }
 
   return (
-    <div className="flex md:flex-col justify-between w-full gap-5 p-[84px] md:p-5 bg-gray-100_08 rounded-[10px]">
+    <div className="flex md:flex-row gap-16 justify-between w-full p-[84px] md:p-5 bg-gray-100_08 rounded-[10px]">
       <div className="flex flex-col w-[24%] md:w-full ml-14 md:ml-0">
         <div className="bg-gradient2 rounded-[77px]">
-          <img src={user?.image as string} className="h-[150px] w-[150px] rounded-[50%]" alt="User Profile" />
+          <img src={formData.image} className="w-full h-full rounded-full" alt="User Profile" />
         </div>
         <div className="flex flex-col items-end mt-[-2px] mb-[78px] relative">
           <div className="flex mr-[80px] p-2.5 md:mr-0">
@@ -109,9 +97,6 @@ const ProfileInformation: React.FC = () => {
             accept="image/*"
             onChange={handleChange}
           />
-          {formData.image && typeof formData.image === 'string' && (
-            <img src={formData.image} alt="User Profile" className=" w-[50px] rounded-full"/>
-          )}
           <div className="flex mr-[70px] self-center p-[5px]">
             <text className="mt-1.5 mb-1 !text-blue-500_01 text-center">
               Photos Requirements
@@ -119,10 +104,10 @@ const ProfileInformation: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col items-end w-[67%] md:w-full mr-[35px] gap-5 md:mr-0">
+      <div className="flex flex-col w-[67%] md:w-full mr-[35px] gap-5 md:mr-0">
         {isEditing ? (
-          <form onSubmit={handleSubmit}>
-            <div>
+          <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+            <div className="flex flex-col gap-4">
               <label>First Name</label>
               <input
                 type="text"
@@ -131,7 +116,7 @@ const ProfileInformation: React.FC = () => {
                 onChange={handleChange}
               />
             </div>
-            <div>
+            <div className="flex flex-col gap-4">
               <label>Last Name</label>
               <input
                 type="text"
@@ -140,7 +125,7 @@ const ProfileInformation: React.FC = () => {
                 onChange={handleChange}
               />
             </div>
-            <div>
+            <div className="flex flex-col gap-4">
               <label>Email</label>
               <input
                 type="email"
@@ -149,7 +134,7 @@ const ProfileInformation: React.FC = () => {
                 onChange={handleChange}
               />
             </div>
-            <div>
+            <div className="flex flex-col gap-4">
               <label>Phone Number</label>
               <input
                 type="text"
@@ -158,18 +143,25 @@ const ProfileInformation: React.FC = () => {
                 onChange={handleChange}
               />
             </div>
-            <button type="submit">Save</button>
+            <button
+              className="text-white bg-transparent w-28 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" 
+              type="submit" disabled={isUpdating} >Save</button>
+              {updateError && <p>Error updating profile. Please try again.</p>}
           </form>
         ) : (
-          <div>
+          <div className="flex flex-col gap-5">
             <p>First Name: {formData.first_name}</p>
             <p>Last Name: {formData.last_name}</p>
             <p>Email: {formData.email}</p>
             <p>Phone Number: {formData.phone_number}</p>
           </div>
         )}
-      </div>
-      <button onClick={toggleEditMode}>{isEditing ? "Cancel" : "Edit"}</button>
+         <button 
+          className="text-white bg-transparent w-28 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" 
+          onClick={() => setIsEditing(!isEditing)}>{isEditing ? "Cancel" : "Edit"}
+        </button>  
+      </div> 
+     
     </div>
   );
 };
