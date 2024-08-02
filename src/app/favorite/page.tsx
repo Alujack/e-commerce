@@ -1,16 +1,8 @@
 import AddToCartButton from "@/components/addtocartbutton";
 import { Heading, Text, Button } from "@/components";
 import {favorite} from "@/constants/product";
-import { useCart } from "@/context/cartcontext";
-import { producttype } from "@/common.type";
 
 export default function App() {
-
-
-  // const handleBuyNow = (item:producttype) => {
-  //   // Optionally, you could provide feedback to the user here
-  //   // For example, showing a toast message indicating that the item was added to the cart
-  // };
 
   return (
     <main>

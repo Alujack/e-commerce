@@ -3,6 +3,7 @@ import React from "react";
 import { CloseSVG } from "@/assets//images";
 import { Img, Input} from "./";
 import {useRouter} from "next/navigation";
+import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
 interface Props {
   className?: string;
 }
@@ -10,6 +11,7 @@ interface Props {
 export default function SellerTopBar ({ ...props }: Props) {
   const [searchBarValue, setSearchBarValue] = React.useState("");
   const router = useRouter();
+  const { data: user } = useRetrieveUserQuery();
   return (
     <header {...props}>
       <div className="flex w-full flex-col items-end ">
@@ -52,11 +54,11 @@ export default function SellerTopBar ({ ...props }: Props) {
             />
               </button>
               <img
-                src="/images/img_ellipse_40.png"
+                src={user?.image}
                 width={60}
                 height={60}
                 alt="Ellipse 40"
-                className="ml-[49px] h-[60px] w-[60px] rounded-[50%] sm:ml-0"
+                className="ml-[49px] h-[60px] w-[60px] rounded-full sm:ml-0"
               />
             </div>
           </div>

@@ -2,8 +2,7 @@
 
 import { useState, useEffect, ChangeEvent } from "react";
 import axios from "axios";
-import Link from "next/link";
-import { Img, Text, Heading, TextArea, CheckBox, Input } from "@/components";
+import {Text, Heading, TextArea} from "@/components";
 import { useRetrieveUserQuery } from '@/redux/features/authApiSlice';
 import { countries } from "countries-list";
 
@@ -24,7 +23,6 @@ interface Store {
   name: string;
   email: string;
   address: Address;
-  Stock?: any;
 }
 
 const defaultAddress: Address = {
@@ -43,7 +41,6 @@ const defaultStore: Store = {
   name: "",
   email: "",
   address: defaultAddress,
-  Stock: undefined,
 };
 
 export default function Form({ id }: { id: string }) {
@@ -53,22 +50,23 @@ export default function Form({ id }: { id: string }) {
 
   useEffect(() => {
     const fetchAddress = async () => {
-      if (userData && userData.id) {
         try {
-          const response = await axios.get(`http://localhost:8000/api/auth/addresses/${userData.id}`);
-          console.log(response.data[0]);
-          setFormData(prevData => ({
-            ...prevData,
-            address: response.data[0],
-          }));
+          const response = await axios.get(`http://localhost:8000/api/auth/addresses/${id}`);
+          if(response){
+             console.log(response.data);
+             setFormData(prevData => ({
+              ...prevData,
+              address: response.data,
+          })); 
+          }
+         
         } catch (error) {
           console.log('Failed to fetch address', error);
         }
-      }
     };
 
     fetchAddress();
-  }, [userData]);
+  }, [id]);
 
   const onChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const target = e.target as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
@@ -96,7 +94,7 @@ export default function Form({ id }: { id: string }) {
     console.log(formData);
     if (userData && userData.id) {
         try {
-          const response = await axios.post(`http://localhost:8000/api/store/manage/stores/${userData.id}/`, formData);
+          const response = await axios.post(`http://localhost:8000/api/store/manage/stores/${id}/`, formData);
         } catch (error) {
           console.log('Failed to fetch stores', error);
         }

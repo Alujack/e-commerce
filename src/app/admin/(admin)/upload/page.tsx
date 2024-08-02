@@ -30,7 +30,7 @@ const UploadForm: React.FC = () => {
             id="file"
             accept="image/*"
             onChange={handleFileChange}
-            className="border border-gray-300 w-full h-full rounded-lg p-2 w-full hidden"
+            className="border border-gray-300 w-full h-full rounded-lg p-2 hidden"
           />         
         </div>
         {file && (

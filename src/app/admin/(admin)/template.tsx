@@ -1,4 +1,5 @@
-
+'use client'
+import React from "react"
 import  AdminTopbar from "@/components/admintopbar";
 import Sidebar from "@/components/sidebar";
 import { ADMIN_MENU } from "@/constants/link";

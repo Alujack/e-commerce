@@ -82,7 +82,7 @@ const ProfileInformation: React.FC = () => {
     <div className="flex md:flex-row gap-16 justify-between w-full p-[84px] md:p-5 bg-gray-100_08 rounded-[10px]">
       <div className="flex flex-col w-[24%] md:w-full ml-14 md:ml-0">
         <div className="bg-gradient2 rounded-[77px]">
-          <img src={formData.image} className="w-full h-full rounded-full" alt="User Profile" />
+          <img src={formData.image} className="h-[150px] w-[150px] rounded-full" alt="User Profile" />
         </div>
         <div className="flex flex-col items-end mt-[-2px] mb-[78px] relative">
           <div className="flex mr-[80px] p-2.5 md:mr-0">

@@ -12,7 +12,7 @@ import { CloseSVG } from "../assets/images";
 import { Heading, Img, Input, Text } from ".";
 
 export default function Header() {
-  const { data: user } = useRetrieveUserQuery();
+  const { data: userData } = useRetrieveUserQuery();
   const dispatch = useAppDispatch();
   const [logout] = useLogoutMutation();
   const { isAuthenticated } = useAppSelector(state => state.auth);
@@ -84,7 +84,7 @@ export default function Header() {
             // onMouseEnter={() => isAuthenticated && setMenuOpen(true)}
             className="rounded-lg"
           >
-            {isAuthenticated ? <img src="/images/user.png" className="h-[35px]"/> : <span className="bg-gray-200 px-4 p-2"> Sign In</span>}
+            {isAuthenticated ? <img src={userData?.image? userData.image : "/images/user.png"} className="h-[40px] w-[40px] rounded-full"/> : <span className="bg-gray-200 px-4 p-2"> Sign In</span>}
           </button>
           {menuOpen && isAuthenticated && (
             <div className="absolute right-0 mt-2 w-48 bg-orange-200 border-gray-300 shadow-lg z-10">
