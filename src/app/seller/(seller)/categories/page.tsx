@@ -123,19 +123,20 @@ export default function Categroy({params}:{params:{id:string}}) {
       />
       <div className="scrollable-div grid grid-cols-3 gap-4 sm:flex flex-col">
         {categories?.map((category, index) => (
-          <div key={index} className="bg-white-A700 flex flex-col items-center gap-[10px] w-full border-2 p-[5px] rounded-md">
+          <div key={index} className="h-[372px] bg-white-A700 flex flex-col items-center gap-[10px] w-full border-2 p-5 rounded-md">
             <Link href={`categories/${category.id}`}>     
             <img
               src={category?.image}
               alt="image"
-              className="w-[270px] h-[250px]"
+              className="w-full h-[250px]"
             />
             </Link>
             <h1 className='font-inter text-2xl font-bold'>{category.category_name}</h1>
-            <div className = "flex flex-row w-full justify-between px-2">
-              <button onClick={openAddVariation} className=" bg-blue-500 hover:bg-blue-700 text-[#d3fee0] font-bold p-4 px-8 rounded">+ Add variation</button>
-              <button onClick={openModal} className="  bg-blue-500 hover:bg-blue-700 text-[#d3fee0] font-bold p-4 px-8 rounded">+ Add Category</button>
-            </div>      
+              <button 
+                onClick={openModal} 
+                className="  bg-blue-500 hover:bg-blue-700 text-[#d3fee0] font-bold p-4 px-8 rounded"
+                >+ Add Child Category
+              </button>     
           </div>
         ))}
       </div>
