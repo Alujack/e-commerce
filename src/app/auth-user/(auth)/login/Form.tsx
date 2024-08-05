@@ -1,7 +1,6 @@
 "use client"
 
-import { ImGoogle, ImFacebook } from 'react-icons/im';
-import { Text, Button, Img, CheckBox, Heading } from "@/components/.";
+import { Text,CheckBox, Heading } from "@/components/.";
 import Link from "next/link";
 import { Spinner } from '@/components/common';
 import { useLogin } from '@/hooks';

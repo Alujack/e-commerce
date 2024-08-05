@@ -3,7 +3,7 @@ import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import { useRetrieveUserQuery, useUpdateUserMutation } from '@/redux/features/authApiSlice';
 const ProfileInformation: React.FC = () => {
   const { data: userData, isLoading: isFetching, error: fetchError } = useRetrieveUserQuery();
-  const [updateUser, { isLoading: isUpdating, error: updateError, isSuccess }] = useUpdateUserMutation(); 
+  const [updateUser, { isLoading: isUpdating, error: updateError}] = useUpdateUserMutation(); 
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [formData, setFormData] = useState({
     first_name: '',

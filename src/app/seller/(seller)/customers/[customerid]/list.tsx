@@ -12,7 +12,7 @@ export default function List(){
           <p className="self-start ">
               May 5, 4:20 PM
           </p>
-          <p className="self-start text-[#f3e1ff] text-orange-500 p-[3px]">
+          <p className="self-start text-[#f3e1ff] p-[3px]">
               pending
           </p>
           <p  className="self-start ">

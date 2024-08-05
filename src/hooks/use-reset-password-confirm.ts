@@ -1,3 +1,4 @@
+"use client"
 import { useState, ChangeEvent, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import { useResetPasswordConfirmMutation } from '@/redux/features/authApiSlice';

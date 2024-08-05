@@ -7,8 +7,7 @@ export default function Sale({
 children    
 }:{children:React.ReactNode}) {
   return (
-    <div className="w-full">
-      <div className="flex items-start md:flex-col">
+      <div className="flex items-start  md:flex-col px-10">
         <SideBar menu={SELLER_MENU}/>
         <div className="w-px h-full bg-indigo-50_03" />
         <div className="flex-1 md:self-stretch md:p-5">
@@ -16,6 +15,5 @@ children
            {children}
         </div>
       </div>
-    </div>
   );
 }

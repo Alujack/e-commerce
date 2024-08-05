@@ -1,5 +1,5 @@
 "use client"
-import { useState, useEffect, useContext, ChangeEvent } from 'react';
+import React, { useState, useEffect, useContext, ChangeEvent } from 'react';
 import { DataContext } from '@/context/productContext';
 
 interface FormData {

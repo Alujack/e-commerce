@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, ChangeEvent } from "react";
+import React,{ useState, useEffect, ChangeEvent } from "react";
 import axios from "axios";
 import { Text } from "@/components";
 import { countries } from "countries-list";

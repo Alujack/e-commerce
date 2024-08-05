@@ -11,7 +11,7 @@ export default function ProductStock(){
 
   return (
     <>
-            <div className="flex flex-col gap-[29px] p-[23px] sm:p-5">
+            <div className="flex flex-col bg-white-A700_01 gap-[29px] p-[23px] sm:p-5 rounded-[10px]">
               <div className="mt-[10px] flex flex-row justify-between ">
                  <h1 className ="text-[28px] text-[#343C6A] font-bold inter decoration-8">
                     Product Stock
@@ -87,24 +87,23 @@ export default function ProductStock(){
                   
                 </div>
                  <div className="h-2 w-full bg-indigo-50_03" />
-                <div className="rounded-bl-[14px] rounded-br-[14px] border border-solid border-blue_gray-800 py-6 sm:py-5 mr-[37px]">
-                 <Stockpro/>
-                 <Stockpro/>
-                 <Stockpro/>
-                 <Stockpro/>
-                 <Stockpro/>
-                 <Stockpro/>
+                    <div className="rounded-bl-[14px] rounded-br-[14px] border border-solid border-blue_gray-800 py-6 sm:py-5 mr-[37px]">
+                    <Stockpro/>
+                    <Stockpro/>
+                    <Stockpro/>
+                    <Stockpro/>
+                    <Stockpro/>
+                    <Stockpro/>
+                    </div>
                 </div>
-              </div>
               <div className="mb-[3px] flex items-center justify-between gap-5">
                 <p className="flex flex-row">
                  <span><img src="/images/left-arrow.png" alt=""  className="h-[20px]" /></span>
-                   &nbsp;	&nbsp; 1 &nbsp;	&nbsp; 2  &nbsp;	&nbsp; 3  	&nbsp;&nbsp;   4  	&nbsp;&nbsp;   5  
-                   	&nbsp;&nbsp;   6  	&nbsp;&nbsp;   7  	&nbsp;&nbsp;  ...  	&nbsp;&nbsp;  123  	&nbsp; 
+                   &nbsp;	&nbsp;1&nbsp;&nbsp;2&nbsp;&nbsp;3&nbsp;&nbsp;4&nbsp;&nbsp;5&nbsp;&nbsp;6&nbsp;&nbsp;7&nbsp;&nbsp;...&nbsp;&nbsp;123&nbsp; 
                  <span><img src="/images/right-arrow.png" alt=""  className="h-[20px]" /></span>     
                 </p>          
                 <Img src="/images/img_television.svg" alt="television_one" className="h-[30px] w-[8%]" />
-              </div>///
+              </div>
             </div>
     </>
   );

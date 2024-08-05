@@ -86,12 +86,12 @@ export default function App(){
                 <input type="radio" />
 
               </div>
-              <div className="flex flex-col gap-[25px] border-2 border-2 border-sky-500 p-[10px]">
+              <div className="flex flex-col gap-[25px] border-2  border-sky-500 p-[10px]">
                 <h1>Tags</h1>
                 <input type="text" placeholder="Enter tag name"/>
                 <h1>Women Clothes</h1>
               </div>
-              <div className="flex flex-col gap-[25px] border-2 border-2 border-sky-500 p-[10px]">
+              <div className="flex flex-col gap-[25px] border-2 border-sky-500 p-[10px]">
                 <h1>SEO Tags</h1>
                 <input type="text" placeholder="Enter tag name"/>
                 <h1>Description</h1>

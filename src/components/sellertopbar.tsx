@@ -14,8 +14,8 @@ export default function SellerTopBar ({ ...props }: Props) {
   const { data: user } = useRetrieveUserQuery();
   return (
     <header {...props}>
-      <div className="flex w-full flex-col items-end ">
-        <div className="flex self-stretch bg-white-A700_01 p-5">
+      <div className="flex w-full flex-col bg-slate-200 rounded-lg items-end ">
+        <div className="flex self-stretch  p-5">
           <div className="mx-auto flex w-full items-center justify-between gap-5 md:flex-col">
             <h1 className ="text-[28px] text-[#343C6A] font-bold inter decoration-8">
               Overview
@@ -57,7 +57,7 @@ export default function SellerTopBar ({ ...props }: Props) {
                 src={user?.image}
                 width={60}
                 height={60}
-                alt="Ellipse 40"
+                alt="Profile"
                 className="ml-[49px] h-[60px] w-[60px] rounded-full sm:ml-0"
               />
             </div>

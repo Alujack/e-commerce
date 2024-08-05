@@ -2,6 +2,7 @@
 
 import { Text, Img, Heading, Input, Button } from "@/components";
 import Link from "next/link";
+import Stockpro from "./stockproduct";
 
 const data = [{ rectangle22: "/images/img_rectangle_22.png" }, { rectangle22: "/images/img_rectangle_22_235x350.png" }];
 const data1 = [
@@ -204,6 +205,48 @@ export default function MainDashboard() {
               />
             </div>
           </div>
+
+        </div>
+        <div className="flex flex-col p-5 bg-white-A700_01 rounded-[15px]">
+          <div className="flex flex-row justify-between mb-8">
+            <h1 className ="text-[28px] text-[#343C6A] font-bold inter decoration-8">Product Post</h1>
+            <div className="flex flex-rows judtify-between">
+               <button className="bg-gray-200 text-black p-4 px-8 rounded-lg hover:bg-gray-300  mr-4">
+                    Edit
+                  </button>
+                  <Link href="/seller/product-post" className="bg-blue-500 hover:bg-blue-700 text-[#d3fee0] font-bold p-4 px-8  rounded">
+                    View
+                  </Link>
+            </div>
+          </div>
+          <div className="flex items-center justify-between gap-5 mr-40">
+                  <div className="ml-7 flex w-[30%] flex-wrap justify-between gap-5 self-end md:ml-0 md:w-full">
+                    <Heading as="p" className="mr-[37px] self-end !font-bold md:mr-0">
+                      Product
+                  </Heading>          
+                  </div>
+                  <div className="flex w-[65%] justify-between gap-5 self-end md:w-full">
+                    <Heading as="h4" className="self-end !font-bold">
+                      ID Product
+                    </Heading>
+                     <Heading as="h4" className="self-end !font-bold">
+                      Price
+                    </Heading>
+                    <Heading as="h5" className="self-start !font-bold">
+                      Stock
+                    </Heading>
+                  </div>
+          </div>
+           <div className="h-2 w-full bg-indigo-50_03" />
+             <div className="rounded-bl-[14px] rounded-br-[14px] border border-solid border-blue_gray-800 py-6 sm:py-5 mr-[37px]">
+                    <Stockpro/>
+                    <Stockpro/>
+                    <Stockpro/>
+                    <Stockpro/>
+                    <Stockpro/>
+                    <Stockpro/>
+                    </div>       
+
         </div>
       </div>
     </div>

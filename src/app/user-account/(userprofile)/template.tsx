@@ -1,3 +1,4 @@
+import React from "react"
 import {Text, Heading } from "@/components";
 import Link from "next/link";
 import { PROFILE_MENU } from "@/constants/link";
@@ -26,9 +27,9 @@ children
                             </Text>
                           </div>
                         </div>
-                        {PROFILE_MENU.map((menu)=>(
+                        {PROFILE_MENU.map((menu, index)=>(
                           
-                        <div className="flex self-stretch active:bg-sky-500 justify-between hover:bg-sky-500 items-center mt-[10px]  bg-gray-100_01 rounded-lg p-[10px]">
+                        <div key={index} className="flex self-stretch active:bg-sky-500 justify-between hover:bg-sky-500 items-center mt-[10px]  bg-gray-100_01 rounded-lg p-[10px]">
                           <Text as="p" className=" mb-1.5 !text-black-900_02 text-center">
                             <Link href={menu.href} >{menu.label} </Link>
                           </Text>

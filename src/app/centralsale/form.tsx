@@ -95,6 +95,9 @@ export default function Form({ id }: { id: string }) {
     if (userData && userData.id) {
         try {
           const response = await axios.post(`http://localhost:8000/api/store/manage/stores/${id}/`, formData);
+          if(response){
+            console.log(response.data);
+          }
         } catch (error) {
           console.log('Failed to fetch stores', error);
         }

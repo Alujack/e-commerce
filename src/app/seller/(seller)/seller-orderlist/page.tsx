@@ -2,7 +2,7 @@
 
 import {useState} from "react";
 import { CloseSVG } from "@/assets/images";
-import { Img, Heading, Input } from "@/components";
+import { Img,Input } from "@/components";
 import List from "./list"
 export default function ProductStock(){
 

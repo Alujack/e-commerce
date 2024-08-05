@@ -1,7 +1,6 @@
 "use client"
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Img, Button, Text, Input, SelectBox } from "@/components";
 import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
 
 interface Address {

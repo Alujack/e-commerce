@@ -1,3 +1,4 @@
+"use client"
 import { useEffect, useRef } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useAppDispatch } from '@/redux/hooks';
