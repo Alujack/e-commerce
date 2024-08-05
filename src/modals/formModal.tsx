@@ -4,27 +4,28 @@ import React, { ChangeEvent, FormEvent, useState, useCallback } from 'react';
 type FormField = {
   name: string;
   label: string;
-  type: 'text' | 'email' | 'file'; // Add more types as needed
+  type: 'text' | 'email' | 'file' | 'select'; // Added 'select' type
+  options?: string[]; // Options for select input
 };
 
 type DynamicModalProps = {
-  heading:string;
+  heading: string;
   isVisible: boolean;
   onClose: () => void;
   formFields: FormField[];
   onSubmit: (formData: { [key: string]: string | File | null }) => void;
 };
 
-const FormModal: React.FC<DynamicModalProps> = ({ heading,isVisible, onClose, formFields, onSubmit }) => {
+const DynamicModal: React.FC<DynamicModalProps> = ({ heading, isVisible, onClose, formFields, onSubmit }) => {
   const [formData, setFormData] = useState<{ [key: string]: string | File | null }>(() =>
-    formFields.reduce((acc, field) => ({ ...acc, [field.name]: '' }), {})
+    formFields.reduce((acc, field) => ({ ...acc, [field.name]: field.type === 'select' ? '' : '' }), {})
   );
 
   const [isDragging, setIsDragging] = useState(false);
   const [offset, setOffset] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
   const [position, setPosition] = useState<{ top: number; left: number }>({ top: 100, left: 100 });
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+ const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value, type, files } = e.target;
     setFormData((prevData) => ({
       ...prevData,
@@ -33,7 +34,6 @@ const FormModal: React.FC<DynamicModalProps> = ({ heading,isVisible, onClose, fo
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-
     e.preventDefault();
     console.log(formData);
     onSubmit(formData);
@@ -77,7 +77,7 @@ const FormModal: React.FC<DynamicModalProps> = ({ heading,isVisible, onClose, fo
       style={{ top: 0, left: 0, right: 0, bottom: 0 }}
     >
       <div
-        className="bg-white-A700 rounded-lg shadow-lg p-6 w-full max-w-md relative"
+        className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md relative"
         style={{ top: `${position.top}px`, left: `${position.left}px` }}
         onMouseDown={handleMouseDown}
       >
@@ -107,7 +107,7 @@ const FormModal: React.FC<DynamicModalProps> = ({ heading,isVisible, onClose, fo
               <label htmlFor={field.name} className="block text-sm font-medium text-gray-700">
                 {field.label}
               </label>
-              {field.type === 'file' ? (
+             {field.type === 'file' ? (
                 <input
                   type="file"
                   id={field.name}
@@ -115,6 +115,21 @@ const FormModal: React.FC<DynamicModalProps> = ({ heading,isVisible, onClose, fo
                   onChange={handleChange}
                   className="mt-1 block w-full text-sm"
                 />
+              ) : field.type === 'select' ? (
+                <select
+                  id={field.name}
+                  name={field.name}
+                  value={formData[field.name] as string || ''}
+                  onChange={handleChange}
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                >
+                  <option value="" disabled>Select an option</option>
+                  {field.options?.map(option => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
               ) : (
                 <input
                   type={field.type}
@@ -139,4 +154,4 @@ const FormModal: React.FC<DynamicModalProps> = ({ heading,isVisible, onClose, fo
   );
 };
 
-export default FormModal;
+export default DynamicModal;

@@ -12,7 +12,7 @@ export default function SideBar({menu}:{menu:{href:string;label:string;icon:stri
           width="252px !important"
           collapsedWidth="80px !important"
           collapsed={collapsed}
-          className="flex h-screen flex-col overflow-auto border-r-4 border-indigo-500 py-[30px]"
+          className="flex h-screen flex-col overflow-auto py-[30px]"
         >
           <Img src="/images/img_logo.png" width={195} height={40} alt="Logo" className="mt-1 h-[40px] w-[87%] object-cover mb-[20px]" />
           <Menu

@@ -1,3 +1,4 @@
+"use client"
 import { useSocialAuthenticateMutation } from '@/redux/features/authApiSlice';
 import { useSocialAuth } from '@/hooks';
 import { Spinner } from '@/components/common';
