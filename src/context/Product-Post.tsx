@@ -24,6 +24,7 @@ interface Stock {
 
 interface ProductImage {
   url: File | null;
+  angle: string;
 }
 
 interface ProductContextProps {
@@ -62,10 +63,10 @@ const ProductPostProvider = ({ children }: { children: ReactNode }) => {
   const [productItems, setProductItems] = useState<ProductItem[]>([]);
   const [stocks, setStocks] = useState<Stock[]>([]);
   const [productImages, setProductImages] = useState<ProductImage[]>([
-    { url: null },
-    { url: null },
-    { url: null },
-    { url: null },
+    { url: null, angle: 'front' },
+    { url: null, angle: 'back' },
+    { url: null, angle: 'left' },
+    { url: null, angle: 'right' },
   ]);
 
   return (

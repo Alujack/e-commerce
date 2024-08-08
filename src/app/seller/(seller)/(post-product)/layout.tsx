@@ -6,10 +6,45 @@ import StepLabel from '@mui/material/StepLabel';
 import { STEPS} from "@/constants/link";
 import { useRouter } from 'next/navigation';
 import Link from "next/link";
-
+import {useProduct} from "@/context/Product-Post";
+import {useState} from "react"
+import axios from 'axios';
 export default function App({children}:{children:React.ReactNode}) {
     const [activeStep, setActiveStep] = React.useState(0);
+    const [actionButton, setActionButton] = useState("Continue")
     const router = useRouter();
+    const {
+         product,
+         variations,
+         productItems,
+         variationOptions, 
+         stocks, 
+         productImages,
+         productId} = useProduct();
+
+   const dataSubmit = {
+      product: {
+        product_id: product.id,
+        name: product.name,
+        description: product.description,
+        price: product.price,
+      },
+      product_items: productItems.map(item => ({
+        product: item.product,
+        variation_option: item.variation_option,
+      })),
+      stocks: stocks.map(stock => ({
+        product_item_variation: {
+          product: stock.product_item_variation.product,
+          variation_option: stock.product_item_variation.variation_option,
+        },
+        quantity: stock.quantity,
+      })),
+      product_images: productImages.map(image => ({
+        url: image.url,
+        angle: image.angle,
+      })),
+    };
 
     const handleStep = (step: number) => () => {
         setActiveStep(step);
@@ -21,8 +56,20 @@ export default function App({children}:{children:React.ReactNode}) {
         if (nextStep < STEPS.length) {
             setActiveStep(nextStep);
             router.push(STEPS[nextStep].href); // Navigate to the next route
+        }else{
+            setActionButton("Publish")
         }
     };
+    const onSubmit = async ()=>{
+        const response = await axios.post(`http://localhost:8000/api/product/store/product/post/${product.id}/`,dataSubmit, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        }
+        });
+        if(response.status == 201){
+            console.log("succesfully")
+        }
+    }
     return (
         <>
          <Stepper activeStep={activeStep} alternativeLabel>
@@ -55,9 +102,9 @@ export default function App({children}:{children:React.ReactNode}) {
                     </button>
                     <button 
                         className="bg-blue-600 text-white px-8 rounded-lg hover:bg-blue-700"
-                        onClick={handleContinue} 
+                        onClick={actionButton=="Continue"? handleContinue : onSubmit} 
                     >
-                        Continue
+                        {actionButton}
                     </button>
                     </div>
                 </div>               

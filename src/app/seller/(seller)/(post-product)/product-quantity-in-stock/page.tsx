@@ -10,11 +10,14 @@ interface VariationOption {
 }
 
 const QuantityInStock: React.FC = () => {
-  const { product, variations, setProductItems, setStocks, stocks } = useProduct();
+  const { product, variations, setProductItems, setStocks, stocks,productItems,categoryId,productImages } = useProduct();
   const [variationId, setVariationId] = useState<string>("");
   const [variationOptionId, setVariationOptionId] = useState<string>("");
   const [quantity, setQuantity] = useState<number>(0);
   const [variationOptionList, setVariationOptionList] = useState<VariationOption[]>([]);
+  const data ={
+    product,variations,stocks,productItems,categoryId,productImages
+  }
 
   useEffect(() => {
     const fetchVariationOptions = async () => {
@@ -43,7 +46,7 @@ const QuantityInStock: React.FC = () => {
     setVariationOptionId(selectedOptionId);
 
     if (selectedOptionId) {
-      setProductItems([{ product: product.id, variation_option: selectedOptionId }]);
+      setProductItems([...productItems,{ product: product.id, variation_option: selectedOptionId }]);
     }
   };
 
@@ -63,7 +66,7 @@ const QuantityInStock: React.FC = () => {
   };
 
   const ConsoleLog = () => {
-    console.log(stocks);
+    console.log(data);
   };
 
   return (

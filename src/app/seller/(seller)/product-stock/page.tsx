@@ -44,7 +44,7 @@ export default function ProductStock() {
 
     fetchProducts();
   }, [store.id]);
-
+  
   const handleConfirmDelete = async () => {
     handleCloseConfirm(); // Close the modal
     const productIds = Array.from(selectedProducts);
@@ -96,6 +96,12 @@ export default function ProductStock() {
       console.error("Please select exactly one product to post");
     }
   };
+  const PostProduct = async () =>{
+    const response = await axios.post(`http://localhost:8000/api/product/store/product/publish/${productId}/`)
+    if(response){
+      console.log("sucess");
+    }
+  }
 
   return (
     <div className="flex flex-col bg-white-A700_01 gap-[29px] p-[23px] sm:p-5 rounded-[10px] ml-[5%]">
@@ -111,6 +117,7 @@ export default function ProductStock() {
           <button onClick={handlePost} className="bg-green-500 hover:bg-green-700 text-[#d3fee0] font-bold px-4 rounded">
             Post
           </button>
+          <button onClick={PostProduct} className="bg-green-500 hover:bg-green-700 text-[#d3fee0] font-bold px-4 rounded " >Post Product</button>
         </div>
       </div>
       <div className="flex flex-row justify-between">

@@ -96,6 +96,8 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
   try {
+    console.log("Form categories before submission:", form.categories);
+    
     const formData = new FormData();
     formData.append("product_id", form.product_id);
     formData.append("name", form.name);
@@ -109,8 +111,9 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
     form.categories.forEach((category, index) => {
       formData.append(`categories`, category);
     });
+    console.log("FormData object before submission:", Array.from(formData.entries()));
 
-    const response = await axios.post("http://localhost:8000/api/product/create/", formData, {
+    const response = await axios.post("http://localhost:8000/api/product/products/", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -119,7 +122,6 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
     if (response.status === 201) {
       console.log("Product created successfully:", response.data);
       handleOpenSuccess();
-      // Redirect or perform other actions
     } else {
       console.log("Error creating product:", response.status);
     }
@@ -127,6 +129,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
     console.log("Error submitting form:", error);
   }
 };
+
 
 
 
