@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import FormModal from '@/modals/formModal';
 import axios from 'axios';
 import Link from "next/link";
+import { useStore } from '@/context/Store';
+import SuccessModal from '@/modals/SucessModal';
 
 type FormField = {
   name: string;
@@ -26,16 +28,21 @@ interface Category {
   image?: string;
 };
 
-export default function Category({ params }: { params: { id: string } }) {
+export default function Category() {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isAddVariationOpen, setIsAddVariationOpen] = useState<boolean>(false);
   const [categories, setCategories] = useState<Category[]>([]);
   const [selectedParentCategoryId, setSelectedParentCategoryId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const {store} = useStore();
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
   const closeAddVariation = () => setIsAddVariationOpen(false);
+
+  const [showSuccess, setShowSuccess] = useState(false);
+  const handleOpenSuccess = () => setShowSuccess(true);
+  const handleCloseSuccess = () => setShowSuccess(false);
 
   const handleSubmit = async (formData: { [key: string]: string | File | null }) => {
     try {
@@ -51,7 +58,7 @@ export default function Category({ params }: { params: { id: string } }) {
         data.append('parent_category', selectedParentCategoryId);
       }
       console.log(data);
-      const response = await axios.post('http://localhost:8000/api/product/category/', data, {
+      const response = await axios.post(`http://localhost:8000/api/product/category/${store.id}/`, data, {
         headers: {
           'Content-Type': 'multipart/form-data',
         }
@@ -61,6 +68,7 @@ export default function Category({ params }: { params: { id: string } }) {
         const createdCategory = response.data;
         setCategories((prevCategories) => [...prevCategories, createdCategory]);
         closeModal();
+        handleOpenSuccess();
       } else {
         console.error('Submission failed:', response);
       }
@@ -74,7 +82,7 @@ export default function Category({ params }: { params: { id: string } }) {
   useEffect(() => {
     const fetchCategory = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/product/category/");
+        const response = await axios.get(`http://localhost:8000/api/product/category/${store.id}/`);
         if (response) {
           const data = response.data.map((category: Category) => ({
             ...category,
@@ -127,14 +135,21 @@ export default function Category({ params }: { params: { id: string } }) {
         formFields={VariationForm}
         onSubmit={handleSubmit}
       />
-      <div className="scrollable-div grid grid-cols-5 gap-2 sm:flex flex-col">
+       <SuccessModal
+        show={showSuccess}
+        onClose={handleCloseSuccess}
+        heading="Sucess!"
+        message="You Create Category successfully."
+        back={false}
+      />
+      <div className="scrollable-div grid grid-cols-5 gap-10 sm:flex flex-col">
         {categories?.map((category, index) => (
-          <div key={index} className="h-[150px] w-[150px] bg-white-A700 flex flex-col items-center border-2 rounded-md">
+          <div key={index} className="h-[250px] w-[250px] bg-white-A700 flex flex-col items-center border-2 rounded-md">
             <Link href={`categories/${category.id}`}>
               <img
                 src={category?.image}
                 alt="image"
-                className="h-full w-full p-2"
+                className="h-[150px] p-2"
               />
             </Link>
             <h1 className='font-inter text-xl font-bold'>{category.category_name}</h1>

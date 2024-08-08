@@ -4,6 +4,7 @@ import React,{ useState, useEffect, ChangeEvent } from "react";
 import axios from "axios";
 import { Text } from "@/components";
 import { countries } from "countries-list";
+import SuccessModal from "@/modals/SucessModal";
 
 interface Address {
   house_number?: string;
@@ -33,6 +34,11 @@ const defaultAddress: Address = {
 const FormComponent = ({ id }: { id: string }) => {
   const [formData, setFormData] = useState<Address | undefined>(defaultAddress);
   const countryArray = Object.values(countries);
+   const [showSuccess, setShowSuccess] = useState(false);
+
+  const handleOpenSuccess = () => setShowSuccess(true);
+  const handleCloseSuccess = () => setShowSuccess(false);
+
 
   useEffect(() => {
     const fetchAddress = async () => {
@@ -65,6 +71,7 @@ const FormComponent = ({ id }: { id: string }) => {
       const response = await axios.post(`http://localhost:8000/api/auth/addresses/${id}/`, formData);
       if (response) {
         console.log("Address submitted successfully");
+        handleOpenSuccess();
       } else {
         console.error("Failed to submit address");
       }
@@ -227,6 +234,12 @@ const FormComponent = ({ id }: { id: string }) => {
       >
         Save Changes
       </button>
+       <SuccessModal
+        show={showSuccess}
+        onClose={handleCloseSuccess}
+        heading="Sucess!"
+        message="Your Address updated successfully."
+      />
     </div>
   );
 };

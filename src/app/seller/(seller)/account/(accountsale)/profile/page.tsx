@@ -2,85 +2,16 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
-
-interface Address {
-  house_number: string;
-  street_number: string;
-  village: string;
-  commune: string;
-  district: string;
-  city: string;
-  postal_code: string;
-  country: string;
-  phone_number: string;
-  additional_info?: string;
-}
-
-interface Store {
-  name: string;
-  email: string;
-  address: Address;
-}
-
-const defaultAddress: Address = {
-  house_number: "",
-  street_number: "",
-  village: "",
-  commune: "",
-  district: "",
-  city: "",
-  postal_code: "",
-  country: "",
-  phone_number: "",
-};
-
-const defaultStore: Store = {
-  name: "",
-  email: "",
-  address: defaultAddress,
-};
-
+import { useFetchStore } from "@/hooks/useFetchStore";
 export default function App() {
-  const { data: userData } = useRetrieveUserQuery();
-  const [formData, setFormData] = useState<Store>(defaultStore);
-   const [isDisabled, setIsDisabled] = useState(true);
-
-  useEffect(() => {
-    const fetchAddress = async () => {
-      try {
-        const response = await axios.get(`http://localhost:8000/api/store/manage/stores/${userData?.id}`);
-        if(response.data)
-          setFormData(response.data);
-        setFormData(defaultStore);
-      } catch (error) {
-        console.log('Failed to fetch address', error);
-      }
-    };
-
-    if (userData) {
-      fetchAddress();
-    }
-  }, [userData]);
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      address: {
-        ...prevData.address,
-        [name]: value,
-      },
-    }));
-  };
-
+    const { data: userData } = useRetrieveUserQuery();
+const {
+    store,
+    isDisabled,
+    setIsDisabled,
+    handleInputChange,
+    handleAddressChange,
+  } = useFetchStore();
 return (
   <>
     <div className="mt-[30px] flex items-start justify-between gap-5 self-stretch md:flex-col">
@@ -153,7 +84,7 @@ return (
                 disabled={isDisabled}
                 type="text"
                 name="house_number"
-                value={formData.address.house_number}
+                value={store.address.house_number}
                 placeholder="House Number"
                 onChange={handleAddressChange}
                 className="w-full border-none"
@@ -162,7 +93,7 @@ return (
                 disabled={isDisabled}
                 type="text"
                 name="street_number"
-                value={formData.address.street_number}
+                value={store.address.street_number}
                 placeholder="Street Number"
                 onChange={handleAddressChange}
                 className="w-full border-none mt-2"
@@ -171,7 +102,7 @@ return (
                 disabled={isDisabled}
                 type="text"
                 name="village"
-                value={formData.address.village}
+                value={store.address.village}
                 placeholder="Village"
                 onChange={handleAddressChange}
                 className="w-full border-none mt-2"
@@ -187,7 +118,7 @@ return (
                 disabled={isDisabled}
                 type="text"
                 name="postal_code"
-                value={formData.address.postal_code}
+                value={store.address.postal_code}
                 placeholder="Postal Code"
                 onChange={handleAddressChange}
                 className="w-full border-none"
@@ -206,7 +137,7 @@ return (
                   disabled={isDisabled}
                   type="text"
                   name="store_name"
-                  value={formData.name}
+                  value={store.name}
                   placeholder="Store Name"
                   onChange={handleInputChange}
                   className="w-full border-none"
@@ -222,7 +153,7 @@ return (
                   disabled={isDisabled}
                   type="text"
                   name="house_number"
-                  value={formData.address.house_number}
+                  value={store.address.house_number}
                   placeholder="House Number"
                   onChange={handleAddressChange}
                   className="w-full border-none"
@@ -231,7 +162,7 @@ return (
                   disabled={isDisabled}
                   type="text"
                   name="street_number"
-                  value={formData.address.street_number}
+                  value={store.address.street_number}
                   placeholder="Street Number"
                   onChange={handleAddressChange}
                   className="w-full border-none mt-2"
@@ -240,7 +171,7 @@ return (
                   disabled={isDisabled}
                   type="text"
                   name="village"
-                  value={formData.address.village}
+                  value={store.address.village}
                   placeholder="Village"
                   onChange={handleAddressChange}
                   className="w-full border-none mt-2"
@@ -256,7 +187,7 @@ return (
                   disabled={isDisabled}
                   type="text"
                   name="city"
-                  value={formData.address.city}
+                  value={store.address.city}
                   placeholder="City"
                   onChange={handleAddressChange}
                   className="w-full border-none"
@@ -273,7 +204,7 @@ return (
                 disabled={isDisabled}
                 type="text"
                 name="country"
-                value={formData.address.country}
+                value={store.address.country}
                 placeholder="Country"
                 onChange={handleAddressChange}
                 className="w-full border-none"

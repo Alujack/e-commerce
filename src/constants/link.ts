@@ -10,9 +10,11 @@ export const NAVLINK=[
 
 export const STEPS =[
     {href:"/seller/add-product", label:"Product Information"},
-    {href:"/seller/product-detail", label:"Product Detail Information"},
-    {href:"/seller/product-variation", label:"Product Variant Creation"},
-    // {href:"/seller/discount-product", label:"Purchase Discounts"}
+    {href:"/seller/product-image", label:"Product Image Side"},
+    {href:"/seller/product-category", label:"Product Category Information"},
+    {href:"/seller/product-variation", label:"Product Variantion Creation"},
+    {href:"/seller/product-quantity-in-stock", label:"Product Stock Control"}
+  
 ]
 export const SELLER_MENU = [
     {href:"/seller/maindash", label:"Dashboard", icon:"/images/img_home.svg"},

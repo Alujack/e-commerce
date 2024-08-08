@@ -16,7 +16,7 @@ type DynamicModalProps = {
   onSubmit: (formData: { [key: string]: string | File | null }) => void;
 };
 
-const DynamicModal: React.FC<DynamicModalProps> = ({ heading, isVisible, onClose, formFields, onSubmit }) => {
+const FormModal: React.FC<DynamicModalProps> = ({ heading, isVisible, onClose, formFields, onSubmit }) => {
   const [formData, setFormData] = useState<{ [key: string]: string | File | null }>(() =>
     formFields.reduce((acc, field) => ({ ...acc, [field.name]: field.type === 'select' ? '' : '' }), {})
   );
@@ -77,7 +77,7 @@ const DynamicModal: React.FC<DynamicModalProps> = ({ heading, isVisible, onClose
       style={{ top: 0, left: 0, right: 0, bottom: 0 }}
     >
       <div
-        className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md relative"
+        className="bg-white-A700 rounded-lg shadow-lg p-6 w-full max-w-md relative"
         style={{ top: `${position.top}px`, left: `${position.left}px` }}
         onMouseDown={handleMouseDown}
       >
@@ -154,4 +154,4 @@ const DynamicModal: React.FC<DynamicModalProps> = ({ heading, isVisible, onClose
   );
 };
 
-export default DynamicModal;
+export default FormModal;

@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import FormModal from '@/modals/formModal'; // Ensure this import path is correct
 import axios from 'axios';
-
+import SuccessModal from '@/modals/SucessModal';
 type FormField = {
   name: string;
   label: string;
@@ -11,11 +11,11 @@ type FormField = {
 
 const formFields: FormField[] = [
   { name: 'attribute_type', label: 'category name', type: 'text' },
-  { name: 'product', label: 'Product ', type: 'select' },
+  { name: 'value', label:'Variation Values (comma-separated)', type: 'text' },
 ];
 const addformFields: FormField[] = [
   { name: 'category_name', label: 'Attribute Type', type: 'text' },
-  { name: 'product', label: 'Variation Values (comma-separated)', type: 'text' },
+  { name: 'product', label: 'Product', type: 'select' },
 ];
 
 interface Category {
@@ -33,34 +33,28 @@ interface Variation {
   attribute_type: string;
   variation_option: VariationOption[];
 }
-
-interface VariationsByCategory {
-  variations: Variation[];
+interface product{
+  name:string;
+  image:string;
 }
 
 export default function CategoryDetail({ params }: { params: { id: string } }) {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isAddModalOpen, setIsAddModalOpen] = useState<boolean>(false);
   const [category, setCategory] = useState<Category>();
-  const [variationsState, setVariationsState] = useState<VariationsByCategory>({ variations: [] });
+  const [variations, setVariations] = useState<Variation[]>([]);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const Products=[
-    {
-      id:'1',
-      name:'Product 1',
-      src:'/images/product/1.headphone.png'
-    },
-    {
-      id:'2',
-      name:'Product 2',
-      src:'/images/product/1.headphone.png'
-    }
-  ]
+  const [Products, setProducts] = useState<product[]>([]);
+
 
   const openModal = () => setIsModalOpen(true);
   const openAddModal = () => setIsAddModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
   const closeAddModal = () => setIsAddModalOpen(false);
+
+  const [showSuccess, setShowSuccess] = useState(false);
+  const handleOpenSuccess = () => setShowSuccess(true);
+  const handleCloseSuccess = () => setShowSuccess(false);
 
 
   const handleSubmit = async (formData: { [key: string]: string | File | null }) => {
@@ -86,9 +80,10 @@ export default function CategoryDetail({ params }: { params: { id: string } }) {
           body: JSON.stringify(payload),
         });
         const data = await response.json();
-        console.log('Success:', data);
+        console.log('Success:', data);  
         // Handle success, e.g., show a success message or update state
         closeModal();
+        handleOpenSuccess();
       } catch (error) {
         console.error('Error:', error);
         // Handle error, e.g., show an error message
@@ -121,14 +116,29 @@ export default function CategoryDetail({ params }: { params: { id: string } }) {
     const fetchVariations = async () => {
       try {
         const response = await axios.get(`http://localhost:8000/api/product/category/variations/${params.id}`);
-        console.log(response.data.variations)
-        setVariationsState({ variations: response.data.variations });
+        console.log(response.data)
+        setVariations(response.data);
       } catch (error) {
         console.error('Error fetching variations:', error);
       }
     };
 
     fetchVariations();
+  }, [params.id]);
+  
+
+   useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8000/api/product/category/product/${params.id}`);
+        console.log(response.data)
+        setProducts(response.data);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
+
+    fetchProducts();
   }, [params.id]);
 
 
@@ -139,6 +149,9 @@ export default function CategoryDetail({ params }: { params: { id: string } }) {
   const handleDropdownToggle = (attributeType: string) => {
     setOpenDropdown((prev) => (prev === attributeType ? null : attributeType));
   };
+  const getImageUrl = (path:string) => {
+  return `http://localhost:8000${path}`;
+};
 
   return (
     <>
@@ -156,13 +169,20 @@ export default function CategoryDetail({ params }: { params: { id: string } }) {
         formFields={formFields}
         onSubmit={handleSubmit}
       />
+       <SuccessModal
+        show={showSuccess}
+        onClose={handleCloseSuccess}
+        heading="Sucess!"
+        message="You Create Variontions successfully."
+        back={false}
+      />
       <div className="flex flex-col gap-[29px] p-[23px] sm:p-5">
         <div className="mt-[10px] flex flex-row justify-between">
           <h1 className="text-[28px] text-[#343C6A] font-bold inter decoration-8">
             {category?.category_name}
           </h1>
           <div>
-            <button className="bg-gray-200 text-black p-4 px-8 rounded-lg hover:bg-gray-300 mr-4">
+            <button className="self-center bg-gray-200 text-black p-4 px-8 rounded-lg hover:bg-gray-300 mr-4">
               Cancel
             </button>
             <button
@@ -179,19 +199,19 @@ export default function CategoryDetail({ params }: { params: { id: string } }) {
           <h2 className="w-full bg-white-A700 pl-12 py-4 rounded-lg items-center self-center text-[18px] text-[#343C6A] font-bold inter decoration-8">
             Variations
           </h2>
-          {variationsState.variations.map((variation, index) => (
+          {variations.map((variation, index) => (
             <div key={index} className="bg-blue-400 p-4">
               <h2
-                className="text-[16px] text-white-A700 font-bold inter decoration-8 cursor-pointer"
+                className="text-[18px] text-white-A700 font-bold inter decoration-8 cursor-pointer"
                 onClick={() => handleDropdownToggle(variation.attribute_type)}
               >
                 {variation.attribute_type}
               </h2>
               {openDropdown === variation.attribute_type && (
-                <ul className="list-disc pl-4">
+                <ul className="list-disc pl-4 mt-4">
                   {variation.variation_option.map((option) => (
-                    <li key={option.id} className="text-gray-800">
-                      Value: {option.value}
+                    <li key={option.id} className="text-gray-800 m-2">
+                      {variation.attribute_type}: {option.value}
                     </li>
                   ))}
                 </ul>
@@ -201,28 +221,24 @@ export default function CategoryDetail({ params }: { params: { id: string } }) {
         </div>
         <div className="flex flex-col  bg-white-A700 rounded-xl w-full gap-3 ml-[10%] p-4">
           <h2 className="text-[18px] text-[#343C6A] font-bold inter decoration-8">Product</h2>
-          {Products.map((product,index) =>(
-            <div key={index} className="h-[60px] flex flex-row justify-between p-4 border border-gray-600 rounded-lg">
-                <div className= "flex flex-row  p-4 ">
-                    <img src={product?.src} alt="" className="w-[87px] self-center" />
-                    <h1 className="text-[14px] text-[#343C6A] font-bold inter decoration-8 self-center"> {product?.name}</h1>
-                </div>
-                <div className="self-center">
-                      <button className="  self-center text-black rounded-lg p-2">
-                        <img src="/images/edit.png" className="w-[70%]" />
-                      </button>
-                      <button
-                        onClick={Delete}
-                        className=" text-black p-4 rounded-lg hover:bg-gray-300 mr-4"
-                      >
-                        X
-                      </button>
-                </div>
-            </div>
-          ))}  
+          {Products.map((product, index) => {
+                const imageUrl = getImageUrl(product?.image);
+                return (
+                  <div key={index} className="h-[60px] flex flex-row justify-between p-4 border border-gray-600 rounded-lg mx-10">
+                    <div className="flex flex-row gap-10 ">
+                      <img src={imageUrl} alt="product" className="h-full bg-clip-padding" />
+                      <h1 className="text-[14px] text-[#343C6A] font-bold inter decoration-8 self-center">
+                        {product?.name}
+                      </h1>
+                    </div>
+                    <div className="self-center">
+                    </div>
+                  </div>
+                );
+              })}
          <button
             onClick={openAddModal}
-            className=" text-black p-4 rounded-lg hover:bg-gray-300 mr-4"
+            className=" text-black p-4 rounded-lg hover:bg-gray-300 mx-10"
             >
             + add product
           </button>

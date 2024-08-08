@@ -42,7 +42,7 @@ export default function SellerTopBar ({ ...props }: Props) {
                 }
                 className="gap-[15px] text-indigo-200_01 sm:px-5"
               />
-              <button className=" bg-indigo-500 text-[#d3fee0] ml-[35px] p-[10px]" onClick={() => router.push("/seller/add-product")} >+ Add Product</button>
+              <button className=" bg-indigo-500 text-[#d3fee0] ml-[35px] p-[10px]" onClick={() => router.push("/seller/add-product")} >+ Post Product</button>
               <button  className="ml-[27px] ">
                <img src="/images/message.png" className = "w-full"/>
               </button>

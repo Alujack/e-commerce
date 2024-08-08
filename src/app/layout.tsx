@@ -10,6 +10,9 @@ import { UserProvider } from '@/context/UserContext'
 import { StoreProvider } from '@/context/Store';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import {ProductProvider} from '@/context/Product-in-store';
+import { ProductPostProvider } from "@/context/Product-Post";
+
 async function RootLayout({
   children,
 }: {
@@ -24,12 +27,14 @@ async function RootLayout({
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body>
+        <ProductPostProvider>
       <UserProvider>
         <DataProvider>
         <Provider>
           <Setup />
            <StoreProvider>
           < CartProvider>
+          <ProductProvider>
            <div className="flex flex-col w-full gap-[11px] bg-gray-300_06">
             <div className="flex flex-col w-full gap-[5px] mx-auto md:p-5 sm:p-1 bg-gray-300_06 max-w-[100wv] px-3 py-0">
               <Header/>
@@ -39,11 +44,14 @@ async function RootLayout({
               </main>
             </div>
           </div>
+          </ProductProvider>
           </ CartProvider>
           </StoreProvider>
         </Provider>
         </DataProvider>
       </UserProvider>
+      </ProductPostProvider>
+     
       </body>
     </html>
   );

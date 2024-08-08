@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import { useRetrieveUserQuery, useUpdateUserMutation } from '@/redux/features/authApiSlice';
+import SuccessModal from "@/modals/SucessModal";
 const ProfileInformation: React.FC = () => {
   const { data: userData, isLoading: isFetching, error: fetchError } = useRetrieveUserQuery();
   const [updateUser, { isLoading: isUpdating, error: updateError}] = useUpdateUserMutation(); 
@@ -15,6 +16,10 @@ const ProfileInformation: React.FC = () => {
   });
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  const [showSuccess, setShowSuccess] = useState(false);
+  const handleOpenSuccess = () => setShowSuccess(true);
+  const handleCloseSuccess = () => setShowSuccess(false);
 
   useEffect(() => {
     if (userData) {
@@ -50,7 +55,6 @@ const ProfileInformation: React.FC = () => {
 
  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    console.log(formData)
     if (formData.id) {
       try {
         await updateUser({
@@ -63,6 +67,7 @@ const ProfileInformation: React.FC = () => {
         }).unwrap(); // Call the updateUser mutation
         setIsEditing(false);
         setErrorMessage(null); // Clear error message on successful update
+        handleOpenSuccess()
       } catch (error) {
         console.error('Error updating user:', error);
         setErrorMessage('Failed to update user. Please try again.');
@@ -80,6 +85,12 @@ const ProfileInformation: React.FC = () => {
 
   return (
     <div className="flex md:flex-row gap-16 justify-between w-full p-[84px] md:p-5 bg-gray-100_08 rounded-[10px]">
+      <SuccessModal
+        show={showSuccess}
+        onClose={handleCloseSuccess}
+        heading="Success!"
+        message="Your account updated successfully."
+      />
       <div className="flex flex-col w-[24%] md:w-full ml-14 md:ml-0">
         <div className="bg-gradient2 rounded-[77px]">
           <img src={formData.image} className="h-[150px] w-[150px] rounded-full" alt="User Profile" />

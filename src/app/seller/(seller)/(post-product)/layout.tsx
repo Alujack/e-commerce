@@ -23,12 +23,9 @@ export default function App({children}:{children:React.ReactNode}) {
             router.push(STEPS[nextStep].href); // Navigate to the next route
         }
     };
-    console.log(STEPS[1].href);
-
     return (
         <>
-
-            <Stepper activeStep={activeStep} alternativeLabel>
+         <Stepper activeStep={activeStep} alternativeLabel>
 
                 {STEPS.map((step, index) => (
                     <Step key={index} onClick={handleStep(index)}>
@@ -43,7 +40,7 @@ export default function App({children}:{children:React.ReactNode}) {
                 ))}
             </Stepper>
             <div className="w-full items-center">
-                <main>{children}</main>
+                <main className="mt-10">{children}</main>
                 <div className="flex justify-between px-64 py-16 ">
                 <button 
                     className="bg-gray-200 text-gray-700  py-4 px-8 rounded-lg hover:bg-gray-300 border-2 border-sky-500"
@@ -63,10 +60,8 @@ export default function App({children}:{children:React.ReactNode}) {
                         Continue
                     </button>
                     </div>
-                </div>
-                
+                </div>               
             </div>
-
         </>
     );
 }

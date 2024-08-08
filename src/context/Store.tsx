@@ -1,6 +1,7 @@
 "use client"
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import axios from 'axios';
+import { useRetrieveUserQuery } from '@/redux/features/authApiSlice';
 
 interface Address {
   house_number: string;
@@ -16,15 +17,16 @@ interface Address {
 }
 
 interface Store {
+  id:string;
   name: string;
   email: string;
+  seller:string;
   address: Address;
   Stock?: any;
 }
 
 interface StoreContextProps {
   store: Store;
-  fetchStore: (id: string) => Promise<void>;
   updateStore: (id: string, data: Store) => Promise<void>;
   createStore: (data: Store) => Promise<void>;
   setStore: React.Dispatch<React.SetStateAction<Store>>;
@@ -41,9 +43,13 @@ export const useStore = () => {
 };
 
 export const StoreProvider = ({ children }: { children: ReactNode }) => {
+  const {data:userData} = useRetrieveUserQuery();
+  const userid = userData? userData.id : "";
   const [store, setStore] = useState<Store>({
+    id:'',
     name: '',
     email: '',
+    seller:'',
     address: {
       house_number: '',
       street_number: '',
@@ -54,18 +60,21 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
       postal_code: '',
       country: '',
       phone_number: '',
-    },
-    Stock: undefined,
-  });
-
-  const fetchStore = async (id: string) => {
-    try {
-      const response = await axios.get(`http://localhost:8000/api/store/manage/stores/${id}/`);
-      setStore(response.data);
-    } catch (error) {
-      console.error('Failed to fetch store', error);
     }
+  });
+  
+  useEffect(()=>{
+    const fetchStore = async () => {
+        try {
+          const response = await axios.get(`http://localhost:8000/api/store/manage/stores/${userid}/`);
+          setStore(response.data);
+        } catch (error) {
+          console.error('Failed to fetch store', error);
+        }
   };
+  fetchStore();
+  },[userid])
+ 
 
   const updateStore = async (id: string, data: Store) => {
     try {
@@ -84,7 +93,7 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <StoreContext.Provider value={{ store, fetchStore, updateStore, createStore, setStore }}>
+    <StoreContext.Provider value={{ store, updateStore, createStore, setStore }}>
       {children}
     </StoreContext.Provider>
   );

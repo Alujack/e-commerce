@@ -26,10 +26,10 @@ export default function card({...props}: Props){
                     <div className="flex flex-row justify-between mb-8">
                         <h1 className ="text-[28px] text-[#343C6A] font-bold inter decoration-8">Edit Postt</h1>
                         <div className="flex flex-rows judtify-between">
-                        <button className="bg-gray-200 text-black p-4 px-8 rounded-lg hover:bg-gray-300  mr-4">
+                            <button onClick={closeModal} className="bg-gray-200 text-black p-2 px-2 rounded-lg hover:bg-gray-300  mr-4">
                                 Cancel
                             </button>
-                            <button className="bg-blue-500 hover:bg-blue-700 text-[#d3fee0] font-bold p-4 px-8  rounded">
+                            <button className="bg-blue-500 hover:bg-blue-700 text-[#d3fee0] font-bold p-2 px-2  rounded">
                                 Save
                             </button>
                         </div>
@@ -54,12 +54,6 @@ export default function card({...props}: Props){
                                     <label className="text-[#343C6A] self-center font-bold inter decoration-8">Product Category : </label>
                                     <div className="bg-slate-200 border-2 border-b-blue-500 p-1" >
                                         <input type="text" value="" placeholder=" Product category" className="w-full p-2 rounded-lg border border-gray-500"/>
-                                    </div>
-                                </div>
-                                <div className="flex flex-row gap-5">
-                                    <label className="text-[#343C6A] self-center font-bold inter decoration-8">Expired Date : </label>
-                                    <div className="bg-slate-200 border-2 border-b-blue-500 p-1" >
-                                        <input type="text" value="" placeholder=" Expired Date" className="w-full p-2 rounded-lg border border-gray-500"/>
                                     </div>
                                 </div>
                                 <div className="flex flex-row gap-5">

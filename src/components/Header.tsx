@@ -52,13 +52,11 @@ export default function Header() {
         <div className="flex items-center gap-[3px] sm:">
           <Img src="/images/img_emotion_1_30x35.png" alt="emotionone_one" className="object-cover h-10 w-15" />
           <div>
-            <Heading
-              size="5xl"
-              as="h5"
-              className="!text-transparent tracking-[-0.28px] !font-semibold bg-gradient1 bg-clip-text sm:1xl"
+            <h5
+              className="!text-transparent font-bold font-poppins text-2xl bg-gradient1 bg-clip-text sm:1xl"
             >
               TECHNESS@
-            </Heading>
+            </h5>
           </div>
         </div>
         <Input
@@ -100,7 +98,7 @@ export default function Header() {
           <div className="flex items-center gap-2">
             <a href="https://www.google.com/maps/search/Cambodia%2Frupp/@11.5677402,104.8886219,17z/data=!3m1!4b1?entry=ttu" target="_blank">
               <Img src="/images/img_location_marker.svg" alt="locationmarker" className="h-[24px] w-[24px]" />
-              <Text as="p" className="!text-blue_gray-900_01 tracking-[-0.08px]">Cambodia</Text>
+              <p className="text-gray-700 text-lg">Cambodia</p>
             </a>
           </div>
         </div>
