@@ -72,15 +72,6 @@ export default function ProductStock(){
                     <List/>
                 </div>
               </div>
-              {/* <div className="mb-[3px] flex items-center justify-between gap-5">
-                <p className="flex flex-row">
-                 <span><img src="/images/left-arrow.png" alt=""  className="h-[20px]" /></span>
-                   &nbsp;	&nbsp; 1 &nbsp;	&nbsp; 2  &nbsp;	&nbsp; 3  	&nbsp;&nbsp;   4  	&nbsp;&nbsp;   5  
-                   	&nbsp;&nbsp;   6  	&nbsp;&nbsp;   7  	&nbsp;&nbsp;  ...  	&nbsp;&nbsp;  123  	&nbsp; 
-                 <span><img src="/images/right-arrow.png" alt=""  className="h-[20px]" /></span>     
-                </p>          
-                <Img src="/images/img_television.svg" alt="television_one" className="h-[30px] w-[8%]" />
-              </div> */}
             </div>
     </>
   );

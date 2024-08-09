@@ -7,7 +7,7 @@ export default function App() {
     const router = useRouter();
 
     return (
-        <div className="flex flex-col gap-[29px] p-[23px] sm:p-5">
+        <div className="bg-slate-50 flex flex-col gap-[29px] p-[23px] sm:p-5 ml-12 rounded-lg">
             <h1 className="text-[28px] text-[#343C6A] font-bold inter decoration-8">
                 Customer Information
             </h1>
@@ -29,17 +29,17 @@ export default function App() {
                     </div>
                     <h1 className="text-3xl">Customer Orders</h1>
                     <div>
-                        <div className="ml-[7%] flex items-center justify-between gap-5 mr-[15%]">
-                            <div className="w-[25%] flex justify-between gap-5 self-start">
-                                <h4 className="self-start !font-bold">ID Product</h4>
+                        <div className="bg-slate-300  flex gap-5 p-3  ">
+                            <div className="w-[25%] gap-5 ">
+                                <h4 className="!font-bold">ID Product</h4>
                             </div>
-                            <div className="flex w-full justify-between gap-5 self-end mb-[10px]">
-                                <h4 className="self-start !font-bold">Date</h4>
-                                <h4 className="self-start !font-bold">Order Status</h4>
-                                <h4 className="self-start !font-bold">Price</h4>
+                            <div className="flex w-full justify-between gap-5  mb-[10px]">
+                                <h4 className="self-start !font-bold ml-6">Date</h4>
+                                <h4 className="self-start !font-bold ml-10">Order Status</h4>
+                                <h4 className="self-start !font-bold mr-20">Price</h4>
                             </div>
                         </div>
-                        <div className="gap-6 rounded-bl-[14px] rounded-br-[14px] border border-solid border-blue_gray-800 py-6 sm:py-5">
+                        <div className="gap-6 rounded-bl-[14px] rounded-br-[14px] border-2 border-solid border-blue_gray-800 py-6 sm:py-5">
                             <List />
                             <List />
                             <List />

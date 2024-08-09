@@ -13,7 +13,7 @@ interface Product {
 }
 
 export default function ProductPost() {
-    const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState<Product[]>([]);
     const { store } = useStore();
     useEffect(() => {
     const fetchProducts = async () => {

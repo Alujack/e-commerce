@@ -1,8 +1,12 @@
 "use client"
 
+
+import {useState, useEffect} from "react"
 import { Text, Img, Heading, Input, Button } from "@/components";
 import Link from "next/link";
 import Stockpro from "./stockproduct";
+import axios from "axios";
+import { useStore } from "@/context/Store";
 
 const data = [{ rectangle22: "/images/img_rectangle_22.png" }, { rectangle22: "/images/img_rectangle_22_235x350.png" }];
 const data1 = [
@@ -25,8 +29,31 @@ const data1 = [
     january2021: "21 January 2021",
   },
 ];
+interface Product {
+  id: string;
+  name: string;
+  image: string;
+  price: number;
+  categories: string;
+  product_id: string;
+}
 
 export default function MainDashboard() {
+    const [products, setProducts] = useState<Product[]>([]);
+    const {store} = useStore();
+    useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8000/api/store/product/publishing/${store.id}`);
+        console.log(response.data);
+        setProducts(response.data);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
+  }, [store.id]);
   return (
     <div>
       <div className="flex w-full flex-col gap-[37px] p-[25px] sm:pb-5 bg-blue_gray-50">
@@ -219,7 +246,8 @@ export default function MainDashboard() {
                   </Link>
             </div>
           </div>
-          <div className="flex items-center justify-between gap-5 mr-40">
+          <div className ="w-full mx-[5%]">
+          <div className="flex items-center justify-between gap-5  p-3 bg-slate-400 mr-36 px-9">
                   <div className="ml-7 flex w-[30%] flex-wrap justify-between gap-5 self-end md:ml-0 md:w-full">
                     <Heading as="p" className="mr-[37px] self-end !font-bold md:mr-0">
                       Product
@@ -238,15 +266,10 @@ export default function MainDashboard() {
                   </div>
           </div>
            <div className="h-2 w-full bg-indigo-50_03" />
-             <div className="rounded-bl-[14px] rounded-br-[14px] border border-solid border-blue_gray-800 py-6 sm:py-5 mr-[37px]">
-                    <Stockpro/>
-                    <Stockpro/>
-                    <Stockpro/>
-                    <Stockpro/>
-                    <Stockpro/>
-                    <Stockpro/>
-                    </div>       
-
+             <div className="rounded-bl-[14px] rounded-br-[14px] border border-solid border-blue_gray-800 py-6 sm:py-5 mr-36">
+                {products.map((product)=>(<Stockpro key={product.id} product={product}/>))}                          
+             </div>       
+        </div>
         </div>
       </div>
     </div>

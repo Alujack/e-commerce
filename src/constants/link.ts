@@ -19,7 +19,8 @@ export const STEPS =[
 export const SELLER_MENU = [
     {href:"/seller/maindash", label:"Dashboard", icon:"/images/img_home.svg"},
     {href:"/seller/seller-orderlist", label:"Order Lists", icon:"/images/img_shopping_list_10849906.png"},
-    {href:"/seller/product-stock", label:"Product", icon:"/images/img_stock_12515239_1.png"},
+    {href:"/seller/product-post", label:"Published Product", icon:"/images/img_shopping_list_10849906.png"},
+    {href:"/seller/product-stock", label:"Product in Store", icon:"/images/img_stock_12515239_1.png"},
     {href:"/seller/categories", label:"Categories", icon:"/images/img_credit_card_1.png"},
     {href:"/seller/customers", label:"Customers", icon:"/images/img_user_1177568_1.png"},
     {href:"/seller/draft", label:"Draft", icon:"/images/img_power_10904887_1.png"},

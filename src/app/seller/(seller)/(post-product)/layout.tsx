@@ -23,26 +23,25 @@ export default function App({children}:{children:React.ReactNode}) {
          productId} = useProduct();
 
    const dataSubmit = {
-      product: {
-        product_id: product.id,
-        name: product.name,
-        description: product.description,
-        price: product.price,
+      "product": {
+        "name": product.name,
+        "description": product.description,
+        "price": product.price,
       },
-      product_items: productItems.map(item => ({
-        product: item.product,
-        variation_option: item.variation_option,
+      "product_items": productItems.map(item => ({
+        "product": item.product,
+        "variation_option": item.variation_option,
       })),
-      stocks: stocks.map(stock => ({
-        product_item_variation: {
-          product: stock.product_item_variation.product,
-          variation_option: stock.product_item_variation.variation_option,
+      "stocks": stocks.map(stock => ({
+        "product_item_variation": {
+          "product": stock.product_item_variation.product,
+          "variation_option": stock.product_item_variation.variation_option,
         },
-        quantity: stock.quantity,
+        "quantity": stock.quantity,
       })),
-      product_images: productImages.map(image => ({
-        url: image.url,
-        angle: image.angle,
+      "product_images": productImages.map(image => ({
+        "url": image.url,
+        "angle": image.angle,
       })),
     };
 
@@ -61,10 +60,11 @@ export default function App({children}:{children:React.ReactNode}) {
         }
     };
     const onSubmit = async ()=>{
+        console.log(dataSubmit)
         const response = await axios.post(`http://localhost:8000/api/product/store/product/post/${product.id}/`,dataSubmit, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        }
+       headers: {
+            'Content-Type': 'application/json',
+        },
         });
         if(response.status == 201){
             console.log("succesfully")

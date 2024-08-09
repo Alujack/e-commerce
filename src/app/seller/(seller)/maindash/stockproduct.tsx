@@ -1,29 +1,33 @@
 
 import { Img, Heading } from "@/components";
+interface Product {
+  id: string;
+  name: string;
+  image: string;
+  price: number;
+  categories: string;
+  product_id: string;
+}
 
-export default function Stockpro() {
+export default function Stockpro({product}:{product:Product}) {
   return (
-      <div className="ml-7 flex flex-row justify-between items-center mb-[10px]">
+      <div className="ml-7 flex flex-row justify-between items-center mb-[10px] ">
         <input type="checkbox"/>
-        <div className="w-[25%] flex justify-between gap-5 self-start ">
-          <Img src="/images/product/1.headphone.png" alt="headphone" className="h-[64px] w-[31%] object-cover" />
+        <div className="w-[25%] flex  gap-5 self-start ">
+          <Img src={`http://localhost:8000/${product.image}`} alt="headphone" className="h-[64px] w-[31%] object-cover" />
           <Heading as="h1" className="mt-5 text-center">
-            Head Phone  <br/>
-            <p>Apple</p>
+           {product.name}
           </Heading>
         </div>     
-       <div className="flex w-[65%] justify-between gap-5">
+       <div className="ml-[10%] flex w-[65%] justify-between gap-5 p-3 px-9 bg-slate-100 rounded">
           <Heading as="h4" className="top-0 self-end !font-bold">
-                45
-            </Heading>
-            <Heading as="h4" className="self-end !font-bold">
-                white
+                {product.product_id}
             </Heading>
             <Heading as="h5" className="self-end !font-bold">
-                100
+                {product.price}
             </Heading>
             <Heading as="p" className="self-end !font-bold md:mr-0">
-                1002
+                45
             </Heading>
         </div>
       </div>
