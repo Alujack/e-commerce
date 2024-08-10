@@ -10,7 +10,7 @@ export default function ProductStock(){
 
   return (
     <>
-            <div className="flex flex-col gap-[29px] p-[23px] sm:p-5">
+            <div className="flex flex-col gap-[29px] p-[23px] bg-slate-50 sm:p-5 ml-[5%] rounded-lg">
               <div className="flex flex-row justify-between items-center ml-[5%] mr-[5%] ">
                 <div className="flex gap-[6px] justify-between">
                   <h1>Filter</h1>
@@ -48,7 +48,7 @@ export default function ProductStock(){
               </div>
               
               <div>
-                <div className="ml-[7%] flex items-center justify-between gap-5 mr-[15%] ">  
+                <div className="ml-[7%] flex items-center justify-between border-b-slate-600 gap-5 mr-[15%] ">  
                     <div className="w-[25%] flex justify-between gap-5 self-start ">
                        <h4 className="self-start !font-bold">ID Product </h4>
                     </div>
@@ -60,7 +60,7 @@ export default function ProductStock(){
                     <h4 className="self-start !font-bold ">Total</h4>
                   </div>
                 </div>
-                <div className="gap-6 rounded-bl-[14px] rounded-br-[14px] border border-solid border-blue_gray-800  py-6 sm:py-5">
+                <div className="gap-6 rounded-bl-[14px] rounded-br-[14px] border-2 border-solid border-blue_gray-800  py-6 sm:py-5">
                     <List/>
                     <List/>
                     <List/>

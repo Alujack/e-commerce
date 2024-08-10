@@ -9,6 +9,7 @@ import Link from "next/link";
 import {useProduct} from "@/context/Product-Post";
 import {useState} from "react"
 import axios from 'axios';
+import ShareModal from '@/modals/publish';
 export default function App({children}:{children:React.ReactNode}) {
     const [activeStep, setActiveStep] = React.useState(0);
     const [actionButton, setActionButton] = useState("Continue")
@@ -44,6 +45,7 @@ export default function App({children}:{children:React.ReactNode}) {
         "angle": image.angle,
       })),
     };
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleStep = (step: number) => () => {
         setActiveStep(step);
@@ -60,16 +62,24 @@ export default function App({children}:{children:React.ReactNode}) {
         }
     };
     const onSubmit = async ()=>{
-        console.log(dataSubmit)
+        
         const response = await axios.post(`http://localhost:8000/api/product/store/product/post/${product.id}/`,dataSubmit, {
        headers: {
             'Content-Type': 'application/json',
         },
         });
         if(response.status == 201){
-            console.log("succesfully")
+            console.log("succesfully");
+            setIsModalOpen(true);
+            router.push('/seller/product-post')
         }
     }
+    const PostProduct = async () =>{
+    const response = await axios.post(`http://localhost:8000/api/product/store/product/draft/${product.id}/`)
+    if(response){
+      console.log("sucess");
+    }
+  }
     return (
         <>
          <Stepper activeStep={activeStep} alternativeLabel>
@@ -86,16 +96,20 @@ export default function App({children}:{children:React.ReactNode}) {
                     </Step>
                 ))}
             </Stepper>
+
+            <ShareModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
             <div className="w-full items-center">
                 <main className="mt-10">{children}</main>
                 <div className="flex justify-between px-64 py-16 ">
-                <button 
-                    className="bg-gray-200 text-gray-700  py-4 px-8 rounded-lg hover:bg-gray-300 border-2 border-sky-500"
-                    >
-                    Cancel
+                    <button 
+                        onClick={()=>router.push("/seller/maindash")}
+                        className="bg-gray-200 text-gray-700  py-4 px-8 rounded-lg hover:bg-gray-300 border-2 border-sky-500"
+                        >
+                        Cancel
                     </button>
                     <div className="flex space-x-2">
                     <button 
+                    onClick={PostProduct}
                         className="bg-gray-200 text-gray-70 px-8  py-4 rounded-lg hover:bg-gray-300 border-2 border-sky-500"
                     >
                         Draft

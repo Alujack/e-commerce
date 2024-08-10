@@ -17,7 +17,7 @@ export default function App() {
                         <div className="flex flex-row items-center gap-[20px]">
                             <img src="/images/img_image_2.png" alt="null" className="w-[120px]" />
                             <div className="flex-flex-col">
-                                <h1 className="text-3xl">Yoeurn Yan</h1>
+                                <h1 className="text-3xl text-gray-800 font-bold mb-3">Yoeurn Yan</h1>
                                 <p>Phnom Penh</p>
                                 <p>5 orders</p>
                                 <p>Customer for 4 years</p>

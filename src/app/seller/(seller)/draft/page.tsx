@@ -1,19 +1,35 @@
 "use client"
-
-import ProductCard from "./card"
+import {useState, useEffect} from "react"
 import {useRouter} from "next/navigation"
-const product = {
-  id:22,
-  src:"/images/product/22.res-T-shirt.jpg",
-  subtitle:"Extra Bas",
-  title:"Red-T-shirt",
-  price:70,
-  qty:1,
-  discription:" shirts offer a blend of style, comfort, and practicality, making them a wardrobe staple for people of all ages and lifestyles. Whether you're dressing for work, leisure, or special occasions, a well-chosen shirt can enhance your look and confidence.",
-
+import ProductCard from "./card";
+import axios from "axios";
+import { useStore } from "@/context/Store";
+interface Product {
+  id: string;
+  name: string;
+  image: string;
+  price: number;
+  categories: string;
+  product_id: string;
 }
-export default function App(){
-  const router = useRouter();
+
+export default function ProductPost() {
+    const router = useRouter();
+    const [products, setProducts] = useState<Product[]>([]);
+    const { store } = useStore();
+    useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8000/api/store/product/draft/${store.id}/`);
+        console.log(response.data);
+        setProducts(response.data);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
+  }, [store.id]);
     return (
     <>
      <div className="flex flex-col gap-[29px] p-[23px] sm:p-5">
@@ -28,7 +44,9 @@ export default function App(){
                 </div>
             </div>
             <div className= "grid grid-cols-3 gap-4 sm:flex flex-col">
+              {products.map((product) => (
                 <ProductCard items={product}/>
+                ))}
             </div>
         </div>
  </>)

@@ -189,3 +189,11 @@ input:focus {
     text-align: justify;
     padding: 0;
 }
+.onscroll{
+    height: 1000px;
+    width: 100%;
+    overflow-y: scroll;
+    margin: 0;
+    text-align: justify;
+    padding: 0;
+}

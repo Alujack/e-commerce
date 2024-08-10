@@ -13,7 +13,7 @@ export default function ProductStock() {
     };
 
     return (
-        <div className="flex flex-col bg-white-A700 gap-[29px] p-[23px] sm:p-5 rounded-[15px]">
+        <div className="flex flex-col bg-white-A700 gap-[29px] p-[23px] mx-[4%] sm:p-5 rounded-[15px]">
             <div className="mt-[10px] flex flex-row justify-between">
                 <h1 className="text-[28px] text-[#343C6A] font-bold inter decoration-8">
                     Customer

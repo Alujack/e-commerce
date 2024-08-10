@@ -37,9 +37,9 @@ const { productId, product, setProduct } = useProduct();
         {product.image && (
           <div className="mt-2">
             <img
-              src={product.image}
+              src={`http://localhost:8000/${product.image}`}
               alt="Preview"
-              className="w-full h-48 object-cover"
+              className="w-48 h-48 object-cover"
             />
           </div>
         )}

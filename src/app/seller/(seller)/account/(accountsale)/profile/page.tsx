@@ -1,6 +1,5 @@
 "use client"
-import { useEffect, useState } from "react";
-import axios from "axios";
+
 import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
 import { useFetchStore } from "@/hooks/useFetchStore";
 export default function App() {

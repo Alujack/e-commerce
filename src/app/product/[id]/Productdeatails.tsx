@@ -3,24 +3,24 @@ import {useState} from "react";
 import { Text, Heading, Button, Img } from "@/components";
 import Cartlabel from "@/components/cartlabel";
 import {useCart} from "@/context/cartcontext"
-import { producttype } from "@/common.type";
-export default function ProductDetails({product}:{product:producttype}) {
+import { Product } from "@/context/productDetail";
+export default function ProductDetails({product}:{product:Product | null}) {
     const [count,setCount] = useState(1);
-
     const {cartItems, setCartItems} = useCart();
+    console.log(product)
   return (
     <>
-      <div key = {product?.id} className="w-full bg-gray-300_07">
+      <div className="w-full bg-gray-300_07">
         <div className="flex flex-col gap-3">
           <div className="flex flex-col w-full gap-3 mx-auto md:p-5 max-w-[95%]">
-            
+    
             <div className="flex md:flex-col items-end gap-[9px] p-3.5 bg-white-A700 rounded-[10px]">
               <div className="flex flex-col items-start md:self-stretch mt-[37px] pb-[22px] sm:pb-5 flex-1">
                 <Button color="gray_900_01" size="xs" shape="round" className="uppercase min-w-[39px] !rounded-[5px]">
                   new
                 </Button>
                 <div className="self-stretch">
-                  <Img src={product?.src} alt="image" className="h-[500px] md:h-auto object-cover" />
+                  <Img src={`http://localhost:8000/${product?.images}`} alt="image" className="h-[500px] md:h-auto object-cover" />
                 </div>
                 <div className="flex self-stretch justify-between gap-5">
                   <Img src="" alt="image_one" className="w-[21%] object-cover" />
@@ -36,16 +36,16 @@ export default function ProductDetails({product}:{product:producttype}) {
                 <div className="flex flex-col self-stretch items-start">
                   <div className="flex self-stretch">
                     <Heading size="xl" as="h1" className="w-[84%] !font-bold leading-[19px]">
-                      <>
-                        {product?.title}
-                      </>
+                   
+                        {product?.name}
+                    
                     </Heading>
                   </div>
-                  <Heading size="6xl" as="h2" className="mt-0.5">
-                    ${product?.price}
+                  <Heading size="6xl" as="h2" className="mt-0.5 text-black">
+                    $ {product?.price}
                   </Heading>
                   <Text size="s" as="p" className="mt-[7px] ml-[3px] md:ml-0 !text-black-900_02">
-                    {product?.discription}
+                    {product?.description}
                   </Text>
                 </div>
                 <div className="self-stretch h-[54px] mt-5 pr-[5px] py-[5px] border-gray-300_04 border-b border-solid relative">
@@ -165,7 +165,7 @@ export default function ProductDetails({product}:{product:producttype}) {
                   />
                 </div>
                 <div className="flex flex-col items-start gap-3">
-                  <Cartlabel key={product?.id} item={product} qty={count}></Cartlabel>
+                  {/* <Cartlabel key={product?.id} item={product} qty={count}></Cartlabel> */}
                   <div className="flex items-center gap-3">
                     <Img src="/images/img_settings.svg" alt="settings" className="h-[19px]" />
                     <Text as="p" className="self-end">

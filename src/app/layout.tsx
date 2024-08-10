@@ -12,6 +12,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import {ProductProvider} from '@/context/Product-in-store';
 import { ProductPostProvider } from "@/context/Product-Post";
+import {ProductDetailProvider} from "@/context/productDetail";
 
 async function RootLayout({
   children,
@@ -27,6 +28,7 @@ async function RootLayout({
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body>
+        <ProductDetailProvider>
         <ProductPostProvider>
       <UserProvider>
         <DataProvider>
@@ -51,6 +53,7 @@ async function RootLayout({
         </DataProvider>
       </UserProvider>
       </ProductPostProvider>
+      </ProductDetailProvider>
      
       </body>
     </html>

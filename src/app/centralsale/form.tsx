@@ -109,7 +109,7 @@ export default function Form({ id }: { id: string }) {
     <>
       <div className="w-full px-2.5 md:px-5 bg-gray-100">
         <div className="flex flex-col w-full gap-4 mx-auto max-w-screen-lg">
-          <div className="flex flex-col items-start p-10 md:p-5 bg-white rounded-lg shadow-lg border-2 border-blue-500">
+          <div className="flex flex-col items-start p-10 md:p-5 bg-white rounded-lg shadow-lg">
             <div className="flex ml-24 md:ml-0">
               <h1 className="text-3xl self-start uppercase text-blue-500">
                 Hello <span className="text-green-700">{userData?.first_name + " " + userData?.last_name}</span> &nbsp;&nbsp;&nbsp;
