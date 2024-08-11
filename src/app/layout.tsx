@@ -14,6 +14,7 @@ import {ProductProvider} from '@/context/Product-in-store';
 import { ProductPostProvider } from "@/context/Product-Post";
 import {ProductDetailProvider} from "@/context/productDetail";
 
+
 async function RootLayout({
   children,
 }: {
@@ -28,6 +29,7 @@ async function RootLayout({
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body>
+
         <ProductDetailProvider>
         <ProductPostProvider>
       <UserProvider>
@@ -37,9 +39,10 @@ async function RootLayout({
            <StoreProvider>
           < CartProvider>
           <ProductProvider>
-           <div className="flex flex-col w-full gap-[11px] bg-gray-300_06">
-            <div className="flex flex-col w-full gap-[5px]  bg-gray-300_06 max-w-[100wv]">
-              <Header/>
+           
+           <div className="flex top-0 flex-col w-full gap-[11px] bg-gray-300_06">           
+            <div className="flex flex-col w-full gap-[5px]  bg-gray-300_06 max-w-[100wv]">            
+              <Header/> 
               <main className="scrollable-divbody">
                 {children}
                 <Footer />
