@@ -7,9 +7,9 @@ interface prop{
 const MenuComponent = ({show, onclose}:prop) => {
     if(!show) return null;
     return (
-      <div className="fixed inset-0 flex flex-row-reverse gap-2 bg-[#232F3E] bg-opacity-50 z-50">
+      <div className="fixed inset-0 flex flex-row-reverse gap-2  bg-black-900_01 bg-opacity-75 z-50">
         <div className=" w-[100%] ml-80 h-56">
-           <button className=" place-self-start w-16 h-16 py-5" onClick={onclose}>
+           <button className=" ml-4 place-self-start w-24 h-24 py-5" onClick={onclose}>
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect width="32" height="32" fill="white" fill-opacity="0"/>
               <path fill-rule="evenodd" clip-rule="evenodd" d="M6.34315 6.34315C6.73367 5.95262 7.36683 5.95262 7.75736 6.34315L12 10.5858L16.2426 6.34315C16.6332 5.95262 17.2663 5.95262 17.6569 6.34315C18.0474 6.73367 18.0474 7.36683 17.6569 7.75736L13.4142 12L17.6569 16.2426C18.0474 16.6332 18.0474 17.2663 17.6569 17.6569C17.2663 18.0474 16.6332 18.0474 16.2426 17.6569L12 13.4142L7.75736 17.6569C7.36683 18.0474 6.73367 18.0474 6.34315 17.6569C5.95262 17.2663 5.95262 16.6332 6.34315 16.2426L10.5858 12L6.34315 7.75736C5.95262 7.36683 5.95262 6.73367 6.34315 6.34315Z" fill="white"/>
@@ -26,7 +26,7 @@ const MenuComponent = ({show, onclose}:prop) => {
             </div>
             <h1 className="ml-3 text-xl  font-poppins font-bold">Hello, Yoeurn Yan</h1>  
           </div>
-          <div className="ml-10 overflow-y-scroll h-full ">
+          <div className="ml-10 overflow-y-scroll h-full cursor-pointer pr-4">
           
           <div className="mb-4">
             <h2 className="font-bold text-lg mb-2">Trending</h2>
@@ -37,8 +37,8 @@ const MenuComponent = ({show, onclose}:prop) => {
             </ul>
           </div>
           
-          <div className="mb-4">
-            <h2 className="font-bold text-lg mb-2">Digital Content & Devices</h2>
+          <div className="mb-4 ">
+            <h2 className="font-bold text-lg mb-2 ">Digital Content & Devices</h2>
             <ul>
               <li className="py-1 hover:text-gray-300 flex justify-between items-center">
                 Prime Video <span>›</span>
@@ -63,66 +63,6 @@ const MenuComponent = ({show, onclose}:prop) => {
               </li>
               <li className="py-1 hover:text-gray-300 flex justify-between items-center">
                 Amazon Photos <span>›</span>
-              </li>
-              <li className="py-1 hover:text-gray-300 flex justify-between items-center">
-                Amazon Appstore <span>›</span>
-                
-              </li>
-                   <li className="py-1 hover:text-gray-300 flex justify-between items-center">
-                Prime Video <span>›</span>
-              </li>
-              <li className="py-1 hover:text-gray-300 flex justify-between items-center">
-                Amazon Music <span>›</span>
-              </li>
-              <li className="py-1 hover:text-gray-300 flex justify-between items-center">
-                Echo & Alexa <span>›</span>
-              </li>
-              <li className="py-1 hover:text-gray-300 flex justify-between items-center">
-                Fire Tablets <span>›</span>
-              </li>
-              <li className="py-1 hover:text-gray-300 flex justify-between items-center">
-                Fire TV <span>›</span>
-              </li>
-              <li className="py-1 hover:text-gray-300 flex justify-between items-center">
-                Kindle E-readers & Books <span>›</span>
-              </li>
-              <li className="py-1 hover:text-gray-300 flex justify-between items-center">
-                Audible Books & Originals <span>›</span>
-              </li>
-              <li className="py-1 hover:text-gray-300 flex justify-between items-center">
-                Amazon Photos <span>›</span>
-              </li>
-              <li className="py-1 hover:text-gray-300 flex justify-between items-center">
-                Amazon Appstore <span>›</span>
-                
-              </li>
-                   <li className="py-1 hover:text-gray-300 flex justify-between items-center">
-                Prime Video <span>›</span>
-              </li>
-              <li className="py-1 hover:text-gray-300 flex justify-between items-center">
-                Amazon Music <span>›</span>
-              </li>
-              <li className="py-1 hover:text-gray-300 flex justify-between items-center">
-                Echo & Alexa <span>›</span>
-              </li>
-              <li className="py-1 hover:text-gray-300 flex justify-between items-center">
-                Fire Tablets <span>›</span>
-              </li>
-              <li className="py-1 hover:text-gray-300 flex justify-between items-center">
-                Fire TV <span>›</span>
-              </li>
-              <li className="py-1 hover:text-gray-300 flex justify-between items-center">
-                Kindle E-readers & Books <span>›</span>
-              </li>
-              <li className="py-1 hover:text-gray-300 flex justify-between items-center">
-                Audible Books & Originals <span>›</span>
-              </li>
-              <li className="py-1 hover:text-gray-300 flex justify-between items-center">
-                Amazon Photos <span>›</span>
-              </li>
-              <li className="py-1 hover:text-gray-300 flex justify-between items-center">
-                Amazon Appstore <span>›</span>
-                
               </li>
             </ul>
           </div>
@@ -130,6 +70,26 @@ const MenuComponent = ({show, onclose}:prop) => {
           <div className="mb-4">
             <h2 className="font-bold text-lg mb-2">Shop by Department</h2>
             <ul>
+              <li className="py-1 hover:text-gray-300">Clothing, Shoes, Jewelry & Watches</li>
+              <li className="py-1 hover:text-gray-300">Clothing, Shoes, Jewelry & Watches</li>
+              <li className="py-1 hover:text-gray-300">Clothing, Shoes, Jewelry & Watches</li>
+              {/* Add more items as needed */}
+            </ul>
+          </div>
+          <div className="mb-4">
+            <h2 className="font-bold text-lg mb-2">Program and Feature</h2>
+            <ul>
+              <li className="py-1 hover:text-gray-300">Clothing, Shoes, Jewelry & Watches</li>
+              <li className="py-1 hover:text-gray-300">Clothing, Shoes, Jewelry & Watches</li>
+              <li className="py-1 hover:text-gray-300">Clothing, Shoes, Jewelry & Watches</li>
+              {/* Add more items as needed */}
+            </ul>
+          </div>
+          <div className="mb-4">
+            <h2 className="font-bold text-lg mb-10">help and setting</h2>
+            <ul>
+              <li className="py-1 hover:text-gray-300">Clothing, Shoes, Jewelry & Watches</li>
+              <li className="py-1 hover:text-gray-300">Clothing, Shoes, Jewelry & Watches</li>
               <li className="py-1 hover:text-gray-300">Clothing, Shoes, Jewelry & Watches</li>
               {/* Add more items as needed */}
             </ul>
