@@ -104,7 +104,7 @@ export default function Body(){
                 }
                 </div>
             </div>
-            <BankCard></BankCard>
+            <BankCard></BankCard> 
           </div>   
   </>
 );
