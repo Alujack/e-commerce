@@ -168,7 +168,7 @@ export default function Header() {
 
   return (
     <header className="flex flex-col items-center justify-cente">
-      <div className="flex flex-rows items-center w-full bg-[#131921] p-4 h-[56px]">
+      <div className="flex flex-rows items-center w-full bg-[#131921]  p-4 h-[56px]">
         {/* Left Side - Logo */}
         <div className="flex flex-col px-2 my-2 border-gray-400 hover:border-2 ">
           <div>
@@ -224,7 +224,7 @@ export default function Header() {
             {isAuthenticated ? (
               <img src={userData?.image || "/images/user.png"} className="h-[40px] w-[40px] rounded-full"/>
             ) : (
-              <span className=" px-4 py-2"> Sign In</span>
+              <span className=" px-4 py-2 text-white-A700"> Sign In</span>
             )}
           </button>
           {menuOpen && isAuthenticated && (
@@ -238,10 +238,10 @@ export default function Header() {
             </div>
           )}
         </div>
-         <div className=" px-4 py-2">
+         <div className="text-white-A700 px-4 py-2">
           <p>Your Order </p>
         </div>
-        <div className="px-4 py-2">
+        <div className="text-white-A700 px-4 py-2">
           <p>Your Cart </p>
         </div>   
         <div>
