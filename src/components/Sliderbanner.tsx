@@ -23,7 +23,7 @@ export default function NotFound(){
                 ref={sliderRef}
                 items={[...Array(3)].map(() => (
                   < React.Fragment key={Math.random()}>
-                    <div className="mx-2.5 flex w-full flex-col items-center justify-center h-[310px]  bg-[url(/images/bannerslider/1.png)] bg-cover bg-no-repeat md:gap-[1px] md:p-10 sm:gap-[1px] rounded-[15px]">
+                    <div className="mx-2.5 flex w-full flex-col items-center justify-center   bg-[url(/images/bannerslider/1.png)] bg-cover bg-no-repeat md:gap-[1px] md:p-10 sm:gap-[1px] rounded-[15px]">
                      
                       <div className=" self-start flex w-[90%] gap-[20px] flex-col md:w-full">
                         <Heading size="2xl" as="h2" className="tracking-[-0.11px] !text-gray-900_02">

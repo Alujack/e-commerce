@@ -22,24 +22,10 @@ export default function Body(){
  <div className="flex flex-col gap-[11px]">
             <div className="flex md:flex-col sm:hidden gap-2.5 bg-white-A700 rounded-[10px]">
               <div className="flex flex-col items-start md:self-stretch gap-[7px] p-[13px] md:p-5 bg-gray-50_01 flex-1 rounded-[10px]">
-                <Category></Category>
               </div>
-              <div className="flex flex-col w-[54%] md:w-full gap-2.5 md:p-5">
-                 <div className="items-center w-[100%] md:w-full mb-0.5 ml-5 md:ml-0 py-3 ">
-                  
-                 <Sliderbanner/>
-                
-                  </div>
-                < Discover/>
+              <div className="flex flex-col bg-[url(/images/bannerslider/1.png)] bg-cover md:w-full gap-2.5 md:p-5">
               </div>
-
               <div className="flex flex-col md:flex-row sm:flex-col md:self-stretch gap-2.5 md:p-5 flex-1">
-                <div className="flex-start justify-center h-[245px] md:h-auto gap-[5px] p-[20px] sm:p-5 rounded-[10px]">
-                 <Adsbanner image={"/images/ads1.png"}></Adsbanner>
-                </div>
-                <div className="flex-end justify-center h-[245px] md:h-auto gap-[5px] p-[20px] sm:p-5  rounded-[10px]">
-                <Adsbanner image={"/images/ads2.png"}></Adsbanner>
-                </div>
               </div>
             </div>
             <div className="flex md:flex-col gap-2.5">
