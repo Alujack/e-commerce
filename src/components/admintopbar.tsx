@@ -12,12 +12,12 @@ interface Props {
   className?: string;
 }
 
-export default function AdminTopbar({ ...props }: Props) {
+export default function AdminTopbar() {
   const [searchBarValue, setSearchBarValue] = useState("");
 
   return (
-    <header {...props}>
-      <div className="flex w-full items-center justify-between gap-5  p-[13px] md:flex-col">
+    <header>
+      <div className="flex w-full bg-white-A700 items-center justify-between gap-5  rounded-lg p-[13px] md:flex-col">
         <div className="ml-[17px] flex w-[38%] items-center justify-center gap-6 md:ml-0 md:w-full sm:flex-col">
           <Img src="/images/img_megaphone.svg" alt="megaphonethree" className="h-[25px] w-[24px] sm:w-full" />
           <Input
