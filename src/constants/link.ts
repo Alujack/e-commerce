@@ -1,13 +1,11 @@
 export const NAVLINK=[
     {href:"/",key:"home",label:"Home", src:""},
-    {href:"/store",key:"store",label:"Store", src:""},
     {href:"/fqa",key:"fqa",label:" FQAs", src:""},
     {href:"/orderhistory",key:"order",label:"Orders", src:"/images/img_cube.svg"},
     {href:"/favorite",key:"fav",label:"Favorites", src:"/images/img_heart.svg"},
     {href:"/cart",key:"cart",label:" Cart", src:"/images/img_shopping_cart.svg"},
     {href:"/centralsale", key:"sale", label:"Become a seller"},
     {href:"/",key:"home",label:"Home", src:""},
-    {href:"/store",key:"store",label:"Store", src:""},
     {href:"/fqa",key:"fqa",label:" FQAs", src:""},
     {href:"/orderhistory",key:"order",label:"Orders", src:"/images/img_cube.svg"},
     {href:"/favorite",key:"fav",label:"Favorites", src:"/images/img_heart.svg"},
@@ -47,6 +45,5 @@ export const PROFILE_MENU =[
     {href:"/user-account/address", label:"Address", icon:""},
     {href:"/user-account/change-password", label:"Change Password", icon:""},
     {href:"/user-account/wishlist", label:"Wishlist", icon:""},
-    {href:"/user-account/setting", label:"Setting", icon:""},
     {href:"/user-account/logout", label:"Logout", icon:""},
 ]
