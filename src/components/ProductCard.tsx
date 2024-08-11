@@ -24,7 +24,9 @@ export default function ProductCard({items,...props
   return (
     <div {...props}>
       <Link href ={`/product/${items.id}`}>
-      <Img src={items.src} alt="image_one" className="h-[232px] object-cover rounded" /> 
+      <div className="h-[232px] w-[232px]">
+      <Img src={items.src} alt="image_one" className="rounded hover:border-2 border-gray-700" /> 
+      </div>
       </Link>
       <div className="flex flex-col self-stretch items-start pb-3 gap-[13px]">
         <Link href ={`/product/${items.id}`}>

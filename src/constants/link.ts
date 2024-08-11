@@ -5,6 +5,13 @@ export const NAVLINK=[
     {href:"/orderhistory",key:"order",label:"Orders", src:"/images/img_cube.svg"},
     {href:"/favorite",key:"fav",label:"Favorites", src:"/images/img_heart.svg"},
     {href:"/cart",key:"cart",label:" Cart", src:"/images/img_shopping_cart.svg"},
+    {href:"/centralsale", key:"sale", label:"Become a seller"},
+    {href:"/",key:"home",label:"Home", src:""},
+    {href:"/store",key:"store",label:"Store", src:""},
+    {href:"/fqa",key:"fqa",label:" FQAs", src:""},
+    {href:"/orderhistory",key:"order",label:"Orders", src:"/images/img_cube.svg"},
+    {href:"/favorite",key:"fav",label:"Favorites", src:"/images/img_heart.svg"},
+    {href:"/cart",key:"cart",label:" Cart", src:"/images/img_shopping_cart.svg"},
     {href:"/centralsale", key:"sale", label:"Become a seller"}
 ]
 
@@ -31,7 +38,6 @@ export const ADMIN_MENU = [
     {href:"/admin/inbox", label:"Inbox", icon:"/images/img_home.svg"},
     {href:"/admin/customers-service", label:"Customer Service", icon:"/images/img_home.svg"},
     {href:"/admin/membership-service", label:"Membership Service", icon:"/images/img_home.svg"},
-    {href:"/admin/contact", label:"Contact", icon:"/images/img_home.svg"},
     {href:"/admin/team", label:"Team", icon:"/images/img_home.svg"},
     {href:"/admin/setting", label:"Setting", icon:"/images/img_home.svg"},
 ]

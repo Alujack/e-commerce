@@ -2,7 +2,6 @@
 import { useState } from "react";
 import { CloseSVG } from "@/assets/images";
 import { Img, Heading, Input } from "@/components";
-import Inboxsidebar from "@/components/inboxsidebar";
 import Messagerow from "@/components/messagerow";
 
 export default function DarkFivePage() {
@@ -15,7 +14,6 @@ export default function DarkFivePage() {
                 Inbox
               </Heading>
               <div className="ml-2.5 mt-[23px] flex items-center gap-[21px] self-stretch md:ml-0 md:flex-col">
-                <Inboxsidebar className="flex w-[26%] flex-col items-start rounded-[14px] border border-solid border-blue_gray-800  p-[23px] md:w-full sm:p-5" />
                 <div className="flex flex-1 flex-col items-center gap-[52px] rounded-[14px] border border-solid border-blue_gray-800  pt-6 md:self-stretch sm:gap-[26px] sm:pt-5">
                   <div className="flex w-[94%] justify-between gap-5 md:w-full md:p-5 sm:flex-col">
                     <Input

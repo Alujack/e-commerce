@@ -20,7 +20,7 @@ const sizes = {
   "2xl": "h-[54px] px-[35px] text-base",
   sm: "h-[40px] pl-2 pr-[35px] text-sm",
   md: "h-[43px] pl-3 pr-[35px] text-sm",
-  lg: "h-[43px] px-[35px]",
+  lg: "h-[43px]",
 } as const;
 
 type InputProps = Omit<

@@ -13,12 +13,20 @@ import Footer from '@/components/Footer';
 import {ProductProvider} from '@/context/Product-in-store';
 import { ProductPostProvider } from "@/context/Product-Post";
 import {ProductDetailProvider} from "@/context/productDetail";
+import { Inter } from '@next/font/google';
+
+
+const inter = Inter({
+      subsets: ['latin'],
+      weight: ['400', '500', '700']
+  });
 
 async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+
   return (
     <html lang="en">
       <head>
@@ -28,6 +36,7 @@ async function RootLayout({
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body>
+
         <ProductDetailProvider>
         <ProductPostProvider>
       <UserProvider>
@@ -37,13 +46,14 @@ async function RootLayout({
            <StoreProvider>
           < CartProvider>
           <ProductProvider>
-           <div className="flex flex-col w-full gap-[11px] bg-gray-300_06">
-            <div className="flex flex-col w-full gap-[5px] mx-auto md:p-5 sm:p-1 bg-gray-300_06 max-w-[100wv] px-3 py-0">
-              <Header/>
-              <main className="scrollable-divbody">
+           
+           <div className="flex top-0 flex-col w-full gap-[11px] bg-gray-300_06">           
+            <div className="flex flex-col w-full gap-[5px]  bg-gray-300_06 max-w-[100wv]">            
+              <Header/> 
+              <div className={`${inter.className} + px-20`}>
                 {children}
                 <Footer />
-              </main>
+              </div>
             </div>
           </div>
           </ProductProvider>
