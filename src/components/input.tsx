@@ -56,7 +56,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       onChange,
       shape,
       variant = "fill",
-      size = " ",
+      size = "lg",
       color = "white_A700",
       ...restProps
     },

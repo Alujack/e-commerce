@@ -123,7 +123,7 @@ export default function Header() {
           )}
         </div>
          <div className="text-white-A700 border-gray-400 hover:border-2 px-4 py-2 rounded">
-          <p>Your Order </p>
+          <p className="">Your Order </p>
         </div>
         <div className="text-white-A700 border-gray-400 hover:border-2 px-4 py-2 rounded">
           <p>Your Cart </p>
