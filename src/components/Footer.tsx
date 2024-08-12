@@ -135,7 +135,7 @@ export default function Footer() {
                     <ul className="flex flex-col items-start ml-2.5 gap-[27px] md:ml-0">
                       <li>
                         <a href="#">
-                          <p  className=" text-sm">
+                          <p  className="text-white-A700 text-sm">
                             Safety Tip
                           </p>
                         </a>
