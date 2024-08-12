@@ -13,7 +13,7 @@ import Footer from '@/components/Footer';
 import {ProductProvider} from '@/context/Product-in-store';
 import { ProductPostProvider } from "@/context/Product-Post";
 import {ProductDetailProvider} from "@/context/productDetail";
-import { Inter } from '@next/font/google';
+import { Inter } from "next/font/google"
 
 
 const inter = Inter({
@@ -37,34 +37,28 @@ async function RootLayout({
       </head>
       <body>
 
-        <ProductDetailProvider>
+      <ProductDetailProvider>
         <ProductPostProvider>
-      <UserProvider>
-        <DataProvider>
-        <Provider>
-          <Setup />
-           <StoreProvider>
-          < CartProvider>
-          <ProductProvider>
-           
-           <div className={`${inter.className} flex top-0 flex-col w-full gap-[11px] bg-gray-300_06`}>           
-            <div className="flex flex-col w-full gap-[5px]  bg-gray-300_06 max-w-[100wv]">            
-              <Header/> 
-              <div className={`${inter.className} px-20`}>
-                {children}
-              </div>
-              <Footer />
-            </div>
-          </div>
-          </ProductProvider>
-          </ CartProvider>
-          </StoreProvider>
-        </Provider>
-        </DataProvider>
-      </UserProvider>
-      </ProductPostProvider>
-      </ProductDetailProvider>
-     
+          <UserProvider>
+            <DataProvider>
+              <Provider>
+                <Setup />
+                <StoreProvider>
+                  <CartProvider>
+                    <ProductProvider> 
+                      <div className={`${inter.className} flex flex-col w-full gap-[11px] max-w-[100wv] `}>                     
+                          <Header/>
+                            <div className="px-20">{children}</div>
+                          <Footer/>
+                      </div>
+                    </ProductProvider>
+                  </CartProvider>
+                </StoreProvider>
+              </Provider>
+            </DataProvider>
+          </UserProvider>
+        </ProductPostProvider>
+      </ProductDetailProvider>   
       </body>
     </html>
   );

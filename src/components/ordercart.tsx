@@ -30,15 +30,11 @@ export default function Ordercart(
  item.qty = qty;
   return (
     <div {...props}>
+      <input
+        id="check"
+        type="checkbox"
+        />
       <div className="flex flex-col items-start w-[30%] md:w-full bg-white-A700 rounded-[10px]">
-        <div className="flex flex-col items-start p-[5px] z-[1] bg-green-700 rounded-[7px]">
-          <Text size="xs" as="p" className="ml-1 md:ml-0 !text-white-A700 uppercase">
-            save
-          </Text>
-          <Text as="p" className="self-center !text-white-A700 !font-medium">
-           {Number(save)}
-          </Text>
-        </div>
         <Link href="/product">
         <Img
           src={src}
@@ -97,9 +93,10 @@ export default function Ordercart(
           </div>
         </div>
         <div className="flex justify-between w-[20%] sm:w-full mt-[3px] gap-5 flex-wrap">
-          <Button  onClick= {()=>removeFromCart(index)}>
-           <img src="/images/close.png" alt=""  className="items-center w-[23px] "  />
-          </Button>
+          <Heading size="3xl" as="h3" className="mt-[13px] !text-red-600 !font-semibold">
+            {Number(price)}
+          </Heading>
+
         </div>
       </div>
     </div>

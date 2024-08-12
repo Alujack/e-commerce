@@ -7,8 +7,8 @@ interface prop{
 const MenuComponent = ({show, onclose}:prop) => {
     if(!show) return null;
     return (
-      <div className="fixed inset-0 flex flex-row-reverse gap-2  bg-black-900_01 bg-opacity-75 z-50">
-        <div className=" w-[100%] ml-80 h-56">
+      <div className="fixed inset-0 flex flex-row-reverse gap-2  bg-black-900_01 bg-opacity-75 z-50 pb-80 ">
+        <div className="w-[100%] sticky ml-[371px] h-56">
            <button className=" ml-4 place-self-start w-24 h-24 py-5" onClick={onclose}>
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect width="32" height="32" fill="white" fill-opacity="0"/>
@@ -17,7 +17,7 @@ const MenuComponent = ({show, onclose}:prop) => {
            
             </button>
         </div>  
-        <div className="fixed top-0 left-0 z-40 w-80 h-screen bg-white-A700 dark:bg-gray-800">
+        <div className="fixed top-0 left-0 z-40 w-[371px] h-screen bg-white-A700 dark:bg-gray-800">
           <div className="flex items-center bg-[#232F3E] w-full text-white-A700 px-0  mb-6 py-5 ">
             <div className="ml-10 rounded-full w-8 h-8 flex items-center justify-center">
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -85,8 +85,8 @@ const MenuComponent = ({show, onclose}:prop) => {
               {/* Add more items as needed */}
             </ul>
           </div>
-          <div className="mb-4">
-            <h2 className="font-bold text-lg mb-10">help and setting</h2>
+          <div className="pb-32">
+            <h2 className="font-bold text-lg mb-3">help and setting</h2>
             <ul>
               <li className="py-1 hover:text-gray-300">Clothing, Shoes, Jewelry & Watches</li>
               <li className="py-1 hover:text-gray-300">Clothing, Shoes, Jewelry & Watches</li>
