@@ -316,7 +316,7 @@
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    stroke-width="2"
+                    stroke-width="2"  
                     d="M12 2C8.13 2 5 5.13 5 9c0 4.88 6.5 12.75 6.93 13.32.3.4.84.4 1.14 0C12.5 21.75 19 13.88 19 9c0-3.87-3.13-7-7-7zM12 11.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"
                   />
                 </svg>
@@ -328,7 +328,7 @@
 
         {/* ==============One more section=============== */}
         <div className="w-full p-7 sm:p-5  rounded-[10px]">
-          <div className="mb-60">
+          <div className="mb-56">
           <div>
             <div className=" flex  gap-3 justify-between">
               <h2 className="flex  justify-between text-lg hover:underline">
