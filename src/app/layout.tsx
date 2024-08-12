@@ -47,13 +47,13 @@ async function RootLayout({
           < CartProvider>
           <ProductProvider>
            
-           <div className="flex top-0 flex-col w-full gap-[11px] bg-gray-300_06">           
+           <div className={`${inter.className} flex top-0 flex-col w-full gap-[11px] bg-gray-300_06`}>           
             <div className="flex flex-col w-full gap-[5px]  bg-gray-300_06 max-w-[100wv]">            
               <Header/> 
-              <div className={`${inter.className} + px-20`}>
+              <div className={`${inter.className} px-20`}>
                 {children}
-                <Footer />
               </div>
+              <Footer />
             </div>
           </div>
           </ProductProvider>

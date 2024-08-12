@@ -126,7 +126,7 @@ export default function Header() {
           <p className="">Your Order </p>
         </div>
         <div className="text-white-A700 border-gray-400 hover:border-2 px-4 py-2 rounded">
-          <p>Your Cart </p>
+          <p> <Link href="/cart">Your Cart</Link> </p>
         </div>   
         <div>
         </div>
