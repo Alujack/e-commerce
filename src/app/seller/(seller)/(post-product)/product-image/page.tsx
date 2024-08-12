@@ -9,7 +9,7 @@ const ProductImagePage: React.FC = () => {
   const handleFileChange = (index: number, event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
       const newImages = [...productImages];
-      newImages[index].url = URL.createObjectURL(event.target.files[0]);
+      newImages[index].url = event.target.files[0];
       setProductImages(newImages);
     }
   };
@@ -28,7 +28,7 @@ const ProductImagePage: React.FC = () => {
             </div>
             <h4>{side}</h4>
             {productImages[index].url && (
-              <img src={productImages[index].url} alt={`${side} view`} className="h-40 w-full object-cover mt-2" />
+              <img src={URL.createObjectURL(productImages[index].url)} alt={`${side} view`} className="h-40 w-full object-cover mt-2" />
             )}
           </div>
         ))}

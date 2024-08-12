@@ -1,8 +1,8 @@
 "use client"
 import React, { useEffect } from 'react';
 import { useProductContext } from '@/context/productDetail';
+import ProductDetails from './Productdeatails';
 
-import ProductDetails from "./Productdeatails";
 
 export default  function Product({ params }: { params: { id: string } }) {
 
@@ -14,7 +14,7 @@ export default  function Product({ params }: { params: { id: string } }) {
     console.log(product)
   return (
     <>
-      <ProductDetails product={product} />
+    <ProductDetails product={product}/>
     </>
   );
 }
