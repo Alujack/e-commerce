@@ -13,7 +13,7 @@ type SliderComponentProps = Props &
   }>;
 
 const Slider = React.forwardRef<AliceCarousel, SliderComponentProps>(
-  ({ items = [], activeIndex = 0, centerMode, magnifiedIndex = 0, activeSlideCSS = "scale-75", ...props }, ref) => {
+  ({ items = [], activeIndex = 0, centerMode, magnifiedIndex = 0, activeSlideCSS = "scale-100", ...props }, ref) => {
     const isSmall = (index: number) => {
       if (props?.activeIndex + magnifiedIndex >= items?.length) {
         return index !== props?.activeIndex + magnifiedIndex - items?.length;

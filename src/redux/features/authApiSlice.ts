@@ -98,17 +98,15 @@ const authApiSlice = apiSlice.injectEndpoints({
         const formData = new FormData();
 
         // Add non-image fields
-        Object.keys(rest).forEach(key => {
-          const value = rest[key];
-          if (value !== undefined) {
-            if (key === 'image' && value instanceof File) {
-              formData.append(key, value);
-            } else if (key !== 'image') {
-              formData.append(key, value);
-            }
-          }
-        });
-
+        Object.entries(rest).forEach(([key, value]) => {
+      if (value !== undefined) {
+        if (key === 'image' && value instanceof File) {
+          formData.append(key, value);
+        } else {
+          formData.append(key, value.toString()); // Convert non-file values to strings
+        }
+      }
+      });
         return {
           url: `/update/${id}/`,
           method: 'PUT',

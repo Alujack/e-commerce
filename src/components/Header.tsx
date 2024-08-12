@@ -44,7 +44,7 @@ export default function Header() {
 
   return (
 
-    <header className="flex flex-col items-center justify-cente">
+    <header className="flex flex-col items-center justify-center">
        <MenuComponent show={show} onclose={()=>setShow(false)}/>
       <div className="flex flex-rows items-center w-full bg-[#131921]  p-4 h-[56px]">
         {/* Left Side - Logo */}
@@ -52,8 +52,8 @@ export default function Header() {
           <div>
             <img src="/images/img_emotion_1_30x35.png" alt="emotionone_one" className="object-scale-down h-12 self-center" />
            </div>
-          </div>
-          <div className=" h-12 flex flex-row gap-3 p-2 py-2 rounded hover:border-2 transition-[0.4s] border-gray-400 text-white-A700 items-center  ">
+        </div>
+        <div className=" h-12 flex flex-row gap-3 p-2 py-2 rounded hover:border-2 transition-[0.4s] border-gray-400 text-white-A700 items-center  ">
             <svg
                   className="w-6 h-6 text-indigo-600 my-3 hover:text-orange-600"
                   xmlns="http://www.w3.org/2000/svg"
