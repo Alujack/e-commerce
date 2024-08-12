@@ -1,68 +1,48 @@
-import {Img,Heading,Text,Button} from "@/components"
-import Orderitem from "@/components/orderitem"
+import {Input} from "@/components"
+
 export default function OrderHistory(){
     return (
-        <div className="w-full bg-gray-300_07 p-[5%]">
-        <div className="flex flex-col gap-2.5">
-          <div className="flex flex-col w-full gap-2.5 mx-auto md:p-5 max-w-[99%]">
-            <div className="flex flex-col gap-5 justify-between  p-[7px] bg-gray-100_02 rounded-[10px]">
-              <div className="flex justify-center md:w-full gap-5 md:p-5 bg-light_green-600 rounded-[15px]">
-                <div className="flex ml-[27px]">
-                  <Heading size="5xl" as="h2" className="!text-black-900_02 uppercase">
-                    History order
-                  </Heading>
-                </div>
-              </div>
-              <div className="flex flex-col w-full items-center md:w-full  mb-20 gap-2.5 ">
-                <Orderitem className="flex flex-row items-center pr-2.5 py-2.5 bg-gray-300_03 rounded-[10px]" />
-                <Orderitem className="flex flex-row items-center pr-2.5 py-2.5 bg-gray-300_03 rounded-[10px]" />
-                <Orderitem className="flex flex-row items-center pr-2.5 py-2.5 bg-gray-300_03 rounded-[10px]" />
-                <Orderitem className="flex flex-row items-center pr-2.5 py-2.5 bg-gray-300_03 rounded-[10px]" />
-              </div>
-            </div>
-            
-            <div className="flex md:flex-col gap-2">
-              <div className=" rounded-[10px]">
-                <Img
-                  src="images/img_about2_png.png"
-                  alt="about2png_one"
-                  className="h-[420px] w-full md:h-auto object-cover rounded-[10px]"
-                />
-              </div>
-              <div className="flex flex-col items-start justify-center w-full gap-10 p-[38px] sm:p-5 bg-white-A700 rounded-[10px]">
-                <div className="flex flex-col self-end w-[89%] md:w-full mt-[31px] gap-[29px]">
-                  <Heading size="3xl" as="h1" className="leading-[21px]">
+       <main>
+        <div className="flex flex-col w-screen bg-[#FFFFFF] pr-[20%] p-5">
+          <p className="mb-3">Your account - Your order </p>         
+           <div className="flex flex-row justify-between mb-5">
+            <h4 className="self-start text-3xl mt-3">Your Carts</h4> 
+            <div className="flex flex-row gap-3 justify-between">        
+            <Input
+                  name="search"
+                  placeholder={`Search Techness`}
+                  prefix={
                     <>
-                      We connect millions of buyers and sellers around
-                      <br />
-                      the world, empowering people & creating economic
-                      <br />
-                      opportunity for all.
+                    <div className=" w-10 h-full p-2 mr-4"> 
+                      <img src="/images/icons/search.svg" alt="icon" />
+                    </div>
                     </>
-                  </Heading>
-                  <Text as="p" className="leading-[23px]">
-                    <>
-                      Within our markets, millions of people around the world connect,
-                      <br />
-                      both online and offline, to make, sell and buy unique goods. We also
-                      <br />
-                      offer a wide range of Seller Services and tools that help creative
-                      <br />
-                      entrepreneurs start, manage & scale their businesses.
-                    </>
-                  </Text>
-                </div>
-                <Button
-                  color="green_700"
-                  size="9xl"
-                  className="mb-8 ml-[58px] md:ml-0 sm:px-5 uppercase font-black min-w-[174px] rounded-[10px]"
-                >
-                 Our service
-                </Button>
-              </div>
+                  }
+                  
+                  className="h-[40px] px-0 text-black-900_01 border-2 border-solid deep_purple_700_pink_400_01_border"
+            />
+            <button className="h-[40px] rounded-lg bg-[#303333] text-white-A700 px-4 p-2">Search Orders</button>
             </div>
-          </div>
+           </div>
+           <div className="flex flex-row justify-between mb-3 border-b-2 cursor-pointer border-b-slate-400 ">
+            <ul className="hover:underline ">Orders</ul>
+            <ul className="hover:underline ">Buy Again</ul>
+            <ul className="hover:underline "> Not Yet Shipped</ul>
+            <ul className="hover:underline "> Digital Orders</ul>
+            <ul className="hover:underline "> Local Store Orders</ul>
+            <ul className="hover:underline "> Cancelled Orders</ul>      
+           </div>
+           <div className="flex flex-col h-96 gap-5 mt-5 items-center">
+            <p>Looks like you haven't placed an order in the last 3 months. View orders in 2024</p>
+            <div className="w-full border-l-[16px] border-2 border-gray-600 border-l-green-700_01 py-5 px-4 rounded-lg">
+              <h1>Your Orders has been Achieved</h1>
+              <p>There is no more longer appeared in your account</p>              
+
+            </div>
+
+
+           </div>
         </div>
-      </div>
+       </main>
     )
 }

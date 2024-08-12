@@ -106,7 +106,7 @@ export default function Header() {
         <div className="relative">
            <button onClick={handleButtonClick} className="rounded-lg flex items-center border-gray-400 hover:border-2">
             {isAuthenticated ? (
-              <img src={userData?.image || "/images/user.png"} className="h-[40px] w-[40px] rounded-full"/>
+              <img src={userData?.image || "/images/user.png"} className="h-full w-[40px] rounded-full"/>
             ) : (
               <span className=" px-4 py-2 text-white-A700"> Sign In</span>
             )}
@@ -122,11 +122,18 @@ export default function Header() {
             </div>
           )}
         </div>
-         <div className="text-white-A700 border-gray-400 hover:border-2 px-4 py-2 rounded">
-          <p className="">Your Order </p>
+         <div className="text-white-A700  border-gray-400 hover:border-2 px-4 py-2 rounded">
+          <p className="w-full">Your Order </p>
         </div>
-        <div className="text-white-A700 border-gray-400 hover:border-2 px-4 py-2 rounded">
-          <p> <Link href="/cart">Your Cart</Link> </p>
+        <div className="text-white-A700  border-gray-400 hover:border-2 px-4 py-2 rounded">
+            <Link href="/cart" className="flex flex-row">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" className="feather feather-shopping-cart" viewBox="0 0 24 24">
+                <circle cx="9" cy="21" r="1"/>
+                <circle cx="20" cy="21" r="1"/>
+                <path d="M1 1h4l2.68 13.39a1 1 0 0 0 1 .81h9.72a1 1 0 0 0 1-.81L23 6H6"/>
+              </svg>
+              <p className="text-lg font-bold place-items-end bottom-0">cart</p>
+            </Link>
         </div>   
         <div>
         </div>
