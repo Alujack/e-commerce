@@ -3,11 +3,6 @@ import React, { useEffect } from 'react';
 import { useProductContext } from '@/context/productDetail';
 import ProductDetails from './Productdeatails';
 
-<<<<<<< HEAD
-=======
-import ProductDetails from "./Productdeatails";
->>>>>>> b6f0949 (init)
-
 export default  function Product({ params }: { params: { id: string } }) {
 
   const { product, loading, error, fetchProductDetails } = useProductContext();
