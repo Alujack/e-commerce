@@ -61,19 +61,60 @@ export default function App({children}:{children:React.ReactNode}) {
             setActionButton("Publish")
         }
     };
-    const onSubmit = async ()=>{
-        
-        const response = await axios.post(`http://localhost:8000/api/product/store/product/post/${product.id}/`,dataSubmit, {
-       headers: {
-            'Content-Type': 'application/json',
+    const onSubmit = async () => {
+    const formData = new FormData();
+
+    // Append JSON data as a string
+    const jsonProductData = {
+      product: {
+        name: product.name,
+        description: product.description,
+        price: product.price,
+      },
+      product_items: productItems.map(item => ({
+        product: item.product,
+        variation_option: item.variation_option,
+      })),
+      stocks: stocks.map(stock => ({
+        product_item_variation: {
+          product: stock.product_item_variation.product,
+          variation_option: stock.product_item_variation.variation_option,
         },
-        });
-        if(response.status == 201){
-            console.log("succesfully");
-            setIsModalOpen(true);
-            router.push('/seller/product-post')
+        quantity: stock.quantity,
+      })),
+    };
+
+    formData.append('product_data', JSON.stringify(jsonProductData));
+
+    // Append product images as files
+    productImages.forEach((image, index) => {
+        if (image.url) {
+            formData.append(`product_images[${index}][url]`, image.url);
+            formData.append(`product_images[${index}][angle]`, image.angle || '');
         }
+    });
+
+    try {
+        const response = await axios.post(
+            `http://localhost:8000/api/product/store/product/post/${product.id}/`,
+            formData,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            }
+        );
+
+        if (response.status === 201) {
+            console.log("Successfully submitted");
+            setIsModalOpen(true);
+            router.push('/seller/product-post');
+        }
+    } catch (error) {
+        console.error("Error submitting the form:", error);
     }
+};
+
     const PostProduct = async () =>{
     const response = await axios.post(`http://localhost:8000/api/product/store/product/draft/${product.id}/`)
     if(response){
