@@ -1,17 +1,17 @@
 "use client"
 import React from "react";
-import { Text, Heading, Button, Img } from ".";
+import {Button, Img } from ".";
 
 export default function Footer() {
   return (
-   <footer className="p-[10px] sm:p-0 bg-white-A700 max-w-[100wv]">
-          <div className="w-full mt-3 mb-4 px-[5px] mx-auto md:p-5 sm:px-5 bg-gray-100_01  rounded-[1px]">
+   <footer className="p-[10px] sm:p-0  max-w-[100wv]">
+          <div className="w-full mt-3 mb-4  mx-auto  bg-[#131921] rounded-[1px]">
             <div className="flex flex-col gap-[15px]">
               <div className="flex md:flex-col justify-between items-center pr-2.5 gap-5">
                 <div className="flex justify-center w-[48%] md:w-full p-2.5">
-                  <Heading size="12xl" as="h2" className="!text-gray-900_06 !font-plusjakartasans leading-[42px]">
+                  <h2  className=" text-12xl text-white-A700 leading-[42px]">
                     Enjoy your shopping with TECHNESS the biggest online market.{" "}
-                  </Heading>
+                  </h2>
                 </div>
                 <Button
                   color="gray_200_04"
@@ -26,20 +26,18 @@ export default function Footer() {
                 <div className="flex md:flex-col justify-between items-start gap-5">
                   <div className="flex flex-col w-[32%] md:w-full">
                     <div className="flex p-1.5">
-                      <Heading
-                        size="xl"
-                        as="h6"
+                      <h6    
                         className="mt-[5px] mb-[3px] !text-gray-900_08 !font-plusjakartasans !font-bold"
                       >
                         About TECHNESS
-                      </Heading>
+                      </h6>
                     </div>
-                    <Text as="p" className="mt-[5px] !text-gray-900_03 !font-plusjakartasans leading-[22px]">
+                    <p  className="mt-[5px] text-white-A700 leading-[22px]">
                       TECHNESS is the leading online marketplace, where you can buy and sell everything from cars,
                       motorcycles, mobile phones, computers, electronics, furniture, books, pets, foods, and more.
                       TECHNESS connects buyers and sellers across the country, making it easy and convenient to find
                       what you need or sell what you don’t want.
-                    </Text>
+                    </p>
                     <div className="flex justify-between w-[73%] md:w-full mt-[-2px] gap-5 relative">
                       <Button size="3xl" shape="square" className="w-[40px]">
                         <Img src="/images/img_social_icons_fa_blue_a700_01.svg" />
@@ -64,97 +62,97 @@ export default function Footer() {
                   </div>
                   <div className="flex flex-col items-start gap-[21px]">
                     <div className="flex self-center p-1.5">
-                      <Heading size="5xl" as="h5" className="mt-[5px] !text-gray-900_02 !font-plusjakartasans">
+                      <h5  className="mt-[5px] text-5xl">
                         Company
-                      </Heading>
+                      </h5>
                     </div>
                     <ul className="flex flex-col items-start ml-[9px] gap-[27px] md:ml-0">
                       <li>
                         <a href="#">
-                          <Text size="xl" as="p" className="!text-gray-900_02 !font-plusjakartasans">
+                          <p  className="">
                             About
-                          </Text>
+                          </p>
                         </a>
                       </li>
                       <li>
                         <a href="#">
-                          <Text size="xl" as="p" className="!text-gray-900_02 !font-plusjakartasans">
+                          <p  className="">
                             Features
-                          </Text>
+                          </p>
                         </a>
                       </li>
                       <li>
                         <a href="#">
-                          <Text size="xl" as="p" className="!text-gray-900_02 !font-plusjakartasans">
+                          <p className="">
                             Work
-                          </Text>
+                          </p>
                         </a>
                       </li>
                       <li>
                         <a href="#">
-                          <Text size="xl" as="p" className="!text-gray-900_02 !font-plusjakartasans">
+                          <p className="">
                             Career
-                          </Text>
+                          </p>
                         </a>
                       </li>
                     </ul>
                   </div>
                   <div className="flex flex-col items-start gap-[22px]">
                     <div className="flex p-1.5">
-                      <Heading size="5xl" as="h5" className="self-end !text-gray-900_05 !font-plusjakartasans">
+                      <h5 className="self-end text-5xl">
                         Help
-                      </Heading>
+                      </h5>
                     </div>
                     <ul className="flex flex-col self-end items-start gap-[27px]">
                       <li>
                         <a href="#">
-                          <Text size="xl" as="p" className="!text-gray-900_05 !font-plusjakartasans">
+                          <p  className="">
                             Customer Support
-                          </Text>
+                          </p>
                         </a>
                       </li>
                       <li>
                         <a href="#">
-                          <Text size="xl" as="p" className="!text-gray-900_05 !font-plusjakartasans">
+                          <p  className="">
                             Delivery Details
-                          </Text>
+                          </p>
                         </a>
                       </li>
                       <li>
                         <a href="#">
-                          <Text size="xl" as="p" className="!text-gray-900_05 !font-plusjakartasans">
+                          <p  className="">
                             Terms & Conditions
-                          </Text>
+                          </p>
                         </a>
                       </li>
                       <li>
                         <a href="#">
-                          <Text size="xl" as="p" className="!text-gray-900_05 !font-plusjakartasans">
+                          <p  className="">
                             Privacy Policy
-                          </Text>
+                          </p>
                         </a>
                       </li>
                     </ul>
                   </div>
                   <div className="flex flex-col items-start gap-[22px]">
                     <div className="flex self-center p-2">
-                      <Heading size="5xl" as="h5" className="!text-gray-900_09 !font-plusjakartasans">
+                      <h5  className="">
                         Useful Information
-                      </Heading>
+                      </h5>
                     </div>
                     <ul className="flex flex-col items-start ml-2.5 gap-[27px] md:ml-0">
                       <li>
                         <a href="#">
-                          <Text size="xl" as="p" className="!text-gray-900_09 !font-plusjakartasans">
+                          <p  className="">
                             Safety Tip
-                          </Text>
+                          </p>
                         </a>
                       </li>
                       <li>
                         <a href="#">
-                          <Text size="xl" as="p" className="!text-gray-900_09 !font-plusjakartasans">
+                          <p  className="">
                             Ads Posting Rule
-                          </Text>
+                          </p>
                         </a>
                       </li>
                     </ul>
