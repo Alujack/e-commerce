@@ -4,13 +4,12 @@ export const NAVLINK=[
     {href:"/orderhistory",key:"order",label:"Orders", src:"/images/img_cube.svg"},
     {href:"/favorite",key:"fav",label:"Favorites", src:"/images/img_heart.svg"},
     {href:"/cart",key:"cart",label:" Cart", src:"/images/img_shopping_cart.svg"},
-    {href:"/centralsale", key:"sale", label:"Become a seller"},
     {href:"/",key:"home",label:"Home", src:""},
     {href:"/fqa",key:"fqa",label:" FQAs", src:""},
     {href:"/orderhistory",key:"order",label:"Orders", src:"/images/img_cube.svg"},
     {href:"/favorite",key:"fav",label:"Favorites", src:"/images/img_heart.svg"},
     {href:"/cart",key:"cart",label:" Cart", src:"/images/img_shopping_cart.svg"},
-    {href:"/centralsale", key:"sale", label:"Become a seller"}
+    
 ]
 
 export const STEPS =[
@@ -47,3 +46,68 @@ export const PROFILE_MENU =[
     {href:"/user-account/wishlist", label:"Wishlist", icon:""},
     {href:"/user-account/logout", label:"Logout", icon:""},
 ]
+export const TRENDING =[
+    {href:"/#", label:"Best Seller", icon:""},
+    {href:"/#", label:"New Arrival", icon:""},
+    {href:"/#", label:"Most Browse", icon:""},
+]
+export const YOURACCOUNT =[
+    {href:"/#", label:"Switch Accounts", icon:""},
+    {href:"/#", label:"Sign Out", icon:""},
+    {href:"/#", label:"Account", icon:""},
+    {href:"/#", label:"Orders", icon:""},
+    {href:"/#", label:"Keep Shopping For", icon:""},
+    {href:"/#", label:"Reccommandations", icon:""},
+    {href:"/#", label:"Browsing History", icon:""},
+    {href:"/#", label:"Regidster For Business", icon:""},
+    {href:"/#", label:"Subscribe And Saved Items", icon:""},
+    {href:"/#", label:"Memeberships and Subscription", icon:""},
+    {href:"/#", label:"Customere Service", icon:""},
+]
+export const DDV = [
+    { href: "/#", label: "Smartphones", icon: "" },
+    { href: "/#", label: "Laptops", icon: "" },
+    { href: "/#", label: "Tablets", icon: "" },
+    { href: "/#", label: "Smartwatches", icon: "" },
+    { href: "/#", label: "Gaming Consoles", icon: "" },
+    { href: "/#", label: "Desktop Computers", icon: "" },
+    { href: "/#", label: "Smart TVs", icon: "" },
+    { href: "/#", label: "E-Readers", icon: "" },
+    { href: "/#", label: "Wearable Tech", icon: "" },
+    { href: "/#", label: "Drones", icon: "" },
+    { href: "/#", label: "VR Headsets", icon: "" },
+    { href: "/#", label: "Smart Home Devices", icon: "" },
+    { href: "/#", label: "Cameras", icon: "" },
+    { href: "/#", label: "Bluetooth Speakers", icon: "" },
+    { href: "/#", label: "Headphones", icon: "" },
+    { href: "/#", label: "Portable Chargers", icon: "" },
+    { href: "/#", label: "Monitors", icon: "" },
+    { href: "/#", label: "Printers", icon: "" },
+    { href: "/#", label: "Routers", icon: "" },
+    { href: "/#", label: "Projectors", icon: "" }
+];
+export const MENFASHION = [
+    { href: "/#", label: "Suits", icon: "" },
+    { href: "/#", label: "Shirts", icon: "" },
+    { href: "/#", label: "Jeans", icon: "" },
+    { href: "/#", label: "Jackets", icon: "" },
+    { href: "/#", label: "T-Shirts", icon: "" },
+    { href: "/#", label: "Sweaters", icon: "" },
+    { href: "/#", label: "Casual Shoes", icon: "" },
+    { href: "/#", label: "Dress Shoes", icon: "" },
+    { href: "/#", label: "Belts", icon: "" },
+    { href: "/#", label: "Watches", icon: "" }
+];
+export const WOMENFASHION = [
+    { href: "/#", label: "Dresses", icon: "" },
+    { href: "/#", label: "Blouses", icon: "" },
+    { href: "/#", label: "Skirts", icon: "" },
+    { href: "/#", label: "Handbags", icon: "" },
+    { href: "/#", label: "Heels", icon: "" },
+    { href: "/#", label: "Jewelry", icon: "" },
+    { href: "/#", label: "Scarves", icon: "" },
+    { href: "/#", label: "Cardigans", icon: "" },
+    { href: "/#", label: "Leggings", icon: "" },
+    { href: "/#", label: "Sunglasses", icon: "" }
+];
+

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Text, Heading, Button, Img } from "@/components";
 import { useCart } from "@/context/cartcontext";
 import { Product } from "@/context/productDetail";
+import Category from "@/app/seller/(seller)/categories/page";
 export default function ProductDetails({
   product,
 }: {
@@ -17,50 +18,33 @@ export default function ProductDetails({
         <div className="flex flex-col gap-3">
           <div className="flex flex-col w-full gap-3 mx-auto md:p-5 max-w-[95%]">
             <div className="flex md:flex-col items-end gap-[9px] p-3.5 bg-white-A700 rounded-[10px]">
-
-              <div className="flex flex-col items-start md:self-stretch mt-[37px] pb-[22px] sm:pb-5 flex-1 mb-40">
-
+              <div className="flex flex-col md:self-stretch mt-[37px] pb-[22px] sm:pb-5 flex-1 mb-40">
                 <Button
                   color="gray_900_01"
                   size="xs"
                   shape="round"
 
-                  className="uppercase min-w-[39px] !rounded-[5px] mb-10"
-
-
+                  className="uppercase min-w-[39px] !rounded-[5px] self-start mb-10"
                 >
                   new
                 </Button>
-                <div className="self-stretch">
-                  <Img
+                <div className="">
+                  <img
 
-                    src="/images/productdetail/full.jpg"
-
+                    src={`http://localhost:8000/${product?.product?.image}`}
                     alt="image_three"
-                    className="w-full  object-cover border border-gray-300"
+                    className=" object-cover border border-gray-300 ml-[30%]"
                   />
                 </div>
                 <div className="flex self-stretch justify-between gap-5 mt-5">
-                  <Img
-                    src="/images/productdetail/full.jpg"
+                  {product?.images.map((image)=>(
+                  <img
+                    src={`http://localhost:8000/${image.image}/`}
                     alt="image_four"
                     className="w-[21%] object-cover border border-gray-300"
                   />
-                  <Img
-                    src="/images/productdetail/1.jpg"
-                    alt="image_one"
-                    className="w-[21%] object-cover border border-gray-300"
-                  />
-                  <Img
-                    src="/images/productdetail/2.jpg"
-                    alt="image_two"
-                    className="w-[21%] object-cover border border-gray-300"
-                  />
-                  <Img
-                    src="/images/productdetail/3.png"
-                    alt="image_three"
-                    className="w-[21%] object-cover border border-gray-300"
-                  />
+                  ))}
+                  
                 </div>
               </div>
 
@@ -73,14 +57,12 @@ export default function ProductDetails({
                       className="w-[84%] !font-bold leading-[19px]"
                     >
 
-                      {product?.name} Pinnapple Macbook Pro 2022 M1 / 512GB Dark
-                      Grey
-
+                      {product?.product?.name}  {product?.product?.name} {product?.product?.name}
 
                     </Heading>
                   </div>
                   <Heading size="6xl" as="h2" className="mt-0.5 text-black">
-                    $579.00 {product?.price}
+                     $  {product?.product?.price}
                   </Heading>
                   <Text
                     size="s"
@@ -88,11 +70,7 @@ export default function ProductDetails({
 
                     className="mt-[7px] ml-[3px] md:ml-0 !text-black-900_02 text-sm"
                   >
-                    {product?.description} Intel LGA 1700 Socket: Supports 13th
-                    & 12th Gen Intel Core DDR5 Compatible: 4*SMD DIMMs with XMP
-                    3.0 Memory . Commanding Power Design: Twin 16+1+2 Phases
-                    Digital VRM
-
+                    {product?.product?.description}
                   </Text>
                 </div>
                 <div className="self-stretch h-[54px] mt-5 pr-[5px] py-[5px] relative">
@@ -227,7 +205,7 @@ export default function ProductDetails({
                       <Heading as="h6" className="uppercase">
                         Category:{" "}
                       </Heading>
-                      <Text as="p">Cell Phones & Tablets</Text>
+                      {product?.categories.map((category)=>(<p>{category.category_name}</p>))}
                     </div>
                     <div className="flex items-center gap-[7px] flex-wrap">
                       <Heading as="p" className=" uppercase my-2">

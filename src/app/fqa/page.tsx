@@ -17,10 +17,10 @@ export default function FQA(){
                 className=" m-[10px] gap-2 sm:pr-5 !text-blue_gray-900_01 tracking-[-0.08px] border-gray-300_08 border border-solid flex-grow rounded-[15px]"
               />
             </div>
-            <div className="flex flex-col   bg-slate-200 ">
+            <div className="flex flex-col    ">
                 <div className="justify-center gap-[3px] grid-cols-[repeat(auto-fill,_minmax(400px_,_1fr))] grid p-[20px]">
                     
-                    <div className="flex flex-col p-[30px] ">
+                    <div className="flex bg-slate-200 flex-col p-[30px] ">
                         <Heading size="4xl" as="h1" className=" leading-[21px] m-[10px]">
                             How do i change my account email?
                         </Heading>
@@ -30,7 +30,7 @@ export default function FQA(){
                             your email.
                         </p>
                     </div>
-                    <div className="flex flex-col p-[30px] ">
+                    <div className="flex bg-slate-200 flex-col p-[30px] ">
                         <Heading size="4xl" as="h1" className=" leading-[21px] m-[10px]">
                             How do i change my account email?
                         </Heading>
@@ -40,7 +40,7 @@ export default function FQA(){
                             your email.
                         </p>
                     </div>
-                    <div className="flex flex-col p-[30px] ">
+                    <div className="flex bg-slate-200 flex-col p-[30px] ">
                         <Heading size="4xl" as="h1" className=" leading-[21px] m-[10px]">
                             How do i change my account email?
                         </Heading>
@@ -50,7 +50,7 @@ export default function FQA(){
                             your email.
                         </p>
                     </div>
-                    <div className="flex flex-col p-[30px] ">
+                    <div className="flex bg-slate-200 flex-col p-[30px] ">
                         <Heading size="4xl" as="h1" className=" leading-[21px] m-[10px]">
                             How do i change my account email?
                         </Heading>
@@ -60,7 +60,7 @@ export default function FQA(){
                             your email.
                         </p>
                     </div>
-                    <div className="flex flex-col p-[30px] ">
+                    <div className="flex bg-slate-200 flex-col p-[30px] ">
                         <Heading size="4xl" as="h1" className=" leading-[21px] m-[10px]">
                             How do i change my account email?
                         </Heading>
@@ -70,7 +70,7 @@ export default function FQA(){
                             your email.
                         </p>
                     </div>
-                    <div className="flex flex-col p-[30px] ">
+                    <div className="flex bg-slate-200 flex-col p-[30px] ">
                         <Heading size="4xl" as="h1" className=" leading-[21px] m-[10px]">
                             How do i change my account email?
                         </Heading>

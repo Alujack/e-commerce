@@ -2,11 +2,17 @@
 
 import React, { createContext, useState, useContext, ReactNode } from 'react';
 import axios from 'axios';
-export interface Product {
+export interface product {
     id: string;
     name: string;
+    short_description:string;
     description: string;
+    image:string;
     price: number;
+    
+}
+export interface Product{
+    product:product;
     categories: Category[];
     images: ProductImage[];
     variations: ProductItem[];

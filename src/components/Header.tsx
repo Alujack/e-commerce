@@ -10,9 +10,9 @@ import { useLogoutMutation } from '@/redux/features/authApiSlice';
 import { logout as setLogout } from '@/redux/features/authSlice';
 import { useRetrieveUserQuery } from '@/redux/features/authApiSlice';
 import { CloseSVG } from "../assets/images";
-import {Img, Input} from ".";
+import { Input} from ".";
 import MenuComponent from "./menu";
-import { divider } from "@nextui-org/react";
+import ProfileMenu from "./account-information";
 
 export default function Header() {
   const { data: userData } = useRetrieveUserQuery();
@@ -20,8 +20,8 @@ export default function Header() {
   const [logout] = useLogoutMutation();
   const { isAuthenticated } = useAppSelector(state => state.auth);
   const router = useRouter();
-  const pathname = usePathname();
   const [show, setShow] = useState<boolean>(false);
+  const [openProfile, setOpenProfile] = useState<boolean>(false);
 
   const handleLogout = () => {
     logout(undefined)
@@ -41,6 +41,7 @@ export default function Header() {
       router.push("/auth-user/login");
     }
   };
+
 
   return (
 
@@ -103,24 +104,15 @@ export default function Header() {
         </div>
 
         {/* Right Side - User Menu */}
-        <div className="relative">
-           <button onClick={handleButtonClick} className="rounded-lg flex items-center border-gray-400 hover:border-2">
+        <div onMouseOver={()=>setOpenProfile(true)} onMouseLeave={()=>setOpenProfile(false)} className="relative">
+          <button onClick={handleButtonClick} className="rounded-lg flex items-center border-gray-400 hover:border-2">
             {isAuthenticated ? (
-              <img src={userData?.image || "/images/user.png"} className="h-full w-[40px] rounded-full"/>
+              <img src={userData?.image || "/images/user.png"} className="h-full w-[40px] rounded-full" />
             ) : (
-              <span className=" px-4 py-2 text-white-A700"> Sign In</span>
+              <span className=" px-4 py-2 text-white-A700">Sign In</span>
             )}
           </button>
-          {menuOpen && isAuthenticated && (
-            <div className="absolute right-0 mt-2 w-48 bg-white text-gray-800 border border-gray-300 shadow-lg z-10">
-              <Link href="/user-account/personal-information" className="px-4 py-2 block hover:bg-gray-100">
-                Personal Information
-              </Link>
-              <button onClick={handleLogout} className="w-full text-left px-4 py-2 hover:bg-gray-100">
-                Logout
-              </button>
-            </div>
-          )}
+          {isAuthenticated ? <ProfileMenu show={openProfile} /> : ""}      
         </div>
          <div className="text-white-A700  border-gray-400 hover:border-2 px-4 py-2 rounded">
           <p className="w-full">Your Order </p>
