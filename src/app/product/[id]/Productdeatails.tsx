@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Text, Heading, Button, Img } from "@/components";
 import { useCart } from "@/context/cartcontext";
 import { Product } from "@/context/productDetail";
-import Category from "@/app/seller/(seller)/categories/page";
 export default function ProductDetails({
   product,
 }: {

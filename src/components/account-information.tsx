@@ -23,7 +23,7 @@ export default function ProfileMenu({show}:Prop) {
             </div>
         <div className="flex flex-row justify-between">
             <div className="flex flex-col gap-4 ml-5">
-                <h2 className="font-bold text-lg">Your Account</h2>
+                <h2 className="font-bold text-lg">Your List</h2>
                     <ul className="flex flex-col gap-2">
                         <li>Your Orders</li>
                         <li>Your Favourite</li>

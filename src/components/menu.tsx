@@ -11,6 +11,12 @@ interface prop {
 const MenuComponent = ({ show, onclose }: prop) => {
   const [currentCategory, setCurrentCategory] = useState([]);
   const [submenu, setSubmenu] = useState(false);
+   const [showMore, setShowMore] = useState(false);
+  const ITEMS_TO_SHOW = 5; // Number of items to display initially
+
+  const toggleShowMore = () => {
+    setShowMore(!showMore);
+  };
 
   const handleCategoryClick = (category: any) => {
     setCurrentCategory(category);
@@ -59,15 +65,23 @@ const MenuComponent = ({ show, onclose }: prop) => {
               </ul>
             </div>
             <div className="mb-4 border-b-2 border-b-gray-200 pl-10 pr-4 pb-3">
-              <h2 className="font-bold text-xl mb-2">Digital Devices</h2>
-              <ul>
-                {DDV.map((ddv) => (
-                  <li className="py-2 hover:text-gray-300 flex justify-between items-center">
-                    {ddv.label}
-                    <span>›</span>
-                  </li>
-                ))}
-              </ul>
+                <h2 className="font-bold text-xl mb-2">Digital Devices</h2>
+                <ul>
+                  {DDV.slice(0, showMore ? DDV.length : ITEMS_TO_SHOW).map((ddv, index) => (
+                    <li key={index} className="py-2 hover:text-gray-300 flex justify-between items-center">
+                      {ddv.label}
+                      <span>›</span>
+                    </li>
+                  ))}
+                </ul>
+                {DDV.length > ITEMS_TO_SHOW && (
+                  <button
+                    onClick={toggleShowMore}
+                    className="text-blue-500 mt-2 focus:outline-none"
+                  >
+                    {showMore ? "Show Less" : "Show More"}
+                  </button>
+                )}
             </div>
             <div className="mb-4 border-b-2 border-b-gray-200 pl-10 pr-4 pb-3">
               <h2 className="font-bold text-xl mb-2">Fashion</h2>

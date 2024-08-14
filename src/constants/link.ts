@@ -32,6 +32,7 @@ export const SELLER_MENU = [
 ]
 export const ADMIN_MENU = [
     {href:"/admin/dashboard", label:"Dashboard", icon:"/images/img_home.svg"},
+    {href:"/admin/categories", label:"Categories", icon:"/images/img_home.svg"},
     {href:"/admin/inbox", label:"Inbox", icon:"/images/img_home.svg"},
     {href:"/admin/customers-service", label:"Customer Service", icon:"/images/img_home.svg"},
     {href:"/admin/membership-service", label:"Membership Service", icon:"/images/img_home.svg"},

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { NAVLINK } from "@/constants/link";
@@ -13,6 +13,7 @@ import { CloseSVG } from "../assets/images";
 import { Input} from ".";
 import MenuComponent from "./menu";
 import ProfileMenu from "./account-information";
+import axios from "axios";
 
 export default function Header() {
   const { data: userData } = useRetrieveUserQuery();
@@ -41,7 +42,28 @@ export default function Header() {
       router.push("/auth-user/login");
     }
   };
+  
+  const [suggestions, setSuggestions] = useState<string[]>([]);
 
+  useEffect(() => {
+    if (searchBarValue.length > 0) {
+      const suggestionss = [
+          "hello kitty stuff",
+          "hello kitty blanket",
+          "hello kitty backpack",
+          "hello kitty plush",
+          "hello kitty room decor",
+          "hello kitty stanley cup",
+          "hello kitty pajamas",
+          "hello kitty crocs",
+          "hello kitty toys",
+          "hello kitty bag",
+      ];
+    setSuggestions(suggestionss)}else{
+       setSuggestions([])
+    }
+  }, [searchBarValue]);
+ 
 
   return (
 
@@ -77,31 +99,61 @@ export default function Header() {
           </div>
 
         {/* Center - Search Bar */}
-        <div className="flex-grow mx-9 ">
-          <Input
-            name="search"
-            placeholder={`Search Techness`}
-            value={searchBarValue}
-            onChange={(e:React.ChangeEvent<HTMLInputElement>) => {
-              router.push("/search");
-              setSearchBarValue(e.target.value);
-            }}
-            prefix={<div className=" py-[8px] w-[50px] h-full bg-[#8A8A8A] mr-5"><h5 className="text-md text-white-A700 text-center justify-center">All</h5></div>}
-            suffix={
-              <>
-              {searchBarValue.length > 0 ? (
-                <CloseSVG onClick={() => setSearchBarValue("")} height={24} width={24} fillColor="#b0b9beff" />
-              ) : null}
-
-               <div className="bg-gradient1 w-10 h-full p-2"> 
-                <img src="/images/icons/search.svg" alt="icon" />
-               </div>
-              </>
-            }
-            
-            className="h-[40px] px-0 text-black-900_01 border-2 border-solid deep_purple_700_pink_400_01_border"
-          />
-        </div>
+        <div className="relative flex-grow mx-9">
+            <Input
+              name="search"
+              placeholder={`Search Techness`}
+              value={searchBarValue}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                setSearchBarValue("hfjkdhsf");
+              }}
+               onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  router.push(`/search?query=${searchBarValue}`);
+                }
+              }}
+              prefix={
+                <div className="py-[8px] w-[50px] h-full bg-[#8A8A8A] mr-5">
+                  <h5 className="text-md text-white-A700 text-center justify-center">
+                    All
+                  </h5>
+                </div>
+              }
+              suffix={
+                <>
+                  {searchBarValue.length > 0 ? (
+                    <CloseSVG
+                      onClick={() => setSearchBarValue("")}
+                      height={24}
+                      width={24}
+                      fillColor="#b0b9beff"
+                    />
+                  ) : null}
+                  <div className="bg-gradient1 w-10 h-full p-2">
+                    <img src="/images/icons/search.svg" alt="icon" />
+                  </div>
+                </>
+              }
+              className="h-[40px] px-0 text-black-900_01 border-2 border-solid deep_purple_700_pink_400_01_border"
+            />
+            {suggestions.length > 0 && (
+              <ul className="absolute bg-white-A700 border border-gray-300 w-full mt-1 z-50 max-h-60 overflow-y-auto">
+                {suggestions.map((suggestion, index) => (
+                  <li
+                    key={index}
+                    onClick={() => {
+                      setSearchBarValue(suggestion);
+                      setSuggestions([]);
+                      router.push(`/search?query=${suggestion}`);
+                    }}
+                    className="cursor-pointer p-2 hover:bg-gray-200"
+                  >
+                    {suggestion}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
 
         {/* Right Side - User Menu */}
         <div onMouseOver={()=>setOpenProfile(true)} onMouseLeave={()=>setOpenProfile(false)} className="relative">
@@ -114,7 +166,7 @@ export default function Header() {
           </button>
           {isAuthenticated ? <ProfileMenu show={openProfile} /> : ""}      
         </div>
-         <div className="text-white-A700  border-gray-400 hover:border-2 px-4 py-2 rounded">
+         <div className="text-white-A700 cursor-pointer border-gray-400 hover:border-2 px-4 py-2 rounded">
           <p className="w-full">Your Order </p>
         </div>
         <div className="text-white-A700  border-gray-400 hover:border-2 px-4 py-2 rounded">
