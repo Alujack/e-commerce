@@ -22,35 +22,42 @@ export default function SellerTopBar ({ ...props }: Props) {
             </h1>
             <div className="flex items-center justify-center md:w-full sm:flex-col">
               <Input
-                name="Group 8"
-                placeholder={`Search for something`}
-                value={searchBarValue}
-                onChange={(e: string) => setSearchBarValue(e)}
-                prefix={
-                  <Img
-                    src="/images/img_search.svg"
-                    width={20}
-                    height={20}
-                    alt="search"
-                    className="h-[20px] w-[20px] cursor-pointer"
-                  />
-                }
-                suffix={
-                  searchBarValue?.length > 0 ? (
-                    <CloseSVG onClick={() => setSearchBarValue("")} fillColor="#718ebfff" />
-                  ) : null
-                }
-                className="gap-[15px] text-indigo-200_01 sm:px-5"
-              />
-              <button className=" bg-indigo-500 text-[#d3fee0] ml-[35px] p-[10px]" onClick={() => router.push("/seller/add-product")} >+ Post Product</button>
+              name="Group 8"
+              placeholder="Search for something"
+              value={searchBarValue}
+              onChange={(e: string) => setSearchBarValue(e)}
+              prefix={
+                <Img
+                  src="/images/SellerDash/Search.png"
+                  width={20}
+                  height={20}
+                  alt="search"
+                  className="h-[20px] w-[20px] cursor-pointer ml-2"
+                />
+              }
+              suffix={
+                searchBarValue?.length > 0 ? (
+                  <CloseSVG onClick={() => setSearchBarValue("")} fillColor="#718ebfff" />
+                ) : null
+              }
+              className="gap-[20px] text-indigo-200_01 sm:px-10 rounded-lg" // Add 'rounded-lg' for corner radius
+            />
+
+              <button 
+                className="bg-indigo-500 text-[#d3fee0] ml-[35px] p-[10px] rounded-lg" 
+                onClick={() => router.push("/seller/add-product")}
+              >
+                + Post Product
+              </button>
+
               <button  className="ml-[27px] ">
-               <img src="/images/message.png" className = "w-full"/>
+               <img src="/images/SellerDash/Message.png" className = "w-[30px]"/>
               </button>
               <button className="ml-[35px] ">
                 <img
-              src="/images/img_checkmark_blue_a200_07.svg"
+              src="/images/SellerDash/Notification.png"
               alt="checkmarkone"
-              className="w-full"
+              className="w-[30px]"
             />
               </button>
               <img
