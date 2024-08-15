@@ -18,7 +18,7 @@ export default function ProfileMenu({show}:Prop) {
                     </div>
                 </div>
                 <div className="flex items-center">    
-                        <p className="hover:underline"><Link href="/account">Manage Profile</Link></p>
+                        <p className="hover:underline"><Link href="/user-account/personal-information">Manage Profile</Link></p>
                 </div>
             </div>
         <div className="flex flex-row justify-between">

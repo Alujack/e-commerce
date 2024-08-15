@@ -101,7 +101,7 @@ const MenuComponent = ({ show, onclose }: prop) => {
               </ul>
             </div>
             <div className="mb-4 border-b-2 border-b-gray-200 pl-10 pr-4 pb-3">
-              <h2 className="font-bold text-xl mb-2">Food and Drink</h2>
+              <h2 className="font-bold text-xl mb-2">Food and Baverages</h2>
               <ul>
                 <li
                   className="py-2 hover:text-gray-300 cursor-pointer"

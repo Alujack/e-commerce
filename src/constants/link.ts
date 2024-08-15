@@ -48,8 +48,8 @@ export const PROFILE_MENU =[
     {href:"/user-account/logout", label:"Logout", icon:""},
 ]
 export const TRENDING =[
-    {href:"/#", label:"Best Seller", icon:""},
-    {href:"/#", label:"New Arrival", icon:""},
+    {href:"/bestseller-in-categories", label:"Best Seller", icon:""},
+    {href:"/new-arrival-by-categories", label:"New Arrival", icon:""},
     {href:"/#", label:"Most Browse", icon:""},
 ]
 export const YOURACCOUNT =[
@@ -66,26 +66,26 @@ export const YOURACCOUNT =[
     {href:"/#", label:"Customere Service", icon:""},
 ]
 export const DDV = [
-    { href: "/#", label: "Smartphones", icon: "" },
-    { href: "/#", label: "Laptops", icon: "" },
-    { href: "/#", label: "Tablets", icon: "" },
-    { href: "/#", label: "Smartwatches", icon: "" },
-    { href: "/#", label: "Gaming Consoles", icon: "" },
-    { href: "/#", label: "Desktop Computers", icon: "" },
-    { href: "/#", label: "Smart TVs", icon: "" },
-    { href: "/#", label: "E-Readers", icon: "" },
-    { href: "/#", label: "Wearable Tech", icon: "" },
-    { href: "/#", label: "Drones", icon: "" },
-    { href: "/#", label: "VR Headsets", icon: "" },
-    { href: "/#", label: "Smart Home Devices", icon: "" },
-    { href: "/#", label: "Cameras", icon: "" },
-    { href: "/#", label: "Bluetooth Speakers", icon: "" },
-    { href: "/#", label: "Headphones", icon: "" },
-    { href: "/#", label: "Portable Chargers", icon: "" },
-    { href: "/#", label: "Monitors", icon: "" },
-    { href: "/#", label: "Printers", icon: "" },
-    { href: "/#", label: "Routers", icon: "" },
-    { href: "/#", label: "Projectors", icon: "" }
+    { href: "/category", label: "Smartphones", icon: "" },
+    { href: "/category", label: "Laptops", icon: "" },
+    { href: "/category", label: "Tablets", icon: "" },
+    { href: "/category", label: "Smartwatches", icon: "" },
+    { href: "/category", label: "Gaming Consoles", icon: "" },
+    { href: "/category", label: "Desktop Computers", icon: "" },
+    { href: "/category", label: "Smart TVs", icon: "" },
+    { href: "/category", label: "E-Readers", icon: "" },
+    { href: "/category", label: "Wearable Tech", icon: "" },
+    { href: "/category", label: "Drones", icon: "" },
+    { href: "/category", label: "VR Headsets", icon: "" },
+    { href: "/category", label: "Smart Home Devices", icon: "" },
+    { href: "/category", label: "Cameras", icon: "" },
+    { href: "/category", label: "Bluetooth Speakers", icon: "" },
+    { href: "/category", label: "Headphones", icon: "" },
+    { href: "/category", label: "Portable Chargers", icon: "" },
+    { href: "/category", label: "Monitors", icon: "" },
+    { href: "/category", label: "Printers", icon: "" },
+    { href: "/category", label: "Routers", icon: "" },
+    { href: "/category", label: "Projectors", icon: "" }
 ];
 export const MENFASHION = [
     { href: "/#", label: "Suits", icon: "" },

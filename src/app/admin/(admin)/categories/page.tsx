@@ -55,7 +55,7 @@ export default function Category() {
         data.append('parent_category', selectedParentCategoryId);
       }
       console.log(data);
-      const response = await axios.post(`http://localhost:8000/api/product/category/${store.id}/`, data, {
+      const response = await axios.post(`http://localhost:8000/api/admin_manage/create/categories/`, data, {
         headers: {
           'Content-Type': 'multipart/form-data',
         }

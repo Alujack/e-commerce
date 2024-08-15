@@ -164,7 +164,9 @@ export default function Header() {
               <span className=" px-4 py-2 text-white-A700">Sign In</span>
             )}
           </button>
-          {isAuthenticated ? <ProfileMenu show={openProfile} /> : ""}      
+
+          {isAuthenticated ? <ProfileMenu show={openProfile} /> : ""}   
+             
         </div>
          <div className="text-white-A700 cursor-pointer border-gray-400 hover:border-2 px-4 py-2 rounded">
           <p className="w-full">Your Order </p>
