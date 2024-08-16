@@ -1,10 +1,23 @@
 import Link from "next/link";
 import { YOURACCOUNT } from "@/constants/link";
-
+import { useAppDispatch } from '@/redux/hooks';
+import { useLogoutMutation } from '@/redux/features/authApiSlice';
+import { logout as setLogout } from '@/redux/features/authSlice';
+import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
 interface Prop{
     show:boolean;
 }
 export default function ProfileMenu({show}:Prop) {
+    const {data:user} = useRetrieveUserQuery();
+    const dispatch = useAppDispatch();
+    const [logout] = useLogoutMutation();
+    const handleLogout = () => {
+        logout(undefined)
+        .unwrap()
+        .then(() => {
+            dispatch(setLogout());
+        });
+  };
     if(!show)
         return null;
     return (
@@ -13,7 +26,7 @@ export default function ProfileMenu({show}:Prop) {
                 <div className="flex flex-row gap-4 items-center">
                     <img src="/images/user.png" className="h-[40px] w-[40px] rounded-full" />
                     <div className="flex flex-col gap-2">
-                        <h2 className="font-bold text-lg">Yoeurn Yan</h2>
+                        <h2 className="font-bold text-lg">{user?.first_name}  {user?.last_name}</h2>
                         <p >Account holder</p>
                     </div>
                 </div>
@@ -34,7 +47,8 @@ export default function ProfileMenu({show}:Prop) {
             <div className="flex flex-col gap-4 mr-5">
                 <h2 className="font-bold text-lg">Your Account</h2>
                     <ul className="flex flex-col gap-2">
-                        {YOURACCOUNT.map((link)=>(<li className=" cursor-pointer hover:underline">{link.label}</li>))}
+                        {YOURACCOUNT.map((link)=>(<li className=" cursor-pointer hover:underline"><Link href={link.href}>{link.label}</Link></li>))}
+                        <li onClick={handleLogout} className=" cursor-pointer hover:underline">Sign Out</li>
                     </ul>
 
             </div>

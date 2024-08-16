@@ -13,20 +13,7 @@ children
                  <Heading size="8xl" as="h1" className=" capitalize !font-bold">
                   Account information
                 </Heading>
-                  <div className="self-stretch p-5 rounded-[10px]">
-                        <div className="flex flex-col self-stretch items-center justify-center mt-7">
-                          
-                          <div className="flex self-start mt-1">
-                            <Heading size="5xl" as="h1">
-                            
-                            </Heading>
-                          </div>
-                          <div className="flex self-start mb-1.5 py-1.5">
-                            <Text as="p" className="self-end">
-                              {"yeantouch12345@gmail.com"}
-                            </Text>
-                          </div>
-                        </div>
+                  <div className="self-stretch p-5 rounded-[10px]"> 
                         {PROFILE_MENU.map((menu, index)=>(
                           
                         <div key={index} className="flex self-stretch active:bg-sky-500 justify-between hover:bg-sky-500 items-center mt-[10px]  bg-gray-100_01 rounded-lg p-[10px]">

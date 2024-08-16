@@ -55,7 +55,7 @@ export default function Category() {
         data.append('parent_category', selectedParentCategoryId);
       }
       console.log(data);
-      const response = await axios.post(`http://localhost:8000/api/admin_manage/create/categories/`, data, {
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_HOST}/api/admin_manage/create/categories/`, data, {
         headers: {
           'Content-Type': 'multipart/form-data',
         }
@@ -77,7 +77,7 @@ export default function Category() {
   useEffect(() => {
     const fetchCategory = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/api/product/category/${store.id}/`);
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_HOST}/api/admin_manage/create/categories/`);
         if (response) {
           const data = response.data.map((category: Category) => ({
             ...category,
@@ -137,9 +137,9 @@ export default function Category() {
         message="You Create Category successfully."
         back={false}
       />
-      <div className="scrollable-div grid grid-cols-5 gap-10 sm:flex flex-col">
+      <div className="scrollable-div grid grid-cols-5 gap-2 sm:flex flex-col">
         {categories?.map((category, index) => (
-          <div key={index} className="h-[250px] w-[250px] bg-white-A700 flex flex-col items-center border-2 rounded-md">
+          <div key={index} className="h-[250px] w-[220px] bg-white-A700 flex flex-col items-center border-2 rounded-md">
             <Link href={`categories/${category.id}`}>
               <img
                 src={category?.image}

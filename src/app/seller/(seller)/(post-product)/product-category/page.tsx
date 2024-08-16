@@ -12,15 +12,15 @@
 // };
 
 // const CategorySelector: React.FC = () => {
-//   const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined);
+  // const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined);
 //   const [newCategory, setNewCategory] = useState<string>('');
-//   const { product, setCategoryId } = useProduct();
+  // const { product, setCategoryId } = useProduct();
 //   const [categoriesList, setCategoriesList] = useState<Category[]>([]);
 
-//   const handleSelect = (category: string) => {
-//     setSelectedCategory(category);
-//     setCategoryId(category);
-//   };
+  // const handleSelect = (category: string) => {
+  //   setSelectedCategory(category);
+  //   setCategoryId(category);
+  // };
 
 //   const handleAddCategory = () => {
 //     // Add logic for adding a new category if needed
@@ -57,12 +57,12 @@
 //         {categoriesList.map((category) => (
 //           <div key={category.id} className="flex flex-col gap-[15px]">
 //             <div className="space-y-4">
-//               <input
-//                 type="checkbox"
-//                 checked={selectedCategory === category.id}
-//                 onChange={() => handleSelect(category.id)}
-//                 className="mr-2"
-//               />
+              // <input
+              //   type="checkbox"
+              //   checked={selectedCategory === category.id}
+              //   onChange={() => handleSelect(category.id)}
+              //   className="mr-2"
+              // />
 //               <span className="font-medium">{category.category_name}</span>
 //             </div>
 //           </div>
@@ -73,12 +73,28 @@
 // };
 
 // export default CategorySelector;
-"use client"
-import { useState } from 'react';
+"use client";
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useProduct } from '@/context/Product-Post';
+
+interface Category {
+  id: string;
+  parent_category?: string;
+  category_name: string;
+  image: string | null;
+}; 
+
 
 export default function SearchCategories() {
+  const [categories, setCategories] = useState<Category[]>([]);
   const [query, setQuery] = useState('');
-  const [categories, setCategories] = useState([]);
+  const [visibleCategories, setVisibleCategories] = useState<Category[]>([]);
+  const [selectedParentCategoryId, setSelectedParentCategoryId] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined);
+  const { product, setCategoryId } = useProduct();
+
 
   const handleSearch = async () => {
     try {
@@ -89,33 +105,63 @@ export default function SearchCategories() {
       console.error('Error fetching categories:', error);
     }
   };
+  const handleSelect = (category: string) => {
+    setSelectedCategory(category);
+    setCategoryId(category);
+  };
+  useEffect(() => {
+    const fetchCategory = async () => {
+      try {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_HOST}/api/product/product-categories/`);
+        if (response) {
+          const data = response.data.map((category: Category) => ({
+            ...category,
+            image: category.image?.startsWith('http')
+              ? category.image
+              : `${process.env.NEXT_PUBLIC_HOST}/${category.image}`,
+          }));
+          setCategories(data);
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchCategory();
+  }, []);
+
+  useEffect(() => {
+    const filteredCategories = categories.filter((category) =>
+      category.category_name.toLowerCase().startsWith(query.toLowerCase())
+    );
+    setVisibleCategories(filteredCategories);
+  }, [query, categories]);
+
 
   return (
-    <div>
-      <input
-        type="text"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        placeholder="Search categories..."
-        className="border p-2"
-      />
-      <button onClick={handleSearch} className="ml-2 p-2 bg-blue-500 text-white">
-        Search
-      </button>
-
-      <div className="mt-4">
-        {categories.length > 0 ? (
-          categories.map((category: any) => (
-            <div key={category.id}>
-              <h3>{category.category_name}</h3>
-              {/* {category.image && <img src={category.image} alt={category.category_name} />} */}
-            </div>
-          ))
-        ) : (
-          <p>No categories found.</p>
+    <div className="relative mx-[5%]">
+        <input
+          type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search categories..."
+          className="border p-2"
+        />
+        {query && visibleCategories.length > 0 && (
+          <div className="absolute z-20 mt-3 ml-5 w-full bg-white border border-gray-300 rounded-md shadow-lg">
+            {visibleCategories.map((category, index) => (
+              <div className="flex flex-row gap-6 py-3 ml-5">
+              <input
+                type="checkbox"
+                checked={selectedCategory === category.id}
+                onChange={() => handleSelect(category.id)}
+                className="mr-2"
+              />
+                  <h1 className='font-inter text-md'>{category.category_name}</h1>
+              </div>
+            ))}
+          </div>
         )}
       </div>
-    </div>
   );
 }
 

@@ -64,6 +64,8 @@ export const YOURACCOUNT =[
     {href:"/#", label:"Subscribe And Saved Items", icon:""},
     {href:"/#", label:"Memeberships and Subscription", icon:""},
     {href:"/#", label:"Customere Service", icon:""},
+    {href:"/seller/maindash", label:"Seller Dashboard", icon:""},
+    {href:"/admin/dashboard", label:"Admin Dashboard", icon:""},
 ]
 export const DDV = [
     { href: "/category", label: "Smartphones", icon: "" },

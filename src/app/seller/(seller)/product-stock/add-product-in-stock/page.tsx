@@ -15,6 +15,7 @@ interface Category {
 interface ProductForm {
   product_id:string;
   name: string;
+  short_description:string;
   description: string;
   image?: File | null;
   price: string;
@@ -29,6 +30,7 @@ export default function App() {
   const [form, setForm] = useState<ProductForm>({
     product_id:'',
     name: "",
+    short_description:"",
     description: "",
     image: null,
     price: "",
@@ -43,9 +45,7 @@ export default function App() {
   useEffect(() => {
     const fetchCategory = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:8000/api/product/category/${store.id}/`
-        );
+       const response = await axios.get(`${process.env.NEXT_PUBLIC_HOST}/api/product/product-categories/`);
         const data = response.data.map((category: Category) => ({
           ...category,
           image: category.image?.startsWith("http")
@@ -179,6 +179,17 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
               type="text"
               name="name"
               value={form.name}
+              onChange={handleChange}
+              className="w-full p-2"
+              required
+            />
+          </div>
+           <label className="text-lg text-blue-900 font-bold">Short Description</label>
+          <div className="bg-slate-200 border-2 border-b-gray-700 p-1">
+            <input
+              type="text"
+              name="short_description"
+              value={form.short_description}
               onChange={handleChange}
               className="w-full p-2"
               required

@@ -25,16 +25,17 @@ interface Category {
   id: string;
   parent_category?: string;
   category_name: string;
-  image?: string;
+  image: string | null;
 };
 
 export default function Category() {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isAddVariationOpen, setIsAddVariationOpen] = useState<boolean>(false);
   const [categories, setCategories] = useState<Category[]>([]);
+  const [visibleCategories, setVisibleCategories] = useState<Category[]>([]);
   const [selectedParentCategoryId, setSelectedParentCategoryId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const {store} = useStore();
+  const { store } = useStore();
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -44,10 +45,11 @@ export default function Category() {
   const handleOpenSuccess = () => setShowSuccess(true);
   const handleCloseSuccess = () => setShowSuccess(false);
 
+  const [query, setQuery] = useState('');
+
   const handleSubmit = async (formData: { [key: string]: string | File | null }) => {
     try {
       setIsLoading(true);
-      // Create a FormData object to handle file uploads
       const data = new FormData();
       for (const key in formData) {
         if (formData[key] !== null) {
@@ -57,8 +59,7 @@ export default function Category() {
       if (selectedParentCategoryId) {
         data.append('parent_category', selectedParentCategoryId);
       }
-      console.log(data);
-      const response = await axios.post(`http://localhost:8000/api/product/category/${store.id}/`, data, {
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_HOST}/api/product/category/${store.id}/`, data, {
         headers: {
           'Content-Type': 'multipart/form-data',
         }
@@ -82,16 +83,15 @@ export default function Category() {
   useEffect(() => {
     const fetchCategory = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/api/product/category/${store.id}/`);
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_HOST}/api/product/product-categories/`);
         if (response) {
           const data = response.data.map((category: Category) => ({
             ...category,
             image: category.image?.startsWith('http')
               ? category.image
-              : `http://localhost:8000${category.image}`,
+              : `${process.env.NEXT_PUBLIC_HOST}/${category.image}`,
           }));
           setCategories(data);
-          console.log("Categories data:", data);
         }
       } catch (e) {
         console.log(e);
@@ -99,6 +99,13 @@ export default function Category() {
     };
     fetchCategory();
   }, []);
+
+  useEffect(() => {
+    const filteredCategories = categories.filter((category) =>
+      category.category_name.toLowerCase().startsWith(query.toLowerCase())
+    );
+    setVisibleCategories(filteredCategories);
+  }, [query, categories]);
 
   const handleAddCategory = (parentId: string | null = null) => {
     setSelectedParentCategoryId(parentId);
@@ -111,14 +118,6 @@ export default function Category() {
         <h1 className="text-[28px] text-[#343C6A] font-bold inter decoration-8">
           Categories
         </h1>
-        <div>
-          <button
-            onClick={() => handleAddCategory()}
-            className="bg-blue-500 hover:bg-blue-700 text-[#d3fee0] font-bold p-4 px-8 rounded"
-          >
-            + Add Category
-          </button>
-        </div>
       </div>
 
       <FormModal
@@ -135,32 +134,33 @@ export default function Category() {
         formFields={VariationForm}
         onSubmit={handleSubmit}
       />
-       <SuccessModal
+      <SuccessModal
         show={showSuccess}
         onClose={handleCloseSuccess}
-        heading="Sucess!"
-        message="You Create Category successfully."
+        heading="Success!"
+        message="You created the category successfully."
         back={false}
       />
-      <div className="scrollable-div grid grid-cols-5 gap-10 sm:flex flex-col">
-        {categories?.map((category, index) => (
-          <div key={index} className="h-[250px] w-[250px] bg-white-A700 flex flex-col items-center border-2 rounded-md">
-            <Link href={`categories/${category.id}`}>
-              <img
-                src={category?.image}
-                alt="image"
-                className="h-[150px] p-2"
-              />
-            </Link>
-            <h1 className='font-inter text-xl font-bold'>{category.category_name}</h1>
-            <button
-              onClick={() => handleAddCategory(category.id)}
-              className="font-bold p-4 px-8 rounded"
-            >
-              + Add
-            </button>
+
+      <div className="relative">
+        <input
+          type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search categories..."
+          className="border p-2"
+        />
+        {query && visibleCategories.length > 0 && (
+          <div className="absolute z-20 mt-3 w-full bg-white border border-gray-300 rounded-md shadow-lg">
+            {visibleCategories.map((category, index) => (
+              <Link key={index} href={`categories/${category.id}`}>
+                <div className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                  <h1 className='font-inter text-md'>{category.category_name}</h1>
+                </div>
+              </Link>
+            ))}
           </div>
-        ))}
+        )}
       </div>
     </div>
   );

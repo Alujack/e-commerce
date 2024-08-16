@@ -302,47 +302,28 @@ export default function Form({ id }: { id: string }) {
                 </div>
               </div>
             </div>
-            <div className="flex items-center w-3/5 md:w-full mt-10 ml-24 p-4 border-gray-200 border bg-gray-200 rounded-lg md:ml-0">
+            <div className="flex items-center w-3/5 md:w-full mt-10 ml-[10%] mb-4 p-4 border-gray-200 border bg-gray-200 rounded-lg md:ml-0">
               <Text as="p" className="self-end text-red-600 underline">
                 Agreement.
               </Text>
             </div>
-            <div className={"flex items-center gap-[5px] cursor-pointer"}>
+            <div className=" ml-[10%] flex flex-row items-center gap-[5px] cursor-pointer">
               <input
                 type="checkbox"
                 name="createanaccount"
                 id="createanaccount"
                 onChange={onChange}
-                className="mt-8 ml-2 md:ml-0 gap-2 text-black text-sm"
+                className="gap-2 text-black text-sm"
               />
               <label htmlFor="createanaccount">Create an account</label>
-            </div>
-            <div className="flex mt-6 ml-24 md:ml-0">
-              <Heading size="xl" as="h5" className="font-bold">
-                Additional Information / Problem Report
-              </Heading>
-            </div>
-            <div className="flex flex-col self-center items-start w-4/5 md:w-full mt-2.5">
-              <div className="flex p-1.5">
-                <Text as="p" className="mt-2 mb-1 text-black">
-                  <span>Write your problem </span>
-                  <span className="text-gray-500">(Optional)</span>
-                </Text>
               </div>
-              <TextArea
-                shape="round"
-                name="problemReport"
-                placeholder="Note about your order, e.g. special note for delivery"
-                onChange={onChange}
-                className="w-full px-3 py-2 border-2 border-blue-500 rounded-lg text-gray-700"
-              />
               <button
-                className="bg-blue-500 text-white px-6 py-2 rounded-full mt-4 hover:bg-blue-700 transition-colors duration-300"
+                className="ml-[10%] bg-blue-500 text-white px-6 py-2 rounded-full mt-4 hover:bg-blue-700 transition-colors duration-300"
                 onClick ={onSubmit}
                 >
                 Confirm
               </button>
-            </div>
+           
           </div>
         </div>
       </div>

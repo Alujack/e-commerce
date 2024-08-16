@@ -3,12 +3,14 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { TRENDING, DDV, MENFASHION, WOMENFASHION } from "@/constants/link";
 import SubMenuComponent from "./submenu";
+import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
 interface prop {
   show: boolean;
   onclose: () => void;
 }
 
 const MenuComponent = ({ show, onclose }: prop) => {
+  const {data:user} = useRetrieveUserQuery();
   const [currentCategory, setCurrentCategory] = useState([]);
   const [submenu, setSubmenu] = useState(false);
    const [showMore, setShowMore] = useState(false);
@@ -45,7 +47,7 @@ const MenuComponent = ({ show, onclose }: prop) => {
                   <path fillRule="evenodd" clipRule="evenodd" d="M12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2ZM5 7C5 3.68629 7.68629 1 11 1C14.3137 1 17 3.68629 17 7C17 10.3137 14.3137 13 11 13C7.68629 13 5 10.3137 5 7ZM19 21C19 18.2386 16.7614 16 14 16H10C7.23858 16 5 18.2386 5 21V22C5 22.5523 5.44772 23 6 23H18C18.5523 23 19 22.5523 19 22V21ZM6 20C6 18.8954 6.89543 18 8 18H16C17.1046 18 18 18.8954 18 20V21H6V20Z" fill="#FFFFFF"/>
                 </svg>
               </div>
-              <h1 className="ml-3 text-xl font-poppins font-bold">Hello, Yoeurn Yan</h1>
+              <h1 className="ml-3 text-xl font-poppins font-bold">Hello, {user?.first_name}  {user?.last_name}</h1>
             </div>
         {submenu ? (
           <SubMenuComponent
@@ -133,9 +135,9 @@ const MenuComponent = ({ show, onclose }: prop) => {
             <div className="pb-32 mb-4 pl-10 pr-4 ">
               <h2 className="font-bold text-xl mb-3">Help and Setting</h2>
               <ul className="mb-[100px]">
-                <li className="py-2 hover:text-gray-300">Your Account</li>
+                <li className="py-2 hover:text-gray-300"><Link href="/user-account/personal-information">Your Account</Link></li>
                 <li className="py-2 hover:text-gray-300">
-                  <a href="/centralsale">Become a Seller</a>
+                  <Link href="/centralsale">Become a Seller</Link>
                 </li>
                 <li className="py-2 hover:text-gray-300">English</li>
                 <li className="py-2 hover:text-gray-300">Cambodia</li>

@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { NAVLINK } from "@/constants/link";
-import { usePathname } from "next/navigation";
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 import { useLogoutMutation } from '@/redux/features/authApiSlice';
 import { logout as setLogout } from '@/redux/features/authSlice';
@@ -13,7 +12,6 @@ import { CloseSVG } from "../assets/images";
 import { Input} from ".";
 import MenuComponent from "./menu";
 import ProfileMenu from "./account-information";
-import axios from "axios";
 
 export default function Header() {
   const { data: userData } = useRetrieveUserQuery();
@@ -92,7 +90,7 @@ export default function Header() {
                   />
             </svg>
             <div className="grid grid-rows-2">
-              <p className="text-gray-400 text-sm">Deliver to Yan</p>
+              <p className="text-gray-400 text-sm">Deliver to {userData?.last_name}</p>
               <h6 className="font-poppins font-bold">Cambodia,1200</h6>
             
             </div>

@@ -39,7 +39,7 @@ export default function ProductCard({items,...props
           </Heading>
         </div>
         <Heading size="7xl" as="h2" className="!text-gray-900_07">
-          {items.price}
+          $ {items.price}
         </Heading>
        </Link>
         <div className="flex gap-3">
