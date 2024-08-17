@@ -26,12 +26,13 @@ const FormModal: React.FC<DynamicModalProps> = ({ heading, isVisible, onClose, f
   const [position, setPosition] = useState<{ top: number; left: number }>({ top: 100, left: 100 });
 
  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value, type, files } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: type === 'file' ? (files ? files[0] : null) : value,
-    }));
-  };
+  const { name, value, type, files } = e.target as HTMLInputElement || HTMLSelectElement;
+  setFormData((prevData) => ({
+    ...prevData,
+    [name]: type === 'file' ? (files ? files[0] : null) : value,
+  }));
+};
+
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
