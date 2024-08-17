@@ -12,13 +12,8 @@ interface Variations{
   attribute_type:string;
 }
 
-interface ProductItem {
-  product: string;
-  variation_option: string;
-}
-
 interface Stock {
-  product_item_variation: ProductItem
+  variation_option:string;
   quantity: number;
 }
 
@@ -32,7 +27,6 @@ interface ProductContextProps {
   categoryId:string;
   variations: Variations[];
   variationOptions: string[];
-  productItems: ProductItem[];
   stocks: Stock[];
   productImages: ProductImage[];
   productId:string;
@@ -41,7 +35,6 @@ interface ProductContextProps {
   setCategoryId: (categoryId: string) => void;
   setVariations: (variations: Variations[]) => void;
   setVariationOptions: ( variationOptions: string[]) => void;
-  setProductItems: (productItems: ProductItem[]) => void;
   setStocks: (stocks: Stock[]) => void;
   setProductImages: (productImages: ProductImage[]) => void;
 }
@@ -60,7 +53,6 @@ const ProductPostProvider = ({ children }: { children: ReactNode }) => {
   const [categoryId, setCategoryId] = useState<string>("");
   const [variations, setVariations] = useState<Variations[]>([]);
   const [variationOptions, setVariationOptions] = useState<string[]>([]);
-  const [productItems, setProductItems] = useState<ProductItem[]>([]);
   const [stocks, setStocks] = useState<Stock[]>([]);
   const [productImages, setProductImages] = useState<ProductImage[]>([
     { url: null, angle: 'front' },
@@ -75,7 +67,6 @@ const ProductPostProvider = ({ children }: { children: ReactNode }) => {
          product,
          categoryId,
          variations,
-         productItems,
          variationOptions, 
          stocks, 
          productImages,
@@ -84,7 +75,6 @@ const ProductPostProvider = ({ children }: { children: ReactNode }) => {
          setProductId, 
          setCategoryId, 
          setVariations, 
-         setProductItems,
          setVariationOptions, 
          setStocks, 
          setProductImages 

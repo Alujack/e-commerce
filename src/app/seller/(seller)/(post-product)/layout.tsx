@@ -16,12 +16,9 @@ export default function App({children}:{children:React.ReactNode}) {
     const router = useRouter();
     const {
          product,
-         variations,
-         productItems,
-         variationOptions, 
          stocks, 
          productImages,
-         productId} = useProduct();
+        } = useProduct();
 
    const dataSubmit = {
       "product": {
@@ -29,15 +26,9 @@ export default function App({children}:{children:React.ReactNode}) {
         "description": product.description,
         "price": product.price,
       },
-      "product_items": productItems.map(item => ({
-        "product": item.product,
-        "variation_option": item.variation_option,
-      })),
-      "stocks": stocks.map(stock => ({
-        "product_item_variation": {
-          "product": stock.product_item_variation.product,
-          "variation_option": stock.product_item_variation.variation_option,
-        },
+      "stocks": stocks.map(stock => ({    
+        "product": product,
+        "variation_option": stock.variation_option,
         "quantity": stock.quantity,
       })),
       "product_images": productImages.map(image => ({
@@ -71,15 +62,9 @@ export default function App({children}:{children:React.ReactNode}) {
         description: product.description,
         price: product.price,
       },
-      product_items: productItems.map(item => ({
-        product: item.product,
-        variation_option: item.variation_option,
-      })),
-      stocks: stocks.map(stock => ({
-        product_item_variation: {
-          product: stock.product_item_variation.product,
-          variation_option: stock.product_item_variation.variation_option,
-        },
+      stocks: stocks.map(stock => ({   
+        product: product,
+        variation_option: stock.variation_option,
         quantity: stock.quantity,
       })),
     };
@@ -95,6 +80,7 @@ export default function App({children}:{children:React.ReactNode}) {
     });
 
     try {
+        console.log(formData)
         const response = await axios.post(
             `http://localhost:8000/api/product/store/product/post/${product.id}/`,
             formData,
