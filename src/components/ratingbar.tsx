@@ -16,7 +16,7 @@ type RatingBarType = React.DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTM
 const RatingBar = ({
   children,
   className,
-  starCount = 5,
+  starCount,
   color = "grey",
   activeColor = "red",
   isEditable = false,

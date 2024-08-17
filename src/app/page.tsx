@@ -11,6 +11,7 @@ import Membership from "@/components/homepage/membership";
 import CheckallProduct from "@/components/homepage/checkallproductbanner";
 import BankCard from "@/components/homepage/bankcard";
 import product from "@/constants/product";
+import ProductCard from "@/components/ProductCard";
 import { producttype } from "@/common.type";
 export default function Body(){
   
