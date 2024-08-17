@@ -3,6 +3,8 @@ import { useState } from "react";
 import { Text, Heading, Button, Img } from "@/components";
 import { useCart } from "@/context/cartcontext";
 import { Product } from "@/context/productDetail";
+import CartitemsModal from "@/modals/Cart-Items"
+import { RatingBar } from "@/components/ratingbar"; // Import RatingBar
 export default function ProductDetails({
   product,
 }: {
@@ -10,57 +12,65 @@ export default function ProductDetails({
 }) {
   const [count, setCount] = useState(1);
   const { cartItems, setCartItems } = useCart();
-  console.log(product);
+  const [selectedImage, setSelectedImage] = useState("");
+  const handleImageClick = (imageUrl:string) => {
+    setSelectedImage(imageUrl);
+  };
   return (
     <>
-      <div className="w-full  mt-9">
+    <CartitemsModal show={false}/>
+      <div className="flex flex-row gap-2">
+        <div className="mt-9 p-3">
         <div className="flex flex-col gap-3">
           <div className="flex flex-col w-full gap-3 mx-auto md:p-5 max-w-[95%]">
-            <div className="flex md:flex-col items-end gap-[9px] p-3.5 bg-white-A700 rounded-[10px]">
-              <div className="flex flex-col md:self-stretch mt-[37px] pb-[22px] sm:pb-5 flex-1 mb-40">
-                <Button
-                  color="gray_900_01"
-                  size="xs"
-                  shape="round"
-
-                  className="uppercase min-w-[39px] !rounded-[5px] self-start mb-10"
-                >
-                  new
-                </Button>
-                <div className="">
-                  <img
-
-                    src={`http://localhost:8000/${product?.product?.image}`}
-                    alt="image_three"
-                    className=" object-cover border border-gray-300 ml-[30%]"
-                  />
-                </div>
-                <div className="flex self-stretch justify-between gap-5 mt-5">
-                  {product?.images.map((image)=>(
-                  <img
-                    src={`http://localhost:8000/${image.image}/`}
-                    alt="image_four"
-                    className="w-[21%] object-cover border border-gray-300"
-                  />
+            <div className="flex flex-row  items-start gap-[9px] p-3.5 bg-white-A700 rounded-[10px]">
+              <div className="flex flex-row md:self-stretch pb-[2px] sm:pb-5 flex-1 mb-40">
+                <div className="flex w-20 flex-col self-stretch gap-5 mt-5">
+                  {product?.images.map((image) => (
+                    <img
+                      key={image.id}
+                      src={`http://localhost:8000/${image.image}/`}
+                      alt="product_thumbnail"
+                      className="w-full object-cover border border-gray-300 cursor-pointer"
+                      onMouseOver={() => handleImageClick(`http://localhost:8000/${image.image}/`)}
+                    />
                   ))}
-                  
+                </div>
+                <div className="w-full">
+                  <div className="w-full flex items-center">
+                    <img
+                      src={selectedImage !== "" ? selectedImage : `http://localhost:8000/${product?.product?.image}`}
+                      alt="selected_product_image"
+                      className="w-full object-cover border border-gray-300 m-0"
+                    />
+                  </div>
                 </div>
               </div>
 
-              <div className="flex flex-col items-start w-[33%] md:w-full">
+              <div className="overflow-y-scroll h-full flex flex-col items-start w-[33%] md:w-full">
                 <div className="flex flex-col self-stretch items-start">
-                  <div className="flex self-stretch">
-                    <Heading
-                      size="xl"
-                      as="h1"
-                      className="w-[84%] !font-bold leading-[19px]"
+                  <div className="flex flex-col self-stretch">
+                    <h1
+                      className="text-xl text-[#565959]"
                     >
-
-                      {product?.product?.name}  {product?.product?.name} {product?.product?.name}
-
-                    </Heading>
+                      {product?.product?.name}
+                    </h1>
+                    <p className="text-xl text-[#565959]"> {product?.product?.short_description}</p>
                   </div>
-                  <Heading size="6xl" as="h2" className="mt-0.5 text-black">
+                  <RatingBar
+                      value={4} // Assuming `items` has a `rating` field
+                      starCount={5}
+                      color="grey"
+                      activeColor="gold"
+                      size={24}
+                      isEditable={false} // Set to false if you don't want users to edit the rating
+                    /> 
+
+
+
+                 
+                </div>
+                 <Heading size="6xl" as="h2" className="mt-0.5 text-black">
                      $  {product?.product?.price}
                   </Heading>
                   <Text
@@ -71,7 +81,8 @@ export default function ProductDetails({
                   >
                     {product?.product?.description}
                   </Text>
-                </div>
+               
+                
                 <div className="self-stretch h-[54px] mt-5 pr-[5px] py-[5px] relative">
                   <div className="h-[28px] w-[29%] opacity-0.05 bg-green-700_5e absolute rounded-md" />
                   <Text
@@ -81,7 +92,7 @@ export default function ProductDetails({
                   >
                     free shipping
                   </Text>
-                  <div className="border-gray-400 border-b border-solid mt-16"></div>
+                  <div className="border-gray-400 border-b border-solid mt-16"/> 
                 </div>
 
 
@@ -183,8 +194,6 @@ export default function ProductDetails({
                   </div>
 
                   <div className="flex self-stretch pb-[21px] sm:pb-5 border-gray-400 border-b border-solid">
-
-
                     <Img
                       src="/images/img_pay_png.png"
                       alt="paypng_one"
@@ -230,7 +239,7 @@ export default function ProductDetails({
                     <div className="bg-gray-100 p-3 rounded-full">
                       <Img
                         src="/images/icons/twiter.png"
-                        alt="checkmark_one"
+                        alt="twiter"
                         className="h-6 w-6 text-black"
                       />
                     </div>
@@ -239,7 +248,7 @@ export default function ProductDetails({
                     <div className="bg-gray-100 p-3 rounded-full">
                       <Img
                         src="/images/icons/instargram.jpg"
-                        alt="checkmark_one"
+                        alt="instagram"
                         className="h-6 w-6 text-black"
                       />
                     </div>
@@ -248,7 +257,7 @@ export default function ProductDetails({
                     <div className="bg-gray-100 p-3 rounded-full">
                       <Img
                         src="/images/icons/youtube.png"
-                        alt="checkmark_one"
+                        alt="youtube"
                         className="h-6 w-6 text-black"
                       />
                     </div>
@@ -257,7 +266,7 @@ export default function ProductDetails({
                     <div className="bg-gray-100 p-3 rounded-full">
                       <Img
                         src="/images/icons/Dribbble.jpg"
-                        alt="checkmark_one"
+                        alt="dribble"
                         className="h-6 w-6 text-black"
                       />
                     </div>
@@ -273,7 +282,7 @@ export default function ProductDetails({
                   </p>
                   <img
                     src="/images/productdetail/mac-logo.png"
-                    alt="Sonex Logo"
+                    alt="Mac"
                     className="w-32 mt-2"
                   />
                 </div>
@@ -447,6 +456,7 @@ export default function ProductDetails({
               </div>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </>

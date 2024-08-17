@@ -32,7 +32,7 @@ const MenuComponent = ({ show, onclose }: prop) => {
   if (!show) return null;
   return (
     <div className="fixed inset-0 flex flex-row-reverse gap-2 bg-black-900_01 bg-opacity-75 z-50 pb-80 ">
-      <div className="w-[100%] sticky ml-[371px] h-56">
+      <div className="w-[100%] ml-[371px] h-56">
         <button className=" ml-4 place-self-start w-24 h-24 py-5" onClick={onclose}>
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="32" height="32" fill="white" fillOpacity="0"/>

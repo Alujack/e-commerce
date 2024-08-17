@@ -1,8 +1,4 @@
-import Category from "@/components/category";
-import ProductCard from "@/components/ProductCard";
-import Sliderbanner from "@/components/Sliderbanner";
-import Adsbanner from "@/components/homepage/adsbanner";
-import Discover from "@/components/homepage/discover";
+
 import TopCategory from "@/components/homepage/topcategory";
 import Branding from "@/components/homepage/branding";
 import HeadingBanner from "@/components/bannerHeading";
@@ -19,7 +15,7 @@ import { producttype } from "@/common.type";
 export default function Body(){
   
  return(<>
- <div className="flex flex-col gap-[11px]">
+ <div className="mx-20 flex flex-col gap-[11px]">
             <div className="flex md:flex-col sm:hidden gap-2.5 bg-white-A700 rounded-[10px]">
               <div className="flex flex-col items-start md:self-stretch gap-[7px] p-[13px] md:p-5 bg-gray-50_01 flex-1 rounded-[10px]">
               </div>

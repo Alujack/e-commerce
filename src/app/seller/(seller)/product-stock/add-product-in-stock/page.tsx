@@ -101,6 +101,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
     const formData = new FormData();
     formData.append("product_id", form.product_id);
     formData.append("name", form.name);
+    formData.append("short_description", form.short_description)
     formData.append("description", form.description);
     if (form.image) {
       formData.append("image", form.image);
@@ -113,7 +114,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
     });
     console.log("FormData object before submission:", Array.from(formData.entries()));
 
-    const response = await axios.post("http://localhost:8000/api/product/products/", formData, {
+    const response = await axios.post("http://localhost:8000/api/product/create/", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
