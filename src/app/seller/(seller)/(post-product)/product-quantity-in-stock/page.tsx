@@ -10,13 +10,13 @@ interface VariationOption {
 }
 
 const QuantityInStock: React.FC = () => {
-  const { product, variations, setProductItems, setStocks, stocks,productItems,categoryId,productImages } = useProduct();
+  const { product, variations,setStocks, stocks,categoryId,productImages } = useProduct();
   const [variationId, setVariationId] = useState<string>("");
   const [variationOptionId, setVariationOptionId] = useState<string>("");
   const [quantity, setQuantity] = useState<number>(0);
   const [variationOptionList, setVariationOptionList] = useState<VariationOption[]>([]);
   const data ={
-    product,variations,stocks,productItems,categoryId,productImages
+    product,variations,stocks,categoryId,productImages
   }
 
   useEffect(() => {
@@ -44,10 +44,6 @@ const QuantityInStock: React.FC = () => {
   const handleVariationOptionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedOptionId = e.target.value;
     setVariationOptionId(selectedOptionId);
-
-    if (selectedOptionId) {
-      setProductItems([...productItems,{ product: product.id, variation_option: selectedOptionId }]);
-    }
   };
 
   const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,10 +51,11 @@ const QuantityInStock: React.FC = () => {
   };
 
   const addStock = () => {
+    console.log("variation:", variations)
     if (variationOptionId && quantity > 0) {
       const newStock = {
-        product_item_variation: { product: product.id, variation_option: variationOptionId },
-        quantity: quantity,
+        variation_option: variationOptionId ,
+        quantity: quantity
       };
 
       setStocks([...stocks, newStock]);
@@ -83,7 +80,7 @@ const QuantityInStock: React.FC = () => {
               onChange={handleVariationChange}
             >
               <option value="">Select Variation</option>
-              {variations.map((variation) => (
+              {variations?.map((variation) => (
                 <option key={variation.id} value={variation.id}>
                   {variation.attribute_type}
                 </option>

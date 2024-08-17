@@ -1,14 +1,14 @@
 "use client"
 import React, { createContext, useState, useContext, ReactNode} from 'react';
 interface Product {
-  id: string;
+  id: number;
   name: string;
   description:string;
   image: string;
   price: string;
 }
-interface Variations{
-  id: string;
+export interface Variations{
+  id: number;
   attribute_type:string;
 }
 
@@ -43,7 +43,7 @@ const ProductContext = createContext<ProductContextProps | undefined>(undefined)
 
 const ProductPostProvider = ({ children }: { children: ReactNode }) => {
   const [product, setProduct] = useState<Product>({
-    id: '',
+    id:0,
     name: '',
     description: '',
     image: '',

@@ -27,9 +27,9 @@ const ProductImagePage: React.FC = () => {
               />
             </div>
             <h4>{side}</h4>
-            {productImages[index].url && (
+            {/* {productImages[index].url && (
               <img src={URL.createObjectURL(productImages[index].url)} alt={`${side} view`} className="h-40 w-full object-cover mt-2" />
-            )}
+            )} */}
           </div>
         ))}
       </div>

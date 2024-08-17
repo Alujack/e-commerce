@@ -89,6 +89,7 @@ const ProfileInformation: React.FC = () => {
         show={showSuccess}
         onClose={handleCloseSuccess}
         heading="Success!"
+        back={false}
         message="Your account updated successfully."
       />
       <div className="flex flex-col w-[24%] md:w-full ml-14 md:ml-0">

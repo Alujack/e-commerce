@@ -103,7 +103,7 @@ const authApiSlice = apiSlice.injectEndpoints({
         if (key === 'image' && value instanceof File) {
           formData.append(key, value);
         } else {
-          formData.append(key, value.toString()); // Convert non-file values to strings
+          formData.append(key, value.toString());
         }
       }
       });

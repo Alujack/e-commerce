@@ -9,7 +9,7 @@ interface SuccessModalProps {
   back:boolean;
 }
 
-const SuccessModal: React.FC<SuccessModalProps> = ({ show, onClose,heading,message,back }) => {
+const SuccessModal: React.FC<SuccessModalProps> = ({ show, onClose,heading,message, back }) => {
   const router = useRouter();
   if (!show) return null;
   const handleClose = ()=>{

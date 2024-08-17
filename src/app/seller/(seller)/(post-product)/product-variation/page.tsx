@@ -2,15 +2,11 @@
 import React, { useState, useEffect } from 'react';
 import { useProduct } from '@/context/Product-Post';
 import axios from 'axios';
-
-interface Variation {
-  id: string;
-  attribute_type: string;
-}
+import { Variations } from '@/context/Product-Post';
 
 const ProductDetail: React.FC = () => {
   const { categoryId, setVariations } = useProduct();
-  const [variationList, setVariationList] = useState<Variation[]>([]);
+  const [variationList, setVariationList] = useState<Variations[]>([]);
 
   useEffect(() => {
     const fetchVariations = async () => {
@@ -29,11 +25,12 @@ const ProductDetail: React.FC = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedVariations = Array.from(e.target.selectedOptions, option => {
-      const variation = variationList.find(variation => variation.id === option.value);
+      const variation = variationList.find(variation => variation.id === Number(option.value));
       return variation ? { id: variation.id, attribute_type: variation.attribute_type } : null;
-    }).filter(Boolean) as Variation[];
+    }).filter(Boolean) as Variations[];
+    console.log(selectedVariations);
     
-    setVariations(selectedVariations);
+    setVariations([...selectedVariations]);
   }
 
   return (

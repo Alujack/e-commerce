@@ -238,6 +238,7 @@ const FormComponent = ({ id }: { id: string }) => {
         show={showSuccess}
         onClose={handleCloseSuccess}
         heading="Sucess!"
+        back={false}
         message="Your Address updated successfully."
       />
     </div>

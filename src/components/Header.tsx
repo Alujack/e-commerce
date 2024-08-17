@@ -71,7 +71,7 @@ export default function Header() {
         {/* Left Side - Logo */}
         <div className="flex flex-col px-2 my-2 border-gray-400 rounded hover:border-2 transition-[0.4s]">
           <div>
-            <img src="/images/img_emotion_1_30x35.png" alt="emotionone_one" className="object-scale-down h-12 self-center" />
+            <Link href="/"><img src="/images/icons/techness.png" alt="emotionone_one" className="object-scale-down h-12 self-center" /></Link>
            </div>
         </div>
         <div className=" h-12 flex flex-row gap-3 p-2 py-2 rounded hover:border-2 transition-[0.4s] border-gray-400 text-white-A700 items-center  ">
