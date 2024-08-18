@@ -27,7 +27,6 @@ export default function App({children}:{children:React.ReactNode}) {
         "price": product.price,
       },
       "stocks": stocks.map(stock => ({    
-        "product": product,
         "variation_option": stock.variation_option,
         "quantity": stock.quantity,
       })),
@@ -56,26 +55,21 @@ export default function App({children}:{children:React.ReactNode}) {
     const formData = new FormData();
 
     // Append JSON data as a string
-    const jsonProductData = {
-      product: {
-        name: product.name,
-        description: product.description,
-        price: product.price,
-      },
-      stocks: stocks.map(stock => ({   
-        product: product,
-        variation_option: stock.variation_option,
-        quantity: stock.quantity,
-      })),
-    };
+  
+    formData.append('product', JSON.stringify(product));
 
-    formData.append('product_data', JSON.stringify(jsonProductData));
+    stocks.map((stock,index) => {  
+        if(stock) 
+            formData.append(`stocks[${index}]['variation_option']`, stock.variation_option);
+            formData.append(`stocks[${index}]['quantity]`, stock.quantity.toString());
+
+    }),
 
     // Append product images as files
     productImages.forEach((image, index) => {
         if (image.url) {
             formData.append(`product_images[${index}][url]`, image.url);
-            formData.append(`product_images[${index}][angle]`, image.angle || '');
+            formData.append(`product_images[${index}][angle]`, image.angle);
         }
     });
 
@@ -86,6 +80,7 @@ export default function App({children}:{children:React.ReactNode}) {
             formData,
             {
                 headers: {
+                    'Accept':'application/json',
                     'Content-Type': 'multipart/form-data',
                 },
             }

@@ -24,7 +24,7 @@ export default function AddCart() {
  </>) 
   return (
     <main>
-      <div className="w-full mt-5">     
+      <div className="w-full mt-5 px-20">     
         <div className="flex flex-row justify-between  rounded-[10px]">
           <div className="flex flex-col bg-white-A700  w-[1179px] mr-20 flex-start md:self-stretch gap-[15px] flex-1">
             { cartItems.length > 0 ?  

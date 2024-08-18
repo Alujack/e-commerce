@@ -1,6 +1,6 @@
 import {Img,Heading,Button} from "../."
 export default function Branding(){
-   return ( <div className="w-full p-7 sm:p-5 bg-white-A700 rounded-[10px]">
+   return ( <div className="w-full p-7 sm:p-5 bg-white-A700 ">
                 <div className="flex flex-col mb-[11px] gap-[21px]">
                   <div className="flex justify-between gap-5">
                     <div className="flex">

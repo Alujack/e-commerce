@@ -45,7 +45,7 @@ async function RootLayout({
                 <StoreProvider>
                   <CartProvider>
                     <ProductProvider> 
-                      <div className={`${inter.className} flex flex-col w-full  max-w-[100wv] `}>                     
+                      <div className={`${inter.className} flex flex-col w-full max-w-[100wv] bg-[#E3E6E6] `}>                     
                           <Header/>
                             <div>{children}</div>
                           <Footer/>

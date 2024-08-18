@@ -1,10 +1,9 @@
 import {Heading,Button,Img} from "../."
 export default function TopCategory(){
     return (
-       <div className="flex flex-col w-full gap-2.5 p-[21px] sm:p-5 bg-white-A700 rounded-[10px]">
+       <div className="flex flex-col w-full gap-2.5 p-[21px] sm:p-5 bg-white-A700">
                 <div className="flex justify-between mt-[9px] gap-5">
-                  <div className="flex">
-                    
+                  <div className="flex"> 
                     <Heading size="3xl" as="h6" className="self-start uppercase">
                       Top Categories
                     </Heading>

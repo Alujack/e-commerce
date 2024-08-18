@@ -6,21 +6,19 @@ export default function HeadingBanner({title,link}:{
   link?:string,
 }) {
     return (
-       <div className="flex sm:flex-col justify-between items-center gap-5 p-[5px] bg-green-700 h-[62px] rounded-[10px]">
+       <div className="flex sm:flex-col justify-between items-center gap-5 p-[5px]  h-[62px] rounded-[10px]">
                 <div className="flex p-2.5">
-                  <Heading size="9xl" as="h4" className="my-2 !text-white-A700 uppercase">
+                  <h1 className="text-3xl font-bold my-2  uppercase">
                     {title}
-                  </Heading>
+                  </h1>
                 </div>
                 <Link href="/store">
                 
-                <Button
-                  color="gray_200_03"
-                  size="sm"
-                  className="mr-[19px] md:mr-0 sm:p-5 capitalize font-medium min-w-[89px] rounded-[10px]"
+                <button
+                  className="bg-gray-200 mr-[19px] md:mr-0 p-3 capitalize font-medium min-w-[89px] rounded-[10px]"
                 >
                   {link}{" "}
-                </Button>
+                </button>
                 </Link>
               </div>
     )

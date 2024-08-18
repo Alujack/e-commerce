@@ -2,7 +2,7 @@ import {Heading, Input, Img} from "@/components"
 export default function FQA(){
     return (
     <main>
-        <div className= "flex flex-col">
+        <div className= "flex flex-col px-20">
             <div className="flex flex-col justify-between items-center p-[30px]">
                 <span>FQAs</span>
                 <Heading size="4xl" as="h1" className=" leading-[21px] m-[10px]">
