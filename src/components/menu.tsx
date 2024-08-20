@@ -4,6 +4,7 @@ import Link from "next/link";
 import { TRENDING, DDV, MENFASHION, WOMENFASHION } from "@/constants/link";
 import SubMenuComponent from "./submenu";
 import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
+import { useCategoryContext } from "@/context/CategoryContext";
 interface prop {
   show: boolean;
   onclose: () => void;
@@ -15,6 +16,7 @@ const MenuComponent = ({ show, onclose }: prop) => {
   const [submenu, setSubmenu] = useState(false);
    const [showMore, setShowMore] = useState(false);
   const ITEMS_TO_SHOW = 5; // Number of items to display initially
+  const {parentCategories} = useCategoryContext();
 
   const toggleShowMore = () => {
     setShowMore(!showMore);
@@ -28,10 +30,14 @@ const MenuComponent = ({ show, onclose }: prop) => {
   const handleBackToMenu = () => {
     setSubmenu(false); // Go back to main menu
   };
+  const test = ()=>{
+    console.log(parentCategories)
+  }
 
   if (!show) return null;
   return (
     <div className="fixed inset-0 flex flex-row-reverse gap-2 bg-black-900_01 bg-opacity-75 z-50 pb-80 ">
+      
       <div className="w-[100%] ml-[371px] h-56">
         <button className=" ml-4 place-self-start w-24 h-24 py-5" onClick={onclose}>
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -66,17 +72,24 @@ const MenuComponent = ({ show, onclose }: prop) => {
                 ))}
               </ul>
             </div>
-            <div className="mb-4 border-b-2 border-b-gray-200 pl-10 pr-4 pb-3">
-                <h2 className="font-bold text-xl mb-2">Digital Devices</h2>
+
+
+          {parentCategories.map((parent, index)=>(
+            <div key={index} className="mb-4 border-b-2 border-b-gray-200 pl-10 pr-4 pb-3">
+                <h2 className="font-bold text-xl mb-2">{parent.category_name}</h2>
                 <ul>
-                  {DDV.slice(0, showMore ? DDV.length : ITEMS_TO_SHOW).map((ddv, index) => (
-                    <li key={index} className="py-2 hover:text-gray-300 flex justify-between items-center">
-                      {ddv.label}
+                  {parent.subcategories?.slice(0, showMore ? DDV.length : ITEMS_TO_SHOW).map((cat, index) => (
+                    <li 
+                    key={index}
+                    onClick={() => handleCategoryClick(cat.subcategories)} 
+                    className="py-2 hover:text-gray-300 flex justify-between items-center"
+                    >
+                      {cat.category_name}
                       <span>›</span>
                     </li>
                   ))}
                 </ul>
-                {DDV.length > ITEMS_TO_SHOW && (
+                {parent.subcategories  && parent.subcategories.length > ITEMS_TO_SHOW && (
                   <button
                     onClick={toggleShowMore}
                     className="text-blue-500 mt-2 focus:outline-none"
@@ -85,52 +98,12 @@ const MenuComponent = ({ show, onclose }: prop) => {
                   </button>
                 )}
             </div>
-            <div className="mb-4 border-b-2 border-b-gray-200 pl-10 pr-4 pb-3">
-              <h2 className="font-bold text-xl mb-2">Fashion</h2>
-              <ul>
-                <li
-                  className="py-2 hover:text-gray-300 cursor-pointer"
-                  onClick={() => handleCategoryClick(MENFASHION)}
-                >
-                 Man Fashion
-                </li>
-                <li
-                  className="py-1 hover:text-gray-300 cursor-pointer"
-                  onClick={() => handleCategoryClick(WOMENFASHION)}
-                >
-                  Women Fashion
-                </li>
-              </ul>
-            </div>
-            <div className="mb-4 border-b-2 border-b-gray-200 pl-10 pr-4 pb-3">
-              <h2 className="font-bold text-xl mb-2">Food and Baverages</h2>
-              <ul>
-                <li
-                  className="py-2 hover:text-gray-300 cursor-pointer"
-                  onClick={() => handleCategoryClick(MENFASHION)}
-                >
-                  Food and Grocery
-                </li>
-                <li
-                  className="py-1 hover:text-gray-300 cursor-pointer"
-                  onClick={() => handleCategoryClick(WOMENFASHION)}
-                >
-                  Fruits
-                </li>
-                <li
-                  className="py-1 hover:text-gray-300 cursor-pointer"
-                  onClick={() => handleCategoryClick(WOMENFASHION)}
-                >
-                  Snacks
-                </li>
-                 <li
-                  className="py-1 hover:text-gray-300 cursor-pointer"
-                  onClick={() => handleCategoryClick(WOMENFASHION)}
-                >
-                  Drinks
-                </li>
-              </ul>
-            </div>
+          ))}
+            
+
+
+
+
             
             <div className="pb-32 mb-4 pl-10 pr-4 ">
               <h2 className="font-bold text-xl mb-3">Help and Setting</h2>
@@ -142,7 +115,9 @@ const MenuComponent = ({ show, onclose }: prop) => {
                 <li className="py-2 hover:text-gray-300">English</li>
                 <li className="py-2 hover:text-gray-300">Cambodia</li>
                 <li className="py-2 hover:text-gray-300">Sign Out</li>
+
               </ul>
+              <button onClick={test} className="bg-white-A700">Click test</button>
             </div>
           </div>
         )}

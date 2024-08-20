@@ -1,4 +1,16 @@
+"use client"
+import { useEffect } from "react";
+import PaymentOption from "./components/PaymentOptions"
+import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
+import { useAddress } from "@/context/AddressContext";
  export default function Checkout() {
+   const {data:user} = useRetrieveUserQuery();
+   const { address, fetchAddress } = useAddress();
+   const id = user?.id ? user.id : '';
+
+   useEffect(() => {
+      fetchAddress(id);
+    }, [id, fetchAddress]);
   return (
     <>
       <div className="flex flec-row justify-between items-center px-14 py-10">
@@ -52,108 +64,126 @@
             OR
           </p>
           {/* Section1 */}
-          <form>
-            <div className="mb-4 flex flex-col gap-3 my-[20px]">
-              <div className=" flex  gap-3 justify-between">
-                <h2 className="flex  justify-between text-lg hover:underline">
-                  Customer information
-                </h2>
-                <p className="text-cyan-500 hover:text-indigo-800 hover:underline">
-                  Edit
-                </p>
-              </div>
-              <div className="border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md">
+          <div className="w-full  sm:p-5  rounded-[10px] ">
+            <div className=" flex  gap-3 justify-between pt-7">
+              <h2 className="flex  justify-between text-lg hover:underline ">
+                Billing address
+              </h2>
+              <p className="text-cyan-500 hover:text-indigo-800 hover:underline">
+                Edit Detail
+              </p>
+            </div>
+            <div className="flex space-x-[25px] justify-between">
+              <div className="border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md w-full">
                 <input
-                  className="placeholder:text-slate-400 block bg-white w-full    sm:text-sm"
-                  placeholder="email for order confirmation"
                   type="text"
-                  name="search"
+                  value={user?.first_name}
+                  placeholder="first name"
+                  className="border-indigo-600 w-full rounded-md py-2 px-4 text-sm"
                 />
               </div>
-              <div className=" flex  gap-3 justify-between">
-                <h2 className="flex  justify-between text-lg hover:underline text-black">
-                  Billing address
-                </h2>
-                <p className="text-cyan-500 hover:text-indigo-800 hover:underline">
-                  edit details
-                </p>
-              </div>
-              <div className="flex space-x-[25px] justify-between">
-                <div className="border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md w-full">
-                  <input
-                    type="text"
-                    placeholder="first name"
-                    className="border-indigo-600 w-full rounded-md py-2 px-4 text-sm"
-                  />
-                </div>
-                <div className="border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md w-full">
-                  <input
-                    type="text"
-                    placeholder="last name"
-                    className="border-indigo-600 w-full rounded-md py-2 px-4 text-sm"
-                  />
-
-                </div>
-              </div>
-              <div className="border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md  my-[8px]">
+              <div className="border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md w-full">
                 <input
-                  className="placeholder:text-slate-400 block bg-white w-full   sm:text-sm"
-                  placeholder="address line - 1"
                   type="text"
-                  name="search"
+                  value={user?.last_name}
+                  placeholder="last name"
+                  className="border-indigo-600 w-full rounded-md py-2 px-4 text-sm"
                 />
-              </div>
-              <div className="border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md  my-[8px]">
-                <input
-                  className="placeholder:text-slate-400 block bg-white w-full   sm:text-sm"
-                  placeholder="address line - 2"
-                  type="text"
-                  name="search"
-                />
-              </div>
-              <div className="border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md  my-[8px]">
-                <input
-                  className="placeholder:text-slate-400 block bg-white w-full   sm:text-sm"
-                  placeholder="City"
-                  type="text"
-                  name="search"
-                />
-              </div>
-              <div className="flex space-x-[25px] justify-between">
-                <div className="border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md w-full">
-                  <input
-                    type="number"
-                    placeholder="Country"
-                    className="border-indigo-600 w-full rounded-md py-2 px-4 text-sm"
-                  />
-                </div>
-                <div className="border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md w-full">
-                  <input
-                    type="number"
-                    placeholder="State"
-                    className="border-indigo-600 w-full rounded-md py-2 px-4 text-sm"
-                  />
-                </div>
-              </div>
-
-              <div className="flex space-x-[25px] justify-between">
-                <div className="border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md w-full">
-                  <input
-                    type="text"
-                    placeholder="Zip"
-                    className="border-indigo-600 w-full rounded-md py-2 px-4 text-sm"
-                  />
-                </div>
-                <div className="border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md w-full">
-                  <input
-                    type="text"
-                    placeholder="Phone"
-                    className="border-indigo-600 w-full rounded-md py-2 px-4 text-sm"
-                  />
-                </div>
               </div>
             </div>
-          </form>
+            <div className="flex flex-row border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md my-3">
+              <input
+                className="placeholder:text-slate-400 block bg-white w-full   sm:text-sm "
+                placeholder="address line - 1"
+                value={address.house_number}
+                type="text"
+                name="search"
+              />
+              <input
+                className="placeholder:text-slate-400 block bg-white w-full   sm:text-sm "
+                placeholder="address line - 1"
+                value={address.street_number}
+                type="text"
+                name="search"
+              />
+              <input
+                className="placeholder:text-slate-400 block bg-white w-full   sm:text-sm "
+                placeholder="address line - 1"
+                value={address.village}
+                type="text"
+                name="search"
+              />
+            </div>
+            <div className="flex flex-row border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md my-3">
+              <input
+                className="placeholder:text-slate-400 block bg-white w-full   sm:text-sm "
+                placeholder="address line - 1"
+                value={address.commune}
+                type="text"
+                name="search"
+              />
+              <input
+                className="placeholder:text-slate-400 block bg-white w-full   sm:text-sm "
+                placeholder="address line - 1"
+                value={address.district}
+                type="text"
+                name="search"
+              />
+              <input
+                className="placeholder:text-slate-400 block bg-white w-full   sm:text-sm "
+                placeholder="address line - 1"
+                value={address.commune}
+                type="text"
+                name="search"
+              />
+            </div>
+            <div className="border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md  mt-3">
+              <input
+                className="placeholder:text-slate-400 block bg-white w-full   sm:text-sm"
+                placeholder="City"
+                value={address.city}
+                type="text"
+                name="search"
+              />
+            </div>
+            <div className="flex space-x-[25px] justify-between mt-[13px]">
+              <div className="border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md w-full">
+                <input
+                  type="text"
+                  placeholder="Country"
+                  value={address.country}
+                  className="border-indigo-600 w-full rounded-md py-2 px-4 text-sm"
+                />
+              </div>
+              <div className="border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md w-full">
+                <input
+                  type="text"
+                  placeholder="State"
+                  value={address.city}
+                  className="border-indigo-600 w-full rounded-md py-2 px-4 text-sm"
+                />
+              </div>
+            </div>
+
+            <div className="flex space-x-[25px] justify-between mt-[13px]">
+              <div className="border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md w-full">
+                <input
+                  type="text"
+                  placeholder="Zip"
+                  value={address.postal_code}
+                  className="border-indigo-600 w-full rounded-md py-2 px-4 text-sm"
+                />
+              </div>
+              <div className="border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md w-full">
+                <input
+                  type="text"
+                  placeholder="Phone"
+                  value={address.phone_number}
+                  className="border-indigo-600 w-full rounded-md py-2 px-4 text-sm"
+                />
+              </div>
+            </div>
+          </div>
 
           {/* Section2 */}
 
@@ -180,6 +210,7 @@
               <div className="border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md w-full">
                 <input
                   type="text"
+                  value={user?.first_name}
                   placeholder="first name"
                   className="border-indigo-600 w-full rounded-md py-2 px-4 text-sm"
                 />
@@ -187,23 +218,54 @@
               <div className="border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md w-full">
                 <input
                   type="text"
+                  value={user?.last_name}
                   placeholder="last name"
                   className="border-indigo-600 w-full rounded-md py-2 px-4 text-sm"
                 />
               </div>
             </div>
-            <div className="border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md my-3">
+            <div className="flex flex-row border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md my-3">
               <input
                 className="placeholder:text-slate-400 block bg-white w-full   sm:text-sm "
                 placeholder="address line - 1"
+                value={address.house_number}
+                type="text"
+                name="search"
+              />
+              <input
+                className="placeholder:text-slate-400 block bg-white w-full   sm:text-sm "
+                placeholder="address line - 1"
+                value={address.street_number}
+                type="text"
+                name="search"
+              />
+              <input
+                className="placeholder:text-slate-400 block bg-white w-full   sm:text-sm "
+                placeholder="address line - 1"
+                value={address.village}
                 type="text"
                 name="search"
               />
             </div>
-            <div className="border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md  mt-3">
+            <div className="flex flex-row border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md my-3">
               <input
-                className="placeholder:text-slate-400 block bg-white w-full   sm:text-sm"
-                placeholder="address line - 2"
+                className="placeholder:text-slate-400 block bg-white w-full   sm:text-sm "
+                placeholder="address line - 1"
+                value={address.commune}
+                type="text"
+                name="search"
+              />
+              <input
+                className="placeholder:text-slate-400 block bg-white w-full   sm:text-sm "
+                placeholder="address line - 1"
+                value={address.district}
+                type="text"
+                name="search"
+              />
+              <input
+                className="placeholder:text-slate-400 block bg-white w-full   sm:text-sm "
+                placeholder="address line - 1"
+                value={address.commune}
                 type="text"
                 name="search"
               />
@@ -212,6 +274,7 @@
               <input
                 className="placeholder:text-slate-400 block bg-white w-full   sm:text-sm"
                 placeholder="City"
+                value={address.city}
                 type="text"
                 name="search"
               />
@@ -219,15 +282,17 @@
             <div className="flex space-x-[25px] justify-between mt-[13px]">
               <div className="border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md w-full">
                 <input
-                  type="number"
+                  type="text"
                   placeholder="Country"
+                  value={address.country}
                   className="border-indigo-600 w-full rounded-md py-2 px-4 text-sm"
                 />
               </div>
               <div className="border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md w-full">
                 <input
-                  type="number"
+                  type="text"
                   placeholder="State"
+                  value={address.city}
                   className="border-indigo-600 w-full rounded-md py-2 px-4 text-sm"
                 />
               </div>
@@ -238,6 +303,7 @@
                 <input
                   type="text"
                   placeholder="Zip"
+                  value={address.postal_code}
                   className="border-indigo-600 w-full rounded-md py-2 px-4 text-sm"
                 />
               </div>
@@ -245,6 +311,7 @@
                 <input
                   type="text"
                   placeholder="Phone"
+                  value={address.phone_number}
                   className="border-indigo-600 w-full rounded-md py-2 px-4 text-sm"
                 />
               </div>
@@ -388,103 +455,9 @@
             </div>
           </div>
 
+
           {/* ====Payment Option===== */}
-          <div className="my-3">
-            <h2 className="flex  justify-between text-lg hover:underline">
-              Payment option
-            </h2>
-            <form className="space-y-4">
-              <div className="flex items-center">
-                <input
-                  id="cod"
-                  name="payment"
-                  type="radio"
-                  className="h-4 w-4 text-purple-600 border-gray-300 focus:ring-purple-500"
-                />
-                <label className="ml-3 block text-sm font-medium text-gray-700">
-                  Cash On Delivery
-                </label>
-              </div>
-              <p className="ml-7 text-sm text-gray-500">
-                Pay with cash upon delivery.
-              </p>
-
-              <div className="flex items-center">
-                <input
-                  id="bank-transfer"
-                  name="payment"
-                  type="radio"
-                  className="h-4 w-4 text-purple-600 border-gray-300 focus:ring-purple-500"
-                  checked
-                />
-                <label className="ml-3 block text-sm font-medium text-gray-700">
-                  Direct bank transfer
-                </label>
-              </div>
-              <p className="ml-7 text-sm text-gray-500">
-                Make payment directly through bank account.
-              </p>
-
-
-              <div className="space-y-2 ml-7">
-                <div className="border border-current pt-[5px] pb-[5px] pl-9 pr-3 rounded-md  mt-3">
-                  <input
-                    className="placeholder:text-slate-400 block bg-white w-full   sm:text-sm"
-                    placeholder="Account holder name"
-                    type="text"
-                    name="search"
-                  />
-                </div>
-                <div className="border border-current pt-[5px] pb-[5px] pl-9 pr-3 rounded-md  mt-3">
-                  <input
-                    className="placeholder:text-slate-400 block bg-white w-full   sm:text-sm"
-                    placeholder="Account number"
-                    type="text"
-                    name="search"
-                  />
-                </div>
-                <div className="border border-current pt-[5px] pb-[5px] pl-9 pr-3 rounded-md  mt-3">
-                  <input
-                    className="placeholder:text-slate-400 block bg-white w-full   sm:text-sm"
-                    placeholder="Bank name"
-                    type="text"
-                    name="search"
-                  />
-                </div>
-                <div className="border border-current pt-[5px] pb-[5px] pl-9 pr-3 rounded-md  mt-3">
-                  <input
-                    className="placeholder:text-slate-400 block bg-white w-full   sm:text-sm"
-                    placeholder="Routing number"
-                    type="text"
-                    name="search"
-                  />
-                </div>
-                <div className="border border-current pt-[5px] pb-[5px] pl-9 pr-3 rounded-md  mt-3">
-                  <input
-                    className="placeholder:text-slate-400 block bg-white w-full   sm:text-sm"
-                    placeholder="IBAN(international)"
-                    type="text"
-                    name="search"
-                  />
-                </div>
-              </div>
-
-              <div className="flex items-center">
-                <input
-                  id="credit-card"
-                  name="payment"
-                  type="radio"
-                  className="h-4 w-4 text-purple-600 border-gray-300 focus:ring-purple-500"
-                />
-                <label className="ml-3 block text-sm font-medium text-gray-700">
-                  Credit/Debit card
-                </label>
-              </div>
-              <p className="ml-7 text-sm text-gray-500">
-                Pay with your Visa, Mastercard.
-              </p>
-            </form>
-          </div>
+          <PaymentOption/>
 
           <div>
             {/* Review & place order */}

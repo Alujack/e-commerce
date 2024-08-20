@@ -14,7 +14,8 @@ import {ProductProvider} from '@/context/Product-in-store';
 import { ProductPostProvider } from "@/context/Product-Post";
 import {ProductDetailProvider} from "@/context/productDetail";
 import { Inter } from "next/font/google"
-
+import { CategoryProvider } from '@/context/CategoryContext';
+import { AddressProvider } from '@/context/AddressContext';
 
 const inter = Inter({
       subsets: ['latin'],
@@ -35,29 +36,32 @@ async function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body>
-
-      <ProductDetailProvider>
-        <ProductPostProvider>
-          <UserProvider>
-            <DataProvider>
-              <Provider>
-                <Setup />
-                <StoreProvider>
-                  <CartProvider>
-                    <ProductProvider> 
-                      <div className={`${inter.className} flex flex-col w-full max-w-[100wv] bg-[#E3E6E6] `}>                     
-                          <Header/>
-                            <div>{children}</div>
-                          <Footer/>
-                      </div>
-                    </ProductProvider>
-                  </CartProvider>
-                </StoreProvider>
-              </Provider>
-            </DataProvider>
-          </UserProvider>
-        </ProductPostProvider>
-      </ProductDetailProvider>   
+        <ProductDetailProvider>
+          <ProductPostProvider>
+            <UserProvider>
+              <DataProvider>
+                <Provider>
+                  <Setup />
+                    <StoreProvider>
+                      <CartProvider>
+                        <ProductProvider> 
+                          <CategoryProvider>
+                            <AddressProvider>
+                              <div className={`${inter.className} flex flex-col w-full max-w-[100wv] bg-[#E3E6E6] `}>                     
+                                <Header/>
+                                <div>{children}</div>
+                                <Footer/>
+                              </div>
+                          </AddressProvider>
+                        </CategoryProvider>
+                      </ProductProvider>
+                    </CartProvider>
+                  </StoreProvider>
+                </Provider>
+              </DataProvider>
+            </UserProvider>
+          </ProductPostProvider>
+        </ProductDetailProvider>   
       </body>
     </html>
   );
