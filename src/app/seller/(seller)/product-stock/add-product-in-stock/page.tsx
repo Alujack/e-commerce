@@ -6,10 +6,10 @@ import { useRouter } from "next/navigation";
 import SuccessModal from "@/modals/SucessModal";
 
 interface Category {
-  id: string;
-  parent_category?: string;
+  id: number;
+  parent_category: string | null;
   category_name: string;
-  image?: string;
+  image: string | null;
 }
 
 interface ProductForm {
@@ -17,7 +17,7 @@ interface ProductForm {
   name: string;
   short_description:string;
   description: string;
-  image?: File | null;
+  image: File | null;
   price: string;
   categories: string[];
   store: string;

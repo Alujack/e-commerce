@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Customer() {
   return (
-      <div className="ml-7 flex flex-row justify-between items-center mb-[10px]">      
+      <div className="ml-7 flex flex-row justify-between items-center mb-[10px] pr-5">      
         <div className="w-[30%] flex  gap-5 self-start ">
           <Img src="/images/user.png" alt="headphone" className="w-[30px] object-cover" />
           <Link href="customers/2">

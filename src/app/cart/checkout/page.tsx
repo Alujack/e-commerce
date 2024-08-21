@@ -1,20 +1,25 @@
 "use client"
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import PaymentOption from "./components/PaymentOptions"
 import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
 import { useAddress } from "@/context/AddressContext";
+import {useCart} from "@/context/cartcontext";
  export default function Checkout() {
    const {data:user} = useRetrieveUserQuery();
    const { address, fetchAddress } = useAddress();
    const id = user?.id ? user.id : '';
+   const {cartItems} = useCart();
+   const router = useRouter();
 
    useEffect(() => {
       fetchAddress(id);
     }, [id, fetchAddress]);
+    
   return (
     <>
-      <div className="flex flec-row justify-between items-center px-14 py-10">
-        <div className="w-full p-7 sm:p-5  rounded-[10px]">
+      <div className="flex flec-row justify-between items-center w-full px-14 py-10">
+        <div className="w-full h-full self-baseline p-7 sm:p-5  rounded-[10px]">
           <div>
             <h1 className="block text-3xl font-bold mb-2">Checkout</h1>
             <div className="flex flex-row  gap-3 bg-orange-200 rounded-md">
@@ -186,7 +191,6 @@ import { useAddress } from "@/context/AddressContext";
           </div>
 
           {/* Section2 */}
-
 
           <div className="w-full  sm:p-5  rounded-[10px] ">
             <div className=" flex  gap-3 justify-between pt-7">
@@ -392,41 +396,44 @@ import { useAddress } from "@/context/AddressContext";
           </div>
         </div>
 
-
         {/* ==============One more section=============== */}
-        <div className="w-full p-7 sm:p-5  rounded-[10px]">
+
+
+        <div className="overflow-y-scroll cursor-pointer self-baseline w-full p-7 sm:p-5  rounded-[10px]">
           <div className="mb-60">
           <div>
             <div className=" flex  gap-3 justify-between">
               <h2 className="flex  justify-between text-lg hover:underline">
                 Order Summary(1)
               </h2>
-              <p className="text-cyan-500 hover:text-indigo-800 hover:underline">
+              <button onClick={()=>router.back()} className="text-cyan-500 hover:text-indigo-800 hover:underline">
                 Edit Cart
-              </p>
+              </button>
             </div>
           </div>
-          <div className="flex justify-between items-center p-4 border-b border-gray-400">
-            <div className="flex items-center space-x-4">
-              <img
-                src="/images/checkout_image/5_phone.jpg"
-                alt=""
-                className="w-16 h-16 object-cover rounded"
-              />
-              <div>
-                <p className="text-gray-700 text-sm pt-6">
-                  Plastic useless plugs and tubes for high-fidelity prototyping.
-                  Fit & Eat!
-                </p>
-                <p className="text-sm text-gray-600 pt-16 text-center">
-                  Qty: 1
-                </p>
+            {cartItems.map((item)=>(
+              <div className="flex justify-between items-center p-4 border-b border-gray-400">
+              <div className="flex items-center space-x-4">
+                <img
+                  src={`http://localhost:8000/${item.products.image}`}
+                  alt=""
+                  className="w-16 h-16 object-cover rounded"
+                />
+                <div>
+                  <p className="text-gray-700 text-sm pt-6">
+                    {item.products.short_description}
+                  </p>
+                  <p className="text-sm text-gray-600 pt-16 text-center">
+                    Qty: {item.cart_item.qty}
+                  </p>
+                </div>
+              </div>
+              <div className="text-right">
+                <p className="text-lg font-semibold text-gray-900">${item.products.price}</p>
               </div>
             </div>
-            <div className="text-right">
-              <p className="text-lg font-semibold text-gray-900">$12.00</p>
-            </div>
-          </div>
+            ))}
+
           {/* section2 */}
           <div className="my-3">
             <p className="text-cyan-500 hover:text-indigo-800 hover:underline">
@@ -506,13 +513,13 @@ import { useAddress } from "@/context/AddressContext";
                 </label>
               </div>
 
-              <div className="border  border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md  my-[8px] bg-black-900_01">
-                <a
-                  href="#"
-                  className="font-sm text-gray-300 hover:underline text-center"
+              <div className="border  border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 items-center rounded-md  my-[8px] bg-black-900_01">
+                <button
+                  onClick={()=> alert("succesfully")}
+                  className="w-full font-sm text-gray-300 hover:underline text-center"
                 >
                   Place Order
-                </a>
+                </button>
               </div>
             </div>
           </div>

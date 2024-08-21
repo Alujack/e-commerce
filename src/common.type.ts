@@ -147,7 +147,7 @@ export interface PromotionCategory {
 export interface ShoppingCartItem {
   id: UUID;
   customer?: UUID;
-  product_item: UUID;
+  product: UUID;
   qty: number;
 }
 

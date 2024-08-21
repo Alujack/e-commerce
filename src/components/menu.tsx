@@ -102,15 +102,13 @@ const MenuComponent = ({ show, onclose }: prop) => {
             
 
 
-
-
             
             <div className="pb-32 mb-4 pl-10 pr-4 ">
               <h2 className="font-bold text-xl mb-3">Help and Setting</h2>
               <ul className="mb-[100px]">
                 <li className="py-2 hover:text-gray-300"><Link href="/user-account/personal-information">Your Account</Link></li>
                 <li className="py-2 hover:text-gray-300">
-                  <Link href="/centralsale">Become a Seller</Link>
+                  <a href="/centralsale">Become a Seller</a>
                 </li>
                 <li className="py-2 hover:text-gray-300">English</li>
                 <li className="py-2 hover:text-gray-300">Cambodia</li>

@@ -167,7 +167,7 @@ export default function Header() {
              
         </div>
          <div className="text-white-A700 cursor-pointer border-gray-400 hover:border-2 px-4 py-2 rounded">
-          <p className="w-full">Your Order </p>
+          <Link href="/orderhistory"><p className="w-full">Your Order </p></Link>
         </div>
         <div className="text-white-A700  border-gray-400 hover:border-2 px-4 py-2 rounded">
             <Link href="/cart" className="flex flex-row">

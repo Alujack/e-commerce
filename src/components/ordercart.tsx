@@ -1,102 +1,72 @@
-"use client"
-import {useState} from "react";
+"use client";
+import { useState } from "react";
 import { Heading, Text, Img, Button } from "./";
 import Link from "next/link";
-import { producttype } from "@/common.type";
-import {useCart} from "@/context/cartcontext"
+import { useCart } from "@/context/cartcontext";
+import { Product } from "@/common.type";
 
-interface Props {
-  className?: string;
-  save:number;
-  price:number;
-  src:string;
-  item:producttype;
-  index:number
+export default function Ordercart({product, quantity}:{product:Product; quantity:number}) {
+  const [qty, setQty] = useState(quantity);
+  const { removeFromCart } = useCart();
 
-}
-
-export default function Ordercart(
-  {
-    item,
-    save = 100,
-    price = 100,
-    src="images/headphone.png",
-    index,
-   
-  ...props
-  }: Props) {
- const [qty, setQty] = useState(1); 
- const {removeFromCart} = useCart();
- item.qty = qty;
   return (
-    <div {...props}>
-      <input
-        id="check"
-        type="checkbox"
-        />
-      <div className="flex flex-col items-start w-[30%] md:w-full bg-white-A700 rounded-[10px]">
-        <Link href="/product">
-        <Img
-          src={src}
-          alt="save_one"
-          className="h-[250px] w-full md:h-auto mt-[-41px] relative object-cover rounded-[10px]"
-        />
-        </Link>
-      </div>
-      <div className="flex justify-between items-start md:self-stretch flex-1">
-        <div className="flex flex-col items-start w-[51%] sm:w-full py-[13px]">
-          <div className="flex items-center mt-[22px] gap-1 flex-wrap">
-            <Heading size="s" as="h1" className="self-end !text-amber-700 !font-black">
-            &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
-            </Heading>
-            <Text size="md" as="p">
-              (152)
-            </Text>
-          </div>
-          <Heading as="h2" className="mt-2.5">
-            SROK Smart Phone 128GB, Oled Retina
-          </Heading>
-          <Heading size="3xl" as="h3" className="mt-[13px] !text-red-600 !font-semibold">
-            {Number(price)}
-          </Heading>
-          <div className="flex justify-center items-center w-[49%] md:w-full mt-4 p-2 border-gray-500_33 border border-solid rounded-[10px]">
-          <Button onClick={()=>setQty(qty-1)}><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14" />
-              </svg>
-            </Button>
-            <div className="flex justify-center flex-1">
-              <div className="flex">
-                <Heading size="s" as="h4" className="self-start text-center !font-bold">
-                  {Number(qty)}
-                </Heading>
-              </div>
-            </div>
-            <Button onClick={()=>setQty(qty+1)}>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-            </svg>
-            </Button>
-          </div>
-          <Button
-            color="transparent"
-            size="xs"
-            shape="round"
-            className="mt-5 !text-green-700 uppercase "
-          >
-            free shipping
-          </Button>
-          <div className="flex items-center mt-2.5 gap-[7px]">
-            <Img src="images/img_checkmark.svg" alt="in_stock_one" className="h-[12px] w-[12px]" />
-            <Text size="s" as="p" className="!text-black-900_02">
-              In stock
-            </Text>
-          </div>
-        </div>
-        <div className="flex justify-between w-[20%] sm:w-full mt-[3px] gap-5 flex-wrap">
-          <Heading size="3xl" as="h3" className="mt-[13px] !text-red-600 !font-semibold">
-            {Number(price)}
-          </Heading>
+    <div className="w-full p-5 flex gap-5 items-start border-b border-gray-300">
+      <input id="check" type="checkbox" className="h-5 w-5 self-center" />
 
+      <div className="flex flex-row md:flex-row w-full items-start">
+        <div className="w-[30%] h-[120px] md:w-[15%]">
+          <Link href={`/product/${product.id}`}>
+            <Img
+              src={`http://localhost:8000/${product?.image}`} // Replace with actual product image source
+              alt="product_image"
+              className=" w-full h-full object-cover rounded-[10px] self-center"
+            />
+          </Link>
+        </div>
+
+        <div className="flex flex-col justify-between w-[65%] md:w-[70%]">
+          <Heading as="h2" className="text-lg font-semibold text-gray-800">
+            {product?.name + product?.short_description}
+          </Heading>
+          <Text size="s" className="text-gray-600 mt-2">
+            Color: White
+          </Text>
+          <Text size="s" className="text-gray-600">
+            Size: Queen
+          </Text>
+
+          <div className="flex items-center mt-4">
+            <Text size="s" className="text-gray-800 mr-2">Qty:</Text>
+            <div className="flex items-center border border-gray-300 rounded-md">
+              <Button
+                onClick={() => setQty(qty > 1 ? qty - 1 : 1)}
+                className="px-2 py-1"
+              >
+                -
+              </Button>
+              <Text className="px-4 py-1">{qty}</Text>
+              <Button onClick={() => setQty(qty + 1)} className="px-2 py-1">
+                +
+              </Button>
+            </div>
+          </div>
+
+          <Button
+            onClick={() => removeFromCart} // Add actual removeFromCart functionality
+            className="text-red-600 mt-4 underline text-sm"
+          >
+            Delete
+          </Button>
+        </div>
+
+        <div className="flex flex-col items-end w-[20%] md:w-[15%]">
+          <Heading size="lg" className="text-red-600 font-semibold">
+           {product.price}
+          </Heading>
+          <Text className="text-sm text-gray-500 line-through mt-1">{product.price}</Text>
+          <Button className="text-sm text-blue-600 underline mt-2">
+            Clip Coupon
+          </Button>
         </div>
       </div>
     </div>

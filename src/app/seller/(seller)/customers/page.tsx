@@ -66,23 +66,17 @@ export default function ProductStock() {
                             Location
                         </Heading>
                         <Heading as="h4" className="self-end !font-bold">
-                            Order
+                            Order Item
                         </Heading>
-                        <Heading as="h4" className="self-start !font-bold">
+                        <Heading as="h4" className="self-start !font-bold mr-6">
                             Spent
                         </Heading>
                     </div>
                 </div>
-                <div className="h-2 w-full bg-indigo-50_03" />
-                <div className="rounded-bl-[14px] rounded-br-[14px] border border-solid border-blue_gray-800 py-6 mr-[10%] ml-[10%]">
+                <div className="h-1 px-[10%] bg-slate-300 mb-4 mt-2" />
+                <div className="rounded-[14px] border border-solid border-blue_gray-800 py-6 mr-[10%] ml-[10%]">
                     <Customer />
-                    <Customer />
-                    <Customer />
-                    <Customer />
-                    <Customer />
-                    <Customer />
-                    <Customer />
-                    <Customer />
+                    
                 </div>
             </div>
         </div>

@@ -32,6 +32,7 @@ export default function Category() {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isAddVariationOpen, setIsAddVariationOpen] = useState<boolean>(false);
   const [categories, setCategories] = useState<Category[]>([]);
+  const [storeCategories, setStoreCategories] = useState<Category[]>([]);
   const [visibleCategories, setVisibleCategories] = useState<Category[]>([]);
   const [selectedParentCategoryId, setSelectedParentCategoryId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -111,6 +112,39 @@ export default function Category() {
     setSelectedParentCategoryId(parentId);
     openModal();
   };
+  const AddToStore = async (category:any) =>{
+      try {
+        const response = await axios.post(`http://localhost:8000/api/store/category/save/${store.id}?category=${category}`);
+        if (response) {
+          console.log("Categories");
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    };
+
+  useEffect(() => {
+    const fetchCategory = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8000/api/store/category/save/${store.id}/`);
+        if (response) {
+          const data = response.data.map((category: Category) => ({
+            ...category,
+            image: category.image?.startsWith('http')
+              ? category.image
+              : `http://localhost:8000${category.image}`,
+          }));
+          setStoreCategories(data);
+          console.log("Categories data:", data);
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchCategory();
+  }, []);
+
+
 
   return (
     <div className="flex flex-col gap-2 p-2 sm:p-5 px-5">
@@ -153,14 +187,37 @@ export default function Category() {
         {query && visibleCategories.length > 0 && (
           <div className="absolute z-20 mt-3 w-full bg-white border border-gray-300 rounded-md shadow-lg">
             {visibleCategories.map((category, index) => (
-              <Link key={index} href={`categories/${category.id}`}>
-                <div className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                  <h1 className='font-inter text-md'>{category.category_name}</h1>
-                </div>
-              </Link>
+              <div className="flex flex-row justify-between px-10">
+                <Link key={index} href={`categories/${category.id}`}>
+                  <div className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                    <h1 className='font-inter text-md'>{category.category_name}</h1>
+                  </div>
+                  
+                </Link>
+                <button onClick={()=>AddToStore(category.id)} className="p-2 bg-slate-200 hover:underline">Save</button>
+              </div>
             ))}
           </div>
-        )}
+        )} 
+        <div className="scrollable-div grid grid-cols-5 gap-10 sm:flex flex-col">
+        {storeCategories?.map((category, index) => (
+          <div key={index} className="h-[250px] w-[250px] bg-white-A700 flex flex-col items-center border-2 rounded-md">
+            <Link href={`categories/${category.id}`}>
+              <img
+                src={category?.image ? category?.image : ""}
+                className="h-[150px] p-2"
+              />
+            </Link>
+            <h1 className='font-inter text-xl font-bold'>{category.category_name}</h1>
+            <button
+              onClick={() => handleAddCategory(category.id)}
+              className="font-bold p-4 px-8 rounded"
+            >
+              + Add
+            </button>
+          </div>
+        ))}
+      </div> 
       </div>
     </div>
   );

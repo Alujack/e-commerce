@@ -17,7 +17,7 @@ export default function    Totalsummery({
   Children ,
   ...props }: Props) {
   const {cartItems} = useCart();
-  let totals = [...cartItems.map((item)=>item.qty*item.price)];
+  let totals = [...cartItems.map((item)=>item.cart_item.qty*item.products.price)];
   let total = 0;
   for(let i = 0;i < totals.length ;i++){
     total +=totals[i];

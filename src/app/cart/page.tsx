@@ -4,7 +4,6 @@ import Ordercart from "@/components/ordercart";
 import Totalsummery from "@/components/totalsummery";
 import {useRouter} from "next/navigation";
 import { useCart } from "@/context/cartcontext";
-import { producttype } from "@/common.type";
 import Link from "next/link";
 export default function AddCart() {
 
@@ -30,12 +29,24 @@ export default function AddCart() {
             { cartItems.length > 0 ?  
                 <>
                   <div className="flex flex-col mt-10 ml-10 mb-10">
-                    <h1 className="text-3xl font-bold text-black-900_01 mb-3 ">Shopping Cart</h1>
-                    <Link href="/delete" className="hover:underline"><p className="text-gray-600">Delete All items</p></Link>
-                  </div> 
-                  {cartItems.map((item:producttype, index:number) => (
-                    <Ordercart key={index} save={100}  src ={item.src} price={item.price} item={item} index={index} className="flex md:flex-col items-start gap-5 px-5 flex-1 " />
-                  ))}
+                    <h1 className="text-3xl font-bold text-black-900 mb-3">Shopping Cart</h1>
+                    <Link href="/delete" className="hover:underline">
+                      <p className="text-gray-600">Delete All items</p>
+                    </Link>
+                  </div>
+
+                  <div className="w-full p-5">
+                    {cartItems.map((item, index) => (
+                      <Ordercart
+                        key={index}
+                        product={item.products} 
+                        quantity={item.cart_item.qty}  
+                        // color={item.color} 
+                        // size={item.size} 
+                      />
+                    ))}
+</div>
+
                 </> : (<>
                   <div className="flex flex-col mt-10 ml-10 mb-2">
                     <h1 className="text-3xl font-bold text-black-900_01  ">Your Cart is Empty</h1>
@@ -48,7 +59,7 @@ export default function AddCart() {
               }
           </div>
           <div>   
-              <Totalsummery  className={ `flex flex-col items-center w-[300px]  bg-white-A700`} Children={totalsumery}  />     
+              <Totalsummery  className={ `flex flex-col items-center w-[300px]  bg-white-A700 p-6`} Children={totalsumery}  />     
          </div>        
         </div>
       </div>
