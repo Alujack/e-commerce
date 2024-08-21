@@ -2,31 +2,42 @@
 import { useState } from "react";
 import { Text, Heading, Button, Img } from "@/components";
 import { useCart } from "@/context/cartcontext";
-import { Product } from "@/context/productDetail";
+import { Product, Category,Stock,ProductImage } from "@/context/productDetail";
 import CartitemsModal from "@/modals/Cart-Items"
 import { RatingBar } from "@/components/ratingbar"; // Import RatingBar
+interface props{
+ product:Product | null;
+ categories:Category[];
+ stock:Stock[];
+ images:ProductImage[];
+
+}
 export default function ProductDetails({
   product,
-}: {
-  product: Product | null;
-}) {
+  categories,
+  stock,
+  images
+   }:props) {
   const [count, setCount] = useState(1);
   const { cartItems, setCartItems } = useCart();
   const [selectedImage, setSelectedImage] = useState("");
   const handleImageClick = (imageUrl:string) => {
     setSelectedImage(imageUrl);
   };
+  const addToFavourite = () =>{
+
+  }
   return (
     <>
     <CartitemsModal show={false}/>
       <div className="flex flex-row gap-2">
-        <div className="mt-9 p-3">
+        <div>
         <div className="flex flex-col gap-3">
-          <div className="flex flex-col w-full gap-3 mx-auto md:p-5 max-w-[95%]">
-            <div className="flex flex-row  items-start gap-[9px] p-3.5 bg-white-A700 rounded-[10px]">
+          <div className="flex flex-col w-full gap-3 mx-auto md:p-5 max-w-[100%]">
+            <div className="flex flex-row  items-start gap-[9px] p-3.5 bg-white-A700 rounded-[10px] pt-16">
               <div className="flex flex-row md:self-stretch pb-[2px] sm:pb-5 flex-1 mb-40">
-                <div className="flex w-20 flex-col self-stretch gap-5 mt-5">
-                  {product?.images.map((image) => (
+                <div className="flex w-20 flex-col self-stretch gap-5 mt-5 ml-5 rounded ">
+                  {images.map((image) => (
                     <img
                       key={image.id}
                       src={`http://localhost:8000/${image.image}/`}
@@ -36,138 +47,11 @@ export default function ProductDetails({
                     />
                   ))}
                 </div>
-                <div className="w-full">
-                  <div className="w-full flex items-center">
-                    <img
-                      src={selectedImage !== "" ? selectedImage : `http://localhost:8000/${product?.product?.image}`}
-                      alt="selected_product_image"
-                      className="w-full object-cover border border-gray-300 m-0"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className="overflow-y-scroll h-full flex flex-col items-start w-[33%] md:w-full">
-                <div className="flex flex-col self-stretch items-start">
-                  <div className="flex flex-col self-stretch">
-                    <h1
-                      className="text-xl text-[#565959]"
-                    >
-                      {product?.product?.name}
-                    </h1>
-                    <p className="text-xl text-[#565959]"> {product?.product?.short_description}</p>
-                  </div>
-                  <RatingBar
-                      value={4} // Assuming `items` has a `rating` field
-                      starCount={5}
-                      color="grey"
-                      activeColor="gold"
-                      size={24}
-                      isEditable={false} // Set to false if you don't want users to edit the rating
-                    /> 
-
-
-
-                 
-                </div>
-                 <Heading size="6xl" as="h2" className="mt-0.5 text-black">
-                     $  {product?.product?.price}
-                  </Heading>
-                  <Text
-                    size="s"
-                    as="p"
-
-                    className="mt-[7px] ml-[3px] md:ml-0 !text-black-900_02 text-sm"
-                  >
-                    {product?.product?.description}
-                  </Text>
-               
-                
-                <div className="self-stretch h-[54px] mt-5 pr-[5px] py-[5px] relative">
-                  <div className="h-[28px] w-[29%] opacity-0.05 bg-green-700_5e absolute rounded-md" />
-                  <Text
-                    size="s"
-                    as="p"
-                    className="left-[15.00px] top-[10.65px] m-auto !text-green-700 uppercase absolute bg-gray-300_12 rounded-sm py-3 px-5 "
-                  >
-                    free shipping
-                  </Text>
-                  <div className="border-gray-400 border-b border-solid mt-16"/> 
-                </div>
-
-
-                <div className="flex items-center mt-9 gap-[7px]">
-                  <Img
-                    src="/images/icons/check.png"
-                    alt="checkmark_one"
-                    className="self-end h-[12px] w-[12px]"
-                  />
-                  <Text
-                    size="s"
-                    as="p"
-                    className="self-end !text-black-900_02 "
-                  >
-
-                    In stock
-                  </Text>
-                </div>
-                <div className="flex flex-col self-stretch items-start mt-5 gap-2">
-                  <Heading as="h3">qty</Heading>
-                  <div className="flex sm:flex-col self-stretch items-center">
-                    <div className="flex justify-center items-center w-[32%] sm:w-full p-[7px] border-gray-500_33 border border-solid bg-white-A700 rounded-[10px]">
-                      <Button onClick={() => setCount(count - 1)}>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          strokeWidth={1.5}
-                          stroke="currentColor"
-                          className="w-6 h-6"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M5 12h14"
-                          />
-                        </svg>
-                      </Button>
-                      <div className="flex justify-center bg-white-A700 flex-1">
-                        <div className="flex">
-                          <Heading as="h4" className="text-center">
-                            {count}
-                          </Heading>
-                        </div>
-                      </div>
-                      <Button onClick={() => setCount(count + 1)}>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          strokeWidth={1.5}
-                          stroke="currentColor"
-                          className="w-6 h-6"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M12 4.5v15m7.5-7.5h-15"
-                          />
-                        </svg>
-                      </Button>
-                    </div>
-                    <Button
-                      color="green_700"
-                      size="9xl"
-                      className="self-start ml-[23px] sm:ml-0 sm:px-5 uppercase font-medium min-w-[168px] rounded-[10px]"
-                      
-                    >
-                      Add To Cart
-                    </Button>
-
-                    <div className="bg-gray-100 p-3 ms-10 mb-2 rounded-full">
+                <div className="flex flex-col w-full h-full items-center p-4">
+                  <div onClick={()=>alert("add to favourite")} className="absolute mt-0 self-end bg-gray-100 p-3 ms-10 mb-2 rounded-full">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-6 w-6 text-gray-400"
+                        className="h-6 w-6"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -180,26 +64,72 @@ export default function ProductDetails({
                         />
                       </svg>
                     </div>
-                  </div>
-                </div>
-                <div className="flex flex-col self-stretch items-start mt-3">
-                  <div className="flex p-2.5 z-[1]">
-                    <Text
-                      size="s"
-                      as="p"
-                      className="self-start !text-black-900_02"
-                    >
-                      Guaranteed Safe Checkout
-                    </Text>
-                  </div>
-
-                  <div className="flex self-stretch pb-[21px] sm:pb-5 border-gray-400 border-b border-solid">
-                    <Img
-                      src="/images/img_pay_png.png"
-                      alt="paypng_one"
-                      className="w-[58%] object-cover"
+                  <div className="self-center mt-16">
+                    <img
+                      src={selectedImage !== "" ? selectedImage : `http://localhost:8000/${product?.image}`}
+                      alt="selected_product_image"
+                      className="self-center object-cover border border-gray-300 m-0"
                     />
                   </div>
+                </div>
+              </div>
+
+              <div className="overflow-y-scroll h-full flex flex-col items-start w-[33%] md:w-full">
+                <div className="flex flex-col self-stretch items-start">
+                  <div className="flex flex-col self-stretch">
+                    <h1 className="text-xl text-[#565959]">
+                      {product?.name} {product?.short_description}
+                    </h1>
+                  </div>
+                  <div className="flex flex-row gap-4 items-center mt-1">
+                    <RatingBar
+                      value={4.7} // Assuming `items` has a `rating` field
+                      starCount={5}
+                      color="grey"
+                      activeColor="gold"
+                      size={24}
+                      isEditable={false} // Set to false if you don't want users to edit the rating
+                    />
+                    <p className="text-sm text-blue-500 ml-2 cursor-pointer">716 ratings</p> 
+                    <span className="text-sm text-blue-500 ml-2 cursor-pointer">|</span>
+                    <p className="text-sm text-blue-500 ml-2 cursor-pointer">Search this page</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center mt-2">
+                  <span className="bg-red-500 text-white text-sm px-2 py-1 rounded-full">-23%</span>
+                  <Heading size="6xl" as="h2" className="ml-3 text-black">
+                    $ {product?.price}
+                  </Heading>
+                </div>
+
+                <div className="text-sm text-gray-600 mt-1">
+                  List Price: <span className="line-through">$1,099.00</span>
+                </div>
+                <div className="w-full border-gray-400 border-b border-solid mt-5"/>
+                <div className="flex flex-col items-start mt-5">
+                  <span className="text-xs text-blue-500 cursor-pointer">FREE Returns</span>
+                  <div className="h-[28px] w-[29%] opacity-0.05 bg-green-700_5e rounded-md" />
+                  <p
+                    className="text-green-700 uppercase bg-gray-300_12 rounded-sm py-3 px-5"
+                  >
+                    Free Shipping
+                  </p>
+                </div>
+
+                <div className="border-gray-400 border-b border-solid mt-5"/>
+
+                <div className="flex items-center mt-9 gap-[7px]">
+                  <img
+                    src="/images/icons/check.png"
+                    alt="checkmark_one"
+                    className="self-end h-[12px] w-[12px]"
+                  />
+                  <Text size="s" as="p" className="self-end !text-black-900_02">
+                    In stock
+                  </Text>
+                </div>
+                <div className="flex flex-col self-stretch items-start mt-3">
                   <div className="flex flex-col items-start mt-[19px]">
                     <div className="flex gap-[7px] flex-wrap">
                       <Heading as="h5" className="uppercase my-2">
@@ -213,7 +143,7 @@ export default function ProductDetails({
                       <Heading as="h6" className="uppercase">
                         Category:{" "}
                       </Heading>
-                      {product?.categories.map((category)=>(<p>{category.category_name}</p>))}
+                      {categories.map((category)=>(<p>{category.category_name}</p>))}
                     </div>
                     <div className="flex items-center gap-[7px] flex-wrap">
                       <Heading as="p" className=" uppercase my-2">
@@ -223,6 +153,14 @@ export default function ProductDetails({
                         Laptop, Macbook, Computer, M1
                       </Text>
                     </div>
+                    <div className="flex items-center gap-[7px] flex-wrap">
+                      <h1 className="  my-2 text-xl text-black-900_01 font-bold font-inter">
+                       About this item
+                      </h1>
+                      <p className=" mb-4 md:ml-0 text-md">
+                         {product?.short_description}
+                      </p>
+                    </div>        
                   </div>
 
                   <div className="flex space-x-4">
@@ -276,7 +214,7 @@ export default function ProductDetails({
 
               <div className="flex flex-col items-center p-4 mb-36">
                 {/* <!-- Brand Section --> */}
-                <div className="bg-gray-100 rounded-lg p-4 flex flex-col items-center w-full">
+                {/* <div className="bg-gray-100 rounded-lg p-4 flex flex-col items-center w-full">
                   <p className="text-gray-700 font-medium">
                     Brand: <span className="font-semibold">Apple MacBook</span>
                   </p>
@@ -285,39 +223,59 @@ export default function ProductDetails({
                     alt="Mac"
                     className="w-32 mt-2"
                   />
-                </div>
+                </div> */}
 
                 {/* <!-- Cart Section --> */}
-                <div className="bg-white border-2 border-green-400 rounded-lg p-4 mt-5 w-full">
-                  <h2 className="text-lg font-semibold my-3">Your Cart</h2>
-                  <div className="flex items-center mt-3">
-                    <img
-                      src="/images/productdetail/2.jpg"
-                      alt="Pinnaeple Macbook Pro"
-                      className="w-16 h-16 object-cover mr-3"
-                    />
-                    <div>
-                      <p className="font-medium">
-                        Pinnaeple Macbook Pro 2022 M1/ 512GB
-                      </p>
-                      <p className="text-gray-500 py-2">3 x $579.00</p>
-                    </div>
+                <div className="bg-white-A700 border-2 border-gray-200 rounded-lg px-2 self-start w-[278px] h-full">
+                  <div className="flex flex-col justify-between items-start gap-3">
+                    <div className="text-2xl font-semibold text-gray-900">$  {product?.price}</div>
+                    <span className="text-xs text-blue-500 cursor-pointer">FREE Returns</span>
                   </div>
-                  <hr className="my-3 border border-gray-200" />
-                  <div className="flex justify-between">
-                    <p className="font-medium ">Sub Total:</p>
-                    <p className="font-semibold ">$1,737.00</p>
+                  <div className="flex flex-col justify-between items-start gap-4 mt-2">
+                    <span className="text-xs  cursor-pointer"> FREE delivery Tuesday, August 27. Order within 12 hrs 31 mins </span>
+                    <span className="text-xs  cursor-pointer"> Or fastest delivery Sunday, August 25 </span>
+                    <span className="text-xs  cursor-pointer"> Deliver to Yoeurn - Birmingham 35226‌ </span>
                   </div>
-                  <hr className="my-3 border border-gray-200" />
-                  <div className="flex justify-between  mt-4">
-                    <button className=" bg-gray-200 text-white px-4 py-2 rounded-md hover hover:bg-slate-500 hover:text-white-A700">
-                      VIEW CART
-                    </button>
-                    <button className="bg-green-500 text-white px-4 py-2 rounded-md hover hover:bg-slate-500 hover:text-white-A700">
-                      CHECKOUT
-                    </button>
+                  <div className="text-green-600 font-semibold mt-2">In Stock</div>
+                  <div className="flex items-center mt-2">
+                    <span className="text-sm text-gray-700">Quantity:</span>
+                    <select className="ml-2 w-full border border-gray-300 rounded p-1">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                  </div>
+                  <button className="bg-yellow-500 text-white w-full py-2 mt-3 rounded-md hover:bg-yellow-600">
+                    Add to Cart
+                  </button>
+                  <button className="bg-orange-500 text-white w-full py-2 mt-3 rounded-md hover:bg-orange-600">
+                    Buy Now
+                  </button>
+                  <div className="px-3">
+                      <div className="text-xs  py-2">Ships from TechNess.com</div>
+                      <div className="text-xs  py-2">Sold by TechNess.com</div>
+                      <div className="text-xs  py-2">Returns: 15-day refund/replacement</div>
+                      <div className="text-xs  py-2">Customer service: TechNess.com</div>
+                      <div className="text-xs  py-2">Payment: Secure transaction</div>
+                      <div className="text-xs  py-2">Support: Product Support / Include</div>
+
+                      <div className="mt-4 flex flex-col gap-3">
+                        <label className="text-sm ">Add a Protection Plan:</label>
+                        <div className="flex items-center mt-1">
+                          <input type="checkbox" className="mr-2"/>
+                          <span className="text-sm ">AppleCare+ for Mac for <span className="text-red-500">$169.00</span></span>
+                        </div>
+                        <div className="text-xs  line-through">List Price: $199.00</div>
+                        <div className="text-xs ">Save $30.00 (15%)</div>
+                      </div>
+                      <button className="mt-3 border border-gray-300 text-gray-700 text-sm w-full py-2 rounded-md hover:bg-gray-200">
+                        Add to List
+                      </button>
                   </div>
                 </div>
+
 
                 {/* <!-- Shipping Section --> */}
                 <div className="flex items-center mt-4 text-gray-700">
@@ -385,26 +343,12 @@ export default function ProductDetails({
                       Description
                     </h2>
                     <p className="text-gray-600 text-sm">
-                      The most powerful MacBook Pro ever is here. With the
-                      blazing-fast M1 Pro or M1 Max chip — the first Apple
-                      silicon designed for pros — you get groundbreaking
-                      performance and amazing battery life. Add to that a
-                      stunning Liquid Retina XDR display, the best camera and
-                      audio ever in a Mac notebook, and all the ports you need.
-                      The first notebook of its kind, this MacBook Pro is a
-                      beast. M1 Pro takes the exceptional performance of the M1
-                      architecture to a whole new level for pro users.
-                    </p>
-                    <p className="text-gray-600 text-sm mt-4">
-                      Even the most ambitious projects are easily handled with
-                      up to 10 CPU cores, up to 16 GPU cores, a 16-core Neural
-                      Engine, and dedicated encode and decode media engines that
-                      support H.264, HEVC, and ProRes codecs.
+                      {product?.description}
                     </p>
                   </div>
 
                   {/* <!-- Feature List --> */}
-                  <div className="w-1/3 border-l border-gray-200 pl-6">
+                  <div className=" w-1/3 border-l border-gray-200 pl-6">
                     <h2 className="text-lg font-semibold text-gray-900 mb-2">
                       Feature
                     </h2>

@@ -1,71 +1,50 @@
 "use client"
-
 import React, { createContext, useState, useContext, ReactNode } from 'react';
 import axios from 'axios';
-export interface product {
-    id: string;
+
+export interface Product {
+    id: number;
     name: string;
     short_description:string;
     description: string;
+    price: string;
     image:string;
-    price: number;
-    
-}
-export interface Product{
-    product:product;
-    categories: Category[];
-    images: ProductImage[];
-    variations: ProductItem[];
-    stock: Stock[];
-    reviews: Review[];
 }
 
 export interface Category {
-    id: string;
+    id: number;
     category_name: string;
 }
 
+export interface Stock {
+    id: number;
+    variation_option: string;
+    quantity: number;
+}
+
 export interface ProductImage {
-    id: string;
+    id: number;
     image: string;
     angle: string;
 }
 
-export interface ProductItem {
-    id: string;
-    variation_option: VariationOption;
-}
-
-export interface VariationOption {
-    id: string;
-    value: string;
-}
-
-export interface Stock {
-    id: string;
-    quantity: number;
-    product_item_variation: ProductItem;
-}
-
-export interface Review {
-    id: string;
-    rating: number;
-    comment: string;
-    user: string;
-    created_at: string;
-}
-
-export interface ProductContextType {
+interface ProductDetailContextType {
     product: Product | null;
+    categories: Category[];
+    images: ProductImage[];
+    stock: Stock[];
     loading: boolean;
     error: string | null;
     fetchProductDetails: (productId: string) => Promise<void>;
 }
 
-const ProductContext = createContext<ProductContextType | undefined>(undefined);
+const ProductDetailContext = createContext<ProductDetailContextType | undefined>(undefined);
 
 export const ProductDetailProvider = ({ children }: { children: ReactNode }) => {
     const [product, setProduct] = useState<Product | null>(null);
+    const [categories, setCategories] = useState<Category[]>([]);
+    const [images, setImages] = useState<ProductImage[]>([]);
+    const [stock, setStock] = useState<Stock[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
 
@@ -73,8 +52,12 @@ export const ProductDetailProvider = ({ children }: { children: ReactNode }) => 
         setLoading(true);
         setError(null);
         try {
-            const response = await axios.get<Product>(`http://127.0.0.1:8000/api/store/product/detail/${productId}/`);
-            setProduct(response.data);
+            const response = await axios.get(`http://127.0.0.1:8000/api/store/product/detail/${productId}/`);
+            const { product, categories, images, stock } = response.data;
+            setProduct(product);
+            setCategories(categories);
+            setImages(images);
+            setStock(stock);
         } catch (err: any) {
             setError(err.message || 'An error occurred');
         } finally {
@@ -83,16 +66,16 @@ export const ProductDetailProvider = ({ children }: { children: ReactNode }) => 
     };
 
     return (
-        <ProductContext.Provider value={{ product, loading, error, fetchProductDetails }}>
+        <ProductDetailContext.Provider value={{ product, categories, images, stock, loading, error, fetchProductDetails }}>
             {children}
-        </ProductContext.Provider>
+        </ProductDetailContext.Provider>
     );
 };
 
-export const useProductContext = (): ProductContextType => {
-    const context = useContext(ProductContext);
+export const useProductDetailContext = (): ProductDetailContextType => {
+    const context = useContext(ProductDetailContext);
     if (!context) {
-        throw new Error('useProductContext must be used within a ProductProvider');
+        throw new Error('useProductDetailContext must be used within a ProductDetailProvider');
     }
     return context;
 };
