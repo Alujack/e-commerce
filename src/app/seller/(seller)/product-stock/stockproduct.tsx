@@ -35,7 +35,9 @@ const Stockpro = ({ product, onProductCheck }: StockproProps) => {
         onChange={handleCheckboxChange} 
       />
       <div className="w-[27%] flex flex-row gap-10">
-        <img src={imageUrl} className="w-32 h-32" alt={product.name} />
+        <div >
+        <img src={imageUrl} className="object-cover" alt={product.name} />
+        </div>
         <Heading as="h1" className="self-center">
           {product.name}
         </Heading>

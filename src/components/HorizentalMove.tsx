@@ -34,7 +34,7 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({ products }) => {
         className="flex overflow-x-auto gap-5 scroll-container hide-scrollbar snap-x snap-mandatory w-full">
         {products.map((item, index) => (
           <div key={item.id} className="snap-center">
-            <ProductCard key={index} {...item} items={item} />
+            {/* <ProductCard key={index} {...item} items={item} /> */}
           </div>
         ))}
       </div>

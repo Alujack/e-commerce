@@ -15,12 +15,21 @@ export interface Category {
     id: number;
     category_name: string;
 }
-
-export interface Stock {
-    id: number;
-    variation_option: string;
-    quantity: number;
+export interface Stock{
+    quantity:number;
 }
+export interface Option{
+    option:string;
+    stock:{
+        quantity:number
+    };
+}
+export interface Variations {
+    
+    attribute_type:string;
+    options:Option[];
+}
+
 
 export interface ProductImage {
     id: number;
@@ -31,8 +40,8 @@ export interface ProductImage {
 interface ProductDetailContextType {
     product: Product | null;
     categories: Category[];
+    variations : Variations[];
     images: ProductImage[];
-    stock: Stock[];
     loading: boolean;
     error: string | null;
     fetchProductDetails: (productId: string) => Promise<void>;
@@ -43,8 +52,8 @@ const ProductDetailContext = createContext<ProductDetailContextType | undefined>
 export const ProductDetailProvider = ({ children }: { children: ReactNode }) => {
     const [product, setProduct] = useState<Product | null>(null);
     const [categories, setCategories] = useState<Category[]>([]);
+    const [variations, setVariations] = useState<Variations[]>([]);
     const [images, setImages] = useState<ProductImage[]>([]);
-    const [stock, setStock] = useState<Stock[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
 
@@ -53,11 +62,11 @@ export const ProductDetailProvider = ({ children }: { children: ReactNode }) => 
         setError(null);
         try {
             const response = await axios.get(`http://127.0.0.1:8000/api/store/product/detail/${productId}/`);
-            const { product, categories, images, stock } = response.data;
+            const { product, categories, images, variations } = response.data;
             setProduct(product);
             setCategories(categories);
             setImages(images);
-            setStock(stock);
+            setVariations(variations)
         } catch (err: any) {
             setError(err.message || 'An error occurred');
         } finally {
@@ -66,7 +75,7 @@ export const ProductDetailProvider = ({ children }: { children: ReactNode }) => 
     };
 
     return (
-        <ProductDetailContext.Provider value={{ product, categories, images, stock, loading, error, fetchProductDetails }}>
+        <ProductDetailContext.Provider value={{ product, categories,variations, images, loading, error, fetchProductDetails }}>
             {children}
         </ProductDetailContext.Provider>
     );

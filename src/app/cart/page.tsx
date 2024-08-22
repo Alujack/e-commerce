@@ -1,13 +1,20 @@
 "use client"
+import {useEffect} from"react"
 import { Button} from "@/components";
 import Ordercart from "@/components/ordercart";
 import Totalsummery from "@/components/totalsummery";
 import {useRouter} from "next/navigation";
 import { useCart } from "@/context/cartcontext";
 import Link from "next/link";
+import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
 export default function AddCart() {
 
- const { cartItems} = useCart();
+ const { cartItems, FetchCartItem} = useCart();
+ const {data:user} = useRetrieveUserQuery();
+ const id = user?.id ? user?.id : '';
+  useEffect(()=>{
+    FetchCartItem(id)
+  },[])
  const router = useRouter();
  const totalsumery = (<>
   <Button
@@ -45,7 +52,7 @@ export default function AddCart() {
                         // size={item.size} 
                       />
                     ))}
-</div>
+                 </div>
 
                 </> : (<>
                   <div className="flex flex-col mt-10 ml-10 mb-2">

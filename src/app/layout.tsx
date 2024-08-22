@@ -16,6 +16,7 @@ import {ProductDetailProvider} from "@/context/productDetail";
 import { Inter } from "next/font/google"
 import { CategoryProvider } from '@/context/CategoryContext';
 import { AddressProvider } from '@/context/AddressContext';
+import {ProductsCategoryProvider} from "@/context/productListByCategory"
 
 const inter = Inter({
       subsets: ['latin'],
@@ -47,11 +48,13 @@ async function RootLayout({
                         <ProductProvider> 
                           <CategoryProvider>
                             <AddressProvider>
-                              <div className={`${inter.className} flex flex-col w-full max-w-[100wv] bg-[#E3E6E6] `}>                     
-                                <Header/>
-                                <div>{children}</div>
-                                <Footer/>
-                              </div>
+                              <ProductsCategoryProvider>
+                                <div className={`${inter.className} flex flex-col w-full max-w-[100wv] bg-[#E3E6E6] `}>                     
+                                  <Header/>
+                                  <div>{children}</div>
+                                  <Footer/>
+                                </div>
+                              </ProductsCategoryProvider>
                           </AddressProvider>
                         </CategoryProvider>
                       </ProductProvider>

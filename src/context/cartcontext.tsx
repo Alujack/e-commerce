@@ -2,7 +2,6 @@
 "use client"
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import {ShoppingCartItem, Product} from "@/common.type";
-import { useRetrieveUserQuery } from '@/redux/features/authApiSlice';
 import axios from 'axios';
 
 interface CartItems{
@@ -15,21 +14,21 @@ interface CartContextType {
   setCartItems: (item: CartItems[]) => void;
   removeFromCart: (index: number) => void;
   clearCart: () => void;
+  FetchCartItem: (id:string) => void ;
 }
 
 const CartContext = createContext<CartContextType>({
   cartItems:[],
   setCartItems: () => {},
   removeFromCart: () => {},
-  clearCart: () => {}
+  clearCart: () => {},
+  FetchCartItem:() => {}
 });
 
 export const CartProvider = ({ children }:{children:React.ReactNode}) => {
   const [cartItems, setCartItems] = useState<CartItems[]>([
    
   ]);
-  const {data:user} = useRetrieveUserQuery();
-  const id = user?.id? user?.id : '';
 
   const removeFromCart = (index: number) => {
     const newCartItems = [...cartItems];
@@ -40,19 +39,16 @@ export const CartProvider = ({ children }:{children:React.ReactNode}) => {
   const clearCart = () => {
     setCartItems([]);
   };
-  useEffect(()=>{
-    const FetchCartItem = async () =>{
-      const response  = await axios.get<CartItems[]>(`${process.env.NEXT_PUBLIC_HOST}/api/order_app/cart/d4b8237286244e4c971215061275e570/`)
+ 
+  const FetchCartItem = async (id:string) =>{
+      const response  = await axios.get<CartItems[]>(`${process.env.NEXT_PUBLIC_HOST}/api/order_app/cart/${id}/`)
       if (response){
         setCartItems(response.data)
       }
-    }
-    FetchCartItem();
-
-  },[])
+  };
 
   return (
-    <CartContext.Provider value={{ cartItems, setCartItems, removeFromCart, clearCart }}>
+    <CartContext.Provider value={{ cartItems, setCartItems, removeFromCart, clearCart, FetchCartItem}}>
       {children}
     </CartContext.Provider>
   );

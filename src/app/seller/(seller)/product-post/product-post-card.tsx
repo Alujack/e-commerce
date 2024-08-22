@@ -18,8 +18,8 @@ export default function card({product}:{product:Product}){
 
     return (<>
         <div className="flex bg-white-A700 flex-col gap-3 p-4 rounded-lg">
-            <div className="p-2 self-center">
-                <img src={`http://localhost:8000/${product.image}/`} alt="product" className="w-48 h-48" />
+            <div className="p-2 self-center ">
+                <img src={`http://localhost:8000/${product.image}/`} alt="product" className="object-cover" />
             </div>
             <div className="flex flex-col gap-3 items-start">
                 <h1>{product.name}</h1>

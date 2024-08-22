@@ -1,32 +1,52 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Text, Heading, Button, Img } from "@/components";
 import { useCart } from "@/context/cartcontext";
-import { Product, Category,Stock,ProductImage } from "@/context/productDetail";
+import { Product, Category,Variations,Stock,ProductImage } from "@/context/productDetail";
 import CartitemsModal from "@/modals/Cart-Items"
 import { RatingBar } from "@/components/ratingbar"; // Import RatingBar
+import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
+import { useAddress } from "@/context/AddressContext";
+import useFetcher from "@/hooks/use-add-product";
+import axios from 'axios'
 interface props{
  product:Product | null;
  categories:Category[];
- stock:Stock[];
+ variations:Variations[];
  images:ProductImage[];
 
 }
 export default function ProductDetails({
   product,
   categories,
-  stock,
+  variations,
   images
    }:props) {
+
   const [count, setCount] = useState(1);
   const { cartItems, setCartItems } = useCart();
   const [selectedImage, setSelectedImage] = useState("");
+  const {data:user} = useRetrieveUserQuery()
+  const {address,setAddress, fetchAddress} = useAddress()
+  const userid = user?.id ? user?.id : '';
+
   const handleImageClick = (imageUrl:string) => {
     setSelectedImage(imageUrl);
   };
-  const addToFavourite = () =>{
+  const addToFavourite = async () =>{
+
+      try {
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_HOST}/api/order_app/favourite/create/${userid}?productId=${product?.id}`); 
+        console.log("successfully")
+        
+      } catch (err) {
+        console.error(err as Error);
+    };
 
   }
+  useEffect(()=>{
+    fetchAddress(userid)
+  },[userid])
   return (
     <>
     <CartitemsModal show={false}/>
@@ -47,8 +67,9 @@ export default function ProductDetails({
                     />
                   ))}
                 </div>
+               
                 <div className="flex flex-col w-full h-full items-center p-4">
-                  <div onClick={()=>alert("add to favourite")} className="absolute mt-0 self-end bg-gray-100 p-3 ms-10 mb-2 rounded-full">
+                  <div onClick={addToFavourite} className="absolute mt-0 self-end bg-gray-100 p-3 ms-10 mb-2 rounded-full">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-6 w-6"
@@ -128,6 +149,18 @@ export default function ProductDetails({
                   <Text size="s" as="p" className="self-end !text-black-900_02">
                     In stock
                   </Text>
+                </div>
+                <div className="flex flex-col items-start mt-9 gap-[7px]">
+
+                   {variations.map((variation)=>(
+                    <div className="flex flex-col">
+                    <p className="text-xl font-bold ">{variation.attribute_type}</p>
+                    {variation.options.map((option)=>(
+                      <p>{option.option} and {option.stock.quantity? option.stock.quantity: 0}</p>
+                    ))}
+                    </div>
+                
+                    ))}
                 </div>
                 <div className="flex flex-col self-stretch items-start mt-3">
                   <div className="flex flex-col items-start mt-[19px]">
@@ -234,7 +267,7 @@ export default function ProductDetails({
                   <div className="flex flex-col justify-between items-start gap-4 mt-2">
                     <span className="text-xs  cursor-pointer"> FREE delivery Tuesday, August 27. Order within 12 hrs 31 mins </span>
                     <span className="text-xs  cursor-pointer"> Or fastest delivery Sunday, August 25 </span>
-                    <span className="text-xs  cursor-pointer"> Deliver to Yoeurn - Birmingham 35226‌ </span>
+                    <span className="text-xs  cursor-pointer"> Deliver to {user?.first_name} - {address.country} -{ address?.phone_number} </span>
                   </div>
                   <div className="text-green-600 font-semibold mt-2">In Stock</div>
                   <div className="flex items-center mt-2">

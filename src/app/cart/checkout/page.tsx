@@ -14,7 +14,12 @@ import {useCart} from "@/context/cartcontext";
 
    useEffect(() => {
       fetchAddress(id);
-    }, [id, fetchAddress]);
+    }, []);
+  let totals = [...cartItems.map((item)=>item.cart_item.qty*item.products.price)];
+  let total = 0;
+  for(let i = 0;i < totals.length ;i++){
+    total +=totals[i];
+  }
     
   return (
     <>
@@ -412,25 +417,27 @@ import {useCart} from "@/context/cartcontext";
             </div>
           </div>
             {cartItems.map((item)=>(
-              <div className="flex justify-between items-center p-4 border-b border-gray-400">
-              <div className="flex items-center space-x-4">
-                <img
-                  src={`http://localhost:8000/${item.products.image}`}
-                  alt=""
-                  className="w-16 h-16 object-cover rounded"
-                />
-                <div>
-                  <p className="text-gray-700 text-sm pt-6">
-                    {item.products.short_description}
-                  </p>
-                  <p className="text-sm text-gray-600 pt-16 text-center">
-                    Qty: {item.cart_item.qty}
-                  </p>
+              <div className="flex flex-col items-start p-4 border-b border-gray-400">
+                <div className="flex flex-row justify-between w-full">
+                  <div className="flex  flex-row gap-10">
+                    <div className="w-20">
+                        <img
+                          src={`http://localhost:8000/${item.products.image}`}
+                          alt=""
+                          className="object-cover"
+                        />
+                    </div>
+                    <p className="text-gray-700 text-sm pt-6">
+                        {item.products.name}
+                    </p>       
+                  </div>
+                  <div className="self-end">
+                      <p className="text-lg font-semibold text-gray-900">${item.products.price}</p>
+                  </div>
                 </div>
-              </div>
-              <div className="text-right">
-                <p className="text-lg font-semibold text-gray-900">${item.products.price}</p>
-              </div>
+                <p className="text-sm text-gray-600 pt-5">
+                        Qty: {item.cart_item.qty}
+                </p>
             </div>
             ))}
 
@@ -443,7 +450,7 @@ import {useCart} from "@/context/cartcontext";
               <div className="p-4">
                 <div className="flex justify-between items-center">
                   <p className="text-gray-700 text-sm">Subtotal</p>
-                  <p className="text-gray-900 text-sm">$12.00</p>
+                  <p className="text-gray-900 text-sm">${total}</p>
                 </div>
                 <div className="flex justify-between items-center mt-2">
                   <p className="text-gray-700 text-sm">Shipping</p>
@@ -456,7 +463,7 @@ import {useCart} from "@/context/cartcontext";
 
                 <div className="flex justify-between items-center font-semibold">
                   <p className="text-gray-900 text-sm">Total</p>
-                  <p className="text-gray-900 text-sm">$15.00</p>
+                  <p className="text-gray-900 text-sm">${total + 3.00}</p>
                 </div>
               </div>
             </div>
