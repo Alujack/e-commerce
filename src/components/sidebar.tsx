@@ -21,8 +21,8 @@ export default function SideBar({menu}:{menu:{href:string;label:string;icon:stri
                 padding: "5px",
                 gap: "23px",
                 color: "#b1b1b1",
-                fontWeight: 500,
-                fontSize: "18px",
+                fontWeight: 550,
+                fontSize: "22px",
                 [`&:hover, &.ps-active`]: { color: "#2d60ff" },
               },
             }}

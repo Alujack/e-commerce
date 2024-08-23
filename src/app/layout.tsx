@@ -13,15 +13,16 @@ import Footer from '@/components/Footer';
 import {ProductProvider} from '@/context/Product-in-store';
 import { ProductPostProvider } from "@/context/Product-Post";
 import {ProductDetailProvider} from "@/context/productDetail";
-import { Inter } from "next/font/google"
+import { Roboto } from '@next/font/google';
 import { CategoryProvider } from '@/context/CategoryContext';
 import { AddressProvider } from '@/context/AddressContext';
 import {ProductsCategoryProvider} from "@/context/productListByCategory"
 
-const inter = Inter({
-      subsets: ['latin'],
-      weight: ['400', '500', '700']
-  });
+const roboto = Roboto({
+  subsets: ['latin'], // Specify the subsets you want to use
+  weight: ['400', '700'], // Specify the weights you want to use
+  style: ['normal', 'italic'], // Specify the styles you want to use
+});
 
 async function RootLayout({
   children,
@@ -49,7 +50,7 @@ async function RootLayout({
                           <CategoryProvider>
                             <AddressProvider>
                               <ProductsCategoryProvider>
-                                <div className={`${inter.className} flex flex-col w-full max-w-[100wv] bg-[#E3E6E6] `}>                     
+                                <div className={`${roboto.className} flex flex-col w-full max-w-[100wv] bg-[#E3E6E6] `}>                     
                                   <Header/>
                                   <div>{children}</div>
                                   <Footer/>

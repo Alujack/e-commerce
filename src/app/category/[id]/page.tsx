@@ -42,7 +42,7 @@ export default function ProductList({ params }: { params: { id: string }}) {
           <div className="flex flex-wrap items-center justify-between mb-6">
             <div className="flex space-x-4">
               <button className="border border-gray-300 rounded-lg p-2 bg-gray-300">
-                <option>Headphone type</option>
+                <option>Macbook types</option>
                 {/* Add more options as needed */}
               </button>
               <button className="border border-gray-300 rounded-lg p-2 bg-gray-300">
@@ -72,7 +72,7 @@ export default function ProductList({ params }: { params: { id: string }}) {
             </div>
             <div>
               <button className="border border-gray-300 rounded-lg p-2 bg-gray-300">
-                <option>Headphone type</option>
+                <option>Macbook types</option>
                 {/* Add more options as needed */}
               </button>
             </div>

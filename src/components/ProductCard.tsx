@@ -28,17 +28,19 @@ export default function ProductCard({product}: Props) {
   };
 
   return (
-      <div className="w-[292px] mx-auto bg-white rounded-lg shadow-lg border border-gray-200">
+      <div className="w-[301px] bg-white-A700 rounded-lg shadow-lg border border-gray-200">
             <div className="relative">
-                  <div className="w-full h-full p-3 rounded-t-lg">
+                  <div className="w-full h-full p-3 hover:border-2 border-gray-100">
+                    <Link href={`/product/${product.id}`}>
                     <img
                       src={`http://localhost:8000/${product.image}`}
                       alt="TDX Sinkers"
                       className="object-cover "
                     />
+                    </Link>
                   </div>
-                  <button className="absolute top-3 right-3 text-gray-400 hover:text-gray-600 focus:outline-none">
-                    <div className="bg-gray-100 p-3 ms-10 mb-2 rounded-full">
+                  <button className="absolute top-1 right-1 text-gray-400 hover:text-gray-600 focus:outline-none">
+                    <div className="p-2 bg-gray-100 rounded-full shadow-xl">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-6 w-6 text-gray-400"
@@ -58,8 +60,8 @@ export default function ProductCard({product}: Props) {
                 </div>
                 
                 {/* Product info */}
-                <div className="p-4">
-                  <h3 className="text-lg font-semibold">{product.name}</h3>
+                <div className=" p-4">
+                  <h3 className="overflow-hidden text-lg font-semibold">{product.name}</h3>
                   <p className="text-sm text-gray-600 mt-1">5 types of shoes available</p>
                   <div className="flex items-center mt-2">
                     <RatingBar
@@ -73,8 +75,8 @@ export default function ProductCard({product}: Props) {
                     <span className="ml-2 text-sm text-gray-500 mt-2">(121)</span>
                   </div>
                   <p className="text-xl font-bold text-gray-900 mt-2">${product.price}</p>
-                  <div className="flex mt-4 space-x-2">
-                    <button onClick={handleAddToCart} className="flex-1 bg-green-500 text-white text-sm py-2 rounded-full hover:bg-green-600">
+                  <div className="flex space-x-2">
+                    <button onClick={handleAddToCart} className="flex-1 bg-green-600 text-white text-sm py-2 rounded-full hover:bg-green-600">
                       Add To Cart
                     </button>
                     <button className="flex-1 bg-gray-200 text-gray-700 text-sm py-2 rounded-full hover:bg-gray-300">

@@ -61,9 +61,9 @@ export default function Ordercart({product, quantity}:{product:Product; quantity
 
         <div className="flex flex-col items-end w-[20%] md:w-[15%]">
           <Heading size="lg" className="text-red-600 font-semibold">
-           {product.price}
+           $ {product.price}
           </Heading>
-          <Text className="text-sm text-gray-500 line-through mt-1">{product.price}</Text>
+          <Text className="text-sm text-gray-500 line-through mt-1">$ {product.price}</Text>
           <Button className="text-sm text-blue-600 underline mt-2">
             Clip Coupon
           </Button>

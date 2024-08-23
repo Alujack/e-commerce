@@ -1,45 +1,41 @@
+"use client"
 import AddToCartButton from "@/components/addtocartbutton";
-import { Heading, Text, Button } from "@/components";
+import { Heading} from "@/components";
 import {favorite} from "@/constants/product";
+import axios from "axios"
+import { useState, useEffect } from "react";
+import { Product } from "@/common.type";
+import FavouriteCart from "./FavouriteCard";
+import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
 
 export default function App() {
+  const [favourites, setFavourites] = useState<Product[]>([])
+  const {data:user} = useRetrieveUserQuery();
+  const id = user?.id ? user?.id : '';
+  useEffect(()=>{
+    const FecthFavourite = async ()=>{
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_HOST}/api/order_app/favourite/get?user=${id}`)
+      if (response)
+        setFavourites(response.data)
+    }
+    FecthFavourite();
+  },[])
 
   return (
     <main>
-      <div className="ml-[15%] flex flex-col w-[70%] p-[30px]">
+      <div className="flex flex-col bg-white-A700 p-[30px]">
         <div className="w-full">
-          <Heading size="4xl" as="h1" className="flex justify-center items-center">
+          <h1 className="text-2xl font-bold flex text-start">
             My Favorites
-          </Heading>
+          </h1>
         </div>
-        <div className="flex flex-col p-[25px]">
-          {favorite.map((item) => (
-            <div key={item.id} className="flex flex-row justify-between bg-rose-200 m-[10px] p-[8px] rounded-[15px]">
-              <div className="flex flex-row  items-center justify-between gap-[20px]">
-                <img
-                  src={item.src}
-                  alt="image"
-                  className="h-[54px] w-[64px] md:h-auto object-cover rounded-[10px]"
-                />
-                <div className="flex flex-col items-start">
-                  <Text className="items-center">{item.title}</Text>
-                  <p>${item.price}</p>
-                </div>
-              </div>
-              <div className="flex gap-3 p-[10px]">
-                <AddToCartButton item={item} />
-                <Button
-                  color="gray_900_04"
-                  shape="round"
-                  rightIcon={<img src="/images/img_arrowright.svg" alt="arrow_right" />} // Ensure the path to the image is correct
-                  className="gap-2 sm:px-5 font-manrope font-semibold min-w-[142px] rounded"
-                >
-                  Buy Now
-                </Button>
-                <img src="/images/img_heart.svg" alt="heart_one" className="h-[24px] w-[24px] mt-[6px]" />
-              </div>
-            </div>
-          ))}
+        <div className="flex flex-col p-[25px] gap-8">
+          {favourites.map((item, index) => (
+                      <FavouriteCart
+                        key={index}
+                        product={item}
+                      />
+                    ))}
         </div>
       </div>
     </main>

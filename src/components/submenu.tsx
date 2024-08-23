@@ -15,7 +15,7 @@ const SubMenuComponent = ({ category, onBack }: SubMenuProps) => {
       <ul>
         {category.map((item, index) => (
           <li key={index} className="py-2 hover:text-gray-300">
-            <a href={`/category/product-list/${item.id}`}>{item.category_name}</a>
+            <a href={`/category/${item.id}`}>{item.category_name}</a>
           </li>
         ))}
       </ul>
