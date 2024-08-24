@@ -5,15 +5,14 @@ import {useProducts} from "@/context/productListByCategory"
 import ProductCard from "@/components/ProductCard";
 import axios from "axios"
 import { Category } from "@/context/productDetail";
-import { Product} from "@/common.type";
-import BestMultiple from"./multple"
-import BestSellerSingle from "./sepecific-one";
 
 export default function BestSellerPage() {
   const {products, fetchProducts} = useProducts();
   const [categories, setCategories] = useState<Category[]>([])
   const [id, setId] = useState<string>('');
-
+  useEffect(()=>{
+      fetchProducts(id)
+  },[id])
   useEffect(()=>{
     const fetchCategories = async ()=>{
       const response = await axios.get(`${process.env.NEXT_PUBLIC_HOST}/api/inventory/category/contain/products/`)
@@ -28,7 +27,7 @@ export default function BestSellerPage() {
 
   return (
     <>
-      <div className="bg-white-A700 py-4">
+      <div className="bg-white-A700">
          <div>
             <h1 className="uppercase text-xl font-bold font-inter text-start">
                   textness best seller
@@ -49,10 +48,16 @@ export default function BestSellerPage() {
               </ul>
               </aside>
           </div>
-          <section className="mb-12">
-            {id? <BestSellerSingle catid = {id}/> :
-            <BestMultiple/>}
-          </section>
+            <section className="mb-12">
+              <h2 className="text-2xl font-bold mb-6">Best Sellers in Home & Kitchen</h2>
+              <div className="grid grid-cols-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                {/* Product cards */}
+                {products.map((product, index) => (
+                    <ProductCard product={product}/>
+                  
+                ))}
+              </div>
+            </section>
         </div>
       </div>
     </>

@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { RatingBar } from "@/components";
 import {useProducts} from "@/context/productListByCategory"
 import ProductCard from "@/components/ProductCard";
+import product from "@/constants/product";
 
 export default function ProductList({ params }: { params: { id: string }}) {
   const id = params.id;
@@ -80,15 +81,20 @@ export default function ProductList({ params }: { params: { id: string }}) {
         </div>
 
         {/* Prioduct List */}
-        <div  className="flex flex-auto gap-4">
-        {products.map((product, index) => (
-           
-              <div key={index} className="max-w-xs mx-auto bg-white rounded-lg shadow-lg border border-gray-200">
-                {/* Image and buttons */}
-                <ProductCard product={product}/>
-            </div>
-          ))}
-          </div>
+        {products.length > 0 ?
+        <div  className="grid grid-cols-7 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 self-center bg-white-A700">
+           {products.map((product, index) => (
+              <ProductCard product={product}/>
+           ))}
+        </div> : 
+        <div className="flex flex-col gap- ml-[10%] mb-[10%] mt-5">
+          <h1 className="text-start font-bold text-xl p-2"> We're Sorry!</h1>
+          <p className="text-start text-md p-2">It looks like there are no products available in this category right now. We're constantly updating our inventory, so please check back soon!</p>
+
+        </div>
+        }
+        
+      
 
       </div>
     </>

@@ -12,14 +12,39 @@ export default function App() {
   const [favourites, setFavourites] = useState<Product[]>([])
   const {data:user} = useRetrieveUserQuery();
   const id = user?.id ? user?.id : '';
-  useEffect(()=>{
-    const FecthFavourite = async ()=>{
-      const response = await axios.get(`${process.env.NEXT_PUBLIC_HOST}/api/order_app/favourite/get?user=${id}`)
-      if (response)
-        setFavourites(response.data)
+  const FecthFavourite = async ()=>{
+      try{
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_HOST}/api/order_app/favourite/get?user=${id}`)
+        if (response)
+          setFavourites(response.data)
+      }catch(err){
+        console.error(err)
+      }
     }
+  useEffect(()=>{
     FecthFavourite();
   },[])
+  const deleteFav = async (productId:string) => {
+      try {
+        const Response = await axios.post(`${process.env.NEXT_PUBLIC_HOST}/api/order_app/favourite/delete?user=${id}&productId=${productId}`)
+        FecthFavourite();
+      }catch(err){
+        console.error(err)
+      }
+      
+
+  };
+  const handleAddToCart = async (productId:string) => {
+      try {
+        const Response = await axios.post(`${process.env.NEXT_PUBLIC_HOST}/api/order_app/cart/create/${id}/?productId=${productId}&qty=${1}`)
+        if (Response){
+          deleteFav(productId)
+        }
+      }catch(err){
+        console.error(err)
+      }
+
+  };
 
   return (
     <main>
@@ -34,6 +59,8 @@ export default function App() {
                       <FavouriteCart
                         key={index}
                         product={item}
+                        deleteFav={deleteFav}
+                        handleAddToCart={handleAddToCart}
                       />
                     ))}
         </div>

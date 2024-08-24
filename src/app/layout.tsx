@@ -13,7 +13,7 @@ import Footer from '@/components/Footer';
 import {ProductProvider} from '@/context/Product-in-store';
 import { ProductPostProvider } from "@/context/Product-Post";
 import {ProductDetailProvider} from "@/context/productDetail";
-import { Roboto } from '@next/font/google';
+import { Roboto } from "next/font/google";
 import { CategoryProvider } from '@/context/CategoryContext';
 import { AddressProvider } from '@/context/AddressContext';
 import {ProductsCategoryProvider} from "@/context/productListByCategory"

@@ -52,7 +52,7 @@ export default function Ordercart({product, quantity}:{product:Product; quantity
           </div>
 
           <Button
-            onClick={() => removeFromCart} // Add actual removeFromCart functionality
+            onClick={() => removeFromCart(product.id)} // Add actual removeFromCart functionality
             className="text-red-600 mt-4 underline text-sm"
           >
             Delete

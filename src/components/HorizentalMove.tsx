@@ -1,10 +1,10 @@
 "use client"
 import React, { useRef } from 'react';
 import ProductCard from './ProductCard';
-import { producttype } from '@/common.type';
+import { Product } from '@/common.type';
 
 interface ProductCarouselProps {
-  products: producttype[];
+  products: Product[];
 }
 
 const ProductCarousel: React.FC<ProductCarouselProps> = ({ products }) => {
@@ -23,7 +23,7 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({ products }) => {
   };
 
   return (
-    <div className="relative max-w-screen px-5">
+    <div className="relative px-5">
       <button 
         onClick={scrollLeft} 
         className="absolute left-5 top-1/2 transform -translate-y-1/2 z-10 bg-gray-300 hover:bg-gray-400 text-white p-2 rounded-full shadow-lg">
@@ -31,11 +31,11 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({ products }) => {
       </button>
       <div 
         ref={scrollRef} 
-        className="flex overflow-x-auto gap-5 scroll-container hide-scrollbar snap-x snap-mandatory w-full">
-        {products.map((item, index) => (
-          <div key={item.id} className="snap-center">
-            {/* <ProductCard key={index} {...item} items={item} /> */}
-          </div>
+        className="flex overflow-x-auto gap-5 scroll-container hide-scrollbar snap-x snap-mandatory">
+        {products.map((product, index) => (
+          
+           <ProductCard product={product}/>
+          
         ))}
       </div>
       <button 

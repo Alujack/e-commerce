@@ -193,9 +193,9 @@ export default function Header() {
           </div>
           <h1 className="text-white-A700 font-inter">All</h1>
         </div>  
-        <div className="grid grid-flow-col gap-x-4 ml-[12%]">     
+        <div className="grid grid-flow-col ml-[12%] h-full">     
           {NAVLINK.map((link) => (
-            <Link key={link.key} href={link.href} className="px-4 py-2 text-sm text-center text-white-A700  hover:border-2 transition-[0.6s] border-gray-400 rounded-lg ">
+            <Link key={link.key} href={link.href} className="px-6 py-2 text-sm text-center text-white-A700  hover:border-[1.5px] transition-[0.3s] border-gray-400 rounded-[5px]">
               {link.label}
             </Link>
           ))}

@@ -26,49 +26,37 @@ export default function ProductCard({product}: Props) {
       }
 
   };
+  const handleAddToFav = async () => {
+      try {
+        const Response = await axios.post(`${process.env.NEXT_PUBLIC_HOST}/api/order_app/favourite/create/${user?.id}/?productId=${product.id}`)
+      }catch(err){
+        console.error(err)
+      }
+
+  };
 
   return (
-      <div className="w-[301px] bg-white-A700 rounded-lg shadow-lg border border-gray-200">
-            <div className="relative">
-                  <div className="w-full h-full p-3 hover:border-2 border-gray-100">
+    <div className="px-5 w-[251px] h-full bg-white-A700 py-5 shadow-md">
+      <div className="">
+                  <div className="w-full h-full p-3 ">
                     <Link href={`/product/${product.id}`}>
                     <img
                       src={`http://localhost:8000/${product.image}`}
                       alt="TDX Sinkers"
-                      className="object-cover "
+                      className="object-cover hover:border-2 border-gray-200"
                     />
                     </Link>
-                  </div>
-                  <button className="absolute top-1 right-1 text-gray-400 hover:text-gray-600 focus:outline-none">
-                    <div className="p-2 bg-gray-100 rounded-full shadow-xl">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-6 w-6 text-gray-400"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
-                        />
-                      </svg>
-                    </div>
-                  </button>
-                </div>
-                
+                  </div>        
                 {/* Product info */}
                 <div className=" p-4">
                   <h3 className="overflow-hidden text-lg font-semibold">{product.name}</h3>
-                  <p className="text-sm text-gray-600 mt-1">5 types of shoes available</p>
-                  <div className="flex items-center mt-2">
+                  <p className="text-sm text-gray-600 mt-1">rating rank</p>
+                  <div className="flex items-center">
                     <RatingBar
                       value={4}
                       starCount={5}
                       color="grey"
-                      activeColor="gold"
+                      activeColor="#DE7921"
                       size={24}
                       isEditable={false}
                     />
@@ -76,14 +64,19 @@ export default function ProductCard({product}: Props) {
                   </div>
                   <p className="text-xl font-bold text-gray-900 mt-2">${product.price}</p>
                   <div className="flex space-x-2">
-                    <button onClick={handleAddToCart} className="flex-1 bg-green-600 text-white text-sm py-2 rounded-full hover:bg-green-600">
+                    <button 
+                      onClick={handleAddToCart} 
+                      className="flex-1 bg-[#FFD814] text-white text-sm py-2 rounded-full hover:bg-green-600">
                       Add To Cart
                     </button>
-                    <button className="flex-1 bg-gray-200 text-gray-700 text-sm py-2 rounded-full hover:bg-gray-300">
+                    <button
+                      onClick={handleAddToFav} 
+                      className="flex-1 bg-gray-200 text-gray-700 text-sm py-2 rounded-full hover:bg-gray-300">
                       Add Shortlist
                     </button>
                   </div>
                 </div>
           </div>
+      </div>
   );
 }

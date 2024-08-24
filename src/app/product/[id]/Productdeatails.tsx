@@ -8,6 +8,7 @@ import { RatingBar } from "@/components/ratingbar"; // Import RatingBar
 import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
 import { useAddress } from "@/context/AddressContext";
 import useFetcher from "@/hooks/use-add-product";
+import ImageZoom from "./imageZoom";
 import axios from 'axios'
 interface props{
  product:Product | null;
@@ -29,6 +30,14 @@ export default function ProductDetails({
   const {data:user} = useRetrieveUserQuery()
   const {address,setAddress, fetchAddress} = useAddress()
   const userid = user?.id ? user?.id : '';
+  const [showMore, setShowMore] = useState({});
+
+  const toggleShowMore = (variationType:any) => {
+    setShowMore((prevState) => ({
+      ...prevState,
+      [variationType]: !prevState[variationType],
+    }));
+  };
 
   const handleImageClick = (imageUrl:string) => {
     setSelectedImage(imageUrl);
@@ -85,13 +94,16 @@ export default function ProductDetails({
                         />
                       </svg>
                     </div>
-                  <div className="self-center mt-16">
-                    <img
-                      src={selectedImage !== "" ? selectedImage : `http://localhost:8000/${product?.image}`}
+                
+                    {/* <img
+                      
                       alt="selected_product_image"
                       className="self-center object-cover border border-gray-300 m-0"
-                    />
-                  </div>
+                    /> */}
+                    <div className="flex justify-center items-center ">
+                      <ImageZoom src={selectedImage !== "" ? selectedImage : `http://localhost:8000/${product?.image}`} alt="Product Image" />
+                    </div>
+                 
                 </div>
               </div>
 
@@ -150,18 +162,43 @@ export default function ProductDetails({
                     In stock
                   </Text>
                 </div>
-                <div className="flex flex-col items-start mt-9 gap-[7px]">
 
-                   {variations.map((variation)=>(
-                    <div className="flex flex-col">
-                    <p className="text-xl font-bold ">{variation.attribute_type}</p>
-                    {variation.options.map((option)=>(
-                      <p>{option.option} and {option.stock.quantity? option.stock.quantity: 0}</p>
-                    ))}
-                    </div>
-                
-                    ))}
+
+
+               <div className="mt-9 overflow-x-auto">
+                  <table className="min-w-full text-left border-collapse">
+                    <thead>
+                      <tr>
+                        {variations.map((variation) => (
+                          <th key={variation.attribute_type} className="px-4 py-2 border-b">
+                            {variation.attribute_type}
+                          </th>
+                        ))}
+                        <th className="px-4 py-2 border-b">Quantity in Stock</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {/* Create rows for options */}
+                      {variations[0]?.options.map((_, rowIndex) => (
+                        <tr key={rowIndex}>
+                          {variations.map((variation) => (
+                            <td key={variation.attribute_type} className="px-4 py-2 border-b">
+                              {variation.options[rowIndex]?.option || '-'}
+                            </td>
+                          ))}
+                          <td className="px-4 py-2 border-b text-gray-500">
+                            {variations
+                              .map((variation) => variation.options[rowIndex]?.stock.quantity || 0)
+                              .reduce((total, qty) => total + qty, 0)}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
+
+
+
                 <div className="flex flex-col self-stretch items-start mt-3">
                   <div className="flex flex-col items-start mt-[19px]">
                     <div className="flex gap-[7px] flex-wrap">

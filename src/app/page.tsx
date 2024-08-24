@@ -20,7 +20,7 @@ export default function Body(){
             </div>
             <div className="flex flex-col gap-2.5 bg-white-A700 p-3 ">
               <HeadingBanner title="Explore Our Product’s New Arrival" link="view all"/>
-              {/* {<ProductCarousel products={product} />} */}
+              {<ProductCarousel products={product} />}
             </div>
     
             <div className="flex flex-col gap-3 bg-white-A700 flex-1 rounded-[10px]">

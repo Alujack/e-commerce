@@ -112,19 +112,9 @@ export default function Category() {
     setSelectedParentCategoryId(parentId);
     openModal();
   };
-  const AddToStore = async (category:any) =>{
-      try {
-        const response = await axios.post(`http://localhost:8000/api/store/category/save/${store.id}?category=${category}`);
-        if (response) {
-          console.log("Categories");
-        }
-      } catch (e) {
-        console.log(e);
-      }
-    };
 
-  useEffect(() => {
-    const fetchCategory = async () => {
+
+  const fetchCategory = async () => {
       try {
         const response = await axios.get(`http://localhost:8000/api/store/category/save/${store.id}/`);
         if (response) {
@@ -141,8 +131,23 @@ export default function Category() {
         console.log(e);
       }
     };
-    fetchCategory();
-  }, []);
+  useEffect(()=>{fetchCategory()},[])
+
+
+  const AddToStore = async (category:any) =>{
+      try {
+        const response = await axios.post(`http://localhost:8000/api/store/category/save/${store.id}?category=${category}`);
+        if (response) {
+          console.log("Categories");
+          fetchCategory();
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    };
+
+
+  
 
 
 
@@ -185,16 +190,19 @@ export default function Category() {
           className="border p-2"
         />
         {query && visibleCategories.length > 0 && (
-          <div className="absolute z-20 mt-3 w-full bg-white border border-gray-300 rounded-md shadow-lg">
+          <div className="absolute z-20 mt-3 w-[25%] bg-white-A700 border border-gray-300 rounded-md shadow-lg">
             {visibleCategories.map((category, index) => (
               <div className="flex flex-row justify-between px-10">
                 <Link key={index} href={`categories/${category.id}`}>
                   <div className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                    <div className="w-[5px] h-[5px]">
+                    <img src={`http://localhost:8000/${category.image}`} alt="" className='object-scale-down'/>
+                    </div>
                     <h1 className='font-inter text-md'>{category.category_name}</h1>
                   </div>
                   
                 </Link>
-                <button onClick={()=>AddToStore(category.id)} className="p-2 bg-slate-200 hover:underline">Save</button>
+                <button onClick={()=>AddToStore(category.id)} className="p-2  hover:underline">Save</button>
               </div>
             ))}
           </div>

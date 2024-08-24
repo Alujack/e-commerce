@@ -3,8 +3,15 @@ import { useState } from "react";
 import { Heading, Text, Img, Button } from "@/components/.";
 import Link from "next/link";
 import { Product } from "@/common.type";
+interface Props{
+  product:Product;
+  deleteFav:(productId:string)=>void;
+  handleAddToCart:(productId:string)=>void;
 
-export default function FavouriteCart({product}:{product:Product}) {
+}
+export default function FavouriteCart({product, deleteFav, handleAddToCart}:Props) {
+
+ 
   return (
     <div className="w-full p-5 flex gap-5 items-start border-b border-gray-300 mb-5">
       <input id="check" type="checkbox" className="h-5 w-5 self-center" />
@@ -39,12 +46,15 @@ export default function FavouriteCart({product}:{product:Product}) {
             Size: Queen
           </Text>
           <div className="flex flex-row justify-between items-center w-[25%] mt-3">
-            <p className="text-gray-600 text-md cursor-pointer hover:underline">
+            <p onClick={()=>handleAddToCart(product.id)} className="text-gray-600 text-md cursor-pointer hover:underline">
             Add To Cart
-          </p>
-          <p className="text-gray-600 text-md cursor-pointer hover:underline">
-            Buy Now
-          </p>
+            </p>
+            <p className="text-gray-600 text-md cursor-pointer hover:underline">
+              Buy Now
+            </p>
+            <p onClick={()=>deleteFav(product.id)} className="text-gray-600 text-md cursor-pointer hover:underline">
+              Delete
+            </p>
           </div>
         </div>
 

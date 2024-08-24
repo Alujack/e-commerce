@@ -83,7 +83,9 @@ export default function CategoryDetail({ params }: { params: { id: string } }) {
         console.log('Success:', data);  
         // Handle success, e.g., show a success message or update state
         closeModal();
-        handleOpenSuccess();
+        // handleOpenSuccess();
+        fetchVariations();
+
       } catch (error) {
         console.error('Error:', error);
         // Handle error, e.g., show an error message
@@ -111,9 +113,7 @@ export default function CategoryDetail({ params }: { params: { id: string } }) {
     fetchCategory();
   }, [params.id]);
 
-
-  useEffect(() => {
-    const fetchVariations = async () => {
+  const fetchVariations = async () => {
       try {
         const response = await axios.get(`http://localhost:8000/api/product/category/variations/${params.id}`);
         console.log(response.data)
@@ -123,6 +123,8 @@ export default function CategoryDetail({ params }: { params: { id: string } }) {
       }
     };
 
+
+  useEffect(() => {
     fetchVariations();
   }, [params.id]);
   
@@ -208,13 +210,13 @@ export default function CategoryDetail({ params }: { params: { id: string } }) {
                 {variation.attribute_type}
               </h2>
               {openDropdown === variation.attribute_type && (
-                <ul className="list-disc pl-4 mt-4">
+                <ol className="list-inside pl-4 mt-4">
                   {variation.variation_option.map((option) => (
                     <li key={option.id} className="text-gray-800 m-2">
                       {variation.attribute_type}: {option.value}
                     </li>
                   ))}
-                </ul>
+                </ol>
               )}
             </div>
           ))}

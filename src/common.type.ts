@@ -57,6 +57,10 @@ export interface ProductCategory {
   category_name: string;
   image?: string | null; // URL or base64 string
 }
+export interface Category {
+    id: number;
+    category_name: string;
+}
 
 export interface Variations {
   id: UUID;
