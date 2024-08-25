@@ -1,16 +1,23 @@
 "use client"
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import PaymentOption from "./components/PaymentOptions"
 import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
 import { useAddress } from "@/context/AddressContext";
 import {useCart} from "@/context/cartcontext";
+import AddressForm from "./components/addressFrom"
  export default function Checkout() {
    const {data:user} = useRetrieveUserQuery();
    const { address, fetchAddress } = useAddress();
    const id = user?.id ? user.id : '';
    const {cartItems, FetchCartItem} = useCart();
    const router = useRouter();
+   const [selectedOption, setSelectedOption] = useState<string | null>(null);
+
+   const handleOptionClick = (option: string) => {
+      setSelectedOption(option);
+    };
+
 
    useEffect(() => {
       fetchAddress(id);
@@ -77,332 +84,123 @@ import {useCart} from "@/context/cartcontext";
           <p className="text-black text-lg text-center  hover:text-indigo-800 hover:underline">
             OR
           </p>
-          {/* Section1 */}
-          <div className="w-full  sm:p-5  rounded-[10px] ">
-            <div className=" flex  gap-3 justify-between pt-7">
-              <h2 className="flex  justify-between text-lg hover:underline ">
-                Billing address
-              </h2>
-              <p className="text-cyan-500 hover:text-indigo-800 hover:underline">
-                Edit Detail
-              </p>
-            </div>
-            <div className="flex space-x-[25px] justify-between">
-              <div className="border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md w-full">
-                <input
-                  type="text"
-                  value={user?.first_name}
-                  placeholder="first name"
-                  className="border-indigo-600 w-full rounded-md py-2 px-4 text-sm"
-                />
-              </div>
-              <div className="border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md w-full">
-                <input
-                  type="text"
-                  value={user?.last_name}
-                  placeholder="last name"
-                  className="border-indigo-600 w-full rounded-md py-2 px-4 text-sm"
-                />
-              </div>
-            </div>
-            <div className="flex flex-row border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md my-3">
-              <input
-                className="placeholder:text-slate-400 block bg-white w-full   sm:text-sm "
-                placeholder="address line - 1"
-                value={address.house_number}
-                type="text"
-                name="search"
-              />
-              <input
-                className="placeholder:text-slate-400 block bg-white w-full   sm:text-sm "
-                placeholder="address line - 1"
-                value={address.street_number}
-                type="text"
-                name="search"
-              />
-              <input
-                className="placeholder:text-slate-400 block bg-white w-full   sm:text-sm "
-                placeholder="address line - 1"
-                value={address.village}
-                type="text"
-                name="search"
-              />
-            </div>
-            <div className="flex flex-row border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md my-3">
-              <input
-                className="placeholder:text-slate-400 block bg-white w-full   sm:text-sm "
-                placeholder="address line - 1"
-                value={address.commune}
-                type="text"
-                name="search"
-              />
-              <input
-                className="placeholder:text-slate-400 block bg-white w-full   sm:text-sm "
-                placeholder="address line - 1"
-                value={address.district}
-                type="text"
-                name="search"
-              />
-              <input
-                className="placeholder:text-slate-400 block bg-white w-full   sm:text-sm "
-                placeholder="address line - 1"
-                value={address.commune}
-                type="text"
-                name="search"
-              />
-            </div>
-            <div className="border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md  mt-3">
-              <input
-                className="placeholder:text-slate-400 block bg-white w-full   sm:text-sm"
-                placeholder="City"
-                value={address.city}
-                type="text"
-                name="search"
-              />
-            </div>
-            <div className="flex space-x-[25px] justify-between mt-[13px]">
-              <div className="border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md w-full">
-                <input
-                  type="text"
-                  placeholder="Country"
-                  value={address.country}
-                  className="border-indigo-600 w-full rounded-md py-2 px-4 text-sm"
-                />
-              </div>
-              <div className="border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md w-full">
-                <input
-                  type="text"
-                  placeholder="State"
-                  value={address.city}
-                  className="border-indigo-600 w-full rounded-md py-2 px-4 text-sm"
-                />
-              </div>
-            </div>
-
-            <div className="flex space-x-[25px] justify-between mt-[13px]">
-              <div className="border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md w-full">
-                <input
-                  type="text"
-                  placeholder="Zip"
-                  value={address.postal_code}
-                  className="border-indigo-600 w-full rounded-md py-2 px-4 text-sm"
-                />
-              </div>
-              <div className="border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md w-full">
-                <input
-                  type="text"
-                  placeholder="Phone"
-                  value={address.phone_number}
-                  className="border-indigo-600 w-full rounded-md py-2 px-4 text-sm"
-                />
-              </div>
-            </div>
-          </div>
-
+        
+         
           {/* Section2 */}
 
-          <div className="w-full  sm:p-5  rounded-[10px] ">
-            <div className=" flex  gap-3 justify-between pt-7">
-              <h2 className="flex  justify-between text-lg hover:underline ">
-                Shipping address
-              </h2>
-              <p className="text-cyan-500 hover:text-indigo-800 hover:underline">
-                Edit Detail
-              </p>
-            </div>
-            <div className="mb-4">
-              <label className="inline-flex items-center text-sm text-gray-700">
-                <input
-                  type="checkbox"
-                  className="form-checkbox h-5 w-5 text-indigo-600 rounded focus:ring-indigo-500"
-                />
-                <span className="ml-2 p-1">Same as billing address</span>
-              </label>
-            </div>
-            <div className="flex space-x-[25px] justify-between">
-              <div className="border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md w-full">
-                <input
-                  type="text"
-                  value={user?.first_name}
-                  placeholder="first name"
-                  className="border-indigo-600 w-full rounded-md py-2 px-4 text-sm"
-                />
-              </div>
-              <div className="border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md w-full">
-                <input
-                  type="text"
-                  value={user?.last_name}
-                  placeholder="last name"
-                  className="border-indigo-600 w-full rounded-md py-2 px-4 text-sm"
-                />
-              </div>
-            </div>
-            <div className="flex flex-row border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md my-3">
-              <input
-                className="placeholder:text-slate-400 block bg-white w-full   sm:text-sm "
-                placeholder="address line - 1"
-                value={address.house_number}
-                type="text"
-                name="search"
-              />
-              <input
-                className="placeholder:text-slate-400 block bg-white w-full   sm:text-sm "
-                placeholder="address line - 1"
-                value={address.street_number}
-                type="text"
-                name="search"
-              />
-              <input
-                className="placeholder:text-slate-400 block bg-white w-full   sm:text-sm "
-                placeholder="address line - 1"
-                value={address.village}
-                type="text"
-                name="search"
-              />
-            </div>
-            <div className="flex flex-row border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md my-3">
-              <input
-                className="placeholder:text-slate-400 block bg-white w-full   sm:text-sm "
-                placeholder="address line - 1"
-                value={address.commune}
-                type="text"
-                name="search"
-              />
-              <input
-                className="placeholder:text-slate-400 block bg-white w-full   sm:text-sm "
-                placeholder="address line - 1"
-                value={address.district}
-                type="text"
-                name="search"
-              />
-              <input
-                className="placeholder:text-slate-400 block bg-white w-full   sm:text-sm "
-                placeholder="address line - 1"
-                value={address.commune}
-                type="text"
-                name="search"
-              />
-            </div>
-            <div className="border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md  mt-3">
-              <input
-                className="placeholder:text-slate-400 block bg-white w-full   sm:text-sm"
-                placeholder="City"
-                value={address.city}
-                type="text"
-                name="search"
-              />
-            </div>
-            <div className="flex space-x-[25px] justify-between mt-[13px]">
-              <div className="border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md w-full">
-                <input
-                  type="text"
-                  placeholder="Country"
-                  value={address.country}
-                  className="border-indigo-600 w-full rounded-md py-2 px-4 text-sm"
-                />
-              </div>
-              <div className="border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md w-full">
-                <input
-                  type="text"
-                  placeholder="State"
-                  value={address.city}
-                  className="border-indigo-600 w-full rounded-md py-2 px-4 text-sm"
-                />
-              </div>
-            </div>
+         <AddressForm  address={address} />
 
-            <div className="flex space-x-[25px] justify-between mt-[13px]">
-              <div className="border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md w-full">
-                <input
-                  type="text"
-                  placeholder="Zip"
-                  value={address.postal_code}
-                  className="border-indigo-600 w-full rounded-md py-2 px-4 text-sm"
-                />
-              </div>
-              <div className="border border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 rounded-md w-full">
-                <input
-                  type="text"
-                  placeholder="Phone"
-                  value={address.phone_number}
-                  className="border-indigo-600 w-full rounded-md py-2 px-4 text-sm"
-                />
-              </div>
-            </div>
-          </div>
 
 
           {/* Section3 */}
-          <div className="w-full  sm:p-5  rounded-[10px]">
-            <div className=" flex  gap-3 justify-between pt-7">
-              <h2 className="flex  justify-between text-lg hover:underline text-black">
-                Delivery options
-              </h2>
-              <p className="text-cyan-500 hover:text-indigo-800 hover:underline">
-                edit details
-              </p>
-            </div>
-            <div className="flex justify-between gap-3  space-x-[25px] mt-3 mb-3">
-              <div className="border-neutral-400 border bg-slate-200 rounded-[10px] w-full">
-                <h3 className="text-black-900_01 text-lg px-2 py-3 ">
-                  {" "}
-                  In-store pickup
-                </h3>
-                <p className="text-black-900_01 text-sm px-2 pb-3 ">
-                  Takes 3-5 business days
+           <div className="w-full sm:p-5 rounded-[10px]">
+              <div className="flex gap-3 justify-between pt-7">
+                <h2 className="flex justify-between text-lg hover:underline text-black">
+                  Delivery options
+                </h2>
+                <p className="text-cyan-500 hover:text-indigo-800 hover:underline">
+                  edit details
                 </p>
               </div>
-              <div className=" border border-blue-700 rounded-[10px] w-full px-3">
-                <div className=" flex  justify-between">
-                  <h3 className="text-black-900_01 text-lg px-2 py-3 ">
-                    {" "}
-                    In-store pickup
-                  </h3>
-
-                  <svg
-                    className="w-6 h-6 text-indigo-600 my-3 "
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                </div>
-                <p className="text-black-900_01 text-sm px-2 pb-3 ">
-                  Pick from store location
-                </p>
-              </div>
-            </div>
-            <div className=" border border-blue-700 rounded-[10px] w-full px-3">
-              <div className=" flex  justify-between">
-                <h3 className="text-black-900_01 text-lg px-2 py-3 ">
-                  {" "}
-                  Locate nearby store
-                </h3>
-
-                <svg
-                  className="w-6 h-6 text-indigo-600 my-3 hover:text-orange-600"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+              <div className="flex justify-between gap-3 space-x-[25px] mt-3 mb-3">
+                <button
+                  onClick={() => handleOptionClick("inStorePickup")}
+                  className={`border rounded-[10px] w-full px-3 ${
+                    selectedOption === "inStorePickup"
+                      ? "border-blue-700 bg-blue-600 text-white-A700"
+                      : "border-neutral-400 bg-slate-200 text-black"
+                  }`}
                 >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M12 2C8.13 2 5 5.13 5 9c0 4.88 6.5 12.75 6.93 13.32.3.4.84.4 1.14 0C12.5 21.75 19 13.88 19 9c0-3.87-3.13-7-7-7zM12 11.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"
-                  />
-                </svg>
+                  <div className="flex justify-between">
+                    <h3 className="text-lg px-2 py-3">
+                      In-store pickup
+                    </h3>
+                    {selectedOption === "inStorePickup" && (
+                      <svg
+                        className="w-6 h-6 text-white my-3"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M5 13l4 4L19 7"
+                        />
+                      </svg>
+                    )}
+                  </div>
+                  <p className="text-sm px-2 pb-3">
+                    Takes 3-5 business days
+                  </p>
+                </button>
+                <button
+                  onClick={() => handleOptionClick("storeLocationPickup")}
+                  className={`border rounded-[10px] w-full px-3 ${
+                    selectedOption === "storeLocationPickup"
+                      ? "border-blue-700 bg-blue-600 text-white-A700"
+                      : "border-neutral-400 bg-slate-200 text-black"
+                  }`}
+                >
+                  <div className="flex justify-between">
+                    <h3 className="text-lg px-2 py-3">
+                      Pick from store location
+                    </h3>
+                    {selectedOption === "storeLocationPickup" && (
+                      <svg
+                        className="w-6 h-6 text-white-A700 my-3"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M5 13l4 4L19 7"
+                        />
+                      </svg>
+                    )}
+                  </div>
+                  <p className="text-sm px-2 pb-3">
+                    Pick from store location
+                  </p>
+                </button>
+              </div>
+              <div
+                onClick={() => handleOptionClick("locateNearbyStore")}
+                className={`border rounded-[10px] w-full px-3 cursor-pointer ${
+                  selectedOption === "locateNearbyStore"
+                    ? "border-blue-700 bg-blue-600 text-white-A700"
+                    : "border-neutral-400 bg-slate-200 text-black"
+                }`}
+              >
+                <div className="flex justify-between">
+                  <h3 className="text-lg px-2 py-3">
+                    Locate nearby store
+                  </h3>
+                  {selectedOption === "locateNearbyStore" && (
+                    <svg
+                      className="w-6 h-6 text-white my-3"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M12 2C8.13 2 5 5.13 5 9c0 4.88 6.5 12.75 6.93 13.32.3.4.84.4 1.14 0C12.5 21.75 19 13.88 19 9c0-3.87-3.13-7-7-7zM12 11.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"
+                      />
+                    </svg>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
         </div>
 
         {/* ==============One more section=============== */}

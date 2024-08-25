@@ -82,7 +82,7 @@ const FormComponent = ({ id }: { id: string }) => {
 
   return (
     <div className="flex flex-col gap-3 px-32">
-      <form onSubmit={onSubmit} className="columns-2">
+      <form onSubmit={onSubmit} className="">
         <div className="flex flex-col items-start gap-2.5">
           <Text as="p" className="text-black">
             Select Country

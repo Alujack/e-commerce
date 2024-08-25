@@ -29,7 +29,6 @@ export interface CustomerList {
 }
 
 export interface Address {
-  id: UUID;
   house_number?: string;
   street_number?: string;
   village?: string;

@@ -56,7 +56,6 @@ export default function BestMultiple() {
         <div key={catPro.category.id}>
           <h2 className="text-2xl font-bold mb-6">Best Sellers in {catPro.category.category_name}</h2>
            <div className="grid grid-cols-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                {/* Product cards */}
                 {catPro.products.map((product, index) => (
                     <ProductCard product={product}/>
                   

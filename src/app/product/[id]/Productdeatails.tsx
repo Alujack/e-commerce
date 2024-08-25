@@ -104,11 +104,11 @@ export default function ProductDetails({
                       </svg>
                     </div>
                 
-                    {/* <img
+                    <img
                       
                       alt="selected_product_image"
                       className="self-center object-cover border border-gray-300 m-0"
-                    /> */}
+                    />
                     <div className="flex justify-center items-center ">
                       <ImageZoom src={selectedImage !== "" ? selectedImage : `http://localhost:8000/${product?.image}`} alt="Product Image" />
                     </div>
@@ -124,14 +124,16 @@ export default function ProductDetails({
                     </h1>
                   </div>
                   <div className="flex flex-row gap-4 items-center mt-1">
+                    <div className="relative">
                     <RatingBar
                       value={4.7}
                       starCount={5}
                       color="grey"
                       activeColor="gold"
                       size={24}
-                      isEditable={false}
-                    />
+                      isEditable={true}
+                    
+                    /></div>
                     <p className="text-sm text-blue-500 ml-2 cursor-pointer">716 ratings</p> 
                     <span className="text-sm text-blue-500 ml-2 cursor-pointer">|</span>
                     <p className="text-sm text-blue-500 ml-2 cursor-pointer">Search this page</p>

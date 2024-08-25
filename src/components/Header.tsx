@@ -12,6 +12,8 @@ import { CloseSVG } from "../assets/images";
 import { Input} from ".";
 import MenuComponent from "./menu";
 import ProfileMenu from "./account-information";
+import { Category } from "@/context/productDetail";
+import axios from "axios";
 
 export default function Header() {
   const { data: userData } = useRetrieveUserQuery();
@@ -21,6 +23,7 @@ export default function Header() {
   const router = useRouter();
   const [show, setShow] = useState<boolean>(false);
   const [openProfile, setOpenProfile] = useState<boolean>(false);
+  const [categories, setCategories] = useState<Category[]>([])
 
   const handleLogout = () => {
     logout(undefined)
@@ -61,6 +64,18 @@ export default function Header() {
        setSuggestions([])
     }
   }, [searchBarValue]);
+
+   useEffect(()=>{
+    const fetchCategories = async ()=>{
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_HOST}/api/inventory/category/contain/products/`)
+      if (response){
+        setCategories(response.data)
+      }else{
+        console.log('error')
+      }
+    }
+    fetchCategories()
+  },[])
  
 
   return (
@@ -193,10 +208,10 @@ export default function Header() {
           </div>
           <h1 className="text-white-A700 font-inter">All</h1>
         </div>  
-        <div className="grid grid-flow-col ml-[12%] h-full">     
-          {NAVLINK.map((link) => (
-            <Link key={link.key} href={link.href} className="px-6 py-2 text-sm text-center text-white-A700  hover:border-[1.5px] transition-[0.3s] border-gray-400 rounded-[5px]">
-              {link.label}
+        <div className="grid grid-flow-col h-full">     
+          {categories.map((link) => (
+            <Link key={link.id} href={`/category/${link.id}`} className="px-6 py-2 text-sm text-center text-white-A700  hover:border-[1.5px] transition-[0.3s] border-gray-400 rounded-[5px]">
+              {link.category_name}
             </Link>
           ))}
         </div>
