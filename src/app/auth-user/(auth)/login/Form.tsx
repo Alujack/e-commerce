@@ -4,7 +4,7 @@ import { Text,CheckBox, Heading } from "@/components/.";
 import Link from "next/link";
 import { Spinner } from '@/components/common';
 import { useLogin } from '@/hooks';
-
+import { SocialButtons } from '@/components/common';
 export default function Signinfrom({ ...props }) {
     const { email, password, isLoading, onChange, onSubmit } = useLogin();
     return (
@@ -21,7 +21,7 @@ export default function Signinfrom({ ...props }) {
                     Clarity gives you the blocks and components you need to create a truly professional website.
                 </Text>
                 <form onSubmit={onSubmit}>
-                    <div className="flex flex-col items-center justify-center w-[84%] gap-[26px] p-[27px] sm:p-5 bg-white-A700 shadow-xs rounded-[20px]">
+                    <div className="flex flex-col items-center justify-center w-full gap-[26px] p-[27px] sm:p-5 bg-white-A700 shadow-xs rounded-[20px]">
                         <input
                             type="email"
                             name="email"
@@ -53,20 +53,13 @@ export default function Signinfrom({ ...props }) {
                         </div>
                         <button
                             type='submit'
-                            className='flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+                            className='flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white-A700 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
                             disabled={isLoading}
                         >
                             {isLoading ? <Spinner sm /> : `Sign In`}
 				        </button>
-                        {/* <Button
-                            color="gray_50_02"
-                            size="12xl"
-                            leftIcon={<ImGoogle className='mr-3' />}
-                            className="w-full gap-px sm:px-5 text-blue_gray-900_03 tracking-[-0.01px] font-poppins font-semibold rounded-[10px]"
-                            onClick={() => signIn("google")}
-                        >
-                            Sign in with Google
-                        </Button> */}
+                        
+                        <SocialButtons/>
                         <Text as="p" className="mb-1 !text-gray-600 !font-poppins text-center">
                             <span className="text-gray-600">Don&#39;t have an account?&nbsp;</span>
                             <Link href="/auth-user/register"><span className="text-blue-A700 font-semibold">Sign up</span></Link>

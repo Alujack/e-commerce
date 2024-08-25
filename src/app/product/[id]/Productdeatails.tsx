@@ -7,7 +7,7 @@ import CartitemsModal from "@/modals/Cart-Items"
 import { RatingBar } from "@/components/ratingbar"; // Import RatingBar
 import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
 import { useAddress } from "@/context/AddressContext";
-import useFetcher from "@/hooks/use-add-product";
+import CartModal from './shopping-cart';
 import ImageZoom from "./imageZoom";
 import axios from 'axios'
 import { useRouter } from "next/navigation";
@@ -32,6 +32,7 @@ export default function ProductDetails({
   const {address,setAddress, fetchAddress} = useAddress()
   const userid = user?.id ? user?.id : '';
   const [showMore, setShowMore] = useState({});
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   const handleImageClick = (imageUrl:string) => {
     setSelectedImage(imageUrl);
@@ -50,6 +51,7 @@ export default function ProductDetails({
   const handleAddToCart = async () => {
       try {
         const Response = await axios.post(`${process.env.NEXT_PUBLIC_HOST}/api/order_app/cart/create/${user?.id}/?productId=${product?.id}&qty=${1}`)
+        setIsCartOpen(true);
       }catch(err){
         console.error(err)
       }
@@ -69,6 +71,7 @@ export default function ProductDetails({
     <>
     <CartitemsModal show={false}/>
       <div className="flex flex-row gap-2">
+        <CartModal isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
         <div>
         <div className="flex flex-col gap-3">
           <div className="flex flex-col w-full gap-3 mx-auto md:p-5 max-w-[100%]">

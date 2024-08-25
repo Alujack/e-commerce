@@ -26,7 +26,7 @@ const RegisterForm = ({...props}) => {
         <Text
           size="3xl"
           as="p"
-          className="w-[97%] md:w-full !text-blue_gray-700_01 !font-poppins text-center leading-[30px]"
+          className=" md:w-full !text-blue_gray-700_01 !font-poppins text-center leading-[30px]"
         >
           Clarity gives you the blocks and components you need to create a truly professional website.
         </Text>
@@ -92,10 +92,9 @@ const RegisterForm = ({...props}) => {
 				>
 					{isLoading ? <Spinner sm /> : `Sign Up`}
 				</button>
-       <SocialButtons/>
         <Text as="p" className="mb-[3px] !text-gray-600 !font-poppins text-center">
           <span className="text-gray-600">Already have an account?&nbsp;</span>
-          <Link href="/login"><span className="text-blue-A700 font-semibold">Sign in</span></Link>
+          <Link href="/auth-user/login"><span className="text-blue-A700 font-semibold">Sign in</span></Link>
         </Text>
       </div>
       </form>

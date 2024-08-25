@@ -6,7 +6,7 @@ export default function Authlayout({ children}
 
  return (
    <>  
-   <div className="scale-30">
+   <div className="">
       {children} 
    </div>
            

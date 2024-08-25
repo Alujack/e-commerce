@@ -4,7 +4,7 @@ import React, { createContext, useState, useContext, useEffect } from 'react';
 import {ShoppingCartItem, Product} from "@/common.type";
 import axios from 'axios';
 import { useRetrieveUserQuery } from '@/redux/features/authApiSlice';
-interface CartItems{
+export interface CartItems{
   cart_item:ShoppingCartItem;
   products:Product;
 }

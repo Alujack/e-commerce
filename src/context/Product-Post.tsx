@@ -54,12 +54,8 @@ const ProductPostProvider = ({ children }: { children: ReactNode }) => {
   const [variations, setVariations] = useState<Variations[]>([]);
   const [variationOptions, setVariationOptions] = useState<string[]>([]);
   const [stocks, setStocks] = useState<Stock[]>([]);
-  const [productImages, setProductImages] = useState<ProductImage[]>([
-    { url: null, angle: 'front' },
-    { url: null, angle: 'back' },
-    { url: null, angle: 'left' },
-    { url: null, angle: 'right' },
-  ]);
+  const [productImages, setProductImages] = useState<ProductImage[]>([]);
+
 
   return (
     <ProductContext.Provider value={

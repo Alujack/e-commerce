@@ -22,7 +22,7 @@ export default function WebSignin() {
                 className="h-[327px] w-full md:h-auto mb-8 object-cover"
               />
             </div>
-            <Signinfrom className="flex flex-col items-center w-[51%] md:w-full gap-[11px]" />
+            <Signinfrom className="flex flex-col items-center w-full gap-[11px]" />
           </div>
         </div>
       </div>
