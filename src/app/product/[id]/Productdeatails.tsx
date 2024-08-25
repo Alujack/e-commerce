@@ -10,6 +10,7 @@ import { useAddress } from "@/context/AddressContext";
 import useFetcher from "@/hooks/use-add-product";
 import ImageZoom from "./imageZoom";
 import axios from 'axios'
+import { useRouter } from "next/navigation";
 interface props{
  product:Product | null;
  categories:Category[];
@@ -32,13 +33,6 @@ export default function ProductDetails({
   const userid = user?.id ? user?.id : '';
   const [showMore, setShowMore] = useState({});
 
-  const toggleShowMore = (variationType:any) => {
-    setShowMore((prevState) => ({
-      ...prevState,
-      [variationType]: !prevState[variationType],
-    }));
-  };
-
   const handleImageClick = (imageUrl:string) => {
     setSelectedImage(imageUrl);
   };
@@ -53,9 +47,24 @@ export default function ProductDetails({
     };
 
   }
+  const handleAddToCart = async () => {
+      try {
+        const Response = await axios.post(`${process.env.NEXT_PUBLIC_HOST}/api/order_app/cart/create/${user?.id}/?productId=${product?.id}&qty=${1}`)
+      }catch(err){
+        console.error(err)
+      }
+
+  };
   useEffect(()=>{
     fetchAddress(userid)
   },[userid])
+  const router = useRouter()
+
+  const checkout = () =>{
+    handleAddToCart();
+    router.push('/cart/checkout');
+
+  }
   return (
     <>
     <CartitemsModal show={false}/>
@@ -116,12 +125,12 @@ export default function ProductDetails({
                   </div>
                   <div className="flex flex-row gap-4 items-center mt-1">
                     <RatingBar
-                      value={4.7} // Assuming `items` has a `rating` field
+                      value={4.7}
                       starCount={5}
                       color="grey"
                       activeColor="gold"
                       size={24}
-                      isEditable={false} // Set to false if you don't want users to edit the rating
+                      isEditable={false}
                     />
                     <p className="text-sm text-blue-500 ml-2 cursor-pointer">716 ratings</p> 
                     <span className="text-sm text-blue-500 ml-2 cursor-pointer">|</span>
@@ -158,9 +167,9 @@ export default function ProductDetails({
                     alt="checkmark_one"
                     className="self-end h-[12px] w-[12px]"
                   />
-                  <Text size="s" as="p" className="self-end !text-black-900_02">
+                  <p className="self-end !text-black-900_02">
                     In stock
-                  </Text>
+                  </p>
                 </div>
 
 
@@ -174,7 +183,7 @@ export default function ProductDetails({
                             {variation.attribute_type}
                           </th>
                         ))}
-                        <th className="px-4 py-2 border-b">Quantity in Stock</th>
+                        <th className="px-4 py-2 border-b">Stock</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -186,7 +195,7 @@ export default function ProductDetails({
                               {variation.options[rowIndex]?.option || '-'}
                             </td>
                           ))}
-                          <td className="px-4 py-2 border-b text-gray-500">
+                          <td className="px-4 py-2 border-b ">
                             {variations
                               .map((variation) => variation.options[rowIndex]?.stock.quantity || 0)
                               .reduce((total, qty) => total + qty, 0)}
@@ -282,21 +291,9 @@ export default function ProductDetails({
                 </div>
               </div>
 
-              <div className="flex flex-col items-center p-4 mb-36">
-                {/* <!-- Brand Section --> */}
-                {/* <div className="bg-gray-100 rounded-lg p-4 flex flex-col items-center w-full">
-                  <p className="text-gray-700 font-medium">
-                    Brand: <span className="font-semibold">Apple MacBook</span>
-                  </p>
-                  <img
-                    src="/images/productdetail/mac-logo.png"
-                    alt="Mac"
-                    className="w-32 mt-2"
-                  />
-                </div> */}
-
-                {/* <!-- Cart Section --> */}
-                <div className="bg-white-A700 border-2 border-gray-200 rounded-lg px-2 self-start w-[278px] h-full">
+              <div className="flex flex-col items-center p-4 mb-36"> 
+               {/* <!-- Cart Section --> */}
+                <div className="bg-white-A700 border-2 border-gray-200 rounded-lg px-4 self-start py-4">
                   <div className="flex flex-col justify-between items-start gap-3">
                     <div className="text-2xl font-semibold text-gray-900">$  {product?.price}</div>
                     <span className="text-xs text-blue-500 cursor-pointer">FREE Returns</span>
@@ -317,10 +314,10 @@ export default function ProductDetails({
                       <option>5</option>
                     </select>
                   </div>
-                  <button className="bg-yellow-500 text-white w-full py-2 mt-3 rounded-md hover:bg-yellow-600">
+                  <button onClick={handleAddToCart} className="bg-yellow-500 text-white w-full py-2 mt-3 rounded-md hover:bg-yellow-600">
                     Add to Cart
                   </button>
-                  <button className="bg-orange-500 text-white w-full py-2 mt-3 rounded-md hover:bg-orange-600">
+                  <button onClick={checkout} className="bg-orange-500 text-white w-full py-2 mt-3 rounded-md hover:bg-orange-600">
                     Buy Now
                   </button>
                   <div className="px-3">

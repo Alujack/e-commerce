@@ -45,7 +45,7 @@ export default function App() {
   useEffect(() => {
     const fetchCategory = async () => {
       try {
-       const response = await axios.get(`${process.env.NEXT_PUBLIC_HOST}/api/product/product-categories/`);
+       const response = await axios.get(`${process.env.NEXT_PUBLIC_HOST}/api/store/category/save/${store.id}/`);
         const data = response.data.map((category: Category) => ({
           ...category,
           image: category.image?.startsWith("http")

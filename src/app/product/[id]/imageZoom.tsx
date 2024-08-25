@@ -26,7 +26,7 @@ const ImageZoom: React.FC<ImageZoomProps> = ({ src, alt }) => {
 
   return (
     <div
-      className="p-3"
+    className="p-4"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onMouseMove={handleMouseMove}
@@ -34,15 +34,15 @@ const ImageZoom: React.FC<ImageZoomProps> = ({ src, alt }) => {
       <img src={src} alt={alt} className="object-cover" />
       {isZoomed && (
         <div
-          className="absolute top-[20%] left-[10%] min-w-[80%] min-h-[80%] border border-gray-200"
+          className="absolute top-[10%] left-[10%] min-w-[80%] min-h-[90%] border border-gray-200"
           style={{
-            width: '500px', // Adjust the size of the zoom window
+            width: '500px', 
             height: '500px',
             backgroundImage: `url(${src})`,
-            backgroundSize: '200%', // Adjust zoom level (larger value for more zoom)
+            backgroundSize: '200%', 
             backgroundPosition: backgroundPosition,
-            backgroundRepeat: 'no-repeat', // Prevents background from repeating
-            pointerEvents: 'none' // Ensures the zoom result is not interactive
+            backgroundRepeat: 'no-repeat',
+            pointerEvents: 'none'
           }}
         ></div>
       )}

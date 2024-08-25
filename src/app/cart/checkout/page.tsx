@@ -9,7 +9,7 @@ import {useCart} from "@/context/cartcontext";
    const {data:user} = useRetrieveUserQuery();
    const { address, fetchAddress } = useAddress();
    const id = user?.id ? user.id : '';
-   const {cartItems} = useCart();
+   const {cartItems, FetchCartItem} = useCart();
    const router = useRouter();
 
    useEffect(() => {
@@ -20,6 +20,10 @@ import {useCart} from "@/context/cartcontext";
   for(let i = 0;i < totals.length ;i++){
     total +=totals[i];
   }
+
+  useEffect(()=>{
+    FetchCartItem(id)
+  },[])
     
   return (
     <>
@@ -411,7 +415,7 @@ import {useCart} from "@/context/cartcontext";
               <h2 className="flex  justify-between text-lg hover:underline">
                 Order Summary(1)
               </h2>
-              <button onClick={()=>router.back()} className="text-cyan-500 hover:text-indigo-800 hover:underline">
+              <button onClick={()=>router.push('/cart')} className="text-cyan-500 hover:text-indigo-800 hover:underline">
                 Edit Cart
               </button>
             </div>

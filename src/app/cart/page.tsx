@@ -25,8 +25,8 @@ export default function AddCart() {
           router.push(`/cart/checkout`)
         }}
       >
-        checkout
-      </Button>
+      checkout
+  </Button>
  </>) 
   return (
     <main>

@@ -8,15 +8,17 @@ import { useCart } from "@/context/cartcontext";
 import { useRouter } from "next/navigation";
 import { RatingBar } from "./ratingbar"; // Import RatingBar
 import axios from "axios";
+import { useEffect } from "react";
 import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
 interface Props {
   product: Product;
 }
 
 export default function ProductCard({product}: Props) {
+  const { cartItems, FetchCartItem} = useCart();
   const {data:user} = useRetrieveUserQuery();
   const router = useRouter();
-  const { cartItems, setCartItems } = useCart();
+
 
   const handleAddToCart = async () => {
       try {
