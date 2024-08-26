@@ -50,7 +50,7 @@ async function RootLayout({
                           <CategoryProvider>
                             <AddressProvider>
                               <ProductsCategoryProvider>
-                                <div className={`${roboto.className} flex flex-col w-full max-w-[100wv] bg-[#E3E6E6] `}>                     
+                                <div className={`${roboto.className} flex flex-col w-full max-w-[100wv] bg-[#E3E6E6] `}>                
                                   <Header/>
                                   <div>{children}</div>
                                   <Footer/>

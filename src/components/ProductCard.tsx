@@ -1,14 +1,11 @@
 "use client";
 
-import { Button, Img, Heading, Text } from "./";
 import Link from "next/link";
-import { Product, producttype } from "@/common.type";
-import AddToCartButton from "./addtocartbutton";
+import { Product} from "@/common.type";
 import { useCart } from "@/context/cartcontext";
 import { useRouter } from "next/navigation";
 import { RatingBar } from "./ratingbar"; // Import RatingBar
 import axios from "axios";
-import { useEffect } from "react";
 import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
 interface Props {
   product: Product;

@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { CloseSVG } from "@/assets/images";
 import { Img, Heading, Input } from "@/components";
-import Messagerow from "@/components/messagerow";
+
 
 export default function DarkFivePage() {
   const [searchBarValue2, setSearchBarValue2] = useState("");
@@ -45,6 +45,7 @@ export default function DarkFivePage() {
                   </div>
                   <div className="flex flex-col gap-[18px] self-stretch px-[19px] pb-[19px]">
                     <div className="flex flex-1 flex-col gap-10">
+                      {/* <Messagerow className="flex items-center md:flex-col" />
                       <Messagerow className="flex items-center md:flex-col" />
                       <Messagerow className="flex items-center md:flex-col" />
                       <Messagerow className="flex items-center md:flex-col" />
@@ -54,8 +55,7 @@ export default function DarkFivePage() {
                       <Messagerow className="flex items-center md:flex-col" />
                       <Messagerow className="flex items-center md:flex-col" />
                       <Messagerow className="flex items-center md:flex-col" />
-                      <Messagerow className="flex items-center md:flex-col" />
-                      <Messagerow className="flex items-center md:flex-col" />
+                      <Messagerow className="flex items-center md:flex-col" /> */}
                     </div>
                   </div>
                 </div>

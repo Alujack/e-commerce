@@ -32,7 +32,7 @@ export default function useLogin() {
 			.then(() => {
 				dispatch(setAuth());
 				toast.success('Logged in');
-				router.push('/');
+				// router.back();
 			})
 			.catch(() => {
 				toast.error('Failed to log in');

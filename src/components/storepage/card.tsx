@@ -10,11 +10,7 @@ export default function Card(){
                 </Button>
                 <div className=" h-[100%] md:h-auto ">
                   <div className="grid w-full grid-cols-[repeat(auto-fill,_minmax(250px_,_1fr))] justify-center gap-3.5">
-                   {
-                  product.map((item)=>(
-                    <ProductCard key={item.id} {...item} items={item}  className="flex flex-col justify-center w-full p-5 bg-gray-100_03 rounded-[10px]" />
-                  ))
-                }
+             
                   </div>
                  
                 </div>

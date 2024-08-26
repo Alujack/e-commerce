@@ -74,11 +74,11 @@ export default function Search(){
             </div>
             <div className ="flex flex-col w-[80%] bg-slate-50 shadow-xl rounded-[5px] h-auto  p-[20px] m-[10px] sm:w-[100%]">
                   <div className="justify-center gap-[3px] grid-cols-[repeat(auto-fill,_minmax(250px_,_1fr))] grid p-[20px]">
-                 {
+                 {/* {
                   product.map((item)=>(
                     <ProductCard key={item.id} {...item} items={item}  className="flex flex-col justify-center w-full p-5 bg-gray-100_03 rounded-[10px]" />
                   ))
-                }
+                } */}
 
                 </div>
             </div>

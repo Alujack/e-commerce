@@ -6,13 +6,17 @@ import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
 import { useAddress } from "@/context/AddressContext";
 import {useCart} from "@/context/cartcontext";
 import AddressForm from "./components/addressFrom"
+import { useAppSelector } from "@/redux/hooks";
+import AuthModal from "@/components/auth/authModal";
  export default function Checkout() {
    const {data:user} = useRetrieveUserQuery();
+   const { isAuthenticated } = useAppSelector(state => state.auth);
    const { address, fetchAddress } = useAddress();
    const id = user?.id ? user.id : '';
    const {cartItems, FetchCartItem} = useCart();
    const router = useRouter();
    const [selectedOption, setSelectedOption] = useState<string | null>(null);
+   const [isModalOpen, setIsModalOpen] = useState(false);
 
    const handleOptionClick = (option: string) => {
       setSelectedOption(option);
@@ -31,9 +35,16 @@ import AddressForm from "./components/addressFrom"
   useEffect(()=>{
     FetchCartItem(id)
   },[])
+
+  const handleButtonClick = () => {
+    if (!isAuthenticated) {
+      setIsModalOpen(true);
+    }
+  };
     
   return (
     <>
+    <AuthModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} /> 
       <div className="flex flec-row justify-between items-center w-full px-14 py-10">
         <div className="w-full h-full self-baseline p-7 sm:p-5  rounded-[10px]">
           <div>
@@ -324,7 +335,7 @@ import AddressForm from "./components/addressFrom"
 
               <div className="border  border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 items-center rounded-md  my-[8px] bg-black-900_01">
                 <button
-                  onClick={()=> alert("succesfully")}
+                  onClick={handleButtonClick}
                   className="w-full font-sm text-gray-300 hover:underline text-center"
                 >
                   Place Order

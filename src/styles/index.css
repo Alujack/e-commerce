@@ -205,3 +205,19 @@ input:focus {
   scrollbar-width: none;
   /* Firefox */
 }
+
+@keyframes zoomIn {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-zoomIn {
+  animation: zoomIn 0.3s ease-in-out;
+}

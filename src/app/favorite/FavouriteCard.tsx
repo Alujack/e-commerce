@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Heading, Text, Img, Button } from "@/components/.";
+import { Heading, Text, Img} from "@/components/.";
 import Link from "next/link";
 import { Product } from "@/common.type";
 interface Props{

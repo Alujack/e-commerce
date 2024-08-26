@@ -1,7 +1,4 @@
 "use client"
-import AddToCartButton from "@/components/addtocartbutton";
-import { Heading} from "@/components";
-import {favorite} from "@/constants/product";
 import axios from "axios"
 import { useState, useEffect } from "react";
 import { Product } from "@/common.type";

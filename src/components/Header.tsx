@@ -14,6 +14,7 @@ import MenuComponent from "./menu";
 import ProfileMenu from "./account-information";
 import { Category } from "@/context/productDetail";
 import axios from "axios";
+import AuthModal from "./auth/authModal";
 
 export default function Header() {
   const { data: userData } = useRetrieveUserQuery();
@@ -24,6 +25,7 @@ export default function Header() {
   const [show, setShow] = useState<boolean>(false);
   const [openProfile, setOpenProfile] = useState<boolean>(false);
   const [categories, setCategories] = useState<Category[]>([])
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleLogout = () => {
     logout(undefined)
@@ -40,7 +42,7 @@ export default function Header() {
     if (isAuthenticated) {
       setMenuOpen(!menuOpen);
     } else {
-      router.push("/auth-user/login");
+      setIsModalOpen(true);
     }
   };
   
@@ -74,13 +76,13 @@ export default function Header() {
         console.log('error')
       }
     }
-    fetchCategories()
+    fetchCategories();
   },[])
- 
 
   return (
 
     <header className="flex flex-col items-center justify-center">
+      <AuthModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} /> 
        <MenuComponent show={show} onclose={()=>setShow(false)}/>
       <div className="flex flex-rows items-center w-full bg-[#131921]  p-4 h-[56px]">
         {/* Left Side - Logo */}
