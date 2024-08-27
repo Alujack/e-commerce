@@ -8,6 +8,7 @@ import {useCart} from "@/context/cartcontext";
 import AddressForm from "./components/addressFrom"
 import { useAppSelector } from "@/redux/hooks";
 import AuthModal from "@/components/auth/authModal";
+import Link from "next/link";
  export default function Checkout() {
    const {data:user} = useRetrieveUserQuery();
    const { isAuthenticated } = useAppSelector(state => state.auth);
@@ -222,7 +223,7 @@ import AuthModal from "@/components/auth/authModal";
           <div>
             <div className=" flex  gap-3 justify-between">
               <h2 className="flex  justify-between text-lg hover:underline">
-                Order Summary(1)
+                Order Summary({cartItems.length})
               </h2>
               <button onClick={()=>router.push('/cart')} className="text-cyan-500 hover:text-indigo-800 hover:underline">
                 Edit Cart
@@ -234,11 +235,13 @@ import AuthModal from "@/components/auth/authModal";
                 <div className="flex flex-row justify-between w-full">
                   <div className="flex  flex-row gap-10">
                     <div className="w-20">
+                      <Link href={`/product/${item.products.id}`}>
                         <img
                           src={`http://localhost:8000/${item.products.image}`}
                           alt=""
                           className="object-cover"
                         />
+                      </Link>
                     </div>
                     <p className="text-gray-700 text-sm pt-6">
                         {item.products.name}

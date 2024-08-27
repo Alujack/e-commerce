@@ -1,6 +1,7 @@
 import { useCart } from '@/context/cartcontext';
 import { useRetrieveUserQuery } from '@/redux/features/authApiSlice';
 import React,{useEffect} from 'react';
+import { useRouter } from 'next/navigation';
 
 interface CartModalProps {
   isOpen: boolean;
@@ -22,6 +23,7 @@ const CartModal: React.FC<CartModalProps> = ({
     (total, item) => total + item.products.price * item.cart_item.qty,
     0
   );
+  const router = useRouter()
   
 
   return (
@@ -80,7 +82,7 @@ const CartModal: React.FC<CartModalProps> = ({
             Subtotal: ${subtotal}
           </p>
           <p className="text-green-600 text-sm">Free Shipping</p>
-          <button className="mt-4 w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700">
+          <button onClick={()=>router.push('/cart')} className="mt-4 w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700">
             Go to Cart
           </button>
         </div>
