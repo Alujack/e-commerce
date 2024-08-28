@@ -9,24 +9,45 @@ import AddressForm from "./components/addressFrom"
 import { useAppSelector } from "@/redux/hooks";
 import AuthModal from "@/components/auth/authModal";
 import Link from "next/link";
+import {useOrder, OrderLine} from "@/context/CheckoutContext"
+import product from "@/constants/product";
+
  export default function Checkout() {
    const {data:user} = useRetrieveUserQuery();
    const { isAuthenticated } = useAppSelector(state => state.auth);
-   const { address, fetchAddress } = useAddress();
    const id = user?.id ? user.id : '';
    const {cartItems, FetchCartItem} = useCart();
    const router = useRouter();
    const [selectedOption, setSelectedOption] = useState<string | null>(null);
    const [isModalOpen, setIsModalOpen] = useState(false);
+   const [cart, setCart] = useState<OrderLine[]>([])
+   const {
+    customer, 
+    setCustomer, 
+    orderLines, 
+    setOrderLines, 
+    shippingAddress,
+    setShippingAddress,
+    paymentType,
+    shippingMethod,
+    setShippingMethod,
+    creditCard,
+    orderTotal,
+    setOrderTotal,
+    status,
+    couponCode,
+    setCouponCode,
+    submitOrder,
+    
+
+  } = useOrder();
 
    const handleOptionClick = (option: string) => {
       setSelectedOption(option);
     };
 
 
-   useEffect(() => {
-      fetchAddress(id);
-    }, []);
+   
   let totals = [...cartItems.map((item)=>item.cart_item.qty*item.products.price)];
   let total = 0;
   for(let i = 0;i < totals.length ;i++){
@@ -42,7 +63,17 @@ import Link from "next/link";
       setIsModalOpen(true);
     }
   };
-    
+
+  const onChange = () => {
+    setCustomer(id);
+    const newOrderLines:OrderLine[] = cartItems.map((item) => ({
+      product: Number(item.products.id),
+      quantity: item.cart_item.qty,
+      price: Number(item.products.price),
+    }));
+    setOrderLines(newOrderLines);
+  
+  }    
   return (
     <>
     <AuthModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} /> 
@@ -100,7 +131,7 @@ import Link from "next/link";
          
           {/* Section2 */}
 
-         <AddressForm  address={address} />
+         <AddressForm/>
 
 
 
@@ -306,6 +337,7 @@ import Link from "next/link";
                   name="terms"
                   type="checkbox"
                   className="h-4 w-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
+                  onChange={onChange}
                 />
                 <label className="ml-3 text-sm text-gray-700 flex ">
                   I agree to the
@@ -330,6 +362,7 @@ import Link from "next/link";
                   name="email-list"
                   type="checkbox"
                   className="h-4 w-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
+                  onChange ={onChange}
                 />
                 <label className="ml-3 text-sm text-gray-700">
                   Sign me up to the email list
@@ -338,7 +371,7 @@ import Link from "next/link";
 
               <div className="border  border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 items-center rounded-md  my-[8px] bg-black-900_01">
                 <button
-                  onClick={handleButtonClick}
+                  onClick={submitOrder}
                   className="w-full font-sm text-gray-300 hover:underline text-center"
                 >
                   Place Order

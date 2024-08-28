@@ -10,10 +10,9 @@ export default  function Product({ params }: { params: { id: string } }) {
     useEffect(() => {
         fetchProductDetails(params.id);
     }, [params.id]);
-    console.log(product)
   return (
     <>
-    <ProductDetails product={product} categories={categories} variations={variations} images={images}/>
+    <ProductDetails key ={1} product={product} categories={categories} variations={variations} images={images}/>
     </>
   );
 }

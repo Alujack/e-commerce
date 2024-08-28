@@ -1,6 +1,6 @@
 import { useCart } from '@/context/cartcontext';
 import { useRetrieveUserQuery } from '@/redux/features/authApiSlice';
-import React,{useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
 interface CartModalProps {
@@ -13,18 +13,18 @@ const CartModal: React.FC<CartModalProps> = ({
   onClose,
 }) => {
   if (!isOpen) return null;
-  const { cartItems, FetchCartItem} = useCart();
- const {data:user} = useRetrieveUserQuery();
- const id = user?.id ? user?.id : '';
-  useEffect(()=>{
+  const { cartItems, FetchCartItem, removeFromCart } = useCart();
+  const { data: user } = useRetrieveUserQuery();
+  const id = user?.id ? user?.id : '';
+  useEffect(() => {
     FetchCartItem(id)
-  },[])
+  }, [])
   const subtotal = cartItems.reduce(
     (total, item) => total + item.products.price * item.cart_item.qty,
     0
   );
   const router = useRouter()
-  
+
 
   return (
     <div className="fixed inset-0 z-auto flex items-start justify-end top-20 p-4">
@@ -62,16 +62,18 @@ const CartModal: React.FC<CartModalProps> = ({
                       readOnly
                     />
                   </div>
-                  <div className="h-[30px] w-[30px] border-2 border-gray-400 rounded-xl p-[4px]">
+                  <button onClick={()=>removeFromCart(item.products.id)}>
+                    <div className="h-[30px] w-[30px] border-2 border-gray-400 rounded-xl p-[4px]">
                       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="" stroke="">
-                          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                          <g id="SVGRepo_iconCarrier"> <g> 
-                            <path fill="none" d="M0 0h24v24H0z"></path> 
-                            <path d="M17 6h5v2h-2v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8H2V6h5V3a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v3zm1 2H6v12h12V8zM9 4v2h6V4H9z"></path> </g> 
-                          </g>
-                        </svg>
-                  </div>
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                        <g id="SVGRepo_iconCarrier"> <g>
+                          <path fill="none" d="M0 0h24v24H0z"></path>
+                          <path d="M17 6h5v2h-2v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8H2V6h5V3a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v3zm1 2H6v12h12V8zM9 4v2h6V4H9z"></path> </g>
+                        </g>
+                      </svg>
+                    </div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -82,7 +84,7 @@ const CartModal: React.FC<CartModalProps> = ({
             Subtotal: ${subtotal}
           </p>
           <p className="text-green-600 text-sm">Free Shipping</p>
-          <button onClick={()=>router.push('/cart')} className="mt-4 w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700">
+          <button onClick={() => router.push('/cart')} className="mt-4 w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700">
             Go to Cart
           </button>
         </div>

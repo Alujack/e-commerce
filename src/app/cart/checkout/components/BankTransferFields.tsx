@@ -1,3 +1,4 @@
+import { useOrder } from '@/context/CheckoutContext';
 const BankTransferFields: React.FC = () => {
   return (
     <div className="space-y-2 ml-7">

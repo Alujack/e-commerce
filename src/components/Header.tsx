@@ -100,9 +100,9 @@ export default function Header() {
                   stroke="currentColor"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M12 2C8.13 2 5 5.13 5 9c0 4.88 6.5 12.75 6.93 13.32.3.4.84.4 1.14 0C12.5 21.75 19 13.88 19 9c0-3.87-3.13-7-7-7zM12 11.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"
                   />
             </svg>
@@ -180,15 +180,17 @@ export default function Header() {
             )}
           </button>
 
-          {isAuthenticated ? <ProfileMenu show={openProfile} /> : ""}   
-             
+          {isAuthenticated ? <ProfileMenu show={openProfile} /> : ""} 
+    
+  
+      
         </div>
          <div className="text-white-A700 cursor-pointer border-gray-400 hover:border-2 px-4 py-2 rounded">
           <Link href="/orderhistory"><p className="w-full">Your Order </p></Link>
         </div>
         <div className="text-white-A700  border-gray-400 hover:border-2 px-4 py-2 rounded">
             <Link href="/cart" className="flex flex-row">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" className="feather feather-shopping-cart" viewBox="0 0 24 24">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="feather feather-shopping-cart" viewBox="0 0 24 24">
                 <circle cx="9" cy="21" r="1"/>
                 <circle cx="20" cy="21" r="1"/>
                 <path d="M1 1h4l2.68 13.39a1 1 0 0 0 1 .81h9.72a1 1 0 0 0 1-.81L23 6H6"/>
@@ -202,7 +204,7 @@ export default function Header() {
 
       {/* Bottom Navigation */}
       <div className="flex flex-row  bg-[#232F3E] h-[40px] w-full pl-3">
-         <div onClick={()=>setShow(true)} className="flex flex-row   hover:border-2 transition-[0.6s] border-gray-400 rounded-lg items-center gap-2 p-2  cursor-pointer">
+         <div onClick={()=>setShow(true)} className="flex flex-row   hover:border-[1.5px] transition-[0.6s] border-gray-400 items-center gap-2 p-2 rounded-[5px] cursor-pointer">
           <div className="flex flex-col gap-1 py-3">
             <div className="w-6 h-[1.8px]  bg-white-A700"></div>
             <div className="w-6 h-[1.8px]  bg-white-A700"></div>

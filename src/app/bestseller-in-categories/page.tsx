@@ -1,16 +1,11 @@
 'use client'
 import { useState,useEffect } from "react";
-import { RatingBar } from "@/components";
-import {useProducts} from "@/context/productListByCategory"
-import ProductCard from "@/components/ProductCard";
 import axios from "axios"
 import { Category } from "@/context/productDetail";
-import { Product} from "@/common.type";
 import BestMultiple from"./multple"
 import BestSellerSingle from "./sepecific-one";
 
 export default function BestSellerPage() {
-  const {products, fetchProducts} = useProducts();
   const [categories, setCategories] = useState<Category[]>([])
   const [id, setId] = useState<string>('');
 

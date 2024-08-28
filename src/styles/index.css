@@ -208,7 +208,7 @@ input:focus {
 
 @keyframes zoomIn {
   0% {
-    transform: scale(0.5);
+    transform: scale(0.3);
     opacity: 0;
   }
 
@@ -220,4 +220,84 @@ input:focus {
 
 .animate-zoomIn {
   animation: zoomIn 0.3s ease-in-out;
+}
+@keyframes zoomOut {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+}
+
+.animate-zoomOut {
+  animation: zoomOut 0.3s ease forwards;
+}
+
+.flaming-button {
+  position: relative;
+  padding: 10px 20px;
+  background-color: #ff4500;
+  border: none;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  outline: none;
+  overflow: hidden;
+  transition: background-color 2s ease;
+  box-shadow: 0 0 20px rgba(255, 69, 0, 0.5);
+}
+
+.flaming-button::before,
+.flaming-button::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: radial-gradient(circle,
+
+      rgba(228, 13, 228, 0.6) 40%,
+      /* Purple */
+      rgba(255, 0, 0, 0.359) 30%,
+      /* Orange */
+      rgba(174, 255, 0, 0.6) 50%,
+      /* Yellow */
+      rgba(0, 128, 255, 0.6) 50%,
+      /* Cyan */
+      rgba(255, 0, 0, 0.6) 50%
+      /* Red */
+    );
+  animation: flames 2s infinite linear;
+  opacity: 1;
+  filter: blur(15px);
+}
+
+.flaming-button::before {
+  animation-delay: 1.5s;
+}
+
+@keyframes flames {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(50%, 50%) scale(1.5);
+  }
+
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+.flaming-button:hover {
+  background-color: #ff6347;
+  box-shadow: 0 0 30px rgba(255, 69, 0, 0.8), 0 0 40px rgba(255, 69, 0, 0.6), 0 0 50px rgba(255, 69, 0, 0.4);
 }

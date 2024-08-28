@@ -17,18 +17,15 @@ import { Roboto } from "next/font/google";
 import { CategoryProvider } from '@/context/CategoryContext';
 import { AddressProvider } from '@/context/AddressContext';
 import {ProductsCategoryProvider} from "@/context/productListByCategory"
+import { OrderProvider } from "@/context/CheckoutContext";
 
 const roboto = Roboto({
-  subsets: ['latin'], // Specify the subsets you want to use
-  weight: ['400', '700'], // Specify the weights you want to use
-  style: ['normal', 'italic'], // Specify the styles you want to use
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  style: ['normal', 'italic'],
 });
 
-async function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+function RootLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <html lang="en">
@@ -50,11 +47,13 @@ async function RootLayout({
                           <CategoryProvider>
                             <AddressProvider>
                               <ProductsCategoryProvider>
-                                <div className={`${roboto.className} flex flex-col w-full max-w-[100wv] bg-[#E3E6E6] `}>                
-                                  <Header/>
-                                  <div>{children}</div>
-                                  <Footer/>
-                                </div>
+                                <OrderProvider>
+                                  <div className={`${roboto.className} flex flex-col w-full max-w-[100wv] bg-[#E3E6E6] `}>                
+                                    <Header/>
+                                    <div>{children}</div>
+                                    <Footer/>
+                                  </div>
+                                </OrderProvider>
                               </ProductsCategoryProvider>
                           </AddressProvider>
                         </CategoryProvider>

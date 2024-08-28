@@ -1,9 +1,7 @@
 'use client'
 import { useEffect } from "react";
-import { RatingBar } from "@/components";
 import {useProducts} from "@/context/productListByCategory"
 import ProductCard from "@/components/ProductCard";
-import product from "@/constants/product";
 
 export default function ProductList({ params }: { params: { id: string }}) {
   const id = params.id;
