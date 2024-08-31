@@ -1,16 +1,48 @@
+
+"use client"
 import ProductCard from "@/components/ProductCard"
-import product from "@/constants/product"
-import { Heading, Text, CheckBox, Button } from "@/components"
-export default function Search(){
+import {CheckBox, Button } from "@/components"
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Product } from '@/common.type';
+
+function ProductSearch() {
+    const [searchTerm, setSearchTerm] = useState('');
+    const [products, setProducts] = useState<Product[]>([]);
+    const [isLoading, setIsLoading] = useState(false);
+
+    // Debounce the search function to prevent too many API calls
+    useEffect(() => {
+        const delayDebounceFn = setTimeout(() => {
+            if (searchTerm) {
+                fetchProducts();
+            }
+        }, 300); // 300ms delay
+
+        return () => clearTimeout(delayDebounceFn);
+    }, [searchTerm]);
+
+    const fetchProducts = async () => {
+        setIsLoading(true);
+        try {
+            const response = await axios.get(`http://localhost:8000/api/search/products/?name=${searchTerm}`);
+            setProducts(response.data);
+        } catch (error) {
+            console.error("There was an error fetching the products!", error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
     return (
-    <main>
+        <main>
         <div className = "flex flex-row bg-slate-50 p-[35px]">
             <div className = " w-[20%]  sm:hidden m-[10px] P-[10px]">
                 <div className="flex flex-col bg-slate-50 shadow-xl rounded-[5px] items-center w-[100%] h-[500px]  P-[10px] ">
                     <div className="mt-[15px] mb-[15px]  w-[100%]  sm:hidden p-[10px]">
-                       <Heading size="4xl" as="h1" className=" leading-[21px]">
+                       <h1  className=" leading-[21px]">
                         Filter by price 
-                        </Heading>
+                        </h1>
                        
                     </div>
                      <div className=" mt-[15px] mb-[15px] h-[2px] w-[50%] bg-green-500"></div>
@@ -24,7 +56,7 @@ export default function Search(){
                     </div>
                     <div className=" w-[100%]  sm:hidden">
                         <div className="flex flex-col justify-between items-center p-[10px]">
-                            <Text as="p">Color</Text>
+                            <p>Color</p>
                             <CheckBox
                                 name="shape"
                                 label="Red(56)"
@@ -46,7 +78,7 @@ export default function Search(){
                         </div>
                         <div className=" w-[100%]  sm:hidden">
                         <div className="flex flex-col justify-between items-center p-[10px]">
-                            <Text as="p">Item Conditions</Text>
+                            <p>Item Conditions</p>
                             <CheckBox
                                 name="shape"
                                 label="New(1056)"
@@ -87,3 +119,5 @@ export default function Search(){
    
     </main>)
 }
+
+export default ProductSearch;

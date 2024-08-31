@@ -75,7 +75,7 @@ export default function ProductDetails({
         <div>
         <div className="flex flex-col gap-3">
           <div className="flex flex-col w-full gap-3 mx-auto md:p-5 max-w-[100%]">
-            <div className="flex flex-row  items-start gap-[9px] p-3.5 bg-white-A700 rounded-[10px] pt-16">
+            <div className="flex flex-row  items-start gap-[9px] p-3.5 bg-[#FFFFFF] rounded-[10px] pt-16">
               <div className="flex flex-row md:self-stretch pb-[2px] sm:pb-5 flex-1 mb-40">
                 <div className="flex w-20 flex-col self-stretch gap-5 mt-5 ml-5 rounded ">
                   {images.map((image) => (

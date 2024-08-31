@@ -23,7 +23,7 @@ export default function BestSellerPage() {
 
   return (
     <>
-      <div className="bg-white-A700 py-4">
+      <div className="bg-[#FFFFFF] py-4">
          <div>
             <h1 className="uppercase text-xl font-bold font-inter text-start">
                   textness best seller
@@ -32,7 +32,7 @@ export default function BestSellerPage() {
         <div className="flex flex-row gap-3">   
         {/* Filter options and product list */}
           <div className=" py-4 w-1/6 h-screen  border-r-2 border-r-gray-200 sm:hidden">
-             <aside className="w-full bg-white-A700 p-4     ">
+             <aside className="w-full bg-[#FFFFFF] p-4     ">
               <h2 className="text-lg font-bold mb-4">Any Department</h2>
               <ul>
                 {categories.map((category, index) => (

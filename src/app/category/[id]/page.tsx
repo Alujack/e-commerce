@@ -80,7 +80,7 @@ export default function ProductList({ params }: { params: { id: string }}) {
 
         {/* Prioduct List */}
         {products.length > 0 ?
-        <div  className="grid grid-cols-7 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 self-center bg-white-A700">
+        <div  className="grid grid-cols-7 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 self-center bg-[#FFFFFF]">
            {products.map((product, index) => (
               <ProductCard product={product}/>
            ))}
