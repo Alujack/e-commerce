@@ -19,13 +19,13 @@ export default function BestMultiple() {
     const fetchProductsForCategories = async () => {
       try {
         // Fetch data from the API endpoint
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_HOST}/api/inventory/best-seller/`);
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_HOST}/api/inventory/new-arrival/`);
         const data = response.data;
 
         // Map the data into the required structure
         const mappedData: CategoriesProduct[] = data.map((item: any) => ({
           category: item.category,
-          top_products: item.top_products
+          top_products: item.new_arrivals
         }));
 
         // Set the mapped data to the state
@@ -58,7 +58,7 @@ export default function BestMultiple() {
           <div key={catPro?.category}>
             <div className="flex sm:flex-col justify-between items-center gap-5 p-[5px]  h-[62px] rounded-[10px]">
               <div className="flex p-2.5">
-                <h2 className="text-2xl font-bold mb-6">Best Sellers in {catPro?.category} </h2>
+                <h2 className="text-2xl font-bold mb-6">New Arrival in {catPro?.category} </h2>
               </div>
               <Link href={`category/${86}`} className="bg-gray-200 mr-[19px] md:mr-0 p-3 capitalize font-medium min-w-[89px] rounded-[10px]">view all</Link>
             </div>
