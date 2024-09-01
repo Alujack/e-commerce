@@ -39,7 +39,7 @@ export default function BestSellerSingle({params}:{params:{id:string}}) {
                 )):null}
               </div>
             </section>
-        </div>
+        </div>       
       </div>
     </>
   );
