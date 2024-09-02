@@ -9,12 +9,12 @@ import Link from "next/link";
 import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
 export default function AddCart() {
 
- const { cartItems, FetchCartItem} = useCart();
- const {data:user} = useRetrieveUserQuery();
- const id = user?.id ? user?.id : '';
-  useEffect(()=>{
+  const { cartItems, FetchCartItem } = useCart();
+  const { data: user } = useRetrieveUserQuery();
+  const id = user?.id ? user?.id : '';
+  useEffect(() => {
     FetchCartItem(id)
-  },[])
+  }, [])
  const router = useRouter();
  const totalsumery = (<>
   <Button

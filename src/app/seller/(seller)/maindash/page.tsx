@@ -1,7 +1,7 @@
 "use client"
 
 
-import {useState, useEffect} from "react"
+import { useState, useEffect } from "react"
 import { Text, Img, Heading, Input, Button } from "@/components";
 import Link from "next/link";
 import Stockpro from "./stockproduct";
@@ -39,9 +39,9 @@ interface Product {
 }
 
 export default function MainDashboard() {
-    const [products, setProducts] = useState<Product[]>([]);
-    const {store} = useStore();
-    useEffect(() => {
+  const [products, setProducts] = useState<Product[]>([]);
+  const { store } = useStore();
+  useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(`http://localhost:8000/api/store/product/publishing/${store.id}`);
@@ -236,40 +236,40 @@ export default function MainDashboard() {
         </div>
         <div className="flex flex-col p-5 bg-white-A700_01 rounded-[15px]">
           <div className="flex flex-row justify-between mb-8">
-            <h1 className ="text-[28px] text-[#343C6A] font-bold inter decoration-8">Product Post</h1>
+            <h1 className="text-[28px] text-[#343C6A] font-bold inter decoration-8">Product Post</h1>
             <div className="flex flex-rows judtify-between">
-               <button className="bg-gray-200 text-black p-4 px-8 rounded-lg hover:bg-gray-300  mr-4">
-                    Edit
-                  </button>
-                  <Link href="/seller/product-post" className="bg-blue-500 hover:bg-blue-700 text-[#d3fee0] font-bold p-4 px-8  rounded">
-                    View
-                  </Link>
+              <button className="bg-gray-200 text-black p-4 px-8 rounded-lg hover:bg-gray-300  mr-4">
+                Edit
+              </button>
+              <Link href="/seller/product-post" className="bg-blue-500 hover:bg-blue-700 text-[#d3fee0] font-bold p-4 px-8  rounded">
+                View
+              </Link>
             </div>
           </div>
-          <div className ="w-full mx-[5%]">
-          <div className="flex items-center justify-between gap-5  p-3 bg-slate-400 mr-36 px-9">
-                  <div className="ml-7 flex w-[30%] flex-wrap justify-between gap-5 self-end md:ml-0 md:w-full">
-                    <Heading as="p" className="mr-[37px] self-end !font-bold md:mr-0">
-                      Product
-                  </Heading>          
-                  </div>
-                  <div className="flex w-[65%] justify-between gap-5 self-end md:w-full">
-                    <Heading as="h4" className="self-end !font-bold">
-                      ID Product
-                    </Heading>
-                     <Heading as="h4" className="self-end !font-bold">
-                      Price
-                    </Heading>
-                    <Heading as="h5" className="self-start !font-bold">
-                      Stock
-                    </Heading>
-                  </div>
+          <div className="w-full mx-[5%]">
+            <div className="flex items-center justify-between gap-5  p-3 bg-slate-400 mr-36 px-9">
+              <div className="ml-7 flex w-[30%] flex-wrap justify-between gap-5 self-end md:ml-0 md:w-full">
+                <Heading as="p" className="mr-[37px] self-end !font-bold md:mr-0">
+                  Product
+                </Heading>
+              </div>
+              <div className="flex w-[65%] justify-between gap-5 self-end md:w-full">
+                <Heading as="h4" className="self-end !font-bold">
+                  ID Product
+                </Heading>
+                <Heading as="h4" className="self-end !font-bold">
+                  Price
+                </Heading>
+                <Heading as="h5" className="self-start !font-bold">
+                  Stock
+                </Heading>
+              </div>
+            </div>
+            <div className="h-2 w-full bg-indigo-50_03" />
+            <div className="rounded-bl-[14px] rounded-br-[14px] border border-solid border-blue_gray-800 py-6 sm:py-5 mr-36">
+              {products.map((product) => (<Stockpro key={product.id} product={product} />))}
+            </div>
           </div>
-           <div className="h-2 w-full bg-indigo-50_03" />
-             <div className="rounded-bl-[14px] rounded-br-[14px] border border-solid border-blue_gray-800 py-6 sm:py-5 mr-36">
-                {products.map((product)=>(<Stockpro key={product.id} product={product}/>))}                          
-             </div>       
-        </div>
         </div>
       </div>
     </div>

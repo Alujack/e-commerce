@@ -1,6 +1,6 @@
 "use client"
 
-import { Text,CheckBox, Heading } from "@/components/.";
+import { Text, CheckBox, Heading } from "@/components/.";
 import Link from "next/link";
 import { Spinner } from '@/components/common';
 import { useLogin } from '@/hooks';
@@ -57,9 +57,9 @@ export default function Signinfrom({ ...props }) {
                             disabled={isLoading}
                         >
                             {isLoading ? <Spinner sm /> : `Sign In`}
-				        </button>
-                        
-                        <SocialButtons/>
+                        </button>
+
+                        <SocialButtons />
                         <Text as="p" className="mb-1 !text-gray-600 !font-poppins text-center">
                             <span className="text-gray-600">Don&#39;t have an account?&nbsp;</span>
                             <Link href="/auth-user/register"><span className="text-blue-A700 font-semibold">Sign up</span></Link>

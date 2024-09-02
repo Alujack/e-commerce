@@ -1,9 +1,10 @@
 import { useOrder } from '@/context/CheckoutContext';
 const CreditCardFields: React.FC = () => {
-  const {creditCard, setCreditCard} = useOrder()
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>{
+  const { creditCard, setCreditCard } = useOrder()
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-      setCreditCard({...creditCard,
+    setCreditCard({
+      ...creditCard,
       [name]: value
     });
 
@@ -46,7 +47,7 @@ const CreditCardFields: React.FC = () => {
         <input
           className="placeholder:text-slate-400 block bg-white w-full sm:text-sm"
           placeholder="CVV"
-           value={creditCard.cvv}
+          value={creditCard.cvv}
           name="cvv"
           type="text"
           onChange={onChange}

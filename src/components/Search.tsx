@@ -15,52 +15,23 @@ const SearchBar: React.FC<SearchBarProps> = ({ placeholder }) => {
     const [suggestions, setSuggestions] = useState<string[]>([]);
     const router = useRouter();
     const [products, setProducts] = useState<Product[]>([]);
-    const [isLoading, setIsLoading] = useState(false);
-
-    // Debounce the search function to prevent too many API calls
     useEffect(() => {
-        const delayDebounceFn = setTimeout(() => {
-            if (searchBarValue) {
-                fetchProducts(searchBarValue);
+        if (searchBarValue.length > 0) {
+            const fetchProducts = async (query: string) => {
+                try {
+                    const response = await axios.get(
+                        `http://127.0.0.1:8000/api/search/search_products?q=${query}`
+                    );
+                    setProducts(response.data);
+                } catch (error) {
+                    console.error("There was an error fetching the products!", error);
+                }
             }
-        }, 1); // 300ms delay
-
-        return () => clearTimeout(delayDebounceFn);
-    }, [searchBarValue]);
-
-    // Update suggestions based on searchBarValue
-    //   useEffect(() => {
-    //     if (searchBarValue.length > 0) {
-    //       const fetchProducts = async (query: string) => {
-    //         setIsLoading(true);
-    //         try {
-    //         const response = await axios.get(
-    //             `http://localhost:8000/api/search/products/?name=${query}`
-    //         );
-    //         setProducts(response.data);
-    //         } catch (error) {
-    //         console.error("There was an error fetching the products!", error);
-    //         } finally {
-    //         setIsLoading(false);
-    //         }
-    //     }
-    //     fetchProducts(searchBarValue)
-    //   };
-    //   }, [searchBarValue]);
-
-    const fetchProducts = async (query: string) => {
-        setIsLoading(true);
-        try {
-            const response = await axios.get(
-                `http://localhost:8000/api/search/products/?name=${query}`
-            );
-            setProducts(response.data);
-        } catch (error) {
-            console.error("There was an error fetching the products!", error);
-        } finally {
-            setIsLoading(false);
+            fetchProducts(searchBarValue)
+        } else {
+            setProducts([])
         }
-    };
+    }, [searchBarValue]);
 
     return (
         <div className="relative flex-grow mx-9">
@@ -83,7 +54,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ placeholder }) => {
                             router.push(`/search?query=${searchBarValue}`);
                         }
                     }}
-                    className="flex-grow px-2 text-white-A700 border-none outline-none bg-transparent focus:ring-0 focus:border-none"
+                    className="flex-grow px-2 text-black-900_01 text-xl border-none outline-none bg-transparent focus:ring-0 focus:border-none"
                     autoComplete="off"
                 />
 
@@ -104,7 +75,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ placeholder }) => {
             </div>
 
             {/* Suggestions & Loading */}
-            <ul className="absolute bg-white-A700  w-full mt-1 z-50 max-h-60 overflow-y-auto shadow-2xl">
+            <ul className="absolute bg-white-A700  w-full mt-1 z-50 max-h-96 overflow-y-auto shadow-2xl">
                 {products.length > 0 ? (
                     products.map((product, index) => (
                         <li

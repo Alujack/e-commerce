@@ -98,18 +98,14 @@ export default function ProductList() {
               </button>
             </div>
             <div className="p-4">
-              
-                <h3 className="text-lg font-semibold">TDX Sinkers</h3>
-                
-             
-
+              <h3 className="text-lg font-semibold">TDX Sinkers</h3>
               <p className="text-sm text-gray-600 mt-1">
                 5 types of shoes available
               </p>
 
               <div className="flex items-center mt-2">
                 <div className="text-yellow-500 flex items-center space-x-1">
-                <RatingBar
+                  <RatingBar
                     value={4} // Assuming `items` has a `rating` field
                     starCount={5}
                     color="grey"
@@ -117,9 +113,9 @@ export default function ProductList() {
                     size={24}
                     isEditable={false} // Set to false if you don't want users to edit the rating
                   />
-                 
+
                 </div>
-                
+
                 <span className="ml-2 text-sm text-gray-500 mt-2">(121)</span>
               </div>
               <p className="text-xl font-bold text-gray-900 mt-2">$675.00</p>

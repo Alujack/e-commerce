@@ -43,7 +43,7 @@ export default function Header() {
       setIsModalOpen(true);
     }
   };
-  
+
   const [suggestions, setSuggestions] = useState<string[]>([]);
 
   const suggestionsList = [
@@ -59,57 +59,59 @@ export default function Header() {
     "hello kitty bag",
   ];
 
-   useEffect(()=>{
-    const fetchCategories = async ()=>{
+  useEffect(() => {
+    const fetchCategories = async () => {
       const response = await axios.get(`${process.env.NEXT_PUBLIC_HOST}/api/inventory/category/contain/products/`)
-      if (response){
+      if (response) {
         setCategories(response.data)
-      }else{
+      } else {
         console.log('error')
       }
     }
     fetchCategories();
-  },[])
+  }, [])
 
   return (
 
     <header className="flex flex-col items-center justify-center">
-      <AuthModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} /> 
-       <MenuComponent show={show} onclose={()=>setShow(false)}/>
+      <AuthModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <MenuComponent show={show} onclose={() => setShow(false)} />
       <div className="flex flex-rows items-center w-full bg-[#131921]  p-4 h-[56px]">
         {/* Left Side - Logo */}
         <div className="flex flex-col px-2 my-2 border-gray-400 rounded hover:border-2 transition-[0.4s]">
           <div>
             <Link href="/"><img src="/images/icons/techness.png" alt="emotionone_one" className="object-scale-down h-12 self-center" /></Link>
-           </div>
+          </div>
         </div>
-        <div className=" h-12 flex flex-row gap-3 p-2 py-2 rounded hover:border-2 transition-[0.4s] border-gray-400 text-white-A700 items-center  ">
+        <Link href="/user-account/address/">
+          <div className=" h-12 flex flex-row gap-3 p-2 py-2 rounded hover:border-2 transition-[0.4s] border-gray-400 text-white-A700 items-center  ">
             <svg
-                  className="w-6 h-6 text-indigo-600 my-3 hover:text-orange-600"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M12 2C8.13 2 5 5.13 5 9c0 4.88 6.5 12.75 6.93 13.32.3.4.84.4 1.14 0C12.5 21.75 19 13.88 19 9c0-3.87-3.13-7-7-7zM12 11.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"
-                  />
+              className="w-6 h-6 text-indigo-600 my-3 hover:text-orange-600"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M12 2C8.13 2 5 5.13 5 9c0 4.88 6.5 12.75 6.93 13.32.3.4.84.4 1.14 0C12.5 21.75 19 13.88 19 9c0-3.87-3.13-7-7-7zM12 11.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"
+              />
             </svg>
             <div className="grid grid-rows-2">
               <p className="text-gray-400 text-sm">Deliver to {userData?.last_name}</p>
               <h6 className="font-poppins font-bold">Cambodia,1200</h6>
-            
+
             </div>
           </div>
+        </Link>
 
         {/* Center - Search Bar */}
-       <SearchBar placeholder="Search Techness" />
+        <SearchBar placeholder="Search Techness" />
 
         {/* Right Side - User Menu */}
-        <div onMouseOver={()=>setOpenProfile(true)} onMouseLeave={()=>setOpenProfile(false)} className="relative">
+        <div onMouseOver={() => setOpenProfile(true)} onMouseLeave={() => setOpenProfile(false)} className="relative">
           <button onClick={handleButtonClick} className="rounded-lg flex items-center border-gray-400 hover:border-2">
             {isAuthenticated ? (
               <img src={userData?.image || "/images/user.png"} className="h-full w-[40px] rounded-full" />
@@ -118,39 +120,39 @@ export default function Header() {
             )}
           </button>
 
-          {isAuthenticated ? <ProfileMenu show={openProfile} /> : ""} 
-    
-  
-      
+          {isAuthenticated ? <ProfileMenu show={openProfile} /> : ""}
+
+
+
         </div>
-         <div className="text-white-A700 cursor-pointer border-gray-400 hover:border-2 px-4 py-2 rounded">
+        <div className="text-white-A700 cursor-pointer border-gray-400 hover:border-2 px-4 py-2 rounded">
           <Link href="/orderhistory"><p className="w-full">Your Order </p></Link>
         </div>
         <div className="text-white-A700  border-gray-400 hover:border-2 px-4 py-2 rounded">
-            <Link href="/cart" className="flex flex-row">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="feather feather-shopping-cart" viewBox="0 0 24 24">
-                <circle cx="9" cy="21" r="1"/>
-                <circle cx="20" cy="21" r="1"/>
-                <path d="M1 1h4l2.68 13.39a1 1 0 0 0 1 .81h9.72a1 1 0 0 0 1-.81L23 6H6"/>
-              </svg>
-              <p className="text-lg font-bold place-items-end bottom-0">cart</p>
-            </Link>
-        </div>   
+          <Link href="/cart" className="flex flex-row">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="feather feather-shopping-cart" viewBox="0 0 24 24">
+              <circle cx="9" cy="21" r="1" />
+              <circle cx="20" cy="21" r="1" />
+              <path d="M1 1h4l2.68 13.39a1 1 0 0 0 1 .81h9.72a1 1 0 0 0 1-.81L23 6H6" />
+            </svg>
+            <p className="text-lg font-bold place-items-end bottom-0">cart</p>
+          </Link>
+        </div>
         <div>
         </div>
       </div>
 
       {/* Bottom Navigation */}
       <div className="flex flex-row  bg-[#232F3E] h-[40px] w-full pl-3">
-         <div onClick={()=>setShow(true)} className="flex flex-row   hover:border-[1.5px] transition-[0.6s] border-gray-400 items-center gap-2 p-2 rounded-[5px] cursor-pointer">
+        <div onClick={() => setShow(true)} className="flex flex-row   hover:border-[1.5px] transition-[0.6s] border-gray-400 items-center gap-2 p-2 rounded-[5px] cursor-pointer">
           <div className="flex flex-col gap-1 py-3">
             <div className="w-6 h-[1.8px]  bg-white-A700"></div>
             <div className="w-6 h-[1.8px]  bg-white-A700"></div>
             <div className="w-6 h-[1.8px]  bg-white-A700"></div>
           </div>
           <h1 className="text-white-A700 font-inter">All</h1>
-        </div>  
-        <div className="grid grid-flow-col h-full">     
+        </div>
+        <div className="grid grid-flow-col h-full">
           {categories.map((link) => (
             <Link key={link.id} href={`/category/${link.id}`} className="px-6 py-2 text-sm text-center text-white-A700  hover:border-[1.5px] transition-[0.3s] border-gray-400 rounded-[5px]">
               {link.category_name}

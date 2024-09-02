@@ -8,7 +8,7 @@ import Customer from "./customer";
 export default function ProductStock() {
     const [searchBarValue, setSearchBarValue] = useState("");
 
-    const handleSearchChange = (e:any) => {
+    const handleSearchChange = (e: any) => {
         setSearchBarValue(e.target.value);
     };
 
@@ -76,7 +76,7 @@ export default function ProductStock() {
                 <div className="h-1 px-[10%] bg-slate-300 mb-4 mt-2" />
                 <div className="rounded-[14px] border border-solid border-blue_gray-800 py-6 mr-[10%] ml-[10%]">
                     <Customer />
-                    
+
                 </div>
             </div>
         </div>

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, ChangeEvent } from "react";
 import axios from "axios";
-import {Text, Heading, TextArea} from "@/components";
+import { Text, Heading, TextArea } from "@/components";
 import { useRetrieveUserQuery } from '@/redux/features/authApiSlice';
 import { countries } from "countries-list";
 
@@ -50,19 +50,19 @@ export default function Form({ id }: { id: string }) {
 
   useEffect(() => {
     const fetchAddress = async () => {
-        try {
-          const response = await axios.get(`http://localhost:8000/api/auth/addresses/${id}`);
-          if(response){
-             console.log(response.data);
-             setFormData(prevData => ({
-              ...prevData,
-              address: response.data,
-          })); 
-          }
-         
-        } catch (error) {
-          console.log('Failed to fetch address', error);
+      try {
+        const response = await axios.get(`http://localhost:8000/api/auth/addresses/${id}`);
+        if (response) {
+          console.log(response.data);
+          setFormData(prevData => ({
+            ...prevData,
+            address: response.data,
+          }));
         }
+
+      } catch (error) {
+        console.log('Failed to fetch address', error);
+      }
     };
 
     fetchAddress();
@@ -93,15 +93,15 @@ export default function Form({ id }: { id: string }) {
   const onSubmit = async () => {
     console.log(formData);
     if (userData && userData.id) {
-        try {
-          const response = await axios.post(`http://localhost:8000/api/store/manage/stores/${id}/`, formData);
-          if(response){
-            console.log(response.data);
-          }
-        } catch (error) {
-          console.log('Failed to fetch stores', error);
+      try {
+        const response = await axios.post(`http://localhost:8000/api/store/manage/stores/${id}/`, formData);
+        if (response) {
+          console.log(response.data);
         }
+      } catch (error) {
+        console.log('Failed to fetch stores', error);
       }
+    }
   };
 
 
@@ -316,14 +316,14 @@ export default function Form({ id }: { id: string }) {
                 className="gap-2 text-black text-sm"
               />
               <label htmlFor="createanaccount">Create an account</label>
-              </div>
-              <button
-                className="ml-[10%] bg-blue-500 text-white px-6 py-2 rounded-full mt-4 hover:bg-blue-700 transition-colors duration-300"
-                onClick ={onSubmit}
-                >
-                Confirm
-              </button>
-           
+            </div>
+            <button
+              className="ml-[10%] bg-blue-500 text-white px-6 py-2 rounded-full mt-4 hover:bg-blue-700 transition-colors duration-300"
+              onClick={onSubmit}
+            >
+              Confirm
+            </button>
+
           </div>
         </div>
       </div>
