@@ -1,6 +1,6 @@
 
 "use client"
-import ProductCard from "@/components/ProductCard"
+import ProductCard from "./ProductCard"
 import { CheckBox, Button } from "@/components"
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -8,34 +8,24 @@ import { Product } from '@/common.type';
 import { useSearchParams } from 'next/navigation';
 
 function ProductSearch() {
-    const [searchTerm, setSearchTerm] = useState('');
     const searchParams = useSearchParams();
     const query = searchParams.get('query');
-    const [products, setProducts] = useState<Product[]>([]);
-    const [isLoading, setIsLoading] = useState(false);
+    const [products, setProducts] = useState<Product[]>([])
 
-    // Debounce the search function to prevent too many API calls
     useEffect(() => {
-        const delayDebounceFn = setTimeout(() => {
-            if (searchTerm) {
-                fetchProducts();
+        const fetchProducts = async () => {
+            try {
+                const response = await axios.get(
+                    `http://127.0.0.1:8000/api/search/search_products?q=${query}`
+                );
+                setProducts(response.data);
+            } catch (error) {
+                console.error("There was an error fetching the products!", error);
             }
-        }, 300); // 300ms delay
-
-        return () => clearTimeout(delayDebounceFn);
-    }, [searchTerm]);
-
-    const fetchProducts = async () => {
-        setIsLoading(true);
-        try {
-            const response = await axios.get(`http://localhost:8000/api/search/products/?name=${searchTerm}`);
-            setProducts(response.data);
-        } catch (error) {
-            console.error("There was an error fetching the products!", error);
-        } finally {
-            setIsLoading(false);
         }
-    };
+        fetchProducts()
+
+    }, [query]);
 
     return (
         <main>
@@ -108,12 +98,16 @@ function ProductSearch() {
 
                 </div>
                 <div className="flex flex-col w-[80%] bg-slate-50 shadow-xl rounded-[5px] h-auto  p-[20px] m-[10px] sm:w-[100%]">
-                    <div className="justify-center gap-[3px] grid-cols-[repeat(auto-fill,_minmax(250px_,_1fr))] grid p-[20px]">
-                        {/* {
-                  product.map((item)=>(
-                    <ProductCard key={item.id} {...item} items={item}  className="flex flex-col justify-center w-full p-5 bg-gray-100_03 rounded-[10px]" />
-                  ))
-                } */}
+                    
+                    <h1>Results</h1>
+                    <p>Check each product page for other buying options.</p>
+
+                    <div className="flex flex-col gap-3">
+                        {
+                            products.map((item) => (
+                                <ProductCard product={item} />
+                            ))
+                        }
 
                     </div>
                 </div>

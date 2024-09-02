@@ -17,7 +17,7 @@ export default function Ordercart({product, quantity}:{product:Product; quantity
         <div className="w-[30%] h-[120px] md:w-[15%]">
           <Link href={`/product/${product.id}`}>
             <Img
-              src={`http://localhost:8000/${product?.image}`} // Replace with actual product image source
+              src={`http://localhost:8000/${product?.image}`} 
               alt="product_image"
               className=" w-full h-full object-cover rounded-[10px] self-center"
             />

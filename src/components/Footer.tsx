@@ -5,8 +5,8 @@ import {Button, Img } from ".";
 export default function Footer() {
   return (
 
-   <footer className="p-[10px] sm:p-0  w-[100wv]">
-          <div className="w-full mt-3 mb-4  mx-auto  bg-[#131921] rounded-[1px]">
+   <footer className="sm:p-0  w-[100wv]">
+          <div className="w-full mt-3  mx-auto  bg-[#131921] rounded-[1px]">
             <div className="flex flex-col gap-[15px]">
               <div className="flex md:flex-col justify-between items-center pr-2.5 gap-5">
                 <div className="flex justify-center w-[48%] md:w-full p-2.5">

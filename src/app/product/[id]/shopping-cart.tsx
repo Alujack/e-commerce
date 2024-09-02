@@ -62,7 +62,7 @@ const CartModal: React.FC<CartModalProps> = ({
                       readOnly
                     />
                   </div>
-                  <button onClick={()=>removeFromCart(item.products.id)}>
+                  <button onClick={() => removeFromCart(item.products.id)}>
                     <div className="h-[30px] w-[30px] border-2 border-gray-400 rounded-xl p-[4px]">
                       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="" stroke="">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
