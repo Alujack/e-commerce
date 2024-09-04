@@ -32,6 +32,8 @@ interface CreditCard {
 interface OrderContextProps {
   customer: string;
   setCustomer: (customer: string) => void;
+  store:string[];
+  setStore:(store:string[])=> void;
 
   orderLines: OrderLine[];
   setOrderLines: (orderLines: OrderLine[]) => void;
@@ -73,6 +75,7 @@ export const useOrder = () => {
 export const OrderProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   // Create state variables for each part of the order
   const [customer, setCustomer] = useState<string>('');
+  const [store,setStore]=useState<string[]>([]);
   const [orderLines, setOrderLines] = useState<OrderLine[]>([]);
   const [shippingAddress, setShippingAddress] = useState<Address>({
     house_number: '',
@@ -107,6 +110,7 @@ export const OrderProvider: React.FC<{ children: ReactNode }> = ({ children }) =
         },
         body: JSON.stringify({
           customer,
+          store,
           order_lines: orderLines,
           shipping_address: shippingAddress,
           payment_type: paymentType,
@@ -134,6 +138,8 @@ export const OrderProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       value={{
         customer,
         setCustomer,
+        store,
+        setStore,
         orderLines,
         setOrderLines,
         shippingAddress,

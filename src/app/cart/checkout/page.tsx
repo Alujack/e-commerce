@@ -24,6 +24,8 @@ export default function Checkout() {
   const {
     customer,
     setCustomer,
+    store,
+    setStore,
     orderLines,
     setOrderLines,
     shippingAddress,
@@ -72,7 +74,11 @@ export default function Checkout() {
       price: Number(item.products.price),
     }));
     setOrderLines(newOrderLines);
-
+    const store_id:any= cartItems.map((pro)=>({
+      store:pro.products.store
+    }))
+    setStore(store_id)
+    
   }
   return (
     <>
