@@ -10,13 +10,14 @@ import { useStore } from "@/context/Store";
 import ConfirmModal from "@/modals/ConfirmModal";
 
 interface Product {
-  id: string;
-  name: string;
-  image: string;
-  price: number;
-  categories: string;
-  product_id: string;
+    id: string;
+    product_id: string;
+    name: string;
+    price: number;
+    image: string;
+    total_stock_quantity: number;
 }
+
 
 export default function ProductStock() {
   const [searchBarValue, setSearchBarValue] = useState("");
@@ -166,12 +167,11 @@ export default function ProductStock() {
       </div>
       <div>
         <div className="flex items-center justify-between gap-5 mr-[37px]">
-          <div className="ml-7 flex w-[30%] flex-wrap justify-between gap-5 self-end md:ml-0 md:w-full">
+          <div className="ml-7 flex w-[35%] flex-wrap justify-between gap-5 self-end md:ml-0 md:w-full">
             <Heading as="p" className="mr-[37px] self-end !font-bold md:mr-0">Product</Heading>
           </div>
-          <div className="flex w-[65%] justify-between gap-5 self-end md:w-full mr-[4%]">
+          <div className="flex w-[50%] justify-between gap-5 self-end md:w-full mr-[4%]">
             <Heading as="h4" className="self-end !font-bold">Inventory</Heading>
-            <Heading as="h4" className="self-end !font-bold">Color</Heading>
             <Heading as="h5" className="self-start !font-bold">Price</Heading>
             <Heading as="p" className="self-end !font-bold">ID Product</Heading>
           </div>

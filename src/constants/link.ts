@@ -41,11 +41,7 @@ export const ADMIN_MENU = [
 ]
 export const PROFILE_MENU =[
     {href:"/user-account/personal-information", label:"Account Information", icon:""},
-    {href:"/user-account/order-history", label:"Order History", icon:""},
     {href:"/user-account/address", label:"Address", icon:""},
-    {href:"/user-account/change-password", label:"Change Password", icon:""},
-    {href:"/user-account/wishlist", label:"Wishlist", icon:""},
-    {href:"/user-account/logout", label:"Logout", icon:""},
 ]
 export const TRENDING =[
     {href:"/bestseller-in-categories", label:"Best Seller", icon:""},

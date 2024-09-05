@@ -7,15 +7,14 @@ async function App({
 children    
 }:{children:React.ReactNode}) {
   return (
-          <div className=" mr-[10%] ml-[10%] flex md:flex-col items-center gap-[34px] p-[18px] my-[18px] rounded-[10px]">
-            <div className="w-[24%] md:w-full p-[9px] my-[10px]">
+          <div className=" bg-white-A700 flex h-screen py-10">
+            <div className="w-[24%]">
               <div className="flex flex-col items-center gap-4">
                  <Heading size="8xl" as="h1" className=" capitalize !font-bold">
                   Account information
                 </Heading>
                   <div className="self-stretch p-5 rounded-[10px]"> 
-                        {PROFILE_MENU.map((menu, index)=>(
-                          
+                        {PROFILE_MENU.map((menu, index)=>(    
                         <div key={index} className="flex self-stretch active:bg-sky-500 justify-between hover:bg-sky-500 items-center mt-[10px]  bg-gray-100_01 rounded-lg p-[10px]">
                           <Text as="p" className=" mb-1.5 !text-black-900_02 text-center">
                             <Link href={menu.href} >{menu.label} </Link>
@@ -25,8 +24,10 @@ children
                         ))} 
                    </div>
               </div>
-            </div>           
+            </div>
+            <div className="w-[76%]">       
             {children}
+            </div>    
           </div>
   );
 }

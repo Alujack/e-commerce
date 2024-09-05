@@ -8,28 +8,33 @@ import axios from "axios";
 import { useStore } from "@/context/Store";
 import { ShopOrder, User } from "@/common.type";
 
-interface OrderLine {
-  order: ShopOrder;
-  customer: User;
+interface OrderData {
+  product_id: string;
+  store_name: string;
+  customer_email: string;
+  order_total: number;
+  quantity: number;
+  status: string;
+  order_date: string;
 }
 
 interface ApiResponse {
-  order_line: OrderLine[];
+  order_line: OrderData[];
 }
 
 export default function ProductStock() {
   const { store } = useStore();
   const [searchBarValue, setSearchBarValue] = useState("");
-  const [orders, setOrders] = useState<OrderLine[]>([]);
+  const [orders, setOrders] = useState<OrderData[]>([]);
 
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await axios.get<ApiResponse>(
-          `http://127.0.0.1:8000/api/store/customer/order-list?store=${store.id}`
+        const response = await axios.get(
+          `http://127.0.0.1:8000/api/store/product/order-list?store=${store.id}`
         );
         if (response.data) {
-          setOrders(response.data.order_line);
+          setOrders(response.data);
         } else {
           console.log("No orders found");
         }
@@ -79,24 +84,28 @@ export default function ProductStock() {
       </div>
 
       <div>
-        <div className="ml-[7%] flex items-center justify-between border-b-slate-600 gap-5 mr-[15%]">
-          <div className="w-[25%] flex justify-between gap-5 self-start ">
-            <h4 className="self-start !font-bold">ID Product</h4>
-          </div>
-          <div className="flex w-full justify-between gap-5 self-end mb-[10px]">
-            <h4 className="self-start !font-bold">Date</h4>
-            <h4 className="self-start !font-bold">Customer</h4>
-            <h4 className="self-start !font-bold ">Payment Status</h4>
-            <h4 className="self-start !font-bold ">Order Status</h4>
-            <h4 className="self-start !font-bold ">Total</h4>
+        <div className=" border-b-slate-600 py-4">
+          <div className="grid grid-cols-8 gap-4 font-bold">
+            <h4 className="col-span-1">ID Product</h4>
+            <h4 className="col-span-1">Date</h4>
+            <h4 className="col-span-2">Customer</h4>
+            <h4 className="col-span-1">Payment Status</h4>
+            <h4 className="col-span-1">Order Status</h4>
+            <h4 className="col-span-1">Quantity</h4>
+            <h4 className="col-span-1">Total</h4>
           </div>
         </div>
-        <div className="gap-6 rounded-bl-[14px] rounded-br-[14px] border-2 border-solid border-blue_gray-800 py-6 sm:py-5">
+
+        <div className="border-2 border-solid border-blue_gray-800 py-6 sm:py-5 rounded-bl-[14px] rounded-br-[14px]">
           {orders.map((orderLine, index) => (
             <List
               key={index}
-              order={orderLine.order}
-              customer={orderLine.customer}
+              product_id={orderLine.product_id}
+              customer_email={orderLine.customer_email}
+              order_total={orderLine.order_total}
+              quantity={orderLine.quantity}
+              status={orderLine.status}
+              order_date={orderLine.order_date}
             />
           ))}
         </div>

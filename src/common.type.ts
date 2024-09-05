@@ -103,8 +103,8 @@ export interface ProductItem {
 export interface Stock {
   id: UUID;
   quantity: number;
-  product_item_variation?: UUID;
-  store?: UUID;
+  variation_option: UUID;
+  product: UUID;
 }
 
 export interface UserReview {

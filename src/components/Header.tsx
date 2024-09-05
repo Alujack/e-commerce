@@ -114,7 +114,8 @@ export default function Header() {
         <div onMouseOver={() => setOpenProfile(true)} onMouseLeave={() => setOpenProfile(false)} className="relative">
           <button onClick={handleButtonClick} className="rounded-lg flex items-center border-gray-400 hover:border-2">
             {isAuthenticated ? (
-              <img src={userData?.image || "/images/user.png"} className="h-full w-[40px] rounded-full" />
+              <div className='w-[48px]'>
+              <img src={userData?.image || "/images/user.png"} className="" /></div>
             ) : (
               <span className=" px-4 py-2 text-white-A700">Sign In</span>
             )}

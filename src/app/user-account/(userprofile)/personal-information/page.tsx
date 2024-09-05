@@ -4,7 +4,7 @@ import { useRetrieveUserQuery, useUpdateUserMutation } from '@/redux/features/au
 import SuccessModal from "@/modals/SucessModal";
 const ProfileInformation: React.FC = () => {
   const { data: userData, isLoading: isFetching, error: fetchError } = useRetrieveUserQuery();
-  const [updateUser, { isLoading: isUpdating, error: updateError}] = useUpdateUserMutation(); 
+  const [updateUser, { isLoading: isUpdating, error: updateError }] = useUpdateUserMutation();
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [formData, setFormData] = useState({
     first_name: '',
@@ -53,7 +53,7 @@ const ProfileInformation: React.FC = () => {
     }
   };
 
- const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (formData.id) {
       try {
@@ -84,7 +84,7 @@ const ProfileInformation: React.FC = () => {
   }
 
   return (
-    <div className="flex md:flex-row gap-16 justify-between w-full p-[84px] md:p-5 bg-gray-100_08 rounded-[10px]">
+    <div className="flex gap-16 justify-between w-full p-[84px] md:p-5 bg-gray-100_08">
       <SuccessModal
         show={showSuccess}
         onClose={handleCloseSuccess}
@@ -92,88 +92,98 @@ const ProfileInformation: React.FC = () => {
         back={false}
         message="Your account updated successfully."
       />
-      <div className="flex flex-col w-[24%] md:w-full ml-14 md:ml-0">
-        <div className="bg-gradient2 rounded-[77px]">
-          <img src={formData.image} className="h-[150px] w-[150px] rounded-full" alt="User Profile" />
+      <div className="flex flex-col w-[35%] md:w-full border-r-2 border-r-red-950 pr-10">
+        <div className="h-[150px] w-[150px] rounded-[50%]">
+          <img src={formData.image} className="object-cover" alt="User Profile" />
         </div>
-        <div className="flex flex-col items-end mt-[-2px] mb-[78px] relative">
-          <div className="flex mr-[80px] p-2.5 md:mr-0">
-            <h1 className="mt-1.5 mb-1 text-center">
-              Upload Photo
-            </h1>
-          </div>
-          <label>Profile Image</label>
+        <div className="flex flex-col">
           <input
             type="file"
             name="image"
             accept="image/*"
             onChange={handleChange}
           />
-          <div className="flex mr-[70px] self-center p-[5px]">
+          <div className="self-center">
             <text className="mt-1.5 mb-1 !text-blue-500_01 text-center">
               Photos Requirements
             </text>
           </div>
         </div>
       </div>
-      <div className="flex flex-col w-[67%] md:w-full mr-[35px] gap-5 md:mr-0">
+      <div className="flex flex-col w-[67%]  gap-5 ">
         {isEditing ? (
-          <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-            <div className="flex flex-col gap-4">
+          <form onSubmit={handleSubmit} className="flex w-[67%] flex-col gap-5">
+            <div className="flex flex-col gap-2">
               <label>First Name</label>
-              <input
-                type="text"
-                name="first_name"
-                value={formData.first_name}
-                onChange={handleChange}
-              />
+              <div className="w-full px-3 py-2 border-2 border-blue-500 flex items-center justify-center rounded-[5px] bg-white-A700">
+                <input
+                  type="text"
+                  name="first_name"
+                  value={formData.first_name}
+                  onChange={handleChange}
+                />
+              </div>
             </div>
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-2">
               <label>Last Name</label>
-              <input
-                type="text"
-                name="last_name"
-                value={formData.last_name}
-                onChange={handleChange}
-              />
+              <div className="w-full px-3 py-2 border-2 border-blue-500 flex items-center justify-center rounded-[5px] bg-white-A700">
+                <input
+                  type="text"
+                  name="last_name"
+                  value={formData.last_name}
+                  onChange={handleChange}
+                />
+              </div>
             </div>
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-2">
               <label>Email</label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-              />
+              <div className="w-full px-3 py-2 border-2 border-blue-500 flex items-center justify-center rounded-[5px] bg-white-A700">
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                /></div>
             </div>
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-2">
               <label>Phone Number</label>
-              <input
-                type="text"
-                name="phone_number"
-                value={formData.phone_number}
-                onChange={handleChange}
-              />
+              <div className="w-full px-3 py-2 border-2 border-blue-500 flex items-center justify-center rounded-[5px] bg-white-A700">
+                <input
+                  type="text"
+                  name="phone_number"
+                  value={formData.phone_number}
+                  onChange={handleChange}
+                /></div>
             </div>
             <button
-              className="text-white bg-transparent w-28 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" 
+              className="bg-blue-800  hover:bg-blue-600  text-white-A700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5"
               type="submit" disabled={isUpdating} >Save</button>
-              {updateError && <p>Error updating profile. Please try again.</p>}
+            {updateError && <p>Error updating profile. Please try again.</p>}
           </form>
         ) : (
-          <div className="flex flex-col gap-5">
-            <p>First Name: {formData.first_name}</p>
-            <p>Last Name: {formData.last_name}</p>
-            <p>Email: {formData.email}</p>
-            <p>Phone Number: {formData.phone_number}</p>
+          <div className="flex flex-col w-[67%]  gap-5">
+
+            <p className="bg-blue-600 px-3 py-2  text-white-A700 text-center">First Name</p>
+            <div className="w-full px-3 py-2  border-2 border-blue-500 flex items-center justify-center rounded-[5px]">
+              <p>{formData.first_name}</p>
+            </div>
+            <p className="bg-blue-600 px-3 py-2  text-white-A700 text-center">Last Name</p>
+            <div className="w-full px-3 py-2 border-2 border-blue-500 flex items-center justify-center rounded-[5px] ">
+              <p>{formData.last_name}</p></div>
+            <p className="bg-blue-600 px-3 py-2  text-white-A700 text-center">Email</p>
+            <div className="w-full px-3 py-2 border-2 border-blue-500 flex items-center justify-center rounded-[5px] ">
+              <p> {formData.email}</p></div>
+            <p className="bg-blue-600 px-3 py-2  text-white-A700 text-center">Phone Number</p>
+            <div className="w-full px-3 py-2 border-2 border-blue-500 flex items-center justify-center rounded-[5px]">
+              <p>{formData.phone_number}</p></div>
           </div>
         )}
-         <button 
-          className="text-white bg-transparent w-28 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" 
+        <button
+          className=" w-[67%] bg-red-800  hover:bg-red-600  text-white-A700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
           onClick={() => setIsEditing(!isEditing)}>{isEditing ? "Cancel" : "Edit"}
-        </button>  
-      </div> 
-     
+        </button>
+      </div>
+
     </div>
   );
 };
