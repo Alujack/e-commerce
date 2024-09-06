@@ -60,7 +60,7 @@ export default function BestMultiple() {
               <div className="flex p-2.5">
                 <h2 className="text-2xl font-bold mb-6">Best Sellers in {catPro?.category} </h2>
               </div>
-              <Link href={`category/${86}`} className="bg-gray-200 mr-[19px] md:mr-0 p-3 capitalize font-medium min-w-[89px] rounded-[10px]">view all</Link>
+              <Link href={`category/${catPro.category}`} className="bg-gray-200 mr-[19px] md:mr-0 p-3 capitalize font-medium min-w-[89px] rounded-[10px]">view all</Link>
             </div>
             <div className="w-full">
               <ProductCarousel products={catPro.top_products} />

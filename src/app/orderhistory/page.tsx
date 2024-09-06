@@ -20,7 +20,7 @@ export default function OrderHistory() {
   }, [])
   return (
     <main>
-      <div className="flex flex-col w-screen bg-[#FFFFFF] pr-[20%] p-5">
+      <div className="flex flex-col w-screen h-screen bg-[#FFFFFF] pr-[20%] p-5">
         <p className="mb-3">Your account - Your order </p>
         <div className="flex flex-row justify-between mb-5">
           <h4 className="self-start text-3xl mt-3">Your Carts</h4>
@@ -50,14 +50,11 @@ export default function OrderHistory() {
           <ul className="hover:underline "> Cancelled Orders</ul>
         </div>
         <div className="flex flex-col h-96 gap-5 mt-5 items-center">
-          <div className="flex flex-col bg-white-A700  w-[1179px] mr-20 flex-start md:self-stretch gap-[15px] flex-1">
+          <div className="flex flex-col bg-white-A700  mr-20 flex-start md:self-stretch gap-[15px] flex-1">
             {cartItems.length > 0 ?
               <>
                 <div className="flex flex-col mt-10 ml-10 mb-10">
-                  <h1 className="text-3xl font-bold text-black-900 mb-3">Shopping Cart</h1>
-                  <Link href="/delete" className="hover:underline">
-                    <p className="text-gray-600">Delete All items</p>
-                  </Link>
+                  <h1 className="text-3xl font-bold text-black-900 mb-3">Order Cart</h1>
                 </div>
 
                 <div className="w-full p-5">

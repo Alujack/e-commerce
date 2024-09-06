@@ -10,7 +10,7 @@ import { useAppSelector } from "@/redux/hooks";
 import AuthModal from "@/components/auth/authModal";
 import Link from "next/link";
 import { useOrder, OrderLine } from "@/context/CheckoutContext"
-import product from "@/constants/product";
+import SuccessModal from "@/modals/SucessModal";
 
 export default function Checkout() {
   const { data: user } = useRetrieveUserQuery();
@@ -47,6 +47,10 @@ export default function Checkout() {
   const handleOptionClick = (option: string) => {
     setSelectedOption(option);
   };
+   const [showSuccess, setShowSuccess] = useState(false);
+
+  const handleOpenSuccess = () => setShowSuccess(true);
+  const handleCloseSuccess = () => setShowSuccess(false);
 
 
 
@@ -357,6 +361,13 @@ export default function Checkout() {
                     </a>
                   </label>
                 </div>
+                <SuccessModal
+                  show={showSuccess}
+                  onClose={handleCloseSuccess}
+                  heading="Sucess!"
+                  back={false}
+                  message="Your Address updated successfully."
+                />
 
 
                 <div className="flex items-start">
@@ -374,7 +385,11 @@ export default function Checkout() {
 
                 <div className="border  border-indigo-600 pt-[5px] pb-[5px] pl-9 pr-3 items-center rounded-md  my-[8px] bg-black-900_01">
                   <button
-                    onClick={submitOrder}
+                    onClick={()=>{
+                      submitOrder();
+                      handleOpenSuccess();
+                      router.push('/')
+                    }}
                     className="w-full font-sm text-gray-300 hover:underline text-center"
                   >
                     Place Order
