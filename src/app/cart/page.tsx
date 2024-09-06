@@ -30,9 +30,9 @@ export default function AddCart() {
   </>)
   return (
     <main>
-      <div className="w-full mt-5 px-20 h-screen">
+      <div className="w-full  px-20  bg-white-A700 ">
         <div className="flex flex-row justify-between  rounded-[10px]">
-          <div className="flex flex-col bg-white-A700  w-[1179px] mr-20 flex-start md:self-stretch gap-[15px] flex-1">
+          <div className="flex flex-col bg-white-A700  w-[1179px] mr-20 flex-start md:self-stretch gap-[15px]">
             {cartItems.length > 0 ?
               <>
                 <div className="flex flex-col mt-10 ml-10 mb-10">
@@ -42,7 +42,7 @@ export default function AddCart() {
                   </Link>
                 </div>
 
-                <div className="w-full p-5">
+                <div className="w-full p-5 border-[1.4px] border-gray-400 shadow-xl ">
                   {cartItems.map((item, index) => (
                     <Ordercart
                       key={index}
@@ -66,7 +66,7 @@ export default function AddCart() {
             }
           </div>
           <div>
-            <Totalsummery className={`flex flex-col items-center w-[300px]  bg-white-A700 p-6`} Children={totalsumery} />
+            <Totalsummery className={`mt-20 flex flex-col items-center w-[300px]  bg-white-A700 p-6 border-[1.4px] border-gray-400 shadow-xl `} Children={totalsumery} />
           </div>
         </div>
       </div>

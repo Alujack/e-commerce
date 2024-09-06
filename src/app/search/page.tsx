@@ -9,8 +9,11 @@ import { useSearchParams } from 'next/navigation';
 
 function ProductSearch() {
     const searchParams = useSearchParams();
-    const query = searchParams.get('query');
-    const [products, setProducts] = useState<Product[]>([])
+    const query = searchParams.get("query");
+    const [products, setProducts] = useState<Product[]>([]);
+    const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+    const [minPrice, setMinPrice] = useState(500);
+    const [maxPrice, setMaxPrice] = useState(5000);
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -19,13 +22,25 @@ function ProductSearch() {
                     `http://127.0.0.1:8000/api/search/search_products?q=${query}`
                 );
                 setProducts(response.data);
+                setFilteredProducts(response.data); // Initially set filtered products to fetched products
             } catch (error) {
                 console.error("There was an error fetching the products!", error);
             }
-        }
-        fetchProducts()
-
+        };
+        fetchProducts();
     }, [query]);
+
+    // Apply price filtering when minPrice or maxPrice changes
+    useEffect(() => {
+        const filterByPrice = () => {
+            const filtered = products.filter(
+                (product) =>
+                    product.price >= minPrice && product.price <= maxPrice
+            );
+            setFilteredProducts(filtered);
+        };
+        filterByPrice();
+    }, [minPrice, maxPrice, products]);
 
     return (
         <main>
@@ -39,16 +54,32 @@ function ProductSearch() {
 
                         </div>
                         <div className=" mt-[15px] mb-[15px] h-[2px] w-[50%] bg-green-500"></div>
-                        <div className="flex flex-col w-full  sm:hidden p-[10px]">
-                            <input type="range" className="w-[100%] " />
+                          <div className="flex flex-col w-full sm:hidden p-[10px]">
+                            <input
+                                type="range"
+                                className="w-[100%]"
+                                min="500"
+                                max="5000"
+                                value={minPrice}
+                                onChange={(e) => setMinPrice(Number(e.target.value))}
+                            />
                             <div className="flex flex-row justify-between">
-                                <span>from $500</span>
-                                <span> To:$1,000</span>
+                                <span>From: ${minPrice}</span>
+                                <span>To: ${maxPrice}</span>
                             </div>
 
+                            {/* Max Price Filter */}
+                            <input
+                                type="range"
+                                className="w-[100%]"
+                                min="500"
+                                max="5000"
+                                value={maxPrice}
+                                onChange={(e) => setMaxPrice(Number(e.target.value))}
+                            />
                         </div>
                         <div className=" w-[100%]  sm:hidden">
-                            <div className="flex flex-col justify-between items-center p-[10px]">
+                            <div className="flex flex-col jus  tify-between items-center p-[10px]">
                                 <p>Color</p>
                                 <CheckBox
                                     name="shape"
@@ -104,7 +135,7 @@ function ProductSearch() {
 
                     <div className="flex flex-col gap-3">
                         {
-                            products.map((item) => (
+                           filteredProducts.map((item) => (
                                 <ProductCard product={item} />
                             ))
                         }

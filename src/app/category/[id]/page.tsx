@@ -1,14 +1,29 @@
 'use client'
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useProducts } from "@/context/productListByCategory"
 import ProductCard from "@/components/ProductCard";
+import { Product } from "@/common.type";
 
 export default function ProductList({ params }: { params: { id: string } }) {
   const id = params.id;
   const { products, fetchProducts } = useProducts();
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const [minPrice, setMinPrice] = useState(500);
+  const [maxPrice, setMaxPrice] = useState(5000);
   useEffect(() => {
     fetchProducts(id)
+    setFilteredProducts(products);
   }, [id])
+   useEffect(() => {
+        const filterByPrice = () => {
+            const filtered = products.filter(
+                (product) =>
+                    product.price >= minPrice && product.price <= maxPrice
+            );
+            setFilteredProducts(filtered);
+        };
+        filterByPrice();
+    }, [minPrice, maxPrice, products]);
 
   return (
     <>
@@ -79,9 +94,45 @@ export default function ProductList({ params }: { params: { id: string } }) {
         </div>
 
         {/* Prioduct List */}
-        {products.length > 0 ?
-          <div className="grid grid-cols-7 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 self-center bg-[#FFFFFF]">
-            {products.map((product, index) => (
+        <div className="flex flex-row gap-4 p-5">
+          <div className="flex flex-col bg-slate-50 shadow-xl rounded-[5px] items-center w-[20%] h-[500px]  P-[10px] ">
+            <div className="mt-[15px] mb-[15px]  w-[100%]  sm:hidden p-[10px]">
+              <h1 className=" leading-[21px]">
+                Filter by price
+              </h1>
+
+            </div>
+            <div className=" mt-[15px] mb-[15px] h-[2px] w-[50%] bg-green-500"></div>
+            <div className="flex flex-col w-full sm:hidden p-[10px]">
+              <input
+                type="range"
+                className="w-[100%]"
+                min="500"
+                max="5000"
+                value={minPrice}
+                onChange={(e) => setMinPrice(Number(e.target.value))}
+              />
+              <div className="flex flex-row justify-between">
+                <span>From: ${minPrice}</span>
+                <span>To: ${maxPrice}</span>
+              </div>
+
+              {/* Max Price Filter */}
+              <input
+                type="range"
+                className="w-[100%]"
+                min="500"
+                max="5000"
+                value={maxPrice}
+                onChange={(e) => setMaxPrice(Number(e.target.value))}
+              />
+            </div>
+
+          </div>
+       
+        {filteredProducts.length > 0 ?
+          <div className="grid grid-cols-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 self-center bg-[#FFFFFF]">
+            {filteredProducts.map((product, index) => (
               <ProductCard product={product} />
             ))}
           </div> :
@@ -91,6 +142,7 @@ export default function ProductList({ params }: { params: { id: string } }) {
 
           </div>
         }
+         </div>
 
 
 
