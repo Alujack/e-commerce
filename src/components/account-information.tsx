@@ -39,7 +39,7 @@ export default function ProfileMenu({show}:Prop) {
                 <h2 className="font-bold text-lg">Your List</h2>
                     <ul className="flex flex-col gap-2">
                         <li>Your Orders</li>
-                        <li>Your Favourite</li>
+                        <li><Link href="/favorite">Your Favourite</Link></li>
                         <li>Your Whistlist</li>
                     </ul>
 

@@ -12,9 +12,10 @@ interface Product {
 export default function Stockpro({ product }: { product: Product }) {
   return (
     <div className="ml-7 flex flex-row justify-between items-center mb-[10px] ">
-      <input type="checkbox" />
-      <div className="w-[25%] flex  gap-5 self-start ">
-        <Img src={`http://localhost:8000/${product.image}`} alt="headphone" className="h-[64px] w-[31%] object-cover" />
+      
+      <div className="w-[35%] flex gap-5 ">
+         <div className="h-[64px] w-[31%]">
+        <Img src={`http://localhost:8000/${product.image}`} alt="headphone" className="object-cover" /></div>
         <Heading as="h1" className="mt-5 text-center">
           {product.name}
         </Heading>

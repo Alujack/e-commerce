@@ -10,7 +10,7 @@ const ShareModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full">
+      <div className="bg-white-A700 rounded-lg shadow-lg p-6 max-w-sm w-full">
         <div className="flex justify-center">
           <div className="border-2 border-green-400 p-4 rounded-full">
             <img

@@ -26,7 +26,6 @@ export const SELLER_MENU = [
     {href:"/seller/product-post", label:"Published Product", icon:"/images/SellerDash/Published Product.png"},
     {href:"/seller/product-stock", label:"Product in Store", icon:"/images/SellerDash/Product in Store.png"},
     {href:"/seller/categories", label:"Categories", icon:"/images/SellerDash/Categories.png"},
-    {href:"/seller/customers", label:"Customers", icon:"/images/SellerDash/Customers.png"},
     {href:"/seller/draft", label:"Draft", icon:"/images/SellerDash/Draft.png"},
     {href:"/seller/account/profile", label:"Account Setting", icon:"/images/SellerDash/Account Setting.png"},
 ]

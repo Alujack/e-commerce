@@ -10,7 +10,7 @@ import { useAppSelector } from "@/redux/hooks";
 import AuthModal from "@/components/auth/authModal";
 import Link from "next/link";
 import { useOrder, OrderLine } from "@/context/CheckoutContext"
-import SuccessModal from "@/modals/SucessModal";
+import SuccessModal from "./components/SucessorModal";
 
 export default function Checkout() {
   const { data: user } = useRetrieveUserQuery();
@@ -253,7 +253,7 @@ export default function Checkout() {
           </div>
         </div>
 
-        {/* ==============One more section=============== */}
+        {/* ============== One more section =============== */}
 
 
         <div className="overflow-y-scroll cursor-pointer self-baseline w-full p-7 sm:p-5  rounded-[10px]">
@@ -366,7 +366,7 @@ export default function Checkout() {
                   onClose={handleCloseSuccess}
                   heading="Sucess!"
                   back={false}
-                  message="Your Address updated successfully."
+                  message="Your Order successfully."
                 />
 
 
@@ -388,7 +388,6 @@ export default function Checkout() {
                     onClick={()=>{
                       submitOrder();
                       handleOpenSuccess();
-                      router.push('/')
                     }}
                     className="w-full font-sm text-gray-300 hover:underline text-center"
                   >

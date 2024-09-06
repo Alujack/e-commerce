@@ -1,23 +1,32 @@
 
 "use client"
 import { Input } from "@/components"
-
-import { useEffect } from "react"
-import { Button } from "@/components";
+import { useEffect, useState } from "react"
 import Ordercart from "@/components/ordercart";
-import Totalsummery from "@/components/totalsummery";
-import { useRouter } from "next/navigation";
-import { useCart } from "@/context/cartcontext";
-import Link from "next/link";
 import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
+import {ShoppingCartItem, Product} from "@/common.type";
+import axios from "axios";
+interface CartItems{
+  cart_item:ShoppingCartItem;
+  products:Product;
+}
 export default function OrderHistory() {
 
-  const { cartItems, FetchCartItem } = useCart();
   const { data: user } = useRetrieveUserQuery();
   const id = user?.id ? user?.id : '';
+  const [cartItems, setCartItems] = useState<CartItems[]>([])
   useEffect(() => {
-    FetchCartItem(id)
-  }, [])
+    const FetchCartItem = async () =>{
+    try{
+      const response  = await axios.get<CartItems[]>(`${process.env.NEXT_PUBLIC_HOST}/api/order_app/order/${id}/`)
+      if (response){
+        setCartItems(response.data)
+      }}catch(err){
+        console.error(err)
+      }}
+
+     FetchCartItem();
+  }, [id])
   return (
     <main>
       <div className="flex flex-col w-screen h-screen bg-[#FFFFFF] pr-[20%] p-5">
@@ -58,7 +67,7 @@ export default function OrderHistory() {
                 </div>
 
                 <div className="w-full p-5">
-                  {cartItems.map((item, index) => (
+                  {/* {cartItems.map((item, index) => (
                     <Ordercart
                       key={index}
                       product={item.products}
@@ -66,7 +75,7 @@ export default function OrderHistory() {
                     // color={item.color} 
                     // size={item.size} 
                     />
-                  ))}
+                  ))} */}
                 </div>
 
               </> : (<>

@@ -4,6 +4,9 @@ import Branding from "@/components/homepage/branding";
 import HeadingBanner from "@/components/bannerHeading";
 import Bestsellerbanner from "@/components/homepage/bestsellerbanner";
 import BestsellerProduct from "@/components/homepage/bestsellerproduct";
+import BestMultiple from "./components/bestseller"
+import NewArrival from "./components/new-arrial"
+import Multiple from "./components/multple"
 export default function Body(){   
  return(<>
  <div className="mx-20 flex flex-col gap-10 mt-3">
@@ -13,7 +16,7 @@ export default function Body(){
             </div>
             <div className="flex flex-col gap-2.5 bg-white-A700 p-3 ">
               <HeadingBanner title="Explore Our Product’s New Arrival" link="view all"/>
-              {/* {<ProductCarousel products={product} />} */}
+              <NewArrival/>
             </div>
     
             <div className="flex flex-col gap-3 bg-white-A700 flex-1 rounded-[10px]">
@@ -22,23 +25,13 @@ export default function Body(){
                   <Bestsellerbanner/>
                   <BestsellerProduct/>
                 </div>
-               {/* {<ProductCarousel products={product} />} */}
+               <BestMultiple/>
             </div>
-            <div className="flex flex-col gap-4 bg-white-A700 flex-1">
-              <div className="flex md:flex-col gap-[17px]">
-                <div className="flex flex-col md:self-stretch gap-[15px] flex-1">
-                  <HeadingBanner title="Explore Our Product’s discount" link="view all"/>
-
-                  </div>
-            
-                </div>
-                {/* {<ProductCarousel products={product} />} */}
-              </div>
             <div className="pb-[9px] bg-white-A700 rounded-[10px]">
               <HeadingBanner title="Explore Our Product’s checking all product" link="view all"/>
               <div className="flex md:flex-col gap-[27px]">
               </div> 
-               {/* {<ProductCarousel products={product} />} */}
+              <Multiple/>
             </div>
           </div>   
   </>
