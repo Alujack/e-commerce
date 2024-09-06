@@ -2,13 +2,13 @@
 "use client"
 import { Input } from "@/components"
 import { useEffect, useState } from "react"
-import Ordercart from "@/components/ordercart";
+import { Heading, Text, Img, Button } from "@/components";
+import Link from "next/link";
 import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
-import {ShoppingCartItem, Product} from "@/common.type";
+import {  Product } from "@/common.type";
 import axios from "axios";
-interface CartItems{
-  cart_item:ShoppingCartItem;
-  products:Product;
+interface CartItems {
+  products: Product[];
 }
 export default function OrderHistory() {
 
@@ -16,20 +16,22 @@ export default function OrderHistory() {
   const id = user?.id ? user?.id : '';
   const [cartItems, setCartItems] = useState<CartItems[]>([])
   useEffect(() => {
-    const FetchCartItem = async () =>{
-    try{
-      const response  = await axios.get<CartItems[]>(`${process.env.NEXT_PUBLIC_HOST}/api/order_app/order/${id}/`)
-      if (response){
-        setCartItems(response.data)
-      }}catch(err){
+    const FetchCartItem = async () => {
+      try {
+        const response = await axios.get<CartItems[]>(`${process.env.NEXT_PUBLIC_HOST}/api/order_app/order/${id}/`)
+        if (response) {
+          setCartItems(response.data)
+        }
+      } catch (err) {
         console.error(err)
-      }}
+      }
+    }
 
-     FetchCartItem();
+    FetchCartItem();
   }, [id])
   return (
     <main>
-      <div className="flex flex-col w-screen h-screen bg-[#FFFFFF] pr-[20%] p-5">
+      <div className="flex flex-col w-screen bg-[#FFFFFF] pr-[20%] p-5">
         <p className="mb-3">Your account - Your order </p>
         <div className="flex flex-row justify-between mb-5">
           <h4 className="self-start text-3xl mt-3">Your Carts</h4>
@@ -58,8 +60,8 @@ export default function OrderHistory() {
           <ul className="hover:underline "> Local Store Orders</ul>
           <ul className="hover:underline "> Cancelled Orders</ul>
         </div>
-        <div className="flex flex-col h-96 gap-5 mt-5 items-center">
-          <div className="flex flex-col bg-white-A700  mr-20 flex-start md:self-stretch gap-[15px] flex-1">
+        <div className="flex flex-col  gap-5 mt-5 items-center">
+          <div className="flex flex-col bg-white-A700  mr-15 flex-start md:self-stretch flex-1 mb-20">
             {cartItems.length > 0 ?
               <>
                 <div className="flex flex-col mt-10 ml-10 mb-10">
@@ -67,15 +69,47 @@ export default function OrderHistory() {
                 </div>
 
                 <div className="w-full p-5">
-                  {/* {cartItems.map((item, index) => (
-                    <Ordercart
-                      key={index}
-                      product={item.products}
-                      quantity={item.cart_item.qty}
-                    // color={item.color} 
-                    // size={item.size} 
-                    />
-                  ))} */}
+                  {cartItems.map((item, index) => (
+                    item.products.map((item)=>(
+                    <div className="w-full p-5 flex gap-5 items-start border-b border-gray-300 ">
+                      <input id="check" type="checkbox" className="h-5 w-5 self-center" />
+
+                      <div className="flex flex-row md:flex-row w-full items-start">
+                        <div className="w-[30%] h-[120px] md:w-[15%]">
+                          <Link href={`/product/${item.id}`}>
+                            <Img
+                              src={`http://localhost:8000/${item.image}`}
+                              alt="product_image"
+                              className=" object-cover rounded-[10px] self-center"
+                            />
+                          </Link>
+                        </div>
+
+                        <div className="flex flex-col justify-between w-[65%] md:w-[70%]">
+                          <Heading as="h2" className="text-lg font-semibold text-gray-800">
+                            {item.name + item.short_description}
+                          </Heading>
+                          <Text size="s" className="text-gray-600 mt-2">
+                            Color: White
+                          </Text>
+                          <Text size="s" className="text-gray-600">
+                            Size: Queen
+                          </Text>
+                        </div>
+
+                        <div className="flex flex-col items-end w-[20%] md:w-[15%]">
+                          <Heading size="lg" className="text-red-600 font-semibold">
+                            $ {item.price}
+                          </Heading>
+                          <Text className="text-sm text-gray-500 line-through mt-1">$ {item.price}</Text>
+                          <Button className="text-sm text-blue-600 underline mt-2">
+                            Clip Coupon
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                    ))
+                  ))}
                 </div>
 
               </> : (<>
