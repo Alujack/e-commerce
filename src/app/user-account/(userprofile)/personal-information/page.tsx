@@ -92,7 +92,7 @@ const ProfileInformation: React.FC = () => {
         back={false}
         message="Your account updated successfully."
       />
-      <div className="flex flex-col w-[35%] md:w-full border-r-2 border-r-red-950 pr-10">
+      <div className="flex flex-col w-[35%] md:w-full border-r-2 border-r-red-950 pr-10 gap-20">
         <div className="h-[150px] w-[150px] rounded-[50%]">
           <img src={formData.image} className="object-cover" alt="User Profile" />
         </div>

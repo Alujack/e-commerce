@@ -48,8 +48,6 @@ export const TRENDING =[
     {href:"/#", label:"Most Browse", icon:""},
 ]
 export const YOURACCOUNT =[
-    {href:"/#", label:"Switch Accounts", icon:""},
-    {href:"/#", label:"Sign Out", icon:""},
     {href:"/#", label:"Account", icon:""},
     {href:"/#", label:"Orders", icon:""},
     {href:"/#", label:"Keep Shopping For", icon:""},
