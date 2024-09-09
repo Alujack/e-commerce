@@ -2,7 +2,7 @@
 "use client"
 import ProductCard from "./ProductCard"
 import { CheckBox, Button } from "@/components"
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 import { Product } from '@/common.type';
 import { useSearchParams } from 'next/navigation';
