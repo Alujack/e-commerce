@@ -52,7 +52,7 @@ export default function Multiple() {
   }, [])
 
   return (
-    <div className="flex flex-col gap-3 w-full">
+    <div className="flex flex-col gap-20 w-full">
       {categoriesProduct.map((catPro) => (
         catPro.top_products ?
           <div key={catPro?.category}>

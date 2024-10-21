@@ -1,5 +1,5 @@
 
-import { Heading, Img, SelectBox } from "@/components";
+import { Heading, Img } from "@/components";
 
 const dropDownOptions = [
   { label: "Option1", value: "option1" },
@@ -109,7 +109,7 @@ export default function DarkOnePage() {
                   <Heading size="4xl" as="h4" className="!font-bold">
                     Sales Details
                   </Heading>
-                  <SelectBox
+                  {/* <SelectBox
                     color="blue_gray_800_11"
                     size="sm"
                     shape="round"
@@ -118,7 +118,7 @@ export default function DarkOnePage() {
                     placeholder={`October`}
                     options={dropDownOptions}
                     className="w-[10%] gap-px self-start border border-solid border-blue_gray-100_1d_02 font-nunitosans font-semibold sm:pr-5"
-                  />
+                  /> */}
                 </div>
                 <div className="mb-6 flex items-start justify-between gap-5 md:flex-col">
                   <div className="flex flex-col items-start gap-[42px]">
@@ -205,7 +205,7 @@ export default function DarkOnePage() {
                   <Heading size="4xl" as="h4" className="!font-bold">
                     Deals Details
                   </Heading>
-                  <SelectBox
+                  {/* <SelectBox
                     color="blue_gray_800_11"
                     size="sm"
                     shape="round"
@@ -214,7 +214,7 @@ export default function DarkOnePage() {
                     placeholder={`October`}
                     options={dropDownOptions}
                     className="mt-0.5 w-[10%] gap-px border border-solid border-blue_gray-100_1d_02 font-nunitosans font-semibold sm:pr-5"
-                  />
+                  /> */}
                 </div>
                 <div>
                   <div className="flex justify-between gap-5 rounded-[12px] border border-solid border-blue_gray-100_1a_02  p-3 md:flex-col">

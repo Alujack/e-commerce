@@ -1,7 +1,7 @@
 "use client"
 import {useState} from "react";
 import { CloseSVG } from "../assets/images";
-import { Img, Heading, SelectBox, Input } from ".";
+import { Img, Heading,Input } from ".";
 
 const dropDownOptions = [
   { label: "Option1", value: "option1" },
@@ -67,14 +67,14 @@ export default function AdminTopbar() {
               className="h-[27px] w-full rounded-[5px] object-cover md:h-auto"
             />
           </div>
-          <SelectBox
+          {/* <SelectBox
             shape="square"
             indicator={<Img src="/images/img_drop_down.png" alt="Drop Down" className="h-[4px] w-[8px]" />}
             name="language"
             placeholder={`English`}
             options={dropDownOptions}
             className="mb-[9px] ml-4 w-[22%] gap-px self-end font-nunitosans font-semibold text-blue_gray-50_13 sm:ml-0 sm:w-full"
-          />
+          /> */}
           <div className="ml-[26px] flex items-center sm:ml-0">
             <Img
               src="/images/img_man_438081_960_720.png"

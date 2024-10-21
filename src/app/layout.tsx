@@ -50,7 +50,9 @@ function RootLayout({ children }: { children: React.ReactNode }) {
                                 <OrderProvider>
                                   <div className={`${roboto.className} flex flex-col w-full max-w-[100wv] bg-[#E3E6E6] `}>                
                                     <Header/>
-                                    <div>{children}</div>
+                                    <div>
+                                      {children}
+                                      </div>
                                     <Footer/>
                                   </div>
                                 </OrderProvider>

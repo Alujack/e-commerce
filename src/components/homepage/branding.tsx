@@ -1,6 +1,6 @@
 import {Img,Heading,Button} from "../."
 export default function Branding(){
-   return ( <div className="w-full p-7 sm:p-5 bg-white-A700 ">
+   return ( <div className="mt-[42px] w-full p-7 sm:p-5 bg-white-A700 ">
                 <div className="flex flex-col mb-[11px] gap-[21px]">
                   <div className="flex justify-between gap-5">
                     <div className="flex">
@@ -20,22 +20,7 @@ export default function Branding(){
                         alt="linklogo5png"
                         className="self-start w-[12%] object-cover"
                       />
-                      <Img
-                        src="/images/img_link_logo1_png.png"
-                        alt="linklogo1png"
-                        className="self-start w-[11%] object-cover"
-                      />
-                      <Img
-                        src="/images/img_link_logo2_png.png"
-                        alt="linklogo2png"
-                        className="self-start w-[16%] object-cover"
-                      />
-                    </div>
-                    <div className="flex justify-between items-start gap-5">
-                      <Img src="/images/img_link_logo3_png.png" alt="linklogo3png" className="w-[12%] object-cover" />
-                      <Img src="/images/img_link_logo6_png.png" alt="linklogo6png" className="w-[18%] object-cover" />
-                      <Img src="/images/img_link_logo7_png.png" alt="linklogo7png" className="w-[14%] object-cover" />
-                      <Img src="/images/img_link_logo10_png.png" alt="linklogo10png" className="w-[12%] object-cover" />
+              
                     </div>
                   </div>
                 </div>

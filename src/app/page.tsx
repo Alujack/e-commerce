@@ -9,12 +9,15 @@ import NewArrival from "./components/new-arrial"
 import Multiple from "./components/multple"
 export default function Body(){   
  return(<>
- <div className="mx-20 flex flex-col gap-10 mt-3">
-            <div className="flex md:flex-col gap-5">
+ <div className="">
+        <img src="/images/bannerslider/banner.jpg" alt="" className=" absolute w-[100vw] shadow-lg"/>
+        <div className=" relative mx-20 flex flex-col gap-10">
+            {/* <div className="flex md:flex-col gap-[10%]">
+             <Branding></Branding>
              <Branding></Branding>
              <TopCategory></TopCategory>
-            </div>
-            <div className="flex flex-col gap-2.5 bg-white-A700 p-3 ">
+            </div> */}
+            <div className="mt-[25%] flex flex-col gap-2.5 bg-white-A700 p-3 ">
               <HeadingBanner title="Explore Our Product’s New Arrival" link="view all"/>
               <NewArrival/>
             </div>
@@ -33,7 +36,7 @@ export default function Body(){
               </div> 
               <Multiple/>
             </div>
-          </div>   
+          </div> </div>
   </>
 );
 } 
